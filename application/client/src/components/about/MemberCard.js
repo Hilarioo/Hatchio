@@ -1,10 +1,10 @@
-import React from 'react'
+
 import '../../css/About.css'
 
-function MemberCard({member}) {
+const MemberCard = ({member}) => {
     return (
         <div className="member-box">
-              <img src={member.img} alt='selfie' className="member-img"/>
+              <img src={member.img} className="member-img"/>
               <h1 className="member-name">{member.fullname}</h1>
               <h4 className="member-role">{member.role}</h4>
         </div>

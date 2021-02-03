@@ -6,8 +6,9 @@ import Nav from 'react-bootstrap/Nav'
 import Home from './home/Home'
 import About from './about/About'
 import Contact from './contact/Contact'
+import Member from './about/MemberPage'
 
-function NavBar() {
+const NavBar = () => {
     return (
       <Router>
         <Navbar collapseOnSelect expand="lg">
@@ -16,16 +17,17 @@ function NavBar() {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto"></Nav>
             <Nav>
-              <Nav.Link href="/about-us">About Us</Nav.Link>
-              <Nav.Link eventKey={2} href="/contact-us">Contact</Nav.Link>
+              <Nav.Link href="/about">About Us</Nav.Link>
+              <Nav.Link eventKey={2} href="/contact">Contact</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
         <br />
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/about-us" component={About} />
-          <Route path="/contact-us" component={Contact} />  
+          <Route path="/about" exact component={About} /> 
+          <Route path="/about/member/:name" component={Member} />  
+          <Route path="/contact" component={Contact} />
         </Switch>
       </Router>
     )

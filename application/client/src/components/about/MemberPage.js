@@ -1,13 +1,14 @@
 import React from 'react'
+import '../../css/About.css'
 
-function MemberPage({member}) {
+const MemberPage = ({location}) => {
+
     return (
-        <div>
-            <h1>{member.fullname}</h1>
-            <h4>{member.role}</h4>
-            <img src={member.img} alt="selfie"/>
-            <p>{member.desc}</p>
-
+        <div className="member-box">
+              <img src={location.state.img} className="member-img"/>
+              <h1 className="member-name">{location.state.fullname}</h1>
+              <h4 className="member-role">{location.state.role}</h4>
+              <p className="member-desc">{location.state.desc}</p>
         </div>
     )
 }
