@@ -1,10 +1,18 @@
 .about-box {
     margin: 10% auto 0 auto;
     display: flex;
-    height: 400px;
     max-width: 1000px;
     align-content: center;
-    overflow-y: scroll;
+    flex-wrap: wrap;
+}
+
+.center-flex {
+    width: 100%;
+    text-align: center;
+}
+
+.member-card {
+    display: inline-block;
 }
 
 .member-box {
@@ -28,6 +36,11 @@
     box-shadow: none;
 }
 
+.mini-title {
+    font-size: 60px;
+    font-weight: 700;
+}
+
 .member-name {
     font-size: 25px;
     font-weight: 900;
@@ -44,7 +57,7 @@
 }
 
 
-p, h1, h4, button{
+p, h1, h2, h3, button{
     text-align: center;
 }
 

@@ -5,9 +5,9 @@ const MemberPage = ({location}) => {
 
     return (
         <div className="member-box">
-              <img src={location.state.img} className="member-img"/>
+              <img src={location.state.img} className="member-img" alt=""/>
               <h1 className="member-name">{location.state.fullname}</h1>
-              <h4 className="member-role">{location.state.role}</h4>
+              <h2 className="member-role">{location.state.role}</h2>
               <p className="member-desc">{location.state.desc}</p>
         </div>
     )
