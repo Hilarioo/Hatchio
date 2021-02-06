@@ -4,6 +4,7 @@ import "../../css/About.css";
 import JoseSelfie from "../../images/Joses-Selfie.JPG";
 import AaronSelfie from "../../images/aaron-pic.jpg";
 import LyraSelfie from "../../images/Lyra.jpg";
+import RolandSelfie from "../../images/Roland.JPG"
 import { Link } from "react-router-dom";
 
 const About = () => {
@@ -34,9 +35,10 @@ const About = () => {
     },
     {
       id: 3,
-      fullname: "Full Name",
-      role: "My Role",
-      desc: "My Short Description Goes Here",
+      fullname: "Roland Lee",
+      role: "Team Lead/Github Master",
+      desc: "Nice to meet you, my name is Roland. This will be my last semester at SFSU. Besides this project, I'm currently working on my first mobile application and Unity game using C#.",
+      img: RolandSelfie,
       // img: MySelfie
     },
     {
