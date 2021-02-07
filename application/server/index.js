@@ -1,19 +1,25 @@
 const express = require("express");
-const cors = require("cors");
-
+const mysql = require("mysql");
 const app = express();
-
-//Test to make sure the server is running in the background - this wont work with out client app
-app.get("/api/customers", cors(), (req, res) => {
-  const customers = [
-    { id: 1, firstName: "wobbbble", lastName: "Doe" },
-    { id: 2, firstName: "Brad", lastName: "Traversy" },
-    { id: 3, firstName: "cheese", lastName: "Swanson" },
-  ];
-
-  res.json(customers);
+//require("dotenv").config();
+var connection = mysql.createConnection({
+  host: "localhost",
+  user: "myroot",
+  password: "goose10",
+  insecureAuth: "true",
+  database: "",
+  multipleStatements: true,
+});
+connection.connect(function (err) {
+  if (err) {
+    console.log(`Database connection failed ${err}`);
+    return;
+  } else {
+    console.log("Database Connected succesfully");
+  }
 });
 
 const port = 5000;
 
 app.listen(port, () => `Server running on port ${port}`);
+
