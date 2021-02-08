@@ -15,7 +15,7 @@
    <br><strong> NOTE THIS DOES NOT MEAN YOUR DATABASE NEEDS A PUBLIC FACING PORT.</strong> But knowing the IP and port number will help with SSH tunneling into the database. The default port is more than sufficient for this class.
 5. Database username:{myroot}
 6. Database password:{goose10}
-7. Database name (basically the name that contains all your tables): (Database)acme and located inside is a table("users")
+7. Database name (basically the name that contains all your tables): database:"acme" table:"users"
 8. Instructions on how to use the above information.
    -project is hosted at http://ec2-18-191-99-183.us-east-2.compute.amazonaws.com:3000
    -to ssh into aws server, make sure to have .pem file inside terminal directory
