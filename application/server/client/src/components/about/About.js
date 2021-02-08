@@ -1,11 +1,13 @@
 import { useState } from "react";
 import MemberCard from "./MemberCard";
 import "../../css/About.css";
+import { Link } from "react-router-dom";
+
+// Import Selfies
 import JoseSelfie from "../../images/Joses-Selfie.JPG";
 import AaronSelfie from "../../images/aaron-pic.jpg";
 import LyraSelfie from "../../images/Lyra.jpg";
-import RolandSelfie from "../../images/Roland.JPG"
-import { Link } from "react-router-dom";
+import RolandSelfie from "../../images/Roland.JPG";
 
 const About = () => {
   const [members, SetMembers] = useState([
@@ -30,24 +32,15 @@ const About = () => {
       role: "Database Manager",
       desc:
         "Hi, my name is Aaron! I'm in my junior year of school studying cs. I really like javascript because application logic and visual components are linked so it makes intuitive sense while being fun!",
-      img: AaronSelfie,
-      // img: MySelfie
+      img: AaronSelfie
     },
     {
       id: 3,
       fullname: "Roland Lee",
       role: "Team Lead/Github Master",
       desc: "Nice to meet you, my name is Roland. This will be my last semester at SFSU. Besides this project, I'm currently working on my first mobile application and Unity game using C#.",
-      img: RolandSelfie,
-      // img: MySelfie
-    },
-    {
-      id: 4,
-      fullname: "Full Name",
-      role: "My Role",
-      desc: "My Short Description Goes Here",
-      // img: MySelfie
-    },
+      img: RolandSelfie
+    }
   ]);
 
   return (
