@@ -20,6 +20,7 @@
    -project is hosted at http://ec2-18-191-99-183.us-east-2.compute.amazonaws.com:3000  
    -to ssh into aws server, make sure to have .pem file inside terminal directory  
    -in the directory where pem file is located, type ssh -i "teamproj.pem" ubuntu@ec2-18-191-99-183.us-east-2.compute.amazonaws.com in the console and press enter.  
+   -once you're inside the server, type mysql -u myroot -p, enter database password to access the database.
 
 # Most important things to Remember
 ## These values need to kept update to date throughout the semester. <br>
