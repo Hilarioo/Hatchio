@@ -1,25 +1,76 @@
 const express = require("express");
 const mysql = require("mysql");
 const app = express();
-//require("dotenv").config();
-var connection = mysql.createConnection({
-  host: "localhost",
-  user: "myroot",
-  password: "goose10",
-  insecureAuth: "true",
-  database: "acme",
-  multipleStatements: true,
-});
-connection.connect(function (err) {
+const cors = require("cors");
+
+const {
+  mysql_credentials,
+  aws_mysql_credentials,
+  displayUsers,
+  registerUser,
+  authenticateUser,
+} = require("./db-config");
+
+app.use(cors());
+
+//DB Authentication
+const db_connection = mysql.createConnection(aws_mysql_credentials);
+
+//DB On Connection
+db_connection.connect((err) => {
   if (err) {
-    console.log(`Database connection failed ${err}`);
-    return;
+    console.log(`error invoked: ${err}`);
+    return err;
   } else {
-    console.log("Database Connected succesfully");
+    console.log("connection-paired");
   }
 });
 
-const port = 5000;
+//Root Page
+app.get("/", (req, res) => {
+  res.send("BackEnd-Express-Server-Root-Page");
+});
 
-app.listen(port, () => `Server running on port ${port}`);
+//Display Users
+app.get("/users", (req, res) => {
+  db_connection.query(displayUsers, (err, results) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      return res.json({
+        userTable: results,
+      });
+    }
+  });
+});
+//Add Users
+app.get("/users/register", (req, res) => {
+  const { email, password } = req.query;
+  db_connection.query(registerUser(email, password), (err, results) => {
+    if (err) {
+      // return res.send(err);
+      console.log(`query-add-fail ${JSON.stringify(err)}`);
+      return;
+    } else {
+      console.log(`query-add-success ${JSON.stringify(results)} `);
+      return;
+    }
+  });
+  res.send("adding user");
+});
 
+//Login User
+app.get("/users/login", (req, res) => {
+  const { email, password } = req.query;
+  db_connection.query(authenticateUser(email, password), (err, results) => {
+    if (err) {
+      console.log(`query-login-not-found`);
+      return;
+    } else {
+      console.log(`query-login-found ${JSON.stringify(results)}`);
+      return;
+    }
+  });
+});
+
+app.listen(5000, () => `Backend-Live`);
