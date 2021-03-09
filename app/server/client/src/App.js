@@ -1,4 +1,4 @@
-import Nav from "./components/global/Nav";
+import Nav from "./views/js/global/Nav";
 
 const App = () => {
   return (

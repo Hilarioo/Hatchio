@@ -3,7 +3,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import "../../css/Nav.css";
 // Image(s) or SVG
-import { ReactComponent as Logo } from "../../images/svg/logo.svg";
+import { ReactComponent as Logo } from "../../content/svg/logo.svg";
 // Components
 import Home from "../home/Home";
 import About from "../about/About";

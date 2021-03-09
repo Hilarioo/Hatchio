@@ -2,7 +2,7 @@
 import "../../css/Theme.css";
 import "../../css/Auth.css";
 // Image(s) or SVG
-import img from "../../images/auth-img.jpg";
+import img from "../../content/images/auth-img.jpg";
 // Components
 import Signin from "./Signin";
 import Signup from "./Signup";

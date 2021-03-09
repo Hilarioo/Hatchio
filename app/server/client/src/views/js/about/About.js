@@ -4,10 +4,10 @@ import "../../css/About.css";
 import { Link } from "react-router-dom";
 
 // Selfies
-import JoseSelfie from "../../images/Joses-Selfie.JPG";
-import AaronSelfie from "../../images/aaron-pic.jpg";
-import LyraSelfie from "../../images/Lyra.jpg";
-import RolandSelfie from "../../images/Roland.JPG";
+import JoseSelfie from "../../content/images/Joses-Selfie.JPG";
+import AaronSelfie from "../../content/images/aaron-pic.jpg";
+import LyraSelfie from "../../content/images/Lyra.jpg";
+import RolandSelfie from "../../content/images/Roland.JPG";
 
 const About = () => {
   const [members, SetMembers] = useState([

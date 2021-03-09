@@ -1,6 +1,5 @@
 // CSS
 import "../../css/Theme.css";
-import "../../css/Auth.css";
 // Iconfiy
 import { Icon } from "@iconify/react";
 import baselineCopyright from "@iconify-icons/ic/baseline-copyright";

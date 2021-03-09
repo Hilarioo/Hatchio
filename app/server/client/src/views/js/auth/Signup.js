@@ -7,9 +7,9 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/esm/Col";
 // Image(s) or SVG
-import { ReactComponent as Student } from "../../images/svg/student.svg";
-import { ReactComponent as Professor } from "../../images/svg/professor.svg";
-import { ReactComponent as Company } from "../../images/svg/company.svg";
+import { ReactComponent as Student } from "../../content/svg/student.svg";
+import { ReactComponent as Professor } from "../../content/svg/professor.svg";
+import { ReactComponent as Company } from "../../content/svg/company.svg";
 
 function Signup() {
   const [validated, setValidated] = useState(false);
