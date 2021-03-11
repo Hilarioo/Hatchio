@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+import NavDropdown from "react-bootstrap/NavDropdown";
 import "../../css/Nav.css";
 // Image(s) or SVG
 import { ReactComponent as Logo } from "../../content/svg/logo.svg";
@@ -10,6 +11,8 @@ import About from "../about/About";
 import Help from "../help/Help";
 import Member from "../about/MemberPage";
 import Auth from "../auth/Auth";
+import JobSearch from "../search/JobSearch";
+import StudentSearch from "../search/StudentSearch";
 
 const DefaultNav = () => {
   return (
@@ -21,7 +24,12 @@ const DefaultNav = () => {
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
         <Navbar.Collapse id='responsive-navbar-nav'>
           <Nav className='mr-auto'>
-            <Nav.Link href='/browse'>Browse</Nav.Link>
+            <NavDropdown title='Search' id='collasible-nav-dropdown'>
+              <NavDropdown.Item href='/search-jobs'>Jobs</NavDropdown.Item>
+              <NavDropdown.Item href='/search-candidates'>
+                Students
+              </NavDropdown.Item>
+            </NavDropdown>
             <Nav.Link href='/about'>About</Nav.Link>
             <Nav.Link href='/help'>Help</Nav.Link>
           </Nav>
@@ -38,6 +46,8 @@ const DefaultNav = () => {
       <br />
       <Switch>
         <Route path='/' exact component={Home} />
+        <Route path='/search-jobs' exact component={JobSearch} />
+        <Route path='/search-candidates' exact component={StudentSearch} />
         <Route path='/about' exact component={About} />
         <Route path='/about/member/:name' component={Member} />
         <Route path='/help' component={Help} />

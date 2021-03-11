@@ -10,7 +10,7 @@ import LyraSelfie from "../../content/images/Lyra.jpg";
 import RolandSelfie from "../../content/images/Roland.JPG";
 
 const About = () => {
-  const [members, SetMembers] = useState([
+  const [members, setMembers] = useState([
     {
       id: 0,
       fullname: "Lyra Solomon",
