@@ -23,12 +23,12 @@ function Signup() {
   const student = 0;
   const company_name = "default";
   const [subtext, SetSubtext] = useState("Do you attend multiple schools?");
-  const aws_port = `http://ec2-18-191-99-183.us-east-2.compute.amazonaws.com:5000`;
+  const aws_port = `http://ec2-3-142-142-124.us-east-2.compute.amazonaws.com:5000`;
   const local_port = `http://localhost:5000`;
   //Fetch Post Request
   const api_register_user = () => {
     fetch(
-      `${local_port}/register?first_name=${firstName}&last_name=${lastName}&password=${password}&email=${email}&school_name=${inputName}&student=${student}&professor=${professor}&employer=${employer}&company_name=${company_name}`
+      `${aws_port}/register?first_name=${firstName}&last_name=${lastName}&password=${password}&email=${email}&school_name=${inputName}&student=${student}&professor=${professor}&employer=${employer}&company_name=${company_name}`
     ).then((e) => console.log(`Response: ${JSON.stringify(e)}`));
   };
 

@@ -9,7 +9,7 @@ const { registerUser, profileSearch, PROFILE_PAGES } = require("./mysql");
 app.use(cors());
 
 //DB Authentication
-const db_connection = mysql.createConnection(mysql_credentials);
+const db_connection = mysql.createConnection(aws_mysql_credentials);
 
 //DB On Connection
 db_connection.connect((err) => {

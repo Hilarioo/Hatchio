@@ -1,11 +1,11 @@
 import { useState } from "react";
 const ProfileSearch = () => {
-  const aws_port = `http://ec2-18-191-99-183.us-east-2.compute.amazonaws.com:5000`;
+  const aws_port = `http://ec2-3-142-142-124.us-east-2.compute.amazonaws.com:5000`;
   const local_port = `http://localhost:5000`;
   const [keyword, setKeyword] = useState(""); //Keyword
   const [dbResults, setdbResults] = useState([]); //DataBase Results
   const DB_Search = () => {
-    fetch(`${local_port}/search/profiles?keyword=${keyword}`)
+    fetch(`${aws_port}/search/profiles?keyword=${keyword}`)
       .then((response) => response.json())
       .then((json) => {
         setdbResults(json);
