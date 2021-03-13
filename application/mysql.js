@@ -1,6 +1,6 @@
 //Return All
 const PROFILE_PAGES = "SELECT * FROM ProfilePages";
-const JOB_LISTINGS = "SELECT * FROM JOBLISTINGS";
+const JOB_LISTINGS = "SELECT * FROM JobListings";
 
 //Register User
 const registerUser = (
