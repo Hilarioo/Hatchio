@@ -3,13 +3,13 @@ const mysql = require("mysql");
 const app = express();
 const cors = require("cors");
 
-const { mysql_credentials, aws_mysql_credentials } = require("./config.js");
-const { registerUser, profileSearch, PROFILE_PAGES } = require("./mysql");
+const { port_mysql } = require("./config");
+const { registerUser, profileSearch, jobSearch, PROFILE_PAGES, JOB_LISTINGS } = require("./mysql");
 
 app.use(cors());
 
 //DB Authentication
-const db_connection = mysql.createConnection(aws_mysql_credentials);
+const db_connection = mysql.createConnection(port_mysql);
 
 //DB On Connection
 db_connection.connect((err) => {
@@ -34,6 +34,18 @@ app.get("/profilepages", (req, res) => {
     } else {
       return res.json({
         ProfileTable: results,
+      });
+    }
+  });
+});
+//Json Job Listings
+app.get("/joblistings", (req, res) => {
+  db_connection.query(JOB_LISTINGS, (err, results) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      return res.json({
+        JobListingsTable: results,
       });
     }
   });
@@ -66,6 +78,20 @@ app.get("/search/profiles", (req, res) => {
     } else {
       return res.json({
         Profile_Search_Results: results,
+      });
+    }
+  });
+});
+//Search Job Listings
+app.get("/search/joblistings", (req, res) => {
+  const { keyword, miles } = req.query;
+  console.log(req.query);
+  db_connection.query(jobSearch(keyword, miles), (err, results) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      return res.json({
+        JobListings_Search_Results: results,
       });
     }
   });

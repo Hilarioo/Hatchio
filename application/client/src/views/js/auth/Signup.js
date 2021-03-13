@@ -11,6 +11,8 @@ import { ReactComponent as Student } from "../../content/svg/student.svg";
 import { ReactComponent as Professor } from "../../content/svg/professor.svg";
 import { ReactComponent as Company } from "../../content/svg/company.svg";
 
+import { port_host } from "../../../config.js";
+
 function Signup() {
   const [validated, setValidated] = useState(false);
   const [inputName, setInputName] = useState("School Name"); //School Name
@@ -28,7 +30,7 @@ function Signup() {
   //Fetch Post Request
   const api_register_user = () => {
     fetch(
-      `${aws_port}/register?first_name=${firstName}&last_name=${lastName}&password=${password}&email=${email}&school_name=${inputName}&student=${student}&professor=${professor}&employer=${employer}&company_name=${company_name}`
+      `${port_host}/register?first_name=${firstName}&last_name=${lastName}&password=${password}&email=${email}&school_name=${inputName}&student=${student}&professor=${professor}&employer=${employer}&company_name=${company_name}`
     ).then((e) => console.log(`Response: ${JSON.stringify(e)}`));
   };
 
