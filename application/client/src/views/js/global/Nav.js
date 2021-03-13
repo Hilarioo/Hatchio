@@ -29,7 +29,7 @@ const DefaultNav = () => {
             <NavDropdown title="Search" id="collasible-nav-dropdown">
               <NavDropdown.Item href="/search-jobs">Jobs</NavDropdown.Item>
               <NavDropdown.Item href="/search-profiles">Profiles</NavDropdown.Item>
-              <NavDropdown.Item href="/search-candidates">Students</NavDropdown.Item>
+              {/**<NavDropdown.Item href="/search-candidates">Students</NavDropdown.Item> */}
             </NavDropdown>
             <Nav.Link href="/about">About</Nav.Link>
             <Nav.Link href="/help">Help</Nav.Link>

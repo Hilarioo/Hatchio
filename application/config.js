@@ -1,11 +1,12 @@
-//MYSQL_Credentials
-const mysql_credentials = {
+//localmachine_cred
+const local_mysql_credentials = {
   host: "localhost",
   user: "guest",
-  password: "",
+  password: "jkLive586!@",
   database: "acme",
 };
 
+//aws_cred
 const aws_mysql_credentials = {
   host: "localhost",
   user: "myroot",
@@ -14,8 +15,11 @@ const aws_mysql_credentials = {
   database: "acme",
   multipleStatements: true,
 };
+const dev_mysql = (localmachine) => {
+  return localmachine ? local_mysql_credentials : aws_mysql_credentials;
+};
+const port_mysql = dev_mysql(true);
 
 module.exports = {
-  aws_mysql_credentials,
-  mysql_credentials,
+  port_mysql,
 };

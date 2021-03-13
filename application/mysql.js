@@ -1,5 +1,6 @@
 //Return All
 const PROFILE_PAGES = "SELECT * FROM ProfilePages";
+const JOB_LISTINGS = "SELECT * FROM JOBLISTINGS";
 
 //Register User
 const registerUser = (
@@ -36,10 +37,20 @@ const profileSearch = (search_keyword) => {
   }
   return query_string;
 };
-
+const jobSearch = (search_keyword, miles_range) => {
+  if (search_keyword === "" && miles_range === "null") {
+    return JOB_LISTINGS;
+  }
+  if (miles_range === "null") {
+    return `SELECT * FROM JobListings WHERE (position_title LIKE '%${search_keyword}%' OR employment_type='%${search_keyword}%' OR experience_level='%${search_keyword}%'OR salary='%${search_keyword}%' OR location='%${search_keyword}%' OR employer_organization='%${search_keyword}%') `;
+  }
+  return `SELECT * FROM JobListings WHERE (position_title LIKE '%${search_keyword}%' OR employment_type='%${search_keyword}%' OR experience_level='%${search_keyword}%'OR salary='%${search_keyword}%' OR location='%${search_keyword}%' OR employer_organization='%${search_keyword}%') AND (miles_range <= ${miles_range}) `;
+};
 //Export
 module.exports = {
   PROFILE_PAGES,
+  JOB_LISTINGS,
   registerUser,
   profileSearch,
+  jobSearch,
 };
