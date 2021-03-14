@@ -7,8 +7,8 @@
 
 # Below is a list of items required. Missing items will causes points to be deducted from multiple milestone submissions.
 
-1. Server URL or IP:http://ec2-18-191-99-183.us-east-2.compute.amazonaws.com:3000/(edited: 18.191.99.183)
-2. SSH username: ssh -i "teamproj.pem" ubuntu@ec2-18-191-99-183.us-east-2.compute.amazonaws.com(edited: ubuntu)
+1. Server URL or IP:http://ec2-3-142-225-111.us-east-2.compute.amazonaws.com:3000/   (edited: 18.191.99.183)
+2. SSH username: ssh -i "teamproj.pem" ubuntu@ec2-3-142-225-111.us-east-2.compute.amazonaws.com  (edited: ubuntu)
 3. SSH password or key.[Located in Current Folder]
    <br> If a ssh key is used please upload the key to the credentials folder.
 4. Database URL or IP and port used.: 3306 (by default - check by running mysql> SHOW VARIABLES WHERE Variable_name = 'hostname'; as sudo mysql) 
@@ -17,9 +17,9 @@
 6. Database password:{goose10}
 7. Database name (basically the name that contains all your tables): database:"acme" table:"users"
 8. Instructions on how to use the above information.
-   -project is hosted at http://ec2-18-191-99-183.us-east-2.compute.amazonaws.com:3000  
+   -project is hosted at http://ec2-3-142-225-111.us-east-2.compute.amazonaws.com:3000  
    -to ssh into aws server, make sure to have .pem file inside terminal directory  
-   -in the directory where pem file is located, type ssh -i "teamproj.pem" ubuntu@ec2-18-191-99-183.us-east-2.compute.amazonaws.com in the console and press enter.  
+   -in the directory where pem file is located, type ssh -i "teamproj.pem" ubuntu@ec2-3-142-225-111.us-east-2.compute.amazonaws.com in the console and press enter.  
    -once you're inside the server, type mysql -u myroot -p, enter database password to access the database.
 
 # Most important things to Remember
