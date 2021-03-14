@@ -32,9 +32,7 @@ app.get("/profilepages", (req, res) => {
     if (err) {
       return res.send(err);
     } else {
-      return res.json({
-        ProfileTable: results,
-      });
+      return res.json(results);
     }
   });
 });
@@ -76,9 +74,7 @@ app.get("/search/profiles", (req, res) => {
     if (err) {
       return res.send(err);
     } else {
-      return res.json({
-        Profile_Search_Results: results,
-      });
+      return res.json(results);
     }
   });
 });

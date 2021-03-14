@@ -9,12 +9,18 @@ const VPHome = () => {
   const [keyword, setKeyword] = useState(""); //Keyword
   const [dbResultProfiles, setdbResultProfiles] = useState([]); //DataBase Profiles
   const [dbResultJobs, setdbResultJobs] = useState([]); //DataBase Jobs
+  const [binaryImages, setBinaryImages] = useState(["", "", "", "", "", ""]); //DB Binary Images -> Blob Readable
   //Fetch Profiles
   const DB_Search_Profile = () => {
     fetch(`${port_host}/search/profiles?keyword=${keyword}`)
       .then((response) => response.json())
       .then((json) => {
         setdbResultProfiles(json);
+        setBinaryImages(
+          json.map((e) => {
+            return e.profile_image;
+          })
+        );
         console.log(json);
       });
   };
@@ -34,6 +40,7 @@ const VPHome = () => {
     setdbResultJobs([]);
     DB_Search_Profile();
     DB_Search_Jobs();
+    setBinaryImages([]);
   };
   return (
     <div>
@@ -63,6 +70,12 @@ const VPHome = () => {
       <h3>Results</h3>
       {JSON.stringify(dbResultJobs)}
       {JSON.stringify(dbResultProfiles)}
+      <img src={binaryImages[0]} />
+      <img src={binaryImages[1]} />
+      <img src={binaryImages[2]} />
+      <img src={binaryImages[3]} />
+      <img src={binaryImages[4]} />
+      <img src={binaryImages[5]} />
     </div>
   );
 };

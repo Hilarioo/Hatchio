@@ -18,9 +18,8 @@ const aws_mysql_credentials = {
 const dev_mysql = (localmachine) => {
   return localmachine ? local_mysql_credentials : aws_mysql_credentials;
 };
-const port_mysql = dev_mysql(false);
+const port_mysql = dev_mysql(true);
 
 module.exports = {
   port_mysql,
 };
-
