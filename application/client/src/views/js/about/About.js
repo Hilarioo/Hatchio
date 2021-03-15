@@ -30,7 +30,7 @@ const About = () => {
     {
       id: 2,
       fullname: "Aaron Singh",
-      role: "Database Manager",
+      role: "Backend Lead",
       desc:
         "Hi, my name is Aaron! I'm in my junior year of school studying cs. I really like javascript because application logic and visual components are linked so it makes intuitive sense while being fun!",
       img: AaronSelfie,
