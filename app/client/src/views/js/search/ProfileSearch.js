@@ -43,13 +43,19 @@ const ProfileSearch = () => {
       <form onSubmit={handleSubmit}>
         <div>
           <label>Keyword Search</label>
-          <input type="text" id="keyword" onChange={(e) => setKeyword(e.target.value)} />
+          <input
+            type='text'
+            id='keyword'
+            onChange={(e) => setKeyword(e.target.value)}
+          />
         </div>
-        <button type="submit">Search DB</button>
+        <button type='submit'>Search DB</button>
       </form>
       <hr></hr>
       <h3>Results</h3>
-      {JSON.stringify(dbResults)}
+      <div>
+        <pre>{JSON.stringify(dbResults, null, 2)}</pre>
+      </div>
       <img src={binaryImages[0]} />
       <img src={binaryImages[1]} />
       <img src={binaryImages[2]} />
