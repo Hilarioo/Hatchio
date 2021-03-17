@@ -1,4 +1,4 @@
-const aws_port = `http://ec2-3-142-238-4.us-east-2.compute.amazonaws.com:5000`;
+const aws_port = `http://ec2-18-188-172-122.us-east-2.compute.amazonaws.com:5000`;
 const local_port = `http://localhost:5000`;
 
 const dev_environment = (localmachine) => {
