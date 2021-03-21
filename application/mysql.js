@@ -3,6 +3,7 @@ const PROFILE_PAGES = "SELECT * FROM ProfilePages";
 const JOB_LISTINGS = "SELECT * FROM JobListings";
 
 //Register User
+//state doesn't get parsed through, need more research
 const registerUser = (
   first_name,
   last_name,
@@ -13,9 +14,11 @@ const registerUser = (
   employer,
   school_name,
   company_name
+  //state
 ) => {
-  return `INSERT INTO ProfilePages(first_name,last_name,email,password,register_date,student,professor,employer,school_name,company_name) values ('${first_name}','${last_name}','${email}','${password}',now(),${student},${professor},${employer},'${school_name}','${company_name}')`;
+  return `INSERT INTO ProfilePages(first_name,last_name,email,password,register_date,student,professor,employer,school_name,company_name,state) values ('${first_name}','${last_name}','${email}','${password}',now(),${student},${professor},${employer},'${school_name}','${company_name}','${0}')`;
 };
+
 //Search Profile
 const profileSearch = (search_keyword) => {
   const query_string = `SELECT first_name,last_name,email,school_name,company_name,location FROM ProfilePages WHERE( first_name LIKE '${search_keyword}' OR last_name LIKE '${search_keyword}' OR company_name LIKE '${search_keyword}' OR school_name LIKE '${search_keyword}'OR location LIKE '${search_keyword}' )`;

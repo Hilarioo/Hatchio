@@ -20,9 +20,10 @@ function Signup() {
   const [firstName, setFirstName] = useState(""); //First Name
   const [lastName, setLastName] = useState(""); //Last Name
   const [password, setPassword] = useState(""); //Password
-  const professor = 0;
-  const employer = 0;
-  const student = 0;
+  const [professor, setProfessor] = useState(0);
+  const [employer, setEmployer] = useState(0);
+  const [student, setStudent] = useState(0);
+  const state = 0;
   const company_name = "default";
   const [subtext, SetSubtext] = useState("Do you attend multiple schools?");
   const aws_port = `http://ec2-3-142-142-124.us-east-2.compute.amazonaws.com:5000`;
@@ -30,12 +31,13 @@ function Signup() {
   //Fetch Post Request
   const api_register_user = () => {
     fetch(
-      `${port_host}/register?first_name=${firstName}&last_name=${lastName}&password=${password}&email=${email}&school_name=${inputName}&student=${student}&professor=${professor}&employer=${employer}&company_name=${company_name}`
+      `${port_host}/register?first_name=${firstName}&last_name=${lastName}&password=${password}&email=${email}&school_name=${inputName}&student=${student}&professor=${professor}&employer=${employer}&company_name=${company_name}&state=${state}`
     ).then((e) => console.log(`Response: ${JSON.stringify(e)}`));
   };
 
   //Form Submission
   const handleSubmit = (event) => {
+    alert('Verification email sent');
     const form = event.currentTarget;
     if ((form.checkValidity() === false) | true) {
       event.preventDefault();
@@ -58,6 +60,7 @@ function Signup() {
                 name="account"
                 value="student"
                 onClick={() => {
+                  setStudent(1);setProfessor(0);setEmployer(0);
                   setInputName("School Name");
                   setEmail("Student Email");
                   SetSubtext("Do you attend multiple schools?");
@@ -73,6 +76,7 @@ function Signup() {
                 name="account"
                 value="professor"
                 onClick={() => {
+                  setProfessor(1);setEmployer(0);setStudent(0);
                   setInputName("School Name");
                   setEmail("Work Email");
                   SetSubtext("Do you work at multiple schools?");
@@ -88,6 +92,7 @@ function Signup() {
                 name="account"
                 value="company"
                 onClick={() => {
+                  setEmployer(1);setStudent(0);setProfessor(0);
                   setInputName("Company Name");
                   setEmail("Company Email");
                   SetSubtext("");
@@ -165,7 +170,7 @@ function Signup() {
             className="subtext"
           />
         </Form.Group>
-        <Button variant="dark" type="submit">
+        <Button variant="dark" type="submit" >
           Create Account
         </Button>
       </Form>
