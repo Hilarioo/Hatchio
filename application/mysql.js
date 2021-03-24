@@ -54,13 +54,14 @@ const deleteUser = (search_keyword) => {
   //DELETE FROM ProfilePages WHERE user_id=45;
 };
 
-const updateState = (search_keyword) => {
-  return `UPDATE ProfilePages SET state = '1' WHERE code='${search_keyword}'`;
+const updateKey = (key,value,search_keyword,value2) => {
+  return `UPDATE ProfilePages SET ${key}='${value}' WHERE ${search_keyword}='${value2}'`;
 };
 
-const removeCode = (search_keyword) => {
-  return `UPDATE ProfilePages SET code = 'Not Assigned' WHERE code='${search_keyword}'`;
+const returnKey = (key,value, search_keyword) => {
+  return `SELECT ${search_keyword} FROM ProfilePages WHERE ${key}='${value}'`;
 };
+
 //Export
 module.exports = {
   PROFILE_PAGES,
@@ -69,6 +70,6 @@ module.exports = {
   profileSearch,
   jobSearch,
   deleteUser,
-  updateState,
-  removeCode,
+  updateKey,
+  returnKey,
 };

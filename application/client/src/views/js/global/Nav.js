@@ -9,6 +9,7 @@ import { ReactComponent as Logo } from "../../content/svg/logo.svg";
 import Home from "../home/Home";
 import VPHome from "../home/VPHome";
 import About from "../about/About";
+import Dashboard from "../user/Dashboard";
 import Help from "../help/Help";
 import Member from "../about/MemberPage";
 import Auth from "../auth/Auth";
@@ -54,6 +55,7 @@ const DefaultNav = () => {
         <Route path="/about/member/:name" component={Member} />
         <Route path="/help" component={Help} />
         <Route path="/signup" exact component={() => <Auth type={"signup"} />} />
+        <Route path="/dashboard" exact component={Dashboard} />
         <Route path="/signin" exact component={() => <Auth type={"signin"} />} />
       </Switch>
     </Router>

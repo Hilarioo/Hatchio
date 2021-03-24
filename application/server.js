@@ -5,7 +5,7 @@ var nodemailer = require("nodemailer");
 const cors = require("cors");
 
 const { port_mysql } = require("./config");
-const { registerUser, profileSearch, jobSearch, deleteUser, updateState, removeCode,PROFILE_PAGES, JOB_LISTINGS } = require("./mysql");
+const { registerUser, profileSearch, jobSearch, deleteUser, updateKey, returnKey, PROFILE_PAGES, JOB_LISTINGS } = require("./mysql");
 
 app.use(cors());
 
@@ -133,8 +133,8 @@ if((req.protocol+"://"+req.get('host'))==("http://"+host))
 console.log("Domain is matched. Information is from Authentic email");
 if(db_connection.query(profileSearch(req.query.id)))
 {
-db_connection.query(updateState(req.query.id)); //update status
-db_connection.query(removeCode(req.query.id)); //remove code
+db_connection.query(updateKey('state', 1, 'code', req.query.id)); //update status
+db_connection.query(updateKey('code', 'Not Assigned', 'code', req.query.id)); //remove code
 console.log("email is verified");
 res.end("<h1>Email "+mailOptions.to+" is been Successfully verified");
 }
@@ -148,6 +148,40 @@ else
 {
 res.end("<h1>Request is from unknown source");
 }
+});
+
+app.get("/userlogin", (req, res) => {
+  const { email } = req.query;
+  console.log(req.query);
+  //console.log('break');
+  //console.log(db_connection.query(returnKey('email',email,'state')));
+  db_connection.query(returnKey('email',email,'state'), (err, results) => {
+    if (err) {
+      console.log('query-fail');
+      return res.send(err);
+    } else {
+      console.log('query-success');
+      return res.json(
+        results[0].state
+      );
+    }
+  });
+});
+
+app.get("/userloginpwd", (req, res) => {
+  const { email } = req.query;
+  console.log(req.query);
+  db_connection.query(returnKey('email',email,'password'), (err, results) => {
+    if (err) {
+      console.log('query-fail');
+      return res.send(err);
+    } else {
+      console.log('query-success');
+      return res.json(
+        results[0].password
+      );
+    }
+  });
 });
 
 app.listen(5000, () => `Backend-Live`);
