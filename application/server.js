@@ -5,7 +5,7 @@ var nodemailer = require("nodemailer");
 const cors = require("cors");
 
 const { port_mysql } = require("./config");
-const { registerUser, profileSearch, jobSearch, deleteUser, PROFILE_PAGES, JOB_LISTINGS } = require("./mysql");
+const { registerUser, profileSearch, jobSearch, deleteUser, updateState, removeCode,PROFILE_PAGES, JOB_LISTINGS } = require("./mysql");
 
 app.use(cors());
 
@@ -126,14 +126,15 @@ res.end("sent");
 });
 });
 
-/*
 app.get('/verify',function(req,res){
 console.log(req.protocol+":/"+req.get('host'));
 if((req.protocol+"://"+req.get('host'))==("http://"+host))
 {
 console.log("Domain is matched. Information is from Authentic email");
-if(req.query.id==rand)
+if(db_connection.query(profileSearch(req.query.id)))
 {
+db_connection.query(updateState(req.query.id)); //update status
+db_connection.query(removeCode(req.query.id)); //remove code
 console.log("email is verified");
 res.end("<h1>Email "+mailOptions.to+" is been Successfully verified");
 }
@@ -148,5 +149,5 @@ else
 res.end("<h1>Request is from unknown source");
 }
 });
-*/
+
 app.listen(5000, () => `Backend-Live`);

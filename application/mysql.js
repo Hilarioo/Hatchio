@@ -20,7 +20,7 @@ const registerUser = (
 
 //Search Profile
 const profileSearch = (search_keyword) => {
-  const query_string = `SELECT first_name,last_name,email,school_name,company_name,location FROM ProfilePages WHERE( first_name LIKE '${search_keyword}' OR last_name LIKE '${search_keyword}' OR company_name LIKE '${search_keyword}' OR school_name LIKE '${search_keyword}'OR location LIKE '${search_keyword}' )`;
+  const query_string = `SELECT first_name,last_name,email,school_name,company_name,location,code FROM ProfilePages WHERE( first_name LIKE '${search_keyword}' OR last_name LIKE '${search_keyword}' OR company_name LIKE '${search_keyword}' OR school_name LIKE '${search_keyword}'OR location LIKE '${search_keyword}'OR code LIKE '${search_keyword}' )`;
   const studentReturn = `SELECT first_name,last_name,email,school_name,company_name,student FROM ProfilePages WHERE( first_name LIKE '${search_keyword}' OR last_name LIKE '${search_keyword}' OR company_name LIKE '${search_keyword}' OR school_name LIKE '${search_keyword}' OR student LIKE '${1}')`;
   const professorReturn = `SELECT first_name,last_name,email,school_name,company_name,professor FROM ProfilePages WHERE( first_name LIKE '${search_keyword}' OR last_name LIKE '${search_keyword}' OR company_name LIKE '${search_keyword}' OR school_name LIKE '${search_keyword}' OR professor LIKE '${1}')`;
   const employerReturn = `SELECT first_name,last_name,email,school_name,company_name,employer FROM ProfilePages WHERE( first_name LIKE '${search_keyword}' OR last_name LIKE '${search_keyword}' OR company_name LIKE '${search_keyword}' OR school_name LIKE '${search_keyword}' OR employer LIKE '${1}')`;
@@ -50,7 +50,16 @@ const jobSearch = (search_keyword, miles_range) => {
 };
 
 const deleteUser = (search_keyword) => {
-  return `DELETE FROM ProfilePages WHERE (user_id='%${search_keyword}%')`;
+  return `DELETE FROM ProfilePages WHERE (email='%${search_keyword}%')`;
+  //DELETE FROM ProfilePages WHERE user_id=45;
+};
+
+const updateState = (search_keyword) => {
+  return `UPDATE ProfilePages SET state = '1' WHERE code='${search_keyword}'`;
+};
+
+const removeCode = (search_keyword) => {
+  return `UPDATE ProfilePages SET code = 'Not Assigned' WHERE code='${search_keyword}'`;
 };
 //Export
 module.exports = {
@@ -60,4 +69,6 @@ module.exports = {
   profileSearch,
   jobSearch,
   deleteUser,
+  updateState,
+  removeCode,
 };
