@@ -3,7 +3,6 @@ const PROFILE_PAGES = "SELECT * FROM ProfilePages";
 const JOB_LISTINGS = "SELECT * FROM JobListings";
 
 //Register User
-//state doesn't get parsed through, need more research
 const registerUser = (
   first_name,
   last_name,
@@ -13,10 +12,10 @@ const registerUser = (
   professor,
   employer,
   school_name,
-  company_name
-  //state
+  company_name,
+  code
 ) => {
-  return `INSERT INTO ProfilePages(first_name,last_name,email,password,register_date,student,professor,employer,school_name,company_name,state) values ('${first_name}','${last_name}','${email}','${password}',now(),${student},${professor},${employer},'${school_name}','${company_name}','${0}')`;
+  return `INSERT INTO ProfilePages(first_name,last_name,email,password,register_date,student,professor,employer,school_name,company_name,code) values ('${first_name}','${last_name}','${email}','${password}',now(),${student},${professor},${employer},'${school_name}','${company_name}','${code}')`;
 };
 
 //Search Profile
@@ -49,6 +48,10 @@ const jobSearch = (search_keyword, miles_range) => {
   }
   return `SELECT * FROM JobListings WHERE (position_title LIKE '%${search_keyword}%' OR employment_type='%${search_keyword}%' OR experience_level='%${search_keyword}%'OR salary='%${search_keyword}%' OR location='%${search_keyword}%' OR employer_organization='%${search_keyword}%') AND (miles_range <= ${miles_range}) `;
 };
+
+const deleteUser = (search_keyword) => {
+  return `DELETE FROM ProfilePages WHERE (user_id='%${search_keyword}%')`;
+};
 //Export
 module.exports = {
   PROFILE_PAGES,
@@ -56,4 +59,5 @@ module.exports = {
   registerUser,
   profileSearch,
   jobSearch,
+  deleteUser,
 };

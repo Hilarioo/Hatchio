@@ -13,6 +13,8 @@ import { ReactComponent as Company } from "../../content/svg/company.svg";
 
 import { port_host } from "../../../config.js";
 
+
+
 function Signup() {
   const [validated, setValidated] = useState(false);
   const [inputName, setInputName] = useState("School Name"); //School Name
@@ -23,25 +25,33 @@ function Signup() {
   const [professor, setProfessor] = useState(0);
   const [employer, setEmployer] = useState(0);
   const [student, setStudent] = useState(0);
-  const state = 0;
   const company_name = "default";
+  const cryptoRandomString = require('crypto-random-string');
   const [subtext, SetSubtext] = useState("Do you attend multiple schools?");
   const aws_port = `http://ec2-3-142-142-124.us-east-2.compute.amazonaws.com:5000`;
   const local_port = `http://localhost:5000`;
+  var code = cryptoRandomString({length: 100, type: 'base64'}).replace(/[/+=]/g,'').substr(-30);
   //Fetch Post Request
   const api_register_user = () => {
     fetch(
-      `${port_host}/register?first_name=${firstName}&last_name=${lastName}&password=${password}&email=${email}&school_name=${inputName}&student=${student}&professor=${professor}&employer=${employer}&company_name=${company_name}&state=${state}`
+      `${port_host}/register?first_name=${firstName}&last_name=${lastName}&password=${password}&email=${email}&school_name=${inputName}&student=${student}&professor=${professor}&employer=${employer}&company_name=${company_name}&code=${code}`
+    ).then((e) => console.log(`Response: ${JSON.stringify(e)}`));
+  };
+
+  const api_send_email = () => {
+    fetch(
+      `${port_host}/send?email=${email}&code=${code}`
     ).then((e) => console.log(`Response: ${JSON.stringify(e)}`));
   };
 
   //Form Submission
   const handleSubmit = (event) => {
-    alert('Verification email sent');
     const form = event.currentTarget;
     if ((form.checkValidity() === false) | true) {
       event.preventDefault();
       event.stopPropagation();
+      alert('Verification email has been sent to ' + email);
+      api_send_email();
       api_register_user();
     }
 
