@@ -8,8 +8,8 @@
 
 #### Sunday, March 28, 2021
 
--React Application and Express Server w/ concurrently
--SetUp JobsListings Filters and Changed Queries
+- React Application and Express Server w/ concurrently
+- SetUp JobsListings Filters and Changed Queries
 
 #### Saturday, March 27, 2021
 
