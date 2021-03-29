@@ -1,13 +1,17 @@
 ### changelog
 
-#### to-do
-
-##### by monday night
+#### TODO by Tuesday, March 30,2021
 
 - update search queries for search page
-- confirmation aws hosts latest
+- populate JobListings, update with new column "types of employment"
+- confirmation of hosting aws with new updates
 
-#### march-26-6pm
+#### Sunday, March 28, 2021
+
+-React Application and Express Server w/ concurrently
+-SetUp JobsListings Filters and Changed Queries
+
+#### Saturday, March 27, 2021
 
 - dir seperation with backend and frontend to increase simplicity,organization,and pm2 adjustment instead of using npm run dev
 - mysql-scripts to set up local environment database

@@ -31,10 +31,6 @@ const DefaultNav = () => {
               <NavDropdown.Item href="/search-profiles">Profiles</NavDropdown.Item>
               {/**<NavDropdown.Item href="/search-candidates">Students</NavDropdown.Item> */}
             </NavDropdown>
-            <Nav.Link href="/about">Professor Profile Pages</Nav.Link>
-            <Nav.Link href="/about">Student Profile Pages</Nav.Link>
-            <Nav.Link href="/about">Employer Organization Profile Pages</Nav.Link>
-            <Nav.Link href="/about">Job Listing Pages</Nav.Link>
             <Nav.Link href="/about">About</Nav.Link>
             <Nav.Link href="/help">Help</Nav.Link>
           </Nav>
