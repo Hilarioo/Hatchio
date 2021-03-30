@@ -16,6 +16,9 @@ import JobSearch from "../search/JobSearch";
 import StudentSearch from "../search/StudentSearch";
 import ProfileSearch from "../search/ProfileSearch";
 
+//Student Ratings Page
+import Student from "../students/student";
+
 const DefaultNav = () => {
   return (
     <Router>
@@ -33,6 +36,7 @@ const DefaultNav = () => {
             </NavDropdown>
             <Nav.Link href="/about">About</Nav.Link>
             <Nav.Link href="/help">Help</Nav.Link>
+            <Nav.Link href="/rate">Rate</Nav.Link>
           </Nav>
           <Nav>
             <Nav.Link href="/signup" className="auth-btn">
@@ -53,6 +57,7 @@ const DefaultNav = () => {
         <Route path="/about" exact component={About} />
         <Route path="/about/member/:name" component={Member} />
         <Route path="/help" component={Help} />
+        <Route path="/rate" component={Student} />
         <Route path="/signup" exact component={() => <Auth type={"signup"} />} />
         <Route path="/signin" exact component={() => <Auth type={"signin"} />} />
       </Switch>

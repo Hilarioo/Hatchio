@@ -2,9 +2,18 @@
 
 #### TODO by Tuesday, March 30,2021
 
-- update search queries for search page
 - populate JobListings, update with new column "types of employment"
-- confirmation of hosting aws with new updates
+- populate StudentProfiles and Students Tables
+- update search queries for search page
+
+#### Currently Unresolved Issues
+
+- Iterating through JSON response because it's a weird object with a single key and a value of an array of objects
+
+### Monday, March 29, 2021
+
+- Worked a little bit on ratings page
+- can fetch from backend but, i'm trouble iterating through the students
 
 #### Sunday, March 28, 2021
 

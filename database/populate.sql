@@ -10,3 +10,6 @@ insert into student_profile_page(student_id,about_me,study_major,grade_gpa,locat
 insert into employer_profile_page(employer_id,position_title,company_organization) values (1,"company manager","microsoft");
 insert into projects(student_id,posted_time,summary,collaboraters) values (1,now(),"game development in c++","ubisoft and dormate");
 insert into company_listings(employer_id,position_title,location,salary,job_description,task_responsibilities,skillset,benefits) values (1,"senior developer","california",500000,"work on backend stuff","lead project","c,python,c++","401k");
+
+
+
