@@ -2,16 +2,15 @@
 
 #### TODO by Tuesday, March 30,2021
 
-- update search queries for search page
-- udpate search queries for students page
+- need to add functionalities for form filter selections on Rate page and Job Search page and home search page
 
 #### Currently Unresolved Issues
 
 ### Tuesday, March 30,2021
 
--Done json response
--fixed job listings
--populated students and job listings
+- Done json response with proper formating ish
+- Fixed job listings db schema
+- Populated students and job listings
 
 ### Monday, March 29, 2021
 
