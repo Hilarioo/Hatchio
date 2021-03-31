@@ -34,6 +34,9 @@ const JobSearch = () => {
       <p>
         <b>Job Description</b> {d.job_description}
       </p>
+      <p>
+        <b>Employment Time</b> {d.type_of_employment}
+      </p>
     </div>
   ));
   //Fetch

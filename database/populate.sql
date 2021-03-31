@@ -26,11 +26,9 @@ insert into student_profile_page(student_id,about_me,study_major,grade_gpa,locat
 insert into employer_profile_page(employer_id,position_title,company_organization) values (1,"company manager","microsoft");
 insert into projects(student_id,posted_time,summary,collaboraters) values (1,now(),"game development in c++","ubisoft and dormate");
 
-insert into company_listings(employer_id,position_title,location,salary,job_description,task_responsibilities,skillset,benefits,company_name) values (1,"Database Developer","Ohio",200000,"Designing db model with mySql","working along with teammates on db","c,python,c++","401k","Facebook");
-insert into company_listings(employer_id,position_title,location,salary,job_description,task_responsibilities,skillset,benefits,company_name) values (2,"Backend Developer","New York",30000,"Front-End and making user interfaces","Manage Backend routes","JavaScript","201k","Apple");
-insert into company_listings(employer_id,position_title,location,salary,job_description,task_responsibilities,skillset,benefits,company_name) values (3,"Frontend Developer","New York",30000,"Front-End and making user interfaces","Manage Frontend application","javascript","401k","Microsoft");
-
-drop table company_listings;
+insert into company_listings(employer_id,position_title,location,salary,job_description,task_responsibilities,skillset,benefits,company_name,type_of_employment) values (1,"Database Developer","Ohio",200000,"Designing db model with mySql","working along with teammates on db","c,python,c++","401k","Facebook","Part Time");
+insert into company_listings(employer_id,position_title,location,salary,job_description,task_responsibilities,skillset,benefits,company_name,type_of_employment) values (2,"Backend Developer","New York",30000,"Front-End and making user interfaces","Manage Backend routes","JavaScript","201k","Apple","Part Time");
+insert into company_listings(employer_id,position_title,location,salary,job_description,task_responsibilities,skillset,benefits,company_name,type_of_employment) values (3,"Frontend Developer","New York",30000,"Front-End and making user interfaces","Manage Frontend application","javascript","401k","Microsoft","Full Time");
 
 
 #Single Tables 

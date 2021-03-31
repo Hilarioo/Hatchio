@@ -2,13 +2,16 @@
 
 #### TODO by Tuesday, March 30,2021
 
-- populate JobListings, update with new column "types of employment"
-- populate StudentProfiles and Students Tables
 - update search queries for search page
+- udpate search queries for students page
 
 #### Currently Unresolved Issues
 
-- Iterating through JSON response because it's a weird object with a single key and a value of an array of objects
+### Tuesday, March 30,2021
+
+-Done json response
+-fixed job listings
+-populated students and job listings
 
 ### Monday, March 29, 2021
 

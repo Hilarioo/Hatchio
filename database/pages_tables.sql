@@ -45,8 +45,10 @@ task_responsibilities mediumtext,
 skillset mediumtext,
 benefits mediumtext,
 company_name varchar(255),
+type_of_employment varchar(255),
 foreign key (employer_id) references employers(employer_id)
 );
+drop table company_listings;
 
 select * from professor_profile_page;
 select * from student_profile_page;
