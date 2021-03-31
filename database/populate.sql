@@ -33,3 +33,10 @@ insert into company_listings(employer_id,position_title,location,salary,job_desc
 
 #Single Tables 
 insert into reflections(student_id,professor_id,posted_time,responsible_level,team_work_level,leadership_level,committed_to_success_level,recommendation_comment)values(1,1,now(),1,1,1,1,"very good student");
+
+select * from students;
+select s.first_name from students s where first_name="aaron" and last_name="singh";
+
+select * from company_listings;
+select * from company_listings where position_title="Frontend Developer" and type_of_employment="Full Time";
+select * from company_listings where type_of_employment like "Full Time";
