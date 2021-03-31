@@ -107,4 +107,15 @@ app.get("/joblistings", (req, res) => {
   });
 });
 
+//JSON Public Student Profile Page
+app.get("/student_public_pages", (req, res) => {
+  db_connection.query(query.RENDER_PUBLIC_PROFILE, (err, results) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      res.json(results);
+    }
+  });
+});
+
 app.listen(5000, () => `Backend-Live`);

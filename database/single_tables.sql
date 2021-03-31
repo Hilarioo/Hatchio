@@ -7,14 +7,15 @@ foreign key (admin_id) references admins(admin_id)
 );
 
 create table reflections(
-reflection_id int primary key,
+reflection_id int auto_increment primary key,
 student_id int,
 professor_id int,
 posted_time date,
-comments mediumtext,
-rating_skills varchar(255),
-rating_number int,
-overall_score int,
+responsible_level int,
+team_work_level int,
+leadership_level int,
+committed_to_success_level int,
+recommendation_comment mediumtext,
 foreign key (student_id) references students(student_id),
 foreign key (professor_id) references professors(professor_id)
 );

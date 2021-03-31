@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // CSS
 import "../../css/Theme.css";
 import "../../css/Search.css";
@@ -13,6 +13,29 @@ const JobSearch = () => {
   //States
   const [keyword, setKeyword] = useState(""); //Keyword:Field-Capture
   const [dbResults, setdbResults] = useState([]); //Search Results
+  useEffect(() => {
+    DB_Search();
+  });
+  const listItems = dbResults.map((d) => (
+    <div key={d.employer_id}>
+      <p>
+        <b>Position Title Opening</b> {d.position_title}
+      </p>
+      <p>
+        <b>Company Name</b> {d.company_name}
+      </p>
+      <p>
+        <b>Location:</b> {d.location}
+      </p>
+      <p>
+        <b>salary</b>
+        {d.salary}
+      </p>
+      <p>
+        <b>Job Description</b> {d.job_description}
+      </p>
+    </div>
+  ));
   //Fetch
   const DB_Search = () => {
     fetch(`${port_host}/joblistings`)
@@ -74,6 +97,9 @@ const JobSearch = () => {
                 <option value="100">200k</option>
               </Form.Control>
             </InputGroup>
+
+            {/**
+             * 
             <InputGroup className="mb-3">
               <InputGroup.Prepend>
                 <InputGroup.Text id="basic-addon1">Languages </InputGroup.Text>
@@ -88,6 +114,10 @@ const JobSearch = () => {
                 <option value="100">R</option>
               </Form.Control>
             </InputGroup>
+
+             * 
+             */}
+
             <InputGroup className="mb-3">
               <InputGroup.Prepend>
                 <InputGroup.Text id="basic-addon1">Types of Employment </InputGroup.Text>
@@ -107,8 +137,7 @@ const JobSearch = () => {
             </Button>
           </Form>
         </div>
-        <h4>results</h4>
-        {JSON.stringify(dbResults)}
+        {listItems}
       </div>
     </>
   );

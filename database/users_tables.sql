@@ -5,8 +5,7 @@ last_name varchar(255) not null,
 password varchar(255) not null,
 email varchar(255) not null unique key,
 state TINYINT default null,
-code varchar(500),
-profile_image longtext default null
+code varchar(500)
 );
 create table students (
 student_id int auto_increment primary key,
@@ -23,8 +22,7 @@ organization_name varchar(255) not null,
 password varchar(255) not null,
 email varchar(255) not null unique key,
 state TINYINT default null,
-code varchar(500),
-profile_image longtext default null
+code varchar(500)
 );
 create table admins (
 admin_id int auto_increment primary key,
@@ -33,8 +31,7 @@ last_name varchar(255) not null,
 password varchar(255) not null,
 email varchar(255) not null unique key,
 state TINYINT default null,
-code varchar(500),
-profile_image longtext default null
+code varchar(500)
 );
 
 select * from professors;

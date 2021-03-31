@@ -1,14 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import { port_host } from "../../../config.js";
 
 const StudentProfiles = () => {
-  const [dbResultStudents, setdbResultStudents] = useState([]); //db student profiles
+  const [dbResultStudents, setdbResultStudents] = useState([]); //db_student_profiles
+  useEffect(() => {
+    fetchStudents();
+  });
+  //Show Profile Images
+  const listItems = dbResultStudents.map((d) => (
+    <div key={d.student_id}>
+      <p>First Name: {d.first_name}</p>
+      <p>Last Name: {d.last_name}</p>
+      <p>About Me: {d.about_me}</p>
+      <p>GPA: {d.grade_gpa}</p>
+      <p>Profile Image ""</p>
+      <a href="#">See Projects Here</a>
+      <br></br>
+      <button>Rate me </button>
+      <hr></hr>
+    </div>
+  ));
   //SetUp for Fetch
   const fetchStudents = () => {
-    fetch(`${port_host}/studentpages`)
+    fetch(`${port_host}/student_public_pages`)
       .then((response) => response.json())
       .then((json) => setdbResultStudents(json));
     console.log(dbResultStudents);
@@ -18,7 +35,7 @@ const StudentProfiles = () => {
   const handleSubmit = (e) => {
     const formCount = 4;
     e.preventDefault();
-    fetchStudents();
+    //Send Form to Ratings Table
     for (var index = 0; index < 4; index++) {
       try {
         //Get User for which is getting Rated
@@ -113,7 +130,7 @@ const StudentProfiles = () => {
           Rate Student
         </Button>
       </Form>
-      {JSON.stringify(dbResultStudents)}
+      {listItems}
     </div>
   );
 };
