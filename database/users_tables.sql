@@ -34,13 +34,3 @@ state TINYINT default null,
 code varchar(500)
 );
 
-select * from professors;
-select * from students;
-select * from employers;
-select * from admins;
-
-drop table professors;
-drop table students;
-drop table employers;
-drop table admins;
-

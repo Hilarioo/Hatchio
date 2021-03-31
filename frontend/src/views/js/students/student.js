@@ -12,11 +12,11 @@ const StudentProfiles = () => {
   //Show Profile Images
   const listItems = dbResultStudents.map((d) => (
     <div key={d.student_id}>
+      <img src={d.profile_image} />
       <p>First Name: {d.first_name}</p>
       <p>Last Name: {d.last_name}</p>
       <p>About Me: {d.about_me}</p>
       <p>GPA: {d.grade_gpa}</p>
-      <p>Profile Image ""</p>
       <a href="#">See Projects Here</a>
       <br></br>
       <button>Rate me </button>

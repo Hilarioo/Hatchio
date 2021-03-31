@@ -12,8 +12,7 @@ const PROJECTS = "select * from projects";
 
 //Public Render Pages
 const RENDER_PUBLIC_PROFILE =
-  "select students.first_name, students.last_name, students.email,student_profile_page.about_me,student_profile_page.study_major,student_profile_page.grade_gpa,student_profile_page.student_id from students inner join student_profile_page on students.student_id = student_profile_page.student_id;";
-
+  "select students.first_name, students.last_name, students.email,student_profile_page.about_me,student_profile_page.study_major,student_profile_page.grade_gpa,student_profile_page.student_id,student_profile_page.profile_image from students inner join student_profile_page on students.student_id = student_profile_page.student_id;";
 //Search Querys
 
 //Authenticate Querys

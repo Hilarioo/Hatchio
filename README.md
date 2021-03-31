@@ -7,13 +7,18 @@
 
 #### Currently Unresolved Issues
 
-### Tuesday, March 30,2021
+#### Wenesday, March 31,2021
+
+- Tested image loading
+- if you run sql , it will auto-populate the tables and reset every table
+
+#### Tuesday, March 30,2021
 
 - Done json response with proper formating ish
 - Fixed job listings db schema
 - Populated students and job listings with 3 entries on job listings and 4 on students
 
-### Monday, March 29, 2021
+#### Monday, March 29, 2021
 
 - Worked a little bit on ratings page
 - can fetch from backend but, i'm trouble iterating through the students

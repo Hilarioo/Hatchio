@@ -48,16 +48,3 @@ company_name varchar(255),
 type_of_employment varchar(255),
 foreign key (employer_id) references employers(employer_id)
 );
-drop table company_listings;
-
-select * from professor_profile_page;
-select * from student_profile_page;
-select * from employer_profile_page;
-select * from company_listings;
-select * from projects;
-
-drop table professor_profile_page;
-drop table student_profile_page;
-drop table employer_profile_page;
-drop table projects;
-drop table company_listings;
