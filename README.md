@@ -1,8 +1,9 @@
 ### changelog
 
-#### TODO by Tuesday, March 30,2021
+#### TODO
 
 - need to add functionalities for form filter selections on Rate page and Job Search page and home search page
+- populate more
 
 #### Currently Unresolved Issues
 
@@ -10,7 +11,7 @@
 
 - Done json response with proper formating ish
 - Fixed job listings db schema
-- Populated students and job listings
+- Populated students and job listings with 3 entries on job listings and 4 on students
 
 ### Monday, March 29, 2021
 
