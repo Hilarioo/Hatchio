@@ -2,15 +2,23 @@
 
 #### TODO
 
-- need to add functionalities for form filter selections on Rate page and Job Search page and home search page
-- populate more
+- Meet with roland on sunday to merge with user authentication, specifically for Ratings page
+- Filter Pages: for Both Job Listings and Student Profiles
+- First Time User ( Functions: Student Signs Up, Student fills out Profile Information)
+- Ratings Page: ( Functions: Only professor who is authenticated, will see a list of Student Profiles, and will be able to complete a Ratings form )
+
+#### Currently Working On
+
+- Redesigning the datbase for Job Listings and Students to correspond precisely to the Figma layout
+- Preparing fetch for the following pages: Search(Profiles,Job Listings), Professor Rate Students, Sign Up for Students, Studen Sign Up Form Page
 
 #### Currently Unresolved Issues
 
 #### Wenesday, March 31,2021
 
-- Tested image loading
+- Tested Image loading of student profiles
 - if you run sql , it will auto-populate the tables and reset every table
+- Meet with Jose for clarifications and brainstorming how to implement Figma's layout
 
 #### Tuesday, March 30,2021
 

@@ -19,7 +19,13 @@ const StudentProfiles = () => {
       <p>GPA: {d.grade_gpa}</p>
       <a href="#">See Projects Here</a>
       <br></br>
-      <button>Rate me </button>
+      <button
+        onclick={
+          //query($student_id)
+        }
+      >
+        Rate me{" "}
+      </button>
       <hr></hr>
     </div>
   ));
