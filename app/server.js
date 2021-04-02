@@ -4,7 +4,16 @@ const app = express();
 const cors = require("cors");
 
 const { port_mysql } = require("./config");
-const { registerUser, profileSearch, jobSearch, profilePages, jobListings} = require("./mysql");
+const {
+  registerUser,
+  profileSearch,
+  jobSearch,
+  profilePages,
+  jobListings,
+  requestReview,
+  fillReview,
+  talentSearch
+} = require("./mysql");
 
 app.use(cors());
 
@@ -45,5 +54,8 @@ fillQuery("/joblistings", jobListings); // JSON Job Listings
 fillQuery("/register", registerUser); //Add Profile
 fillQuery("/search/profiles", profileSearch); //Search Profiles
 fillQuery("/search/joblistings", jobSearch); //Search Job Listings
+fillQuery("/review/request", requestReview);
+fillQuery("/review/fill", fillReview);
+fillQuery("/search/talent", talentSearch);
 
 app.listen(5000, () => `Backend-Live`);
