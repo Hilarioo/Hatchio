@@ -20,6 +20,7 @@ const dev_mysql = (localmachine) => {
 };
 
 const port_mysql = dev_mysql(true);
+console.log(port_mysql);
 
 module.exports = {
   port_mysql,

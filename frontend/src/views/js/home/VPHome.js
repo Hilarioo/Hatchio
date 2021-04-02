@@ -44,6 +44,8 @@ const VPHome = () => {
   };
   return (
     <div>
+      <h5>ALERT: if you want to see what's in the database, leave Find Field: Empty</h5>
+      <h5>ALERT: Search exclusively Profiles or Jobs under Search Dropdown</h5>
       {/* test home page containing class, section, team identification */}
       <h3 style={{ textAlign: "center" }}>SW Engineering CSC648/848 Spring 2021</h3>
       <h4 style={{ textAlign: "center", marginBottom: "50px" }}>Section 02 | Team 03</h4>
@@ -65,6 +67,15 @@ const VPHome = () => {
           Search
         </Button>
       </Form>
+      <h3>Results</h3>
+      {JSON.stringify(dbResultJobs)}
+      {JSON.stringify(dbResultProfiles)}
+      <img src={binaryImages[0]} />
+      <img src={binaryImages[1]} />
+      <img src={binaryImages[2]} />
+      <img src={binaryImages[3]} />
+      <img src={binaryImages[4]} />
+      <img src={binaryImages[5]} />
     </div>
   );
 };

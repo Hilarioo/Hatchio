@@ -1,11 +1,3 @@
-create table professor_profile_page(
-professor_id int primary key,
-about_me mediumtext,
-degree_certification blob,
-profile_image longtext default null,
-foreign key (professor_id) references professors(professor_id)
-);
-
 create table student_profile_page(
 student_id int primary key,
 about_me mediumtext,
@@ -51,6 +43,13 @@ start_date date,
 end_date date,
 currently_working tinyint,
 foreign key (student_id) references students(student_id)
+);
+create table professor_profile_page(
+professor_id int primary key,
+about_me mediumtext,
+degree_certification blob,
+profile_image longtext default null,
+foreign key (professor_id) references professors(professor_id)
 );
 
 create table employer_profile_page(

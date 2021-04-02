@@ -1,9 +1,9 @@
 import { useState } from "react";
 // CSS
-import "../../css/Theme.css";
-import "../../css/Search.css";
+import "../../../css/Theme.css";
+import "../../../css/Search.css";
 // Image(s) or SVG
-import circle from "../../content/svg/demo-card-profile.svg";
+import circle from "../../../content/svg/demo-card-profile.svg";
 // React Boostrap
 import Button from "react-bootstrap/Button";
 

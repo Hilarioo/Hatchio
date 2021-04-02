@@ -1,5 +1,6 @@
 .left-auth {
-  display: none;
+  min-height: 100vh !important;
+  min-width: 400px;
 }
 
 .right-auth {
@@ -100,6 +101,49 @@
   border-radius: 10px;
   border-style: solid;
   border-radius: 15% !important;
+}
+
+.redirect h1 {
+  font-family: "Fredoka One", cursive;
+  text-align: center;
+  font-size: 200%;
+  margin-top: 10%;
+  padding: 10px;
+}
+
+.redirect h2 {
+  font-size: 150%;
+}
+
+.redirect p {
+  text-align: center;
+}
+
+#redirect-btn {
+  width: 500px;
+  display: block;
+  margin: auto;
+}
+
+.redirect footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.mail-btn {
+  max-width: 400px !important;
+  padding: 20px;
+}
+
+.mail-btn a {
+  color: #fff !important;
+}
+
+.mail-btn a:hover {
+  text-decoration: none !important;
 }
 
 /* Browser Mobile */
