@@ -1,6 +1,6 @@
-#Changelog
+# Changelog
 
-##2021.04.02
+## 2021.04.02
 * add backend support for reviews and talent search
 * implement Laplace-Bayes estimator for statistical integrity
 * schema contains the following fields
@@ -49,7 +49,7 @@ mysql> describe Reviews;
 
 * there are dummy professor account entries exist containing `{ "Laplace-Bot", "bot", any, any }` and `{ "Bayes-Bot", "bot", any, any }`
 
-##2021.04.01
+## 2021.04.01
 * refactor common behavior of all SQL queries into a generic switchboard function
 * utilize prepared statements to remove SQL injection vulnerabilities
 * add notice of potential pitfalls for quick reference
