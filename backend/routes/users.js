@@ -1,5 +1,5 @@
 const mysql = require("mysql");
-const CONFIG = require("../../configuration/config");
+const CONFIG = require("../config");
 const db_connection = mysql.createConnection(CONFIG.SQL_PORT);
 
 //User Tables
@@ -48,21 +48,5 @@ module.exports = function (app) {
         res.json(results);
       }
     });
-  });
-  //Reset Database
-  app.get("/database_reset", (req, res) => {
-    dataArr.forEach((query) => {
-      if (query) {
-        query += ");";
-        db_connection.query(query, (err, results) => {
-          if (err) {
-            throw err;
-          } else {
-            console.log(results);
-          }
-        });
-      }
-    });
-    res.send("done");
   });
 };

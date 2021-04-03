@@ -10,7 +10,6 @@ app.get("/", (req, res) => {
 });
 
 require("./routes/users")(app);
-require("./routes/profiles")(app);
 require("./routes/cards")(app);
 
 app.listen(5000, () => `Backend-Live`);

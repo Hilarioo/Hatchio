@@ -2,17 +2,16 @@
 
 #### TODO
 
-- Meet with roland on sunday to merge with user authentication, specifically for Ratings page
+- Meet with roland on Monday to merge with user authentication, specifically for Ratings page
 - Filter Pages: for Both Job Listings and Student Profiles
 - First Time User ( Functions: Student Signs Up, Student fills out Profile Information)
 - Ratings Page: ( Functions: Only professor who is authenticated, will see a list of Student Profiles, and will be able to complete a Ratings form )
 
-#### steps & remember to change Configuration/config.js to your mysql credential
+#### steps
 
-- cd backend/routes & node reset.js // reset database & populate
-- cd backend & npm install //install backend dep
-- cd frontend & npm install //install frontend dep
-- cd backend & npm run backend_frontend //run localhost:3000 frontend & localhost:5000 backend
+- change backend/config.js w/ your db credentials
+- npm run node_hatchio_init
+- npm run backend_frontend
 
 #### Currently Working On
 

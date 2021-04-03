@@ -1,11 +1,9 @@
 const fs = require("fs");
 const mysql = require("mysql");
-const CONFIG = require("../../configuration/config");
+const CONFIG = require("./config");
 const db_connection = mysql.createConnection(CONFIG.SQL_PORT);
-
-const dataSql = fs.readFileSync("./reset.sql").toString();
-console.log(dataSql);
-const dataArr = dataSql.toString().split(");");
+const rawSQL = fs.readFileSync("../database/reset.sql").toString();
+const dataArr = rawSQL.toString().split(");");
 
 dataArr.forEach((query) => {
   if (query) {
