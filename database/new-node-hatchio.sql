@@ -17,8 +17,6 @@ email varchar(255) not null unique key,
 state TINYINT default null,
 code varchar(500)
 );
-
-
 create table student_profile_page(
 student_id int primary key,
 about_me mediumtext,

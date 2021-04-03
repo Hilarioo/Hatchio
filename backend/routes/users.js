@@ -1,23 +1,17 @@
-const express = require("express");
-const query = require("../mysql");
 const mysql = require("mysql");
-const { port_mysql } = require("../config");
+const CONFIG = require("../../configuration/config");
+const db_connection = mysql.createConnection(CONFIG.SQL_PORT);
 
-const db_connection = mysql.createConnection(port_mysql);
-//DB On Connection
-db_connection.connect((err) => {
-  if (err) {
-    console.log(`error invoked: ${err}`);
-    return err;
-  } else {
-    console.log("connection-paired");
-  }
-});
+//User Tables
+const USER_STUDENTS = "select * from students";
+const USER_PROFESSORS = "select * from professors";
+const USER_EMPLOYERS = "select * from employers";
+const USER_ADMINS = "select * from admins;";
 
 module.exports = function (app) {
   //JSON Students
   app.get("/students", (req, res) => {
-    db_connection.query(query.USER_STUDENTS, (err, results) => {
+    db_connection.query(USER_STUDENTS, (err, results) => {
       if (err) {
         return res.send(err);
       } else {
@@ -27,7 +21,7 @@ module.exports = function (app) {
   });
   //JSON Professors
   app.get("/professors", (req, res) => {
-    db_connection.query(query.USER_PROFESSORS, (err, results) => {
+    db_connection.query(USER_PROFESSORS, (err, results) => {
       if (err) {
         return res.send(err);
       } else {
@@ -37,7 +31,7 @@ module.exports = function (app) {
   });
   //JSON Employers
   app.get("/employers", (req, res) => {
-    db_connection.query(query.EMPLOYER_PROFILE_PAGE, (err, results) => {
+    db_connection.query(USER_EMPLOYERS, (err, results) => {
       if (err) {
         return res.send(err);
       } else {
@@ -47,7 +41,7 @@ module.exports = function (app) {
   });
   //JSON Admins
   app.get("/admins", (req, res) => {
-    db_connection.query(query.USER_ADMINS, (err, results) => {
+    db_connection.query(USER_ADMINS, (err, results) => {
       if (err) {
         return res.send(err);
       } else {
@@ -55,6 +49,20 @@ module.exports = function (app) {
       }
     });
   });
-
-  //other routes..
+  //Reset Database
+  app.get("/database_reset", (req, res) => {
+    dataArr.forEach((query) => {
+      if (query) {
+        query += ");";
+        db_connection.query(query, (err, results) => {
+          if (err) {
+            throw err;
+          } else {
+            console.log(results);
+          }
+        });
+      }
+    });
+    res.send("done");
+  });
 };

@@ -86,49 +86,28 @@ const School = (props) => {
   };
 
   return (
-    <Modal
-      {...props}
-      size='lg'
-      aria-labelledby='contained-modal-title-vcenter'
-      centered>
+    <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
       <Form onSubmit={handleSubmit}>
         <Modal.Header closeButton>
-          <Modal.Title id='contained-modal-title-vcenter'>
-            Add School & Course(s)
-          </Modal.Title>
+          <Modal.Title id="contained-modal-title-vcenter">Add School & Course(s)</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {/* School Name */}
           <Form.Group>
             <Form.Label>School</Form.Label>
-            <Form.Control
-              type='text'
-              onChange={(e) =>
-                setSchool({ ...school, schoolName: e.target.value })
-              }
-            />
+            <Form.Control type="text" onChange={(e) => setSchool({ ...school, schoolName: e.target.value })} />
           </Form.Group>
 
           {/* Start Year */}
           <Form.Group>
             <Form.Label>Start Year</Form.Label>
-            <Form.Control
-              type='text'
-              onChange={(e) =>
-                setSchool({ ...school, startYear: e.target.value })
-              }
-            />
+            <Form.Control type="text" onChange={(e) => setSchool({ ...school, startYear: e.target.value })} />
           </Form.Group>
 
           {/* End Year */}
           <Form.Group>
             <Form.Label>End Year</Form.Label>
-            <Form.Control
-              type='text'
-              onChange={(e) =>
-                setSchool({ ...school, endYear: e.target.value })
-              }
-            />
+            <Form.Control type="text" onChange={(e) => setSchool({ ...school, endYear: e.target.value })} />
           </Form.Group>
 
           {/* Courses(s) within form */}
@@ -137,34 +116,29 @@ const School = (props) => {
             {courseList.map((course) => (
               <Form.Group>
                 <Form.Control
-                  type='text'
-                  placeholder='Course Name'
-                  name='courseName'
+                  type="text"
+                  placeholder="Course Name"
+                  name="courseName"
                   id={course.id}
                   onChange={updateCourse}
                 />
                 <Form.Control
-                  type='text'
-                  placeholder='Course Section'
-                  name='section'
+                  type="text"
+                  placeholder="Course Section"
+                  name="section"
                   id={course.id}
                   onChange={updateCourse}
                 />
-                <Form.Control
-                  as='select'
-                  name='term'
-                  id={course.id}
-                  onChange={updateCourse}
-                  defaultValue='Fall'>
+                <Form.Control as="select" name="term" id={course.id} onChange={updateCourse} defaultValue="Fall">
                   <option>Fall</option>
                   <option>Winter</option>
                   <option>Spring</option>
                   <option>Summer</option>
                 </Form.Control>
                 <Form.Control
-                  type='text'
-                  placeholder='Course Year'
-                  name='year'
+                  type="text"
+                  placeholder="Course Year"
+                  name="year"
                   id={course.id}
                   onChange={updateCourse}
                 />
@@ -175,7 +149,7 @@ const School = (props) => {
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button type='submit'>Save</Button>
+          <Button type="submit">Save</Button>
         </Modal.Footer>
       </Form>
     </Modal>

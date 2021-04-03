@@ -13,7 +13,9 @@ const mysql_credentials = [
     host: "localhost",
     user: "guest",
     password: "jkLive586!@",
+    insecureAuth: "true",
     database: "acme",
+    multipleStatements: true,
   },
   //Jose
   {},

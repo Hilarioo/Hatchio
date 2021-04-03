@@ -61,16 +61,22 @@ foreign key (employer_id) references employers(employer_id)
 );
 
 create table company_listings(
-employer_id int primary key,
+employer_id int,
+organization_name varchar(255),
 position_title varchar(255),
 location varchar(255),
+job_type varchar(255),
+experience_years varchar(255),
+experience_level varchar(255),
 salary float,
-landscape_view blob,
-job_description mediumtext,
+about_us mediumtext,
+the_opportunity mediumtext,
 task_responsibilities mediumtext,
 skillset mediumtext,
 benefits mediumtext,
-company_name varchar(255),
-type_of_employment varchar(255),
+landing_image longtext,
 foreign key (employer_id) references employers(employer_id)
 );
+
+ 
+

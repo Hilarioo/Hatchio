@@ -7,12 +7,28 @@
 - First Time User ( Functions: Student Signs Up, Student fills out Profile Information)
 - Ratings Page: ( Functions: Only professor who is authenticated, will see a list of Student Profiles, and will be able to complete a Ratings form )
 
+#### steps & remember to change Configuration/config.js to your mysql credential
+
+- cd backend/routes & node reset.js // reset database & populate
+- cd backend & npm install //install backend dep
+- cd frontend & npm install //install frontend dep
+- cd backend & npm run backend_frontend //run localhost:3000 frontend & localhost:5000 backend
+
 #### Currently Working On
 
-- Redesigning the datbase for Job Listings and Students to correspond precisely to the Figma layout
-- Preparing fetch for the following pages: Search(Profiles,Job Listings), Professor Rate Students, Sign Up for Students, Studen Sign Up Form Page
+- filter queries
+- form input queries
 
 #### Currently Unresolved Issues
+
+- reset database with link without having to node reset.js(not important)
+
+#### Friday , March 31,2021
+
+- Corresponding database with information needed and being used on figma
+- reset database
+- up to date repo with features/u
+- folder seperations with api calls and server.js
 
 #### Wenesday, March 31,2021
 

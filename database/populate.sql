@@ -5,10 +5,10 @@ insert into professors(first_name,last_name,password,email,state,code) values ("
 insert into professors(first_name,last_name,password,email,state,code) values ("Duc","Ta","pass12345","ducTa@mail.com",0,"500");
 
 insert into students(first_name,last_name,password,email,state,code) values ("Aaron","Whopper","pass12345","aaron@mail.com",0,"500");
-insert into students(first_name,last_name,password,email,state,code) values ("Jose","Gonzalez","pass12345","joseG@mail.com",0,"500");
-insert into students(first_name,last_name,password,email,state,code) values ("Roland","Lee","pass12345","rolandlee@mail.com",0,"500");
-insert into students(first_name,last_name,password,email,state,code) values ("Lyra","Solomon","pass12345","lyrasolomon@mail.com",0,"500");
-insert into students(first_name,last_name,password,email,state,code) values ("Elon","Musk","pass12345","elonmusk@mail.com",0,500);
+insert into students(first_name,last_name,password,email,state,code) values ("Victoria","Gonzalez","pass12345","joseG@mail.com",0,"500");
+insert into students(first_name,last_name,password,email,state,code) values ("Zorba","Lee","pass12345","rolandlee@mail.com",0,"500");
+insert into students(first_name,last_name,password,email,state,code) values ("Jonathen","Kask","pass12345","lyrasolomon@mail.com",0,"500");
+insert into students(first_name,last_name,password,email,state,code) values ("Tom","Bobby","pass12345","tommy@mail.com",0,500);
 
 insert into employers(organization_name,password,email,state,code) values ("Microsoft","los12345","microsoft@mailr.com",0,"500");
 insert into employers(organization_name,password,email,state,code) values ("Apple","los12345","apple@mailr.com",0,"500");
@@ -34,3 +34,6 @@ insert into company_listings(employer_id,position_title,location,salary,job_desc
 
 #Single Tables 
 insert into reflections(student_id,professor_id,posted_time,responsible_level,team_work_level,leadership_level,committed_to_success_level,recommendation_comment)values(1,1,now(),1,1,1,1,"very good student");
+
+
+select * from students;
