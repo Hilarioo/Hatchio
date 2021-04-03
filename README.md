@@ -10,8 +10,8 @@
 #### steps
 
 - change backend/config.js w/ your db credentials
-- npm run node_hatchio_init
-- npm run backend_frontend
+- npm run node_hatchio_init / inside /backend
+- npm run backend_frontend // inside /backend
 
 #### Currently Working On
 
