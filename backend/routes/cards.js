@@ -30,7 +30,7 @@ module.exports = function (app) {
       }
     });
   });
-  //Dynamic Filtering Student
+  // Filter Student Cards
   app.get("/filter_students", (req, res) => {
     const { sql_command } = req.query;
     db_connection.query(sql_command, (err, results) => {
