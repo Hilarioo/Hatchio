@@ -9,11 +9,14 @@ const USER_EMPLOYERS = "select * from employers";
 const USER_ADMINS = "select * from admins;";
 
 //Sign Up User
-const USER_REGISTER = [
-  `insert into students(first_name,last_name,password,email) values ("First_Name","Last_Name","password","wooble@mail.com");`,
-  `insert into professors(first_name,last_name,password,email) values ("Henry","Villar","pass12345","random@mail.com");`,
-  `insert into employers(organization_name,password,email) values ("Organization_Name","los12345","random@mailr.com");`,
-];
+const USER_SIGN_UP = (UserType, FirstName, LastName, Email, Password, Description_Tag) => {
+  if ((UserType == "students") | (UserType == "professors")) {
+    return `insert into ${UserType}(first_name,last_name,school_name,password,email,state,code) values ("${FirstName}","${LastName}","${Description_Tag}","${Password}","${Email}",0,500);`;
+  }
+  if (UserType == "employers") {
+    return `insert into ${UserType}(first_name,last_name,organization_name,password,email,state,code) values ("${FirstName}","${LastName}","${Description_Tag}","${Password}","${Email}",0,500);`;
+  }
+};
 
 module.exports = function (app) {
   //JSON Students
@@ -60,25 +63,24 @@ module.exports = function (app) {
   //Register USER
   app.post("/register", (req, res) => {
     const React_Form_User = req.body;
-    console.log(
-      React_Form_User.FirstName,
-      React_Form_User.LastName,
-      React_Form_User.Password,
-      React_Form_User.UserType,
-      React_Form_User.SchoolName,
-      React_Form_User.OrganizationName
-    );
-    /*
-    db_connection.query(USER_STUDENTS, (err, results) => {
-      if (err) {
-        return res.send(err);
-      } else {
-        return res.json(results);
+    db_connection.query(
+      USER_SIGN_UP(
+        React_Form_User.UserType,
+        React_Form_User.FirstName,
+        React_Form_User.LastName,
+        React_Form_User.Email,
+        React_Form_User.Password,
+        React_Form_User.DescriptionTag
+      ),
+      (err, results) => {
+        if (err) {
+          console.log(err);
+          return res.send(err);
+        } else {
+          console.log(results);
+          return res.json(results);
+        }
       }
-    });
-    */
-    //   console.log(React_Form_User);
-    console.log(React_Form_User);
-    return res.send("test");
+    );
   });
 };

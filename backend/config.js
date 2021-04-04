@@ -1,4 +1,4 @@
-const mysql_credentials = [
+const MYSQL_CRED = [
   //AWS EC2 Instance
   {
     host: "localhost",
@@ -27,7 +27,7 @@ const mysql_credentials = [
 const AWS_PORT = `http://3.141.216.125:5000`;
 const LOCAL_PORT = `http://localhost:5000`;
 const HOST_PORT = LOCAL_PORT;
-const SQL_PORT = mysql_credentials[1];
+const SQL_PORT = MYSQL_CRED[1];
 
 module.exports = {
   SQL_PORT,

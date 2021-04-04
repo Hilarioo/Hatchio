@@ -9,6 +9,8 @@ import "../../css/Auth.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/esm/Col";
+import InputGroup from "react-bootstrap/InputGroup";
+
 // Image(s) or SVG
 import { ReactComponent as Student } from "../../content/svg/student.svg";
 import { ReactComponent as Professor } from "../../content/svg/professor.svg";
@@ -22,29 +24,26 @@ const Signup = () => {
   const [email, setEmail] = useState("School Email"); //School Email
   const [subtext, SetSubtext] = useState("Do you attend multiple schools?");
 
-  const jsonPOST = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      FirstName: "Tony",
-      LastName: "Stark",
-      Password: "Pass",
-      UserType: "students",
-      SchoolName: "SFSU",
-      OrganizationName: "Apple",
-    }),
-  };
-
-  //Form Submission
   const handleSubmit = (event) => {
-    API_USER_POST(jsonPOST); //API that grabs
+    const FORM_JSON_INPUT = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        UserType: event.target[3].value,
+        FirstName: event.target[4].value,
+        LastName: event.target[5].value,
+        Email: event.target[7].value,
+        Password: event.target[8].value,
+        DescriptionTag: event.target[6].value, //Organization or School Name
+      }),
+    };
+    API_USER_POST(FORM_JSON_INPUT);
+
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
-      //If Validation is FALSE, Dont Fetch
       event.preventDefault();
       event.stopPropagation();
     } else {
-      //If Validation is True, Insert User
       setValidated(true);
     }
   };
@@ -107,6 +106,18 @@ const Signup = () => {
           </Col>
         </Form.Row>
         <Form.Row>
+          <InputGroup className="mb-3">
+            <InputGroup.Prepend>
+              <InputGroup.Text id="basic-addon1">Select User Type </InputGroup.Text>
+            </InputGroup.Prepend>
+
+            <Form.Control name="student_year" as="select" className="mr-sm-2" id="inlineFormCustomSelect" custom>
+              <option value="select">Select</option>
+              <option value="professors">Professor</option>
+              <option value="employers">Employer</option>
+              <option value="students">Student</option>
+            </Form.Control>
+          </InputGroup>
           <Form.Group as={Col} md="6">
             <Form.Control required type="text" id="first-name" placeholder="First Name" />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>

@@ -2,10 +2,10 @@
 
 #### TODO
 
+- Filters for Students and Jobs
+- Student Profile Page Sign Up
+- Ratings Page for Professors to Rate Students
 - Meet with roland on Monday to merge with user authentication, specifically for Ratings page
-- Filter Pages: for Both Job Listings and Student Profiles
-- First Time User ( Functions: Student Signs Up, Student fills out Profile Information)
-- Ratings Page: ( Functions: Only professor who is authenticated, will see a list of Student Profiles, and will be able to complete a Ratings form )
 
 #### steps
 
@@ -16,12 +16,13 @@
 
 #### Currently Working On
 
-- filter queries
-- form input queries
+- everything in todo
 
 #### Currently Unresolved Issues
 
-- reset database with link without having to node reset.js(not important)
+#### Saturday , March 31,2021
+
+- Redesigned User Tables to match sign up page
 
 #### Friday , March 31,2021
 
