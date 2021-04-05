@@ -13,5 +13,6 @@ app.get("/", (req, res) => {
 
 require("./routes/users")(app);
 require("./routes/cards")(app);
+require("./routes/verification")(app);
 
 app.listen(5000, () => `Backend-Live`);

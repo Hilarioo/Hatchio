@@ -1,7 +1,4 @@
 import { useState } from "react";
-// Redirect After Clicking "Create Account"
-import { useHistory } from "react-router-dom";
-import { port_host } from "../../../config.js";
 // CSS
 import "../../css/Theme.css";
 import "../../css/Auth.css";
@@ -9,50 +6,44 @@ import "../../css/Auth.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/esm/Col";
-import InputGroup from "react-bootstrap/InputGroup";
-
 // Image(s) or SVG
 import { ReactComponent as Student } from "../../content/svg/student.svg";
 import { ReactComponent as Professor } from "../../content/svg/professor.svg";
 import { ReactComponent as Company } from "../../content/svg/company.svg";
-//API
-import API_USER_POST from "../../../models/register_user";
 
-const Signup = () => {
+import {api_send_email, api_register_user} from "../../../models/register_user";
+
+function Signup() {
   const [validated, setValidated] = useState(false);
   const [inputName, setInputName] = useState("School Name"); //School Name
   const [email, setEmail] = useState("School Email"); //School Email
+  const [firstName, setFirstName] = useState(""); //First Name
+  const [lastName, setLastName] = useState(""); //Last Name
+  const [password, setPassword] = useState(""); //Password
+  const [UserType, setUserType] = useState("");
   const [subtext, SetSubtext] = useState("Do you attend multiple schools?");
 
+  //Form Submission
   const handleSubmit = (event) => {
-    const FORM_JSON_INPUT = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        UserType: event.target[3].value,
-        FirstName: event.target[4].value,
-        LastName: event.target[5].value,
-        Email: event.target[7].value,
-        Password: event.target[8].value,
-        DescriptionTag: event.target[6].value, //Organization or School Name
-      }),
-    };
-    API_USER_POST(FORM_JSON_INPUT);
-
+    const FORM_REQUEST = {
+      usertype:UserType,
+      firstName:firstName,
+      lastName:lastName,
+      schoolname:inputName,
+      password:password,
+      email:email
+    }
+    console.log(FORM_REQUEST);
     const form = event.currentTarget;
-    if (form.checkValidity() === false) {
+    if ((form.checkValidity() === false) | true) {
       event.preventDefault();
       event.stopPropagation();
-    } else {
-      setValidated(true);
+      alert('Verification email has been sent to ' + email);
+      api_send_email(FORM_REQUEST);
+      api_register_user(FORM_REQUEST);
     }
-  };
 
-  //Redirect with useHistory
-  const history = useHistory();
-
-  const routeChange = () => {
-    //history.push("/signup-redirect");
+    setValidated(true);
   };
 
   return (
@@ -63,11 +54,11 @@ const Signup = () => {
           <Col>
             <label>
               <input
-                name="School_Name"
                 type="radio"
                 name="account"
                 value="student"
                 onClick={() => {
+                  setUserType("students");
                   setInputName("School Name");
                   setEmail("Student Email");
                   SetSubtext("Do you attend multiple schools?");
@@ -83,7 +74,9 @@ const Signup = () => {
                 name="account"
                 value="professor"
                 onClick={() => {
+                  setUserType("professors");
                   setInputName("School Name");
+                  setEmail("Work Email");
                   SetSubtext("Do you work at multiple schools?");
                 }}
               />
@@ -97,7 +90,9 @@ const Signup = () => {
                 name="account"
                 value="company"
                 onClick={() => {
+                  setUserType("employers");
                   setInputName("Company Name");
+                  setEmail("Company Email");
                   SetSubtext("");
                 }}
               />
@@ -106,39 +101,57 @@ const Signup = () => {
           </Col>
         </Form.Row>
         <Form.Row>
-          <InputGroup className="mb-3">
-            <InputGroup.Prepend>
-              <InputGroup.Text id="basic-addon1">Select User Type </InputGroup.Text>
-            </InputGroup.Prepend>
-
-            <Form.Control name="student_year" as="select" className="mr-sm-2" id="inlineFormCustomSelect" custom>
-              <option value="select">Select</option>
-              <option value="professors">Professor</option>
-              <option value="employers">Employer</option>
-              <option value="students">Student</option>
-            </Form.Control>
-          </InputGroup>
           <Form.Group as={Col} md="6">
-            <Form.Control required type="text" id="first-name" placeholder="First Name" />
+            <Form.Control
+              required
+              type="text"
+              id="first-name"
+              placeholder="First Name"
+              onChange={(e) => setFirstName(e.target.value)}
+            />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
           <Form.Group as={Col} md="6">
-            <Form.Control required type="text" id="last-name" placeholder="Last Name" />
+            <Form.Control
+              required
+              type="text"
+              id="last-name"
+              placeholder="Last Name"
+              onChange={(e) => setLastName(e.target.value)}
+            />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
           <Form.Group as={Col} md="12">
-            <Form.Control type="text" id="organization-name" placeholder={inputName} required />
+            <Form.Control
+              type="text"
+              id="organization-name"
+              placeholder={inputName}
+              onChange={(e) => setInputName(e.target.value)}
+              required
+            />
             <Form.Text className="text-muted">{subtext}</Form.Text>
           </Form.Group>
         </Form.Row>
         <Form.Row>
           <Form.Group as={Col} md="12">
             {/**Email */}
-            <Form.Control type="email" id="email" placeholder={email} required />
+            <Form.Control
+              type="email"
+              id="email"
+              placeholder={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
           </Form.Group>
           {/**Password */}
           <Form.Group as={Col} md="6">
-            <Form.Control type="password" id="password" placeholder="Password" required />
+            <Form.Control
+              type="password"
+              id="password"
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
             <Form.Text className="text-muted">Must be 8-20 characters long.</Form.Text>
             <Form.Control.Feedback type="invalid">Password is weak</Form.Control.Feedback>
           </Form.Group>
@@ -155,12 +168,12 @@ const Signup = () => {
             className="subtext"
           />
         </Form.Group>
-        <Button variant="dark" type="submit" onClick={routeChange}>
+        <Button variant="dark" type="submit" >
           Create Account
         </Button>
       </Form>
     </>
   );
-};
+}
 
 export default Signup;

@@ -9,12 +9,12 @@ const USER_EMPLOYERS = "select * from employers";
 const USER_ADMINS = "select * from admins;";
 
 //Sign Up User
-const USER_SIGN_UP = (UserType, FirstName, LastName, Email, Password, Description_Tag) => {
+const USER_SIGN_UP = (UserType, FirstName, LastName, schoolname, Password, Email, code) => {
   if ((UserType == "students") | (UserType == "professors")) {
-    return `insert into ${UserType}(first_name,last_name,school_name,password,email,state,code) values ("${FirstName}","${LastName}","${Description_Tag}","${Password}","${Email}",0,500);`;
+    return `insert into ${UserType}(first_name,last_name,school_name,password,email,state,code) values ("${FirstName}","${LastName}","${schoolname}","${Password}","${Email}",0,"${code}");`;
   }
   if (UserType == "employers") {
-    return `insert into ${UserType}(first_name,last_name,organization_name,password,email,state,code) values ("${FirstName}","${LastName}","${Description_Tag}","${Password}","${Email}",0,500);`;
+    return `insert into ${UserType}(first_name,last_name,organization_name,password,email,state,code) values ("${FirstName}","${LastName}","${schoolname}","${Password}","${Email}",0,"${code}");`;
   }
 };
 
@@ -61,26 +61,22 @@ module.exports = function (app) {
   });
 
   //Register USER
-  app.post("/register", (req, res) => {
-    const React_Form_User = req.body;
+  app.get("/register", (req, res) => {
+    const { UserType, first_name, last_name, password, email, school_name, code } = req.query;
+    console.log(req.query);
     db_connection.query(
-      USER_SIGN_UP(
-        React_Form_User.UserType,
-        React_Form_User.FirstName,
-        React_Form_User.LastName,
-        React_Form_User.Email,
-        React_Form_User.Password,
-        React_Form_User.DescriptionTag
-      ),
+      USER_SIGN_UP(UserType, first_name, last_name, school_name, password, email, code),
       (err, results) => {
         if (err) {
-          console.log(err);
-          return res.send(err);
+          console.log(`query-add-fail ${JSON.stringify(err)}`);
+          return;
         } else {
-          console.log(results);
-          return res.json(results);
+          console.log(`query-add-success ${JSON.stringify(results)} `);
+          return;
         }
       }
     );
+    res.send("profile-added");
   });
 };
+//DELETE FROM students WHERE student_id=6;

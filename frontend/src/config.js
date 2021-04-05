@@ -3,4 +3,6 @@ const LOCAL_PORT = `http://localhost:5000`;
 
 const PORT_HOST = LOCAL_PORT;
 
-export default PORT_HOST;
+module.exports = {
+    PORT_HOST,
+  };

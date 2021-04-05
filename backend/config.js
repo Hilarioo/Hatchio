@@ -20,14 +20,19 @@ const MYSQL_CRED = [
   //Jose
   {},
   //Roland
-  {},
+  {
+    host: "localhost",
+    user: "root",
+    password: "roland0308",
+    database: "acme",
+  },
   //Lyra
   {},
 ];
 const AWS_PORT = `http://3.141.216.125:5000`;
 const LOCAL_PORT = `http://localhost:5000`;
 const HOST_PORT = LOCAL_PORT;
-const SQL_PORT = MYSQL_CRED[1];
+const SQL_PORT = MYSQL_CRED[3];
 
 module.exports = {
   SQL_PORT,
