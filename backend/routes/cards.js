@@ -43,4 +43,39 @@ module.exports = function (app) {
       }
     });
   });
+  // Filter Job Cards
+  app.get("/filter_job_cards", (req, res) => {
+    const { job_type, position_title } = req.query;
+    console.log(job_type, position_title);
+    if (job_type == "Select" && position_title == "Select") {
+      db_connection.query(API_JOB_CARD, (err, results) => {
+        if (err) {
+          return res.send(err);
+        } else {
+          return res.json(results);
+        }
+      });
+    }
+    if (job_type == "Select") {
+      var tmp_q = `select c_l.position_title,c_l.organization_name,c_l.salary,c_l.location,c_l.about_us, job_type  from company_listings c_l where c_l.position_title="${position_title}" ; ;`;
+      db_connection.query(tmp_q, (err, results) => {
+        if (err) {
+          return res.send(err);
+        } else {
+          return res.json(results);
+        }
+      });
+    }
+    if (position_title == "Select") {
+      //then job type
+      var tmp_q = `  select c_l.position_title,c_l.organization_name,c_l.salary,c_l.location,c_l.about_us, job_type  from company_listings c_l where job_type="${job_type}" ;`;
+      db_connection.query(tmp_q, (err, results) => {
+        if (err) {
+          return res.send(err);
+        } else {
+          return res.json(results);
+        }
+      });
+    }
+  });
 };
