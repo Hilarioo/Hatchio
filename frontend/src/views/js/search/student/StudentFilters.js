@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
 // CSS
 import "../../../css/Theme.css";
 import "../../../css/Search.css";
+// SFSU Areas of Study Data imported
+import Data from "../../../content/data/AreasOfStudy.json";
 // React Boostrap
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -9,31 +10,26 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 
-const StudentFilters = () => {
+const StudentFilters = ({
+  // functions
+  addFilterHandler,
+  addSchoolYearHandler,
   // Active filters
-  const [activeFilters, SetActiveFilters] = useState([]);
-
-  // Updates active filters
-  const addFilterHandler = (e) => {
-    console.log("checked: " + e.target.checked);
-    console.log(e.target.value);
-
-    // add filter if checked, else remove
-    if (e.target.checked) {
-      SetActiveFilters((activeFilters) => [...activeFilters, e.target.value]);
-    } else {
-      SetActiveFilters(
-        activeFilters.filter((filter) => filter !== e.target.value)
-      );
-    }
-
-    // SetActiveFilters((oldArray) => [...oldArray, event]);
-  };
-
-  // useEffect should be listening to activeFilters and fetching
-  // new results based on that and updating the useState
-  useEffect(() => {}, []);
-
+  activeFilters,
+  setActiveFilters,
+  // School year
+  schoolYear,
+  setSchoolYear,
+  // Strengths
+  strength,
+  setStrength,
+  // GPA
+  gpa,
+  setGPA,
+  // Rating
+  rating,
+  setRating,
+}) => {
   return (
     <div className='filter'>
       {/* Heading */}
@@ -41,13 +37,34 @@ const StudentFilters = () => {
 
       {/* Active Filters */}
       <div className='active-filter-box'>
-        {activeFilters?.map((filter) => (
+        {schoolYear?.map((filter) => (
           <div id={filter.id} className='active-filter'>
             {filter}
             <button
               onClick={(e) => {
                 // removes the filter from useState
-                SetActiveFilters(
+                setSchoolYear(
+                  schoolYear.filter(
+                    (filter) => !filter.localeCompare(e.target.value)
+                  )
+                );
+                // resets check value to false
+                e.target.checked = false;
+                console.log(filter);
+              }}>
+              {" "}
+              x{" "}
+            </button>
+          </div>
+        ))}
+        {/* all active filters except school year */}
+        {activeFilters?.map((filter) => (
+          <div id={filter.id} className='active-filter'>
+            <span>{filter}</span>
+            <button
+              onClick={(e) => {
+                // removes the filter from useState
+                setActiveFilters(
                   activeFilters.filter(
                     (filter) => !filter.localeCompare(e.target.value)
                   )
@@ -78,43 +95,44 @@ const StudentFilters = () => {
                     type='checkbox'
                     label='Freshman'
                     value='Freshman'
-                    onClick={addFilterHandler}
+                    onClick={addSchoolYearHandler}
                   />
                   <Form.Check
                     type='checkbox'
                     label='Sophomore'
                     value='Sophomore'
-                    onClick={addFilterHandler}
+                    onClick={addSchoolYearHandler}
                   />
                   <Form.Check
                     type='checkbox'
                     label='Junior'
                     value='Junior'
-                    onClick={addFilterHandler}
+                    onClick={addSchoolYearHandler}
                   />
                   <Form.Check
                     type='checkbox'
                     label='Senior'
                     value='Senior'
-                    onClick={addFilterHandler}
+                    onClick={addSchoolYearHandler}
                   />
                   <Form.Check
                     type='checkbox'
+                    s
                     label='Masters'
                     value='Masters'
-                    onClick={addFilterHandler}
+                    onClick={addSchoolYearHandler}
                   />
                   <Form.Check
                     type='checkbox'
                     label='Doctorate'
                     value='Doctorate'
-                    onClick={addFilterHandler}
+                    onClick={addSchoolYearHandler}
                   />
                   <Form.Check
                     type='checkbox'
                     label='Alumni'
                     value='Alumni'
-                    onClick={addFilterHandler}
+                    onClick={addSchoolYearHandler}
                   />
                 </Card.Body>
               </Accordion>
@@ -125,29 +143,30 @@ const StudentFilters = () => {
           <Form.Group>
             <Card>
               <Accordion.Toggle as={Card.Header} eventKey='1'>
-                Academics
+                Area of Study
               </Accordion.Toggle>
               <Accordion eventKey='1'>
                 <Card.Body>
-                  <InputGroup>
+                  <Form.Group>
                     <Form.Control
-                      placeholder='Add Major / Program'
-                      aria-label="Recipient's username"
-                      aria-describedby='basic-addon2'
-                    />
-                    <InputGroup.Append>
-                      <Button variant='outline-secondary' className='btn-fill'>
-                        +
-                      </Button>
-                    </InputGroup.Append>
-                  </InputGroup>
+                      as='select'
+                      name='degree'
+                      onChange={addFilterHandler}>
+                      {/* default is a blank option */}
+                      <option></option>
+                      {/* All SFSU Areas of Study grabbed from JSON file*/}
+                      {Data.map((program) => (
+                        <option value={program.field}>{program.field}</option>
+                      ))}
+                    </Form.Control>
+                  </Form.Group>
                 </Card.Body>
               </Accordion>
             </Card>
           </Form.Group>
 
           {/* Stengths / Skills Filter */}
-          <Form.Group>
+          {/* <Form.Group>
             <Card>
               <Accordion.Toggle as={Card.Header} eventKey='2'>
                 Stengths / Skills
@@ -159,9 +178,15 @@ const StudentFilters = () => {
                       placeholder='Add Strengths / Skills'
                       aria-label="Recipient's username"
                       aria-describedby='basic-addon2'
+                      onChange={(e) => setStrength(e.target.value)}
                     />
                     <InputGroup.Append>
-                      <Button variant='outline-secondary' className='btn-fill'>
+                      <Button
+                        variant='outline-secondary'
+                        className='btn-fill'
+                        onClick={(e) =>
+                          setActiveFilters([...activeFilters, strength])
+                        }>
                         +
                       </Button>
                     </InputGroup.Append>
@@ -169,7 +194,7 @@ const StudentFilters = () => {
                 </Card.Body>
               </Accordion>
             </Card>
-          </Form.Group>
+          </Form.Group> */}
 
           {/* GPA Filter */}
           <Form.Group>
@@ -184,12 +209,33 @@ const StudentFilters = () => {
                       placeholder='From'
                       aria-label='GPA-from'
                       aria-describedby='basic-addon1'
+                      onChange={(e) =>
+                        setGPA({
+                          ...gpa,
+                          min: e.target.value,
+                        })
+                      }
                     />
                     <Form.Control
                       placeholder='To'
                       aria-label='GPA-to'
                       aria-describedby='basic-addon1'
+                      onChange={(e) =>
+                        setGPA({
+                          ...gpa,
+                          max: e.target.value,
+                        })
+                      }
                     />
+                    <InputGroup.Append>
+                      <Button
+                        variant='outline-secondary'
+                        className='btn-fill'
+                        name='gpa'
+                        onClick={addFilterHandler}>
+                        +
+                      </Button>
+                    </InputGroup.Append>
                   </InputGroup>
                 </Card.Body>
               </Accordion>
@@ -212,12 +258,33 @@ const StudentFilters = () => {
                       placeholder='From'
                       aria-label='Review-from'
                       aria-describedby='basic-addon1'
+                      onChange={(e) =>
+                        setRating({
+                          ...rating,
+                          min: e.target.value,
+                        })
+                      }
                     />
                     <Form.Control
                       placeholder='To'
                       aria-label='Review-to'
                       aria-describedby='basic-addon1'
+                      onChange={(e) =>
+                        setRating({
+                          ...rating,
+                          max: e.target.value,
+                        })
+                      }
                     />
+                    <InputGroup.Append>
+                      <Button
+                        variant='outline-secondary'
+                        className='btn-fill'
+                        name='rating'
+                        onClick={addFilterHandler}>
+                        +
+                      </Button>
+                    </InputGroup.Append>
                   </InputGroup>
                 </Card.Body>
               </Accordion>

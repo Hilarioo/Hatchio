@@ -6,102 +6,168 @@ import "../../../css/Search.css";
 import StudentFilters from "./StudentFilters";
 import StudentCard from "./StudentCard";
 import StudentSearchBar from "./StudentSearchBar";
-//Form
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import InputGroup from "react-bootstrap/InputGroup";
 //API
 import API_FETCH_STUDENTS from "../../../../models/student_cards";
 import API_STUDENT_CARD_FILTER from "../../../../models/student_filters";
 
 const StudentSearch = () => {
+  // All students fetched from DB
   const [dbStudents, setdbStudents] = useState([]);
-  useEffect(() => API_FETCH_STUDENTS(setdbStudents), []);
+  const [results, setResults] = useState([]); // holds filtered students (avoids having to fetch from DB again)
+  const [activeFilters, setActiveFilters] = useState([]); // Active filters
+  const [schoolYear, setSchoolYear] = useState([]); // Active school year(s)
+  const [strength, setStrength] = useState("");
+  const [gpa, setGPA] = useState({ min: 0, max: 4 });
+  const [rating, setRating] = useState({ min: 0, max: 5 });
+  const [keyword, setKeyword] = useState(""); // Search Bar Keyword storing
 
-  const handleSubmit = (e) => {
-    e.preventDefault(); //Dont Refresh
+  // fetch students from DB && initialize the results
+  useEffect(() => {
+    API_FETCH_STUDENTS(setdbStudents); // never edited, only used to reset the results state
+    API_FETCH_STUDENTS(setResults); //makes a copy into the filtered results
+  }, []);
 
-    //console.log(e.target[0].value); // Academic Major
-    //console.log(e.target[1].value); //Student Year
-    //console.log(e.target[2].value); //Rating Score
-    //console.log(e.target[3].value); //GPA Range
-    //console.log(e.target[4].value); //Strengths
-    //API_STUDENT_CARD_FILTER("test", "best", "worst", "big");
+  //filter dbStudents based on the keyword entered
+  const keywordFilterHandler = (e) => {
+    e.preventDefault(); // prevent refresh
+    setResults(dbStudents); // resets results to have the entire students DB
+
+    // filters results based on the input (ONLY if input is not blank)
+    if (keyword !== "") {
+      setResults(
+        results.filter((student) => {
+          return (
+            student.first_name.toLowerCase().indexOf(keyword.toLowerCase()) !==
+              -1 ||
+            student.last_name.toLowerCase().indexOf(keyword.toLowerCase()) !==
+              -1 ||
+            student.study_major.toLowerCase().indexOf(keyword.toLowerCase()) !==
+              -1 ||
+            student.school.toLowerCase().indexOf(keyword.toLowerCase()) !==
+              -1 ||
+            student.school_grade_level
+              .toLowerCase()
+              .indexOf(keyword.toLowerCase()) !== -1
+          );
+        })
+      );
+    }
+  };
+
+  // Updates school year(s) list
+  const addSchoolYearHandler = (e) => {
+    // School Year FILTER
+    if (e.target.checked) {
+      setSchoolYear((activeFilters) => [...schoolYear, e.target.value]);
+      // Updates results (adds school year)
+      setResults(
+        results.filter((student) => {
+          return (
+            student.school_grade_level
+              .toLowerCase()
+              .indexOf(e.target.value.toLowerCase()) !== -1
+          );
+        })
+      );
+    } else {
+      setSchoolYear(schoolYear.filter((filter) => filter !== e.target.value));
+      // Updates results (removes school year)
+      setResults(dbStudents);
+    }
+  };
+
+  // Updates active filters
+  const addFilterHandler = (e) => {
+    // Strengths FILTER
+
+    // Area of Study FILTER
+    if (e.target.name === "degree") {
+      // Adds to active filters
+
+      setActiveFilters((activeFilters) => [...activeFilters, e.target.value]);
+      // Updates results
+      setResults(
+        results.filter((student) => {
+          return (
+            student.study_major
+              .toLowerCase()
+              .indexOf(e.target.value.toLowerCase()) !== -1
+          );
+        })
+      );
+    }
+
+    // GPA FILTER
+    if (e.target.name === "gpa") {
+      // checks input bounds
+      if (parseInt(gpa.max) > 4) setGPA({ ...gpa, max: 4 });
+      if (parseInt(gpa.min) < 0) setGPA({ ...gpa, min: 0 });
+
+      // Adds to active filters
+      setActiveFilters((activeFilters) => [
+        ...activeFilters,
+        "GPA: " + gpa.min + " - " + gpa.max,
+      ]);
+      // Updates results
+      setResults(
+        results.filter((student) => {
+          return student.school_gpa <= gpa.max && student.school_gpa >= gpa.min;
+        })
+      );
+    }
+
+    // Ratings FILTER
+    if (e.target.name === "rating") {
+      // checks input bounds
+      if (parseInt(rating.max) > 5) setRating({ ...rating, max: 5 });
+      if (parseInt(rating.min) < 0) setRating({ ...rating, min: 0 });
+
+      // Adds to active filters
+      setActiveFilters((activeFilters) => [
+        ...activeFilters,
+        "Rating: " + rating.min + " - " + rating.max,
+      ]);
+      // Updates results
+      setResults(
+        results.filter((student) => {
+          return (
+            student.rating_total <= rating.max &&
+            student.rating_total >= rating.min
+          );
+        })
+      );
+    }
   };
 
   return (
     <>
-      <div class="grid-container">
-        <StudentSearchBar />
-        <StudentFilters />
-        {/* one free text entry field */}
-        <Form onSubmit={handleSubmit}>
-          <InputGroup className="mb-3">
-            <InputGroup.Prepend>
-              <InputGroup.Text id="basic-addon1">Academic Major </InputGroup.Text>
-            </InputGroup.Prepend>
-            <Form.Control name="academic_major" placeholder="Major" aria-label="text" aria-describedby="basic-addon1" />
-          </InputGroup>
-          <InputGroup className="mb-3">
-            <InputGroup.Prepend>
-              <InputGroup.Text id="basic-addon1">Student Year </InputGroup.Text>
-            </InputGroup.Prepend>
-
-            <Form.Control name="student_year" as="select" className="mr-sm-2" id="inlineFormCustomSelect" custom>
-              <option value="Select">Select</option>
-              <option value="Freshman">Freshman</option>
-              <option value="Sophomore">Sophomore</option>
-              <option value="Junior">Junior</option>
-              <option value="Senior">Senior</option>
-              <option value="Masters">Masters</option>
-            </Form.Control>
-          </InputGroup>
-
-          <InputGroup className="mb-3">
-            <InputGroup.Prepend>
-              <InputGroup.Text id="basic-addon1">Rating Score </InputGroup.Text>
-            </InputGroup.Prepend>
-
-            <Form.Control name="rating_score" as="select" className="mr-sm-2" id="inlineFormCustomSelect" custom>
-              <option value="Select">Select</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </Form.Control>
-          </InputGroup>
-          <InputGroup className="mb-3">
-            <InputGroup.Prepend>
-              <InputGroup.Text id="basic-addon1">GPA Range </InputGroup.Text>
-            </InputGroup.Prepend>
-
-            <Form.Control name="gpa_range" as="select" className="mr-sm-2" id="inlineFormCustomSelect" custom>
-              <option value="Select">Select</option>
-              <option value="1">>1</option>
-              <option value="2">>2</option>
-              <option value="3">>3</option>
-              <option value="4">>4</option>
-              <option value="5">5</option>
-            </Form.Control>
-          </InputGroup>
-          <InputGroup className="mb-3">
-            <InputGroup.Prepend>
-              <InputGroup.Text id="basic-addon1">Strengths </InputGroup.Text>
-            </InputGroup.Prepend>
-            <Form.Control
-              name="strength_keyword"
-              placeholder="honesty,integrity,courage,skillset,etc"
-              aria-label="text"
-              aria-describedby="basic-addon1"
-            />
-          </InputGroup>
-          <Button variant="dark" type="submit">
-            Filter Students
-          </Button>
-        </Form>
-        <div class="results">
-          {dbStudents.map((student) => (
+      <div className='grid-container'>
+        <StudentSearchBar
+          keywordFilterHandler={keywordFilterHandler}
+          setKeyword={setKeyword}
+        />
+        <StudentFilters
+          // functions
+          addFilterHandler={addFilterHandler}
+          addSchoolYearHandler={addSchoolYearHandler}
+          // Active filters
+          activeFilters={activeFilters}
+          setActiveFilters={setActiveFilters}
+          // School year
+          schoolYear={schoolYear}
+          setSchoolYear={setSchoolYear}
+          // Strengths
+          strength={strength}
+          setStrength={setStrength}
+          // GPA
+          gpa={gpa}
+          setGPA={setGPA}
+          // Rating
+          rating={rating}
+          setRating={setRating}
+        />
+        <div className='results'>
+          {results.map((student) => (
             <StudentCard
               // image={student.profile_image == null ? `""` : student.profile_image}
               image={""}

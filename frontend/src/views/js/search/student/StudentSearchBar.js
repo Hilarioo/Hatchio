@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 
-const StudentSearchBar = () => {
+const StudentSearchBar = ({ keywordFilterHandler, setKeyword }) => {
   return (
     <div class='header'>
       <Form id='search-students'>
@@ -17,13 +17,19 @@ const StudentSearchBar = () => {
             </InputGroup.Text>
           </InputGroup.Prepend>
           <Form.Control
-            placeholder='Degree, GPA or Keywords'
+            placeholder='Student Name, Major, or Keyword'
             aria-label='text'
             aria-describedby='basic-addon1'
             className='search-bar'
+            onChange={(e) => {
+              setKeyword(e.target.value);
+            }}
           />
         </InputGroup>
-        <Button type='submit' className='search-btn'>
+        <Button
+          type='submit'
+          className='search-btn'
+          onClick={keywordFilterHandler}>
           Search
         </Button>
       </Form>

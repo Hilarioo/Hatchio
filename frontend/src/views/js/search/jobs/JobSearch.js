@@ -17,26 +17,24 @@ const JobSearch = () => {
 
   return (
     <>
-      <div class="grid-container">
-        <div class="item1">
+      <div className='grid-container'>
+        <div className='header'>
           <h3>Browse Jobs</h3>
         </div>
-        <div class="item2">
+        <div className='filter'>
           <h3>Filter(s)</h3>
         </div>
-        <div class="item3">
+        <div className='results'>
           <h4>results</h4>
-          <JobCard />
-          {dbJobListings.map((jobs) => (
-            <div>
-              <hr></hr>
-              <p>Position Title {jobs.position_title}</p>
-              <p>Company Name : {jobs.organization_name}</p>
-              <p>Salary : {jobs.salary}</p>
-              <p>About Us: {jobs.about_us}</p>
-              <p>Job Type: {jobs.job_type}</p>
-              <hr></hr>
-            </div>
+          {dbJobListings.map((job) => (
+            <JobCard
+              // image={job.profile_image == null ? `""` : job.profile_image}
+              title={job.position_title}
+              company={job.organization_name}
+              salary={job.salary}
+              about={job.about_us}
+              type={job.job_type}
+            />
           ))}
         </div>
       </div>

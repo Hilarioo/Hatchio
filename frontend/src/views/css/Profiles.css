@@ -1,0 +1,29 @@
+.grid-container-profile {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "projects projects education education"
+    "projects projects education education"
+    "projects projects experience experience"
+    "projects projects experience experience";
+}
+
+/* Heading */
+.student-heading .right h1 {
+  font-size: 150%;
+  font-weight: bold;
+}
+
+.projects {
+  grid-area: projects;
+}
+
+.education {
+  grid-area: education;
+}
+
+.experience {
+  grid-area: experience;
+}
