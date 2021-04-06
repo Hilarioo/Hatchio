@@ -10,6 +10,9 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname + "/views/index.html"));
 });
+app.get("/ec2", (req, res) => {
+  res.sendFile(path.join(__dirname + "/views/ec2.html"));
+});
 
 require("./routes/users")(app);
 require("./routes/cards")(app);

@@ -20,13 +20,14 @@ const StudentSearch = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault(); //Dont Refresh
-
-    //console.log(e.target[0].value); // Academic Major
-    //console.log(e.target[1].value); //Student Year
-    //console.log(e.target[2].value); //Rating Score
-    //console.log(e.target[3].value); //GPA Range
-    //console.log(e.target[4].value); //Strengths
-    //API_STUDENT_CARD_FILTER("test", "best", "worst", "big");
+    API_STUDENT_CARD_FILTER(
+      setdbStudents,
+      e.target[0].value, //academic_major
+      e.target[1].value, //student_year
+      e.target[2].value, //rating_score
+      e.target[3].value, //gpa_range
+      e.target[4].value //strength_keyword
+    );
   };
 
   return (
@@ -48,7 +49,7 @@ const StudentSearch = () => {
             </InputGroup.Prepend>
 
             <Form.Control name="student_year" as="select" className="mr-sm-2" id="inlineFormCustomSelect" custom>
-              <option value="Select">Select</option>
+              <option value="null">Select</option>
               <option value="Freshman">Freshman</option>
               <option value="Sophomore">Sophomore</option>
               <option value="Junior">Junior</option>

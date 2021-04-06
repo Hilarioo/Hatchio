@@ -1,5 +1,4 @@
 import PORT_HOST from "../config";
-//STILL WORKING ON
 export default function API_STUDENT_CARD_FILTER(
   setArr,
   academic_major,
@@ -8,8 +7,9 @@ export default function API_STUDENT_CARD_FILTER(
   gpa_range,
   strength_keyword
 ) {
-  console.log(academic_major);
-  fetch(`${PORT_HOST}/job_cards`)
+  fetch(
+    `${PORT_HOST.PORT_HOST}/filter_student_cards?am=${academic_major}&sy=${student_year}&rs=${rating_score}&gpr=${gpa_range}&sk=${strength_keyword}`
+  )
     .then((response) => response.json())
     .then((json) => setArr(json));
 }
