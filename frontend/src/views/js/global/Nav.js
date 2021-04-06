@@ -8,36 +8,34 @@ import { ReactComponent as Logo } from "../../content/svg/logo.svg";
 
 const DefaultNav = () => {
   return (
-    <Navbar collapseOnSelect expand='lg' className='nav-bar'>
-      <Navbar.Brand id='nav-logo'>
-        <NavLink to='/'>
+    <Navbar collapseOnSelect expand="lg" className="nav-bar">
+      <Navbar.Brand id="nav-logo">
+        <NavLink to="/">
           <Logo />
         </NavLink>
       </Navbar.Brand>
-      <Navbar.Toggle aria-controls='responsive-navbar-nav' />
-      <Navbar.Collapse id='responsive-navbar-nav'>
-        <Nav className='mr-auto nav-left'>
-          <NavDropdown
-            title='Search'
-            id='collasible-nav-dropdown'
-            className='nav-search'>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav className="mr-auto nav-left">
+          <NavDropdown title="Search" id="collasible-nav-dropdown" className="nav-search">
             <NavDropdown.Item>
-              <NavLink to='/search-jobs'>Jobs</NavLink>
+              <NavLink to="/search-jobs">Jobs</NavLink>
             </NavDropdown.Item>
             <NavDropdown.Item>
-              <NavLink to='/search-candidates'>Students</NavLink>
+              <NavLink to="/search-candidates">Students</NavLink>
             </NavDropdown.Item>
           </NavDropdown>
-          <NavLink to='/about'>About</NavLink>
-          <NavLink to='/help'>Help</NavLink>
-          <NavLink to='/student-profile'>Profile</NavLink>
-          <NavLink to='/forms'>Forms</NavLink>
+          <NavLink to="/about">About</NavLink>
+          <NavLink to="/help">Help</NavLink>
+          <NavLink to="/student-profile">Profile</NavLink>
+          <NavLink to="/forms">Forms</NavLink>
+          <NavLink to="/ratings">Ratings(tmp)</NavLink>
         </Nav>
-        <Nav className='nav-right'>
-          <NavLink to='/signup' className='auth-btn'>
+        <Nav className="nav-right">
+          <NavLink to="/signup" className="auth-btn">
             Sign Up
           </NavLink>
-          <NavLink to='/signin' className='auth-btn'>
+          <NavLink to="/signin" className="auth-btn">
             Sign In
           </NavLink>
         </Nav>
