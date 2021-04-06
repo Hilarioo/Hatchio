@@ -18,9 +18,6 @@ const JobSearch = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     API_JOB_LISTINGS_FETCH_FILTER(setdbJobListings, e.target[0].value, e.target[1].value);
-
-    console.log(e.target[0].value); //Job_Type
-    console.log(e.target[1].value); //Experience Level
   };
 
   return (
