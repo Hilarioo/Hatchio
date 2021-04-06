@@ -18,7 +18,14 @@ const MYSQL_CRED = [
     multipleStatements: true,
   },
   //Jose
-  {},
+  {
+    host: "localhost",
+    user: "root",
+    password: "12345",
+    insecureAuth: "true",
+    database: "acme",
+    multipleStatements: true,
+  },
   //Roland
   {
     host: "localhost",
@@ -32,7 +39,7 @@ const MYSQL_CRED = [
 const AWS_PORT = `http://3.141.216.125:5000`;
 const LOCAL_PORT = `http://localhost:5000`;
 const HOST_PORT = LOCAL_PORT;
-const SQL_PORT = MYSQL_CRED[1];
+const SQL_PORT = MYSQL_CRED[2];
 
 module.exports = {
   SQL_PORT,
