@@ -8,6 +8,22 @@ const API_JOB_CARD =
 //FrontEnd_Search_Filter
 const API_STUDENT_CARD_FILTER = (search_append_filter) =>
   `select students.first_name,students.last_name,student_education.study_major,student_education.school_gpa,student_education.start_year,student_education.school,student_ratings.rating_total,student_profile_page.about_me,student_profile_page.profile_image,student_profile_page.school_grade_level from students join student_profile_page on students.student_id = student_profile_page.student_id join student_education on students.student_id=student_education.student_id left join student_projects on students.student_id=student_projects.student_id left join student_ratings on students.student_id = student_ratings.student_id${e} `;
+//Job Card Query
+const filter_job_card_query = (job_type, position_title) => {
+  if (job_type == "Select" && position_title == "Select") {
+    return API_JOB_CARD;
+  }
+  if (job_type == "Select") {
+    return `select c_l.position_title,c_l.organization_name,c_l.salary,c_l.location,c_l.about_us, job_type  from company_listings c_l where c_l.position_title="${position_title}" ; ;`;
+  }
+
+  if (position_title == "Select") {
+    //then job type
+    return `  select c_l.position_title,c_l.organization_name,c_l.salary,c_l.location,c_l.about_us, job_type  from company_listings c_l where job_type="${job_type}" ;`;
+  } else {
+    return `select c_l.position_title,c_l.organization_name,c_l.salary,c_l.location,c_l.about_us, job_type  from company_listings c_l where job_type="${job_type}" and c_l.position_title="${position_title}"  ;`;
+  }
+};
 
 module.exports = function (app) {
   //Student Cards Preload
@@ -47,35 +63,14 @@ module.exports = function (app) {
   app.get("/filter_job_cards", (req, res) => {
     const { job_type, position_title } = req.query;
     console.log(job_type, position_title);
-    if (job_type == "Select" && position_title == "Select") {
-      db_connection.query(API_JOB_CARD, (err, results) => {
-        if (err) {
-          return res.send(err);
-        } else {
-          return res.json(results);
-        }
-      });
-    }
-    if (job_type == "Select") {
-      var tmp_q = `select c_l.position_title,c_l.organization_name,c_l.salary,c_l.location,c_l.about_us, job_type  from company_listings c_l where c_l.position_title="${position_title}" ; ;`;
-      db_connection.query(tmp_q, (err, results) => {
-        if (err) {
-          return res.send(err);
-        } else {
-          return res.json(results);
-        }
-      });
-    }
-    if (position_title == "Select") {
-      //then job type
-      var tmp_q = `  select c_l.position_title,c_l.organization_name,c_l.salary,c_l.location,c_l.about_us, job_type  from company_listings c_l where job_type="${job_type}" ;`;
-      db_connection.query(tmp_q, (err, results) => {
-        if (err) {
-          return res.send(err);
-        } else {
-          return res.json(results);
-        }
-      });
-    }
+    db_connection.query(filter_job_card_query(job_type, position_title), (err, results) => {
+      if (err) {
+        console.log(`query-fail`);
+        return res.send(err);
+      } else {
+        console.log(`query-success`);
+        return res.json(results);
+      }
+    });
   });
 };
