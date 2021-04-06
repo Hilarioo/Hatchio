@@ -17,6 +17,10 @@ const USER_SIGN_UP = (UserType, FirstName, LastName, schoolname, Password, Email
     return `insert into ${UserType}(first_name,last_name,organization_name,password,email,state,code) values ("${FirstName}","${LastName}","${schoolname}","${Password}","${Email}",0,"${code}");`;
   }
 };
+//Sign In User Verification
+const USER_SIGN_IN = (Email, Password) => {
+  return `select exists (select * from students where email="${Email}" and password="${Password}");;`;
+};
 
 module.exports = function (app) {
   //JSON Students
@@ -77,6 +81,18 @@ module.exports = function (app) {
       }
     );
     res.send("profile-added");
+  });
+  //Verify USER
+  app.get("/sign_in", (req, res) => {
+    const { Email, Password } = req.query;
+    db_connection.query(USER_SIGN_IN(Email, Password), (err, results) => {
+      if (err) {
+        return res.send(err);
+      } else {
+        //Ideally, return a JSON where we verify if email exists or not?
+        res.json(results);
+      }
+    });
   });
 };
 //DELETE FROM students WHERE student_id=6;

@@ -8,22 +8,21 @@ import circle from "../../../content/svg/demo-card-profile.svg";
 import Button from "react-bootstrap/Button";
 
 const JobCard = ({
-  // default props provided if empty
-  title = "Job Title",
-  company = "Company",
-  salary = "0",
-  about = "company did not provide an about paragraph",
-  type = "unknown",
+  PositionTitle = "",
+  CompanyName = "",
+  Income = 0,
+  AboutUs = "",
+  JobType = "",
 }) => {
   const [tags, setTags] = useState(["tag01", "tag02", "tag03"]);
   return (
     <div className='job-card'>
       <img src={circle} alt='' />
-      <h4>{title}</h4>
-      <p>{company}</p>
-      <p>{salary}</p>
-      <p>{about}</p>
-      <p>{type}</p>
+      <h4>Position Title: {PositionTitle}</h4>
+      <p>Company Name: {CompanyName}</p>
+      <p>Income {Income}</p>
+      <p>Job Type {JobType}</p>
+      <p>About Us: {AboutUs}</p>
       <Button>View</Button>
       <Button>Apply</Button>
     </div>
