@@ -22,6 +22,7 @@ const USER_SIGN_IN = (Email, Password) => {
   return `select exists (select * from students where email="${Email}" and password="${Password}");;`;
 };
 
+const SINGLE_PROFILE_DEMONSTRATIVE_QUERY = `select * from students join student_profile_page on students.student_id = student_profile_page.student_id join student_education on students.student_id=student_education.student_id left join student_projects on students.student_id=student_projects.student_id left join student_ratings on students.student_id = student_ratings.student_id limit 1;`;
 module.exports = function (app) {
   //JSON Students
   app.get("/students", (req, res) => {
@@ -90,6 +91,16 @@ module.exports = function (app) {
         return res.send(err);
       } else {
         //Ideally, return a JSON where we verify if email exists or not?
+        res.json(results);
+      }
+    });
+  });
+  app.get("/full_profile", (req, res) => {
+    db_connection.query(SINGLE_PROFILE_DEMONSTRATIVE_QUERY, (err, results) => {
+      if (err) {
+        return res.send(err);
+      } else {
+        //console.log(results);
         res.json(results);
       }
     });
