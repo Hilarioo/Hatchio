@@ -66,7 +66,7 @@ const StudentProfile = ({
   const [dbProfile, setdbProfile] = useState([]);
   useEffect(() => {
     API_FETCH_PROFILE(setdbProfile);
-    console.log(dbProfile[0].first_name);
+    console.log(dbProfile);
   }, []);
 
   return (
@@ -76,8 +76,8 @@ const StudentProfile = ({
         {/* creates default image if none provided */}
         <img src={image.length <= 0 ? defaultImage(studentName) : image} alt={studentName.charAt(0)} />
         <div className="right">
-          <h1>{dbProfile[0].first_name + dbProfile[0].last_name}</h1>
-          <p>{dbProfile[0].location}</p>
+          <h1>{studentName}</h1>
+          <p>{location}</p>
           <button>message</button>
           <button>reflection</button>
         </div>
@@ -90,7 +90,7 @@ const StudentProfile = ({
       </div>
       {/* about */}
       <h3>About</h3>
-      <p>{dbProfile[0].about_me}</p>
+      <p>{about}</p>
       {/* qualities */}
       <h3>Top Qualities</h3>
 
@@ -98,7 +98,7 @@ const StudentProfile = ({
         {qualities.map((quality) => (
           <ul>{quality}</ul>
         ))}
-        <ul>{dbProfile[0].strengths_qualities}</ul>
+        <ul>strength</ul>
       </li>
       <div class="grid-container-profile">
         <div class="projects">
@@ -108,9 +108,9 @@ const StudentProfile = ({
             <img src="" alt="project img" />
             <div className="right">
               <p>date</p>
-              <h5>project name {dbProfile[0].project_name}</h5>
+              <h5>project name </h5>
               <h6>author(s): </h6>
-              <h6>Professor: {dbProfile[0].professor}</h6>
+              <h6>Professor: </h6>
               <li>
                 <ul>one</ul>
               </li>
@@ -123,9 +123,9 @@ const StudentProfile = ({
           <div className="student-education">
             <img src="" alt="education img" />
             <div className="right">
-              <h5>degree title: {dbProfile[0].degree}</h5>
-              <h6>school {dbProfile[0].school}</h6>
-              <p>date ${dbProfile[0].start_year}</p>
+              <h5>degree title: </h5>
+              <h6>school </h6>
+              <p>date </p>
             </div>
           </div>
         </div>
@@ -148,12 +148,12 @@ const StudentProfile = ({
       {/* reflection */}
       <h3>Reflection</h3>
       <div className="review-heading">
-        <p>score {dbProfile[0].rating_total}</p>
-        <p>user {dbProfile[0].professor}</p>
+        <p>score </p>
+        <p>user</p>
         <p>date</p>
       </div>
       <h6>school</h6>
-      <p>Recommendation: {dbProfile[0].recommendation_comment}</p>
+      <p>Recommendation:</p>
       <li>
         <ul>one</ul>
       </li>

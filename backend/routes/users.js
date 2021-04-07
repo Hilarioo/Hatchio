@@ -100,7 +100,7 @@ module.exports = function (app) {
       if (err) {
         return res.send(err);
       } else {
-        //console.log(results);
+        console.log(results);
         res.json(results);
       }
     });
