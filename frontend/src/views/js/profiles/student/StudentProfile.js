@@ -1,6 +1,8 @@
 import "../../../css/Profiles.css";
+import { useState, useEffect } from "react";
 // Default Image
 import { defaultImage } from "../../global/DefaultImage";
+import API_FETCH_PROFILE from "../../../../models/profile_card";
 
 const StudentProfile = ({
   // default props provided if empty
@@ -10,18 +12,7 @@ const StudentProfile = ({
   rating = "no ratings yet",
   links = ["web", "gtihub", "linkedin", "pdf"],
   about = "This is something about me",
-  qualities = [
-    "one",
-    "two",
-    "three",
-    "four",
-    "five",
-    "six",
-    "seven",
-    "eight",
-    "nine",
-    "ten",
-  ],
+  qualities = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"],
   projects = [
     {
       rating: 4,
@@ -72,31 +63,34 @@ const StudentProfile = ({
     },
   ],
 }) => {
+  const [dbProfile, setdbProfile] = useState([]);
+  useEffect(() => {
+    API_FETCH_PROFILE(setdbProfile);
+    console.log(dbProfile[0].first_name);
+  }, []);
+
   return (
     <>
       {/* heading */}
-      <div className='student-heading'>
+      <div className="student-heading">
         {/* creates default image if none provided */}
-        <img
-          src={image.length <= 0 ? defaultImage(studentName) : image}
-          alt={studentName.charAt(0)}
-        />
-        <div className='right'>
-          <h1>{studentName}</h1>
-          <p>{location}</p>
+        <img src={image.length <= 0 ? defaultImage(studentName) : image} alt={studentName.charAt(0)} />
+        <div className="right">
+          <h1>{dbProfile[0].first_name + dbProfile[0].last_name}</h1>
+          <p>{dbProfile[0].location}</p>
           <button>message</button>
           <button>reflection</button>
         </div>
       </div>
       {/* links */}
-      <div className='student-links'>
-        <img src='' alt='website url' />
-        <img src='' alt='linkedin' />
-        <img src='' alt='resume-pdf' />
+      <div className="student-links">
+        <img src="" alt="website url" />
+        <img src="" alt="linkedin" />
+        <img src="" alt="resume-pdf" />
       </div>
       {/* about */}
       <h3>About</h3>
-      <p>{about}</p>
+      <p>{dbProfile[0].about_me}</p>
       {/* qualities */}
       <h3>Top Qualities</h3>
 
@@ -104,43 +98,43 @@ const StudentProfile = ({
         {qualities.map((quality) => (
           <ul>{quality}</ul>
         ))}
-        <ul>one</ul>
+        <ul>{dbProfile[0].strengths_qualities}</ul>
       </li>
-      <div class='grid-container-profile'>
-        <div class='projects'>
+      <div class="grid-container-profile">
+        <div class="projects">
           {/* projects */}
           <h3>Projects</h3>
-          <div className='student-project'>
-            <img src='' alt='project img' />
-            <div className='right'>
+          <div className="student-project">
+            <img src="" alt="project img" />
+            <div className="right">
               <p>date</p>
-              <h5>project name</h5>
+              <h5>project name {dbProfile[0].project_name}</h5>
               <h6>author(s): </h6>
-              <h6>Professor: </h6>
+              <h6>Professor: {dbProfile[0].professor}</h6>
               <li>
                 <ul>one</ul>
               </li>
             </div>
           </div>
         </div>
-        <div class='education'>
+        <div class="education">
           {/* education */}
           <h3>Education</h3>
-          <div className='student-education'>
-            <img src='' alt='education img' />
-            <div className='right'>
-              <h5>degree title</h5>
-              <h6>school </h6>
-              <p>date </p>
+          <div className="student-education">
+            <img src="" alt="education img" />
+            <div className="right">
+              <h5>degree title: {dbProfile[0].degree}</h5>
+              <h6>school {dbProfile[0].school}</h6>
+              <p>date ${dbProfile[0].start_year}</p>
             </div>
           </div>
         </div>
-        <div class='experience'>
+        <div class="experience">
           {/* experience */}
           <h3>Experience</h3>
-          <div className='student-experience'>
-            <img src='' alt='experience img' />
-            <div className='right'>
+          <div className="student-experience">
+            <img src="" alt="experience img" />
+            <div className="right">
               <h5>job title</h5>
               <h6>company </h6>
               <p>date </p>
@@ -153,16 +147,13 @@ const StudentProfile = ({
       </div>
       {/* reflection */}
       <h3>Reflection</h3>
-      <div className='review-heading'>
-        <p>score</p>
-        <p>user</p>
+      <div className="review-heading">
+        <p>score {dbProfile[0].rating_total}</p>
+        <p>user {dbProfile[0].professor}</p>
         <p>date</p>
       </div>
       <h6>school</h6>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius gravida
-        lacus, tellus amet, pretium, proin. Montes, nam erat phasellus eget
-      </p>
+      <p>Recommendation: {dbProfile[0].recommendation_comment}</p>
       <li>
         <ul>one</ul>
       </li>
