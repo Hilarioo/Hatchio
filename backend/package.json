@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "node_hatchio_init": "npm install && cd ../frontend && npm install && cd ../ && cd backend && node reset.js",
+    "node_hatchio_init": "npm install && cd ../frontend && npm install && cd ../ && cd database && node reset.js && cd ../ && cd backend",
     "backend": "nodemon server.js",
     "frontend": "cd .. && cd frontend/ &&npm start",
     "backend_frontend": "concurrently \"npm run backend\" \"npm run frontend \""

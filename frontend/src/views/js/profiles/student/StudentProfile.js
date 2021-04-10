@@ -76,18 +76,14 @@ const StudentProfile = ({
 }) => {
   const [cookie] = useCookies(["Type_User", "ID_OF_USER", "First_Name"]);
   const [userProfile, setuserProfile] = useState([]);
+  /**
+   * @JOSE
+   * HIT THE BUTTON TWICE
+   */
   const FETCH_USER_INFO = () => {
-    API_USER_GET_PROFILE(
-      setuserProfile,
-      cookie.Type_User,
-      cookie.ID_OF_USER,
-      cookie.First_Name
-    );
+    API_USER_GET_PROFILE(setuserProfile, cookie.Type_User, cookie.ID_OF_USER);
     console.log(userProfile);
   };
-  useEffect(() => {
-    console.log("useEffect trigger");
-  }, []);
 
   return (
     <>
