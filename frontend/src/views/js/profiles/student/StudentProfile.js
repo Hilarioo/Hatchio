@@ -2,8 +2,8 @@ import "../../../css/Profiles.css";
 import { useState, useEffect } from "react";
 // Default Image
 import { defaultImage } from "../../global/DefaultImage";
-import API_FETCH_PROFILE from "../../../../models/profile_card";
-
+import { useCookies } from "react-cookie";
+import API_USER_GET_PROFILE from "../../../../models/user_profile";
 const StudentProfile = ({
   // default props provided if empty
   image = "",
@@ -12,7 +12,18 @@ const StudentProfile = ({
   rating = "no ratings yet",
   links = ["web", "gtihub", "linkedin", "pdf"],
   about = "This is something about me",
-  qualities = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"],
+  qualities = [
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+    "ten",
+  ],
   projects = [
     {
       rating: 4,
@@ -63,18 +74,31 @@ const StudentProfile = ({
     },
   ],
 }) => {
-  const [dbProfile, setdbProfile] = useState([]);
+  const [cookie] = useCookies(["Type_User", "ID_OF_USER", "First_Name"]);
+  const [userProfile, setuserProfile] = useState([]);
+  const FETCH_USER_INFO = () => {
+    API_USER_GET_PROFILE(
+      setuserProfile,
+      cookie.Type_User,
+      cookie.ID_OF_USER,
+      cookie.First_Name
+    );
+    console.log(userProfile);
+  };
   useEffect(() => {
-    API_FETCH_PROFILE(setdbProfile);
-    console.log(dbProfile);
+    console.log("useEffect trigger");
   }, []);
 
   return (
     <>
       {/* heading */}
       <div className="student-heading">
+        <button onClick={FETCH_USER_INFO}>Get User Info</button>
         {/* creates default image if none provided */}
-        <img src={image.length <= 0 ? defaultImage(studentName) : image} alt={studentName.charAt(0)} />
+        <img
+          src={image.length <= 0 ? defaultImage(studentName) : image}
+          alt={studentName.charAt(0)}
+        />
         <div className="right">
           <h1>{studentName}</h1>
           <p>{location}</p>

@@ -11,7 +11,7 @@ import "../../css/Theme.css";
 import "../../css/Search.css";
 const Ratings = () => {
   const [dbStudents, setdbStudents] = useState([]);
-  useEffect(() => API_FETCH_STUDENT(setdbStudents, []));
+  useEffect(() => API_FETCH_STUDENT(setdbStudents, []), []);
   const handleSubmit = (e) => {
     //insert into associate student ratings page
   };
@@ -34,7 +34,12 @@ const Ratings = () => {
             <InputGroup.Text id="basic-addon1">Responsible </InputGroup.Text>
           </InputGroup.Prepend>
 
-          <Form.Control as="select" className="mr-sm-2" id="inlineFormCustomSelect" custom>
+          <Form.Control
+            as="select"
+            className="mr-sm-2"
+            id="inlineFormCustomSelect"
+            custom
+          >
             <option value="Select">Select</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -48,7 +53,12 @@ const Ratings = () => {
             <InputGroup.Text id="basic-addon1">TeamWork </InputGroup.Text>
           </InputGroup.Prepend>
 
-          <Form.Control as="select" className="mr-sm-2" id="inlineFormCustomSelect" custom>
+          <Form.Control
+            as="select"
+            className="mr-sm-2"
+            id="inlineFormCustomSelect"
+            custom
+          >
             <option value="Select">Select</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -62,7 +72,12 @@ const Ratings = () => {
             <InputGroup.Text id="basic-addon1">Leadership </InputGroup.Text>
           </InputGroup.Prepend>
 
-          <Form.Control as="select" className="mr-sm-2" id="inlineFormCustomSelect" custom>
+          <Form.Control
+            as="select"
+            className="mr-sm-2"
+            id="inlineFormCustomSelect"
+            custom
+          >
             <option value="Select">Select</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -73,10 +88,17 @@ const Ratings = () => {
         </InputGroup>
         <InputGroup className="mb-3">
           <InputGroup.Prepend>
-            <InputGroup.Text id="basic-addon1">Committed to Success </InputGroup.Text>
+            <InputGroup.Text id="basic-addon1">
+              Committed to Success{" "}
+            </InputGroup.Text>
           </InputGroup.Prepend>
 
-          <Form.Control as="select" className="mr-sm-2" id="inlineFormCustomSelect" custom>
+          <Form.Control
+            as="select"
+            className="mr-sm-2"
+            id="inlineFormCustomSelect"
+            custom
+          >
             <option value="Select">Select</option>
             <option value="1">1</option>
             <option value="2">2</option>

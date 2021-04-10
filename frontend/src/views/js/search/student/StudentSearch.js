@@ -8,7 +8,6 @@ import StudentCard from "./StudentCard";
 import StudentSearchBar from "./StudentSearchBar";
 //API
 import API_FETCH_STUDENTS from "../../../../models/student_cards";
-import API_STUDENT_CARD_FILTER from "../../../../models/student_filters";
 
 const StudentSearch = () => {
   // All students fetched from DB
@@ -141,7 +140,7 @@ const StudentSearch = () => {
 
   return (
     <>
-      <div className='grid-container'>
+      <div className="grid-container">
         <StudentSearchBar
           keywordFilterHandler={keywordFilterHandler}
           setKeyword={setKeyword}
@@ -166,7 +165,7 @@ const StudentSearch = () => {
           rating={rating}
           setRating={setRating}
         />
-        <div className='results'>
+        <div className="results">
           {results.map((student) => (
             <StudentCard
               // image={student.profile_image == null ? `""` : student.profile_image}
