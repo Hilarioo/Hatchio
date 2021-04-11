@@ -21,7 +21,8 @@ function Signin() {
     );
     if (bool_user_auth == true) {
       //auth true
-      history.push("/");
+      history.push("/dashboard");
+      window.location.reload();
     }
     if (bool_user_auth == false) {
       //auth false

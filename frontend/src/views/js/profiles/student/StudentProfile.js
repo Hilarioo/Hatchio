@@ -2,8 +2,6 @@ import "../../../css/Profiles.css";
 import { useState, useEffect } from "react";
 // Default Image
 import { defaultImage } from "../../global/DefaultImage";
-import { useCookies } from "react-cookie";
-import API_USER_GET_PROFILE from "../../../../models/user_profile";
 const StudentProfile = ({
   // default props provided if empty
   image = "",
@@ -74,22 +72,10 @@ const StudentProfile = ({
     },
   ],
 }) => {
-  const [cookie] = useCookies(["Type_User", "ID_OF_USER", "First_Name"]);
-  const [userProfile, setuserProfile] = useState([]);
-  /**
-   * @JOSE
-   * HIT THE BUTTON TWICE
-   */
-  const FETCH_USER_INFO = () => {
-    API_USER_GET_PROFILE(setuserProfile, cookie.Type_User, cookie.ID_OF_USER);
-    console.log(userProfile);
-  };
-
   return (
     <>
       {/* heading */}
       <div className="student-heading">
-        <button onClick={FETCH_USER_INFO}>Get User Info</button>
         {/* creates default image if none provided */}
         <img
           src={image.length <= 0 ? defaultImage(studentName) : image}
