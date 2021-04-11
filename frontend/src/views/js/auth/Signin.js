@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useHistory } from "react-router-dom";
 // CSS
 import "../../css/Theme.css";
 import "../../css/Auth.css";
@@ -10,12 +10,22 @@ import InputGroup from "react-bootstrap/InputGroup";
 import API_USER_LOG_IN from "../../../models/user_sign_in";
 
 function Signin() {
-  const handleSubmit = (event) => {
-    API_USER_LOG_IN(
+  const history = useHistory();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    let bool_user_auth = await API_USER_LOG_IN(
       event.target[1].value,
       event.target[2].value,
       event.target[0].value
     );
+    if (bool_user_auth == true) {
+      //auth true
+      history.push("/");
+    }
+    if (bool_user_auth == false) {
+      //auth false
+    }
   };
 
   return (

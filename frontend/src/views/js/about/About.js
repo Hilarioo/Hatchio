@@ -47,9 +47,9 @@ const About = () => {
 
   return (
     <div>
-      <h1 className='mini-title'>About Us</h1>
-      <div className='about-box'>
-        <div className='center-flex'>
+      <h1 className="mini-title">About Us</h1>
+      <div className="about-box">
+        <div className="center-flex">
           {members.map((member) => (
             <Link
               key={member.id}
@@ -57,7 +57,8 @@ const About = () => {
                 pathname: `about/member/${member.fullname}`,
                 state: member,
               }}
-              className='link'>
+              className="link"
+            >
               <MemberCard member={member} />
             </Link>
           ))}

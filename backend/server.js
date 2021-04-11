@@ -4,7 +4,20 @@ const path = require("path");
 const app = express();
 const cookieparser = require("cookie-parser");
 //MiddleWare
-app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+    origin: ["http://localhost:3000", "ec2_link_add_later"],
+    allowedHeaders: [
+      "Origin",
+      "X-Requested-With",
+      "contentType",
+      "Content-Type",
+      "Accept",
+      "Authorization",
+    ],
+  })
+);
 app.use(cookieparser());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());

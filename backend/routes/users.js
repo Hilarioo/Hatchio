@@ -83,21 +83,23 @@ module.exports = function (app) {
   //Verify User and Store Browser Cookie
   app.get("/sign_in", (req, res) => {
     const { Email, Password, Type } = req.query;
-    console.log(req.query);
     const Query_Verify = `select x.${Type}_id,x.first_name from ${Type}s x where email="${Email}" and password="${Password}";`;
     db_connection.query(Query_Verify, (err, results) => {
       if (err) {
-        console.log(err);
-        res.send("oops");
+        res.send(false);
       } else {
-        var tmpo = [];
-        for (key in results[0]) {
-          tmpo.push(key);
+        try {
+          var tmpo = [];
+          for (key in results[0]) {
+            tmpo.push(key);
+          }
+          res.cookie("Type_User", Type);
+          res.cookie("ID_OF_USER", results[0][tmpo[0]]);
+          res.cookie("First_Name", results[0][tmpo[1]]);
+          res.send(true);
+        } catch (e) {
+          res.send(false);
         }
-        res.cookie("Type_User", Type);
-        res.cookie("ID_OF_USER", results[0][tmpo[0]]);
-        res.cookie("First_Name", results[0][tmpo[1]]);
-        res.send(results);
       }
     });
   });
