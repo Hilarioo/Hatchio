@@ -1,8 +1,14 @@
-## notes to everyone :: Aaron
+# Node Hatchio Dev Change Log
 
-### Remember to hit `Sign Out` when you first launch the application <- still working on debugging this>
+i. Change Log
+ii. Old Notes
 
-### Remember to npm run node_hatchio_init im still in process of redesigning db but the previous error shouldnt occur anymore
+## Monday, April 12, 2021 :: Aaron
+
+- Remember to hit `Sign Out` when you first launch the application <- still working on debugging this>
+- Remember to `npm run node_hatchio_init` im still in process of redesigning db but the previous error shouldnt occur anymore
+
+---
 
 #### Please when ready add your teams application URL or IP to the repository description. This will help with grading. Teams are expected to keep this value up to date.
 

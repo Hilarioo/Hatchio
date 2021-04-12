@@ -22,14 +22,14 @@ app.use(cookieparser());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-//UI Routes
+//Backend UI Routes
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname + "/views/index.html"));
 });
 app.get("/ec2", (req, res) => {
   res.sendFile(path.join(__dirname + "/views/ec2.html"));
 });
-//More Routes
+//Frontend UI Routes
 require("./routes/users")(app);
 require("./routes/cards")(app);
 require("./routes/verification")(app);
