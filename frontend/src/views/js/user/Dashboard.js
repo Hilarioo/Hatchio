@@ -26,6 +26,19 @@ const Dashboard = () => {
       <h1 className="mini-title">Welcome back, {cookie.First_Name} </h1>
       <h1 className="short-par">You're a {cookie.Type_User} </h1>
       <button onClick={USER_PROFILE_LOG}>Click to Console Log</button>
+
+      <h3>@Jose</h3>
+      <p>
+        Console Log <b>[Student Information]</b> Student Education, Student
+        Ratings, Student Projects, Student Profile
+      </p>
+      <p>
+        Console Log <b>[Employer Information]</b>: Employer Listed Jobs
+      </p>
+      <p>
+        Console Log <b>[Professor Information]</b> Professor No Information
+        Other than Sign Up page for right now
+      </p>
     </div>
   );
 };

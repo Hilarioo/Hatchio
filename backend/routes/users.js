@@ -105,11 +105,13 @@ module.exports = function (app) {
   });
   //Get User Profile
   app.get("/profile", (req, res) => {
+    console.log("Here");
     const { ts, bs } = req.query;
     db_connection.query(SQL_QUERY_USER.USER_PROFILE(ts, bs), (err, results) => {
       if (err) {
         return res.send(err);
       } else {
+        console.log("Here");
         return res.json(results);
       }
     });

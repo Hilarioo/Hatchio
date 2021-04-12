@@ -4,7 +4,12 @@ const USER_EMPLOYERS = "select * from employers";
 const USER_ADMINS = "select * from admins;";
 const USER_PROFILE = (table, id) => {
   if (table == "student") {
-    return `SELECT * FROM students s RIGHT JOIN student_profile_page sp ON s.student_id = sp.student_id RIGHT JOIN student_education se ON s.student_id = se.student_id RIGHT JOIN student_projects spp ON s.student_id = spp.student_id RIGHT JOIN student_ratings sr ON s.student_id = sr.student_id WHERE s.student_id = ${id};`;
+    //Return Student Education, Student Ratings, Student Projects, Student Profile
+    return `select se.school,se.degree,se.school_gpa,se.study_major,se.start_year,se.end_year from student_education se where se.student_id = ${id};
+select sp.about_me, sp.strengths_qualities, sp.location, sp.school_grade_level, sp.resume, sp.profile_image from student_profile_page sp where sp.student_id=${id};  #profile
+select sp.project_name,sp.summary,sp.arr_tools_used,sp.professor, sp.links_website, sp.arr_collaborators_arr from student_projects sp where sp.student_id=${id}; #projects
+select student_id,p.first_name,p.last_name,p.school_name,sr.responsible_level,sr.team_work_level,sr.leadership_level,sr.committed_to_success_level,sr.recommendation_comment,sr.rating_total from student_ratings sr inner join professors p on sr.professor_id = p.professor_id where sr.student_id = ${id};
+`;
   }
   if (table == "professor") {
     return `select * from ${table}s where ${table}_id= ${id};`;

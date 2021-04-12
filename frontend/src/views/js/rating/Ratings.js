@@ -17,7 +17,6 @@ const Ratings = () => {
   };
   return (
     <div>
-      <h4>pop up form to be implemented</h4>
       <Form onSubmit={handleSubmit}>
         <InputGroup className="mb-3">
           <InputGroup.Prepend>
