@@ -14,7 +14,7 @@ const MYSQL_CRED = [
     user: "guest",
     password: "jkLive586!@",
     insecureAuth: "true",
-    database: "acme",
+    database: "node_hatchio_db",
     multipleStatements: true,
   },
   //Jose

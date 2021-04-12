@@ -14,18 +14,21 @@ function Signin() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    //Boolean if User Exists | Incorrect authentication field
     let bool_user_auth = await API_USER_LOG_IN(
       event.target[1].value,
       event.target[2].value,
       event.target[0].value
     );
+    //Auth True
     if (bool_user_auth == true) {
       //auth true
       history.push("/dashboard");
       window.location.reload();
     }
+    //Auth False
     if (bool_user_auth == false) {
-      //auth false
+      //Control UI response
     }
   };
 

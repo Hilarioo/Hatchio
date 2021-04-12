@@ -1,19 +1,16 @@
 import "../../css/Help.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 
 import API_USER_GET_PROFILE from "../../../models/user_profile";
 const Dashboard = () => {
+  useEffect(() => {
+    setuserProfile(API_USER_GET_PROFILE(cookie.Type_User, cookie.ID_OF_USER));
+  }, []);
   const [cookie] = useCookies(["Type_User", "ID_OF_USER", "First_Name"]); //Cur use
   const [userProfile, setuserProfile] = useState([]);
 
-  //Shouldnt be in useEffect because of async ?
-  const FETCH_USER_INFO = async () => {
-    await API_USER_GET_PROFILE(
-      setuserProfile,
-      cookie.Type_User,
-      cookie.ID_OF_USER
-    );
+  const USER_PROFILE_LOG = () => {
     console.log(userProfile);
   };
 
@@ -28,8 +25,7 @@ const Dashboard = () => {
     <div>
       <h1 className="mini-title">Welcome back, {cookie.First_Name} </h1>
       <h1 className="short-par">You're a {cookie.Type_User} </h1>
-      <p>Check the console.log for your information</p>
-      <button onClick={FETCH_USER_INFO}>Get User Info</button>
+      <button onClick={USER_PROFILE_LOG}>Click to Console Log</button>
     </div>
   );
 };
