@@ -11,8 +11,36 @@ import API_FETCH_STUDENTS from "../../../../models/student_cards";
 
 const StudentSearch = () => {
   // All students fetched from DB
-  const [dbStudents, setdbStudents] = useState([]);
-  const [results, setResults] = useState([]); // holds filtered students (avoids having to fetch from DB again)
+  const [dbStudents, setdbStudents] = useState([
+    {
+      about_me: "null",
+      first_name: "null",
+      last_name: "null",
+      profile_image: null,
+      school: "null",
+      school_gpa: 0,
+      school_grade_level: "null",
+      start_year: 0,
+      strengths_qualities: "0",
+      student_id: 0,
+      study_major: "null",
+    },
+  ]);
+  const [results, setResults] = useState([
+    {
+      about_me: "null",
+      first_name: "null",
+      last_name: "null",
+      profile_image: null,
+      school: "null",
+      school_gpa: 0,
+      school_grade_level: "null",
+      start_year: 0,
+      strengths_qualities: "0",
+      student_id: 0,
+      study_major: "null",
+    },
+  ]); // holds filtered students (avoids having to fetch from DB again)
   const [activeFilters, setActiveFilters] = useState([]); // Active filters
   const [schoolYear, setSchoolYear] = useState([]); // Active school year(s)
   const [strength, setStrength] = useState("");
@@ -21,9 +49,11 @@ const StudentSearch = () => {
   const [keyword, setKeyword] = useState(""); // Search Bar Keyword storing
 
   // fetch students from DB && initialize the results
-  useEffect(() => {
-    API_FETCH_STUDENTS(setdbStudents); // never edited, only used to reset the results state
-    API_FETCH_STUDENTS(setResults); //makes a copy into the filtered results
+  useEffect(async () => {
+    const Student_Database = await API_FETCH_STUDENTS();
+    setdbStudents(Student_Database);
+    setResults(Student_Database);
+    console.log(dbStudents);
   }, []);
 
   //filter dbStudents based on the keyword entered

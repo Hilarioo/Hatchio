@@ -1,6 +1,7 @@
 import PORT_HOST from "../config";
-export default function API_FETCH_STUDENTS(setArr) {
-  fetch(`${PORT_HOST.PORT_HOST}/student_cards`)
-    .then((response) => response.json())
-    .then((json) => setArr(json));
-}
+const API_FETCH_STUDENTS = async () => {
+  const response = await fetch(`${PORT_HOST.PORT_HOST}/student_cards`);
+  const data = await response.json();
+  return data;
+};
+export default API_FETCH_STUDENTS;

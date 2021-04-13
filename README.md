@@ -7,6 +7,7 @@ ii. Old Notes
 
 - Started adding brief descriptions in the beginning of backend/routes in order to create more consistency and help in screenshot code for milestone 04 review page
 - Fixed a issue w/ dashboard.js where Type_User was not being checked as "undefined" or "null"
+- Possibly fixed an issue with fetch fired in useEffect for StudentsSearch.js, the problem w/ fetch is that the response isn't returned instantly, so map will return an error if there's nothing in the dbStudents useState, so to work around it to have a empty object that will refresh once the response is returned
 
 ## Monday, April 12, 2021 :: Aaron
 
