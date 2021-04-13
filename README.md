@@ -5,7 +5,7 @@ ii. Old Notes
 
 ## Monday, April 12, 2021 :: Aaron
 
-- Remember to hit `Sign Out` when you first launch the application <- still working on debugging this>
+- ~~Remember to hit `Sign Out` when you first launch the application <- still working on debugging this>~~ Fixed
 - Remember to `npm run node_hatchio_init` im still in process of redesigning db but the previous error shouldnt occur anymore
 - Implemented visible only rate page for professor to rate student
 

@@ -62,7 +62,7 @@ const DefaultNav = () => {
       </Navbar>
     );
   }
-  if ((cookie.First_Name === "undefined") | (cookie.First_Name === "null")) {
+  if (cookie.Type_User == "student") {
     return (
       <Navbar collapseOnSelect expand="lg" className="nav-bar">
         <Navbar.Brand id="nav-logo">
@@ -87,22 +87,55 @@ const DefaultNav = () => {
             </NavDropdown>
             <NavLink to="/about">About</NavLink>
             <NavLink to="/help">Help</NavLink>
-            {/** <NavLink to="/student-profile">Profile</NavLink> */}
-            {/** <NavLink to="/forms">Forms</NavLink> */}
             <NavLink to="/dashboard">Dashboard</NavLink>
           </Nav>
           <Nav className="nav-right">
-            <NavLink to="/signup" className="auth-btn">
-              Sign Up
-            </NavLink>
-            <NavLink to="/signin" className="auth-btn">
-              Sign In
+            <NavLink to="/" className="auth-btn">
+              <button onClick={handleRemoveCookie}>Sign Out</button>
             </NavLink>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
     );
   }
+  if (cookie.Type_User == "employer") {
+    return (
+      <Navbar collapseOnSelect expand="lg" className="nav-bar">
+        <Navbar.Brand id="nav-logo">
+          <NavLink to="/">
+            <Logo />
+          </NavLink>
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="mr-auto nav-left">
+            <NavDropdown
+              title="Search"
+              id="collasible-nav-dropdown"
+              className="nav-search"
+            >
+              <NavDropdown.Item>
+                <NavLink to="/search-jobs">Jobs</NavLink>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <NavLink to="/search-candidates">Students</NavLink>
+              </NavDropdown.Item>
+            </NavDropdown>
+            <NavLink to="/about">About</NavLink>
+            <NavLink to="/help">Help</NavLink>
+            <NavLink to="/">Post Jobs</NavLink>
+            <NavLink to="/dashboard">Dashboard</NavLink>
+          </Nav>
+          <Nav className="nav-right">
+            <NavLink to="/" className="auth-btn">
+              <button onClick={handleRemoveCookie}>Sign Out</button>
+            </NavLink>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+    );
+  }
+
   return (
     <Navbar collapseOnSelect expand="lg" className="nav-bar">
       <Navbar.Brand id="nav-logo">
@@ -132,8 +165,11 @@ const DefaultNav = () => {
           <NavLink to="/dashboard">Dashboard</NavLink>
         </Nav>
         <Nav className="nav-right">
-          <NavLink to="/" className="auth-btn">
-            <button onClick={handleRemoveCookie}>Sign Out</button>
+          <NavLink to="/signup" className="auth-btn">
+            Sign Up
+          </NavLink>
+          <NavLink to="/signin" className="auth-btn">
+            Sign In
           </NavLink>
         </Nav>
       </Navbar.Collapse>

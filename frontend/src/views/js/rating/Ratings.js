@@ -33,6 +33,11 @@ const Ratings = () => {
   };
   return (
     <div>
+      <h3>
+        Remember to fill out the form then pick a student and click rate, if
+        console log true then it should work, check db to confirm hvn't debugged
+        this too much yet{" "}
+      </h3>
       <Form>
         <InputGroup className="mb-3">
           <InputGroup.Prepend>
@@ -132,7 +137,7 @@ const Ratings = () => {
         {dbStudents.map((student) => (
           <div>
             <h3>{student.first_name + " " + student.last_name}</h3>
-            <button onClick={() => rate(student.student_id)}>Rate Me</button>
+            <button onClick={() => rate(student.student_id)}>Rate</button>
             <hr></hr>
           </div>
         ))}
