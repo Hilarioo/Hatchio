@@ -5,48 +5,7 @@ const SQL_QUERY_USER = require("../mysql/users");
 const SQL_QUERY_POST = require("../mysql/rate");
 const SQL_QUERY = require("../mysql/userauth");
 
-module.exports = function (app) {
-  //JSON Students
-  app.get("/students", (req, res) => {
-    db_connection.query(SQL_QUERY_USER.USER_STUDENTS, (err, results) => {
-      if (err) {
-        return res.send(err);
-      } else {
-        return res.json(results);
-      }
-    });
-  });
-  //JSON Professors
-  app.get("/professors", (req, res) => {
-    db_connection.query(SQL_QUERY_USER.USER_PROFESSORS, (err, results) => {
-      if (err) {
-        return res.send(err);
-      } else {
-        return res.json(results);
-      }
-    });
-  });
-  //JSON Employers
-  app.get("/employers", (req, res) => {
-    db_connection.query(SQL_QUERY_USER.USER_EMPLOYERS, (err, results) => {
-      if (err) {
-        return res.send(err);
-      } else {
-        res.json(results);
-      }
-    });
-  });
-  //JSON Admins
-  app.get("/admins", (req, res) => {
-    db_connection.query(SQL_QUERY_USER.USER_ADMINS, (err, results) => {
-      if (err) {
-        return res.send(err);
-      } else {
-        res.json(results);
-      }
-    });
-  });
-
+module.exports = (app) => {
   //Register USER
   app.get("/register", (req, res) => {
     const {

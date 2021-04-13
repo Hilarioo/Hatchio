@@ -1,7 +1,10 @@
+//User Tables
 const USER_STUDENTS = "select * from students";
 const USER_PROFESSORS = "select * from professors";
 const USER_EMPLOYERS = "select * from employers";
 const USER_ADMINS = "select * from admins;";
+
+//User Profile Joined Tables
 const USER_PROFILE = (table, id) => {
   if (table == "student") {
     //Return Student Education, Student Ratings, Student Projects, Student Profile
@@ -18,6 +21,7 @@ select student_id,p.first_name,p.last_name,p.school_name,sr.responsible_level,sr
     return `select * from employers e right join company_listings cl on e.employer_id=cl.employer_id where e.employer_id =${id};`;
   }
 };
+
 module.exports = {
   USER_STUDENTS,
   USER_PROFESSORS,

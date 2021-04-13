@@ -3,6 +3,11 @@
 i. Change Log
 ii. Old Notes
 
+## Tuesday, April 13, 2021 :: Aaron
+
+- Started adding brief descriptions in the beginning of backend/routes in order to create more consistency and help in screenshot code for milestone 04 review page
+- Fixed a issue w/ dashboard.js where Type_User was not being checked as "undefined" or "null"
+
 ## Monday, April 12, 2021 :: Aaron
 
 - ~~Remember to hit `Sign Out` when you first launch the application <- still working on debugging this>~~ Fixed

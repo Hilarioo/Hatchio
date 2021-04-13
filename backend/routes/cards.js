@@ -4,7 +4,7 @@ const SQL_QUERY = require("../mysql/cards");
 const SQL_FILTER = require("../mysql/filters");
 const db_connection = mysql.createConnection(CONFIG.SQL_PORT);
 
-module.exports = function (app) {
+module.exports = (app) => {
   //Student Cards Preload
   app.get("/student_cards", (req, res) => {
     db_connection.query(SQL_QUERY.API_STUDENT_CARD, (err, results) => {
