@@ -73,7 +73,7 @@ const App = () => {
               <StudentForm />
             </Route>
             {/* Rating */}
-            <Route path="/ratings">
+            <Route path="/rate-students">
               <Ratings />
             </Route>
             <Route path="/dashboard">

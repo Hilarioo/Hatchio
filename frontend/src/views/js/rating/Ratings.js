@@ -1,23 +1,39 @@
 import { useState, useEffect } from "react";
-//Components
-import StudentCard from "./RatingCard.js";
-//import API
 import API_FETCH_STUDENT from "../../../models/student_cards";
+import API_PROFESSOR_RATE_STUDENT from "../../../models/professor_rate";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
-// CSS
-import "../../css/Theme.css";
-import "../../css/Search.css";
+import { useCookies } from "react-cookie";
 const Ratings = () => {
+  //Get Current Professor ID
+  //Set Current User
+  const [cookie] = useCookies(["ID_OF_USER"]);
   const [dbStudents, setdbStudents] = useState([]);
+  //Form Inputs
+  const [recommendation, setRecommendation] = useState("");
+  const [responsible, setResponsible] = useState(0);
+  const [teamwork, setTeamWork] = useState(0);
+  const [leadership, setLeadership] = useState(0);
+  const [committedToSuccess, setCommittedToSuccess] = useState(0);
+  //Fetch Sudents
   useEffect(() => API_FETCH_STUDENT(setdbStudents, []), []);
-  const handleSubmit = (e) => {
-    //insert into associate student ratings page
+  const rate = async (student_id) => {
+    const sent_bool = await API_PROFESSOR_RATE_STUDENT(
+      student_id, //Student ID
+      cookie.ID_OF_USER, //Professor ID
+      responsible, //Responsible int
+      teamwork, //Teamwork int
+      leadership, //leaderhsip int
+      committedToSuccess, //int
+      recommendation, //str
+      2 //avg out the total score todo
+    );
+    console.log(sent_bool);
+    //Send Rating to Back end
   };
   return (
     <div>
-      <Form onSubmit={handleSubmit}>
+      <Form>
         <InputGroup className="mb-3">
           <InputGroup.Prepend>
             <InputGroup.Text id="basic-addon1">Recommendation </InputGroup.Text>
@@ -26,6 +42,7 @@ const Ratings = () => {
             placeholder="String text with words that assess students in generic categories like his/her honesty,integrity,courage,skillset,etc."
             aria-label="text"
             aria-describedby="basic-addon1"
+            onChange={(e) => setRecommendation(e.target.value)}
           />
         </InputGroup>
         <InputGroup className="mb-3">
@@ -37,6 +54,7 @@ const Ratings = () => {
             as="select"
             className="mr-sm-2"
             id="inlineFormCustomSelect"
+            onChange={(e) => setResponsible(e.target.value)}
             custom
           >
             <option value="Select">Select</option>
@@ -56,6 +74,7 @@ const Ratings = () => {
             as="select"
             className="mr-sm-2"
             id="inlineFormCustomSelect"
+            onChange={(e) => setTeamWork(e.target.value)}
             custom
           >
             <option value="Select">Select</option>
@@ -75,6 +94,7 @@ const Ratings = () => {
             as="select"
             className="mr-sm-2"
             id="inlineFormCustomSelect"
+            onChange={(e) => setLeadership(e.target.value)}
             custom
           >
             <option value="Select">Select</option>
@@ -96,6 +116,7 @@ const Ratings = () => {
             as="select"
             className="mr-sm-2"
             id="inlineFormCustomSelect"
+            onChange={(e) => setCommittedToSuccess(e.target.value)}
             custom
           >
             <option value="Select">Select</option>
@@ -106,24 +127,14 @@ const Ratings = () => {
             <option value="5">5</option>
           </Form.Control>
         </InputGroup>
-        <Button variant="dark" type="submit">
-          Rate Student
-        </Button>
       </Form>
-      <div class="results">
+      <div>
         {dbStudents.map((student) => (
-          <StudentCard
-            // image={student.profile_image == null ? `""` : student.profile_image}
-            image={""}
-            studentName={student.first_name + " " + student.last_name}
-            major={student.study_major}
-            rating={student.rating_total}
-            gpa={student.school_gpa}
-            schoolName={student.school}
-            year={student.start_year}
-            about={student.about_me}
-            student_enrollment={student.school_grade_level}
-          />
+          <div>
+            <h3>{student.first_name + " " + student.last_name}</h3>
+            <button onClick={() => rate(student.student_id)}>Rate Me</button>
+            <hr></hr>
+          </div>
         ))}
       </div>
     </div>

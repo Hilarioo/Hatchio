@@ -2,6 +2,7 @@ const mysql = require("mysql");
 const CONFIG = require("../config");
 const db_connection = mysql.createConnection(CONFIG.SQL_PORT);
 const SQL_QUERY_USER = require("../mysql/users");
+const SQL_QUERY_POST = require("../mysql/rate");
 const SQL_QUERY = require("../mysql/userauth");
 
 module.exports = function (app) {
@@ -105,15 +106,46 @@ module.exports = function (app) {
   });
   //Get User Profile
   app.get("/profile", (req, res) => {
-    console.log("Here");
     const { ts, bs } = req.query;
     db_connection.query(SQL_QUERY_USER.USER_PROFILE(ts, bs), (err, results) => {
       if (err) {
         return res.send(err);
       } else {
-        console.log("Here");
         return res.json(results);
       }
     });
+  });
+  // Insert Student Rating TODO: POST METHOD
+  app.get("/rate_student", (req, res) => {
+    const {
+      s_id,
+      p_id,
+      res_int,
+      tea_int,
+      lead_int,
+      cts_int,
+      res_string,
+      rt_total,
+    } = req.query;
+    db_connection.query(
+      SQL_QUERY_POST.PROFESSOR_RATE_STUDENT(
+        s_id,
+        p_id,
+        res_int,
+        tea_int,
+        lead_int,
+        cts_int,
+        res_string,
+        rt_total
+      ),
+      (err, results) => {
+        if (err) {
+          res.send(false);
+        } else {
+          //console.log(results);
+          res.send(true);
+        }
+      }
+    );
   });
 };

@@ -25,6 +25,43 @@ const DefaultNav = () => {
     history.push("/");
     window.location.reload();
   };
+  if (cookie.Type_User == "professor") {
+    return (
+      <Navbar collapseOnSelect expand="lg" className="nav-bar">
+        <Navbar.Brand id="nav-logo">
+          <NavLink to="/">
+            <Logo />
+          </NavLink>
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="mr-auto nav-left">
+            <NavDropdown
+              title="Search"
+              id="collasible-nav-dropdown"
+              className="nav-search"
+            >
+              <NavDropdown.Item>
+                <NavLink to="/search-jobs">Jobs</NavLink>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <NavLink to="/search-candidates">Students</NavLink>
+              </NavDropdown.Item>
+            </NavDropdown>
+            <NavLink to="/about">About</NavLink>
+            <NavLink to="/help">Help</NavLink>
+            <NavLink to="/dashboard">Dashboard</NavLink>
+            <NavLink to="/rate-students">Rate Students</NavLink>
+          </Nav>
+          <Nav className="nav-right">
+            <NavLink to="/" className="auth-btn">
+              <button onClick={handleRemoveCookie}>Sign Out</button>
+            </NavLink>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+    );
+  }
   if ((cookie.First_Name === "undefined") | (cookie.First_Name === "null")) {
     return (
       <Navbar collapseOnSelect expand="lg" className="nav-bar">
