@@ -1,3 +1,9 @@
+/**
+ * File: reset.js
+ * Purpose: Populate and Reset environments database.
+ * Functionality IE: Execute all queries in reset.sql
+ * Authors: Aaron
+ */
 const fs = require("fs");
 const mysql = require("../backend/node_modules/mysql");
 const CONFIG = require("../backend/config");
