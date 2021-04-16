@@ -8,10 +8,13 @@ const fs = require("fs");
 const mysql = require("../backend/node_modules/mysql");
 const CONFIG = require("../backend/config");
 const db_connection = mysql.createConnection(CONFIG.SQL_PORT);
-const rawSQL = fs.readFileSync("../database/reset.sql").toString();
-const dataArr = rawSQL.toString().split("\n");
+const rawSQL = fs.readFileSync("reset.sql").toString();
 
-for (var index = 0; index < dataArr.length - 1; index++) {
-  db_connection.query(dataArr[index], (err, results) => {});
-}
+db_connection.query(rawSQL, (err, result) => {
+  if (err) {
+    return err;
+  } else {
+    console.log(result);
+  }
+});
 db_connection.end();

@@ -1,5 +1,14 @@
-/* ======= GRID LAYOUT ======= */
+/*
+Author: Jose Gonzalez
+File: Search.css
+Styling for the following pages:
+  1. StudentSearch.js
+  2. StudentCard.js
+  3. JobSearch.js
+  4. JobCard.js
+*/
 
+/* ======= GRID LAYOUT ======= */
 .grid-container {
   display: grid;
   grid-template-columns: 0.3fr 1.5fr;
@@ -19,19 +28,67 @@
 /* Search filters */
 .filter {
   grid-area: filter;
+  max-width: 250px;
   min-width: 220px;
   overflow-y: scroll;
   overflow: -moz-scrollbars-vertical;
+  border-right: solid;
+  border-right-color: #eee !important;
 }
 
 /* Results of the search */
 .results {
   grid-area: results;
   background-color: rgba(0, 0, 0, 0.03);
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, 340px);
+  grid-template-rows: repeat(auto-fill, 175px);
+  padding-left: 1rem;
 }
+
+/* ======= SEARCH BAR STYLING ======= */
+
+#search-students .mb-3 {
+  width: 70%;
+  margin-right: 20px;
+}
+
+/* Search Bar */
+.search-bar,
+.search-prepend {
+  background-color: #eee;
+  border-style: none;
+  height: 45px;
+}
+
+.search-prepend {
+  font-weight: 600;
+}
+
+.search-bar:focus {
+  background-color: #eee;
+  border-style: none;
+}
+
+/* Search button for students & job search */
+.search-btn {
+  width: 30%;
+  background-color: #efe271;
+  color: #2b2b2b;
+  border-style: none;
+  height: 45px;
+}
+
+.search-btn:hover,
+.search-btn:focus,
+.flex-box Button {
+  background-color: #2b2b2b !important;
+  color: #fff !important;
+  border-style: none;
+}
+
+/* ======= Filter Styling ======= */
 
 .filter,
 .results {
@@ -41,11 +98,31 @@
   padding-top: 1rem;
 }
 
+/* resizes the filter cards (overwrites bootstrap styling)  */
+.card-header,
+.card-body {
+  font-size: 85%;
+  border-bottom: none;
+}
+
+/* Cards (overwrites bootstrap styling) */
+.card {
+  border-style: none;
+}
+
 /* Resizes placeholders */
 .filter ::placeholder {
   font-size: 75%;
 }
 
+#filter-jobs,
+#filter-students {
+  font-size: 18px;
+}
+
+.form-check .form-check:checked {
+  background-color: black !important;
+}
 /* Adds bottom margin to Student Year checkbox labels */
 .filter .form-check {
   margin-bottom: 0.5rem;
@@ -58,7 +135,6 @@
 }
 
 /* Active Filters */
-
 .active-filter-box {
   display: flex;
   flex-wrap: wrap;
@@ -95,12 +171,7 @@
   font-weight: 600;
 }
 
-/* Search filter headers */
-.card-header,
-.card-body {
-  font-size: 85%;
-  border-bottom: none;
-}
+/* ======= STUDENT & JOB CARD STYLING ======= */
 
 #search-jobs,
 #search-students {
@@ -115,64 +186,80 @@
   margin-bottom: 0 !important;
 }
 
-#search-students .mb-3 {
-  width: 70%;
-  margin-right: 20px;
+.job-card,
+.student-card {
+  width: 330px;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 10px;
+  border-color: #bdbdbd;
+  margin: 1%;
+  max-height: 175px;
 }
 
-/* Search Bar */
-.search-bar,
-.search-prepend {
-  background-color: #eee;
-  border-style: none;
-  height: 45px;
+.student-card .flex-box {
+  display: flex;
+  width: 100%;
 }
 
-.search-prepend {
+.student-card header {
+  padding-top: 1rem;
+  display: flex;
+}
+
+.student-card header img {
+  object-fit: cover;
+  max-height: 80px;
+}
+
+.student-card .info {
+  width: 100%;
+}
+
+.student-card .info h4 {
+  font-size: 100%;
   font-weight: 600;
 }
 
-.search-bar:focus {
-  background-color: #eee;
-  border-style: none;
+.student-card .info h6 {
+  font-size: 90%;
 }
 
-/* Search button for students and job search */
-.search-btn {
-  width: 30%;
+.student-card .info .gpa {
+  color: #61adcf;
+  font-weight: bold;
+  padding-right: 1rem;
+  font-size: 90%;
+}
+
+.student-card .info #progress-bar {
+  margin-top: 1px;
+}
+
+.student-card .info #no-rating {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.name-enrollment {
+  justify-content: space-between;
+  margin-bottom: -10px;
+}
+
+#enrollment {
   background-color: #efe271;
-  color: #2b2b2b;
+  padding: 1px 6px 1px 6px;
+  border-radius: 5px;
+  font-size: 80%;
+  margin-right: 1rem;
+}
+
+.student-card Button {
+  margin: 1rem;
+}
+
+.flex-box button:hover,
+.flex-box button:focus {
+  background-color: #efe271 !important;
+  color: #2b2b2b !important;
   border-style: none;
-  height: 45px;
-}
-
-.search-btn:hover {
-  background-color: #2b2b2b;
-  color: #fff;
-}
-
-/* Cards */
-.card {
-  border-style: none;
-}
-
-.job-card,
-.student-card {
-  width: 25%;
-  min-width: 250px;
-  border-style: solid;
-  border-radius: 10px;
-  border-color: #2b2b2b;
-  margin: 1%;
-  max-height: 450px;
-}
-
-.job-card li,
-.student-card li {
-  font-size: 75%;
-}
-
-#filter-jobs,
-#filter-students {
-  font-size: 18px;
 }

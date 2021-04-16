@@ -36,7 +36,6 @@ module.exports = (app) => {
   // Filter Job Cards
   app.get("/filter_job_cards", (req, res) => {
     const { job_type, position_title } = req.query;
-    console.log(job_type, position_title);
     db_connection.query(
       SQL_FILTER.API_JOB_CARD_FILTER(job_type, position_title),
       (err, results) => {

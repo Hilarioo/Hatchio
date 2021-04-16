@@ -31,14 +31,14 @@ const StudentFilters = ({
   setRating,
 }) => {
   return (
-    <div className='filter'>
+    <div className="filter">
       {/* Heading */}
       <h4>Filters</h4>
 
       {/* Active Filters */}
-      <div className='active-filter-box'>
+      <div className="active-filter-box">
         {schoolYear?.map((filter) => (
-          <div id={filter.id} className='active-filter'>
+          <div id={filter.id} className="active-filter">
             {filter}
             <button
               onClick={(e) => {
@@ -48,10 +48,12 @@ const StudentFilters = ({
                     (filter) => !filter.localeCompare(e.target.value)
                   )
                 );
+
                 // resets check value to false
                 e.target.checked = false;
                 console.log(filter);
-              }}>
+              }}
+            >
               {" "}
               x{" "}
             </button>
@@ -59,7 +61,7 @@ const StudentFilters = ({
         ))}
         {/* all active filters except school year */}
         {activeFilters?.map((filter) => (
-          <div id={filter.id} className='active-filter'>
+          <div id={filter.id} className="active-filter">
             <span>{filter}</span>
             <button
               onClick={(e) => {
@@ -72,7 +74,8 @@ const StudentFilters = ({
                 // resets check value to false
                 e.target.checked = false;
                 console.log(filter);
-              }}>
+              }}
+            >
               {" "}
               x{" "}
             </button>
@@ -81,57 +84,58 @@ const StudentFilters = ({
       </div>
 
       {/* Form */}
-      <Form id='filter-students'>
-        <Accordion defaultActiveKey=''>
+      <Form id="filter-students">
+        <Accordion defaultActiveKey="">
           {/* Student Year Filter */}
           <Form.Group>
             <Card>
-              <Accordion.Toggle as={Card.Header} eventKey='0'>
+              <Accordion.Toggle as={Card.Header} eventKey="0">
                 Student Year
               </Accordion.Toggle>
-              <Accordion eventKey='0'>
+              <Accordion eventKey="0">
                 <Card.Body>
                   <Form.Check
-                    type='checkbox'
-                    label='Freshman'
-                    value='Freshman'
+                    type="checkbox"
+                    label="Freshman"
+                    value="Freshman"
+                    onClick={addSchoolYearHandler}
+                    className="checkbox"
+                  />
+                  <Form.Check
+                    type="checkbox"
+                    label="Sophomore"
+                    value="Sophomore"
                     onClick={addSchoolYearHandler}
                   />
                   <Form.Check
-                    type='checkbox'
-                    label='Sophomore'
-                    value='Sophomore'
+                    type="checkbox"
+                    label="Junior"
+                    value="Junior"
                     onClick={addSchoolYearHandler}
                   />
                   <Form.Check
-                    type='checkbox'
-                    label='Junior'
-                    value='Junior'
+                    type="checkbox"
+                    label="Senior"
+                    value="Senior"
                     onClick={addSchoolYearHandler}
                   />
                   <Form.Check
-                    type='checkbox'
-                    label='Senior'
-                    value='Senior'
-                    onClick={addSchoolYearHandler}
-                  />
-                  <Form.Check
-                    type='checkbox'
+                    type="checkbox"
                     s
-                    label='Masters'
-                    value='Masters'
+                    label="Masters"
+                    value="Masters"
                     onClick={addSchoolYearHandler}
                   />
                   <Form.Check
-                    type='checkbox'
-                    label='Doctorate'
-                    value='Doctorate'
+                    type="checkbox"
+                    label="Doctorate"
+                    value="Doctorate"
                     onClick={addSchoolYearHandler}
                   />
                   <Form.Check
-                    type='checkbox'
-                    label='Alumni'
-                    value='Alumni'
+                    type="checkbox"
+                    label="Alumni"
+                    value="Alumni"
                     onClick={addSchoolYearHandler}
                   />
                 </Card.Body>
@@ -142,16 +146,17 @@ const StudentFilters = ({
           {/* Academics Filter */}
           <Form.Group>
             <Card>
-              <Accordion.Toggle as={Card.Header} eventKey='1'>
+              <Accordion.Toggle as={Card.Header} eventKey="1">
                 Area of Study
               </Accordion.Toggle>
-              <Accordion eventKey='1'>
+              <Accordion eventKey="1">
                 <Card.Body>
                   <Form.Group>
                     <Form.Control
-                      as='select'
-                      name='degree'
-                      onChange={addFilterHandler}>
+                      as="select"
+                      name="degree"
+                      onChange={addFilterHandler}
+                    >
                       {/* default is a blank option */}
                       <option></option>
                       {/* All SFSU Areas of Study grabbed from JSON file*/}
@@ -199,16 +204,16 @@ const StudentFilters = ({
           {/* GPA Filter */}
           <Form.Group>
             <Card>
-              <Accordion.Toggle as={Card.Header} eventKey='3'>
+              <Accordion.Toggle as={Card.Header} eventKey="3">
                 GPA
               </Accordion.Toggle>
-              <Accordion eventKey='3'>
+              <Accordion eventKey="3">
                 <Card.Body>
-                  <InputGroup className='mb-3'>
+                  <InputGroup className="mb-3">
                     <Form.Control
-                      placeholder='From'
-                      aria-label='GPA-from'
-                      aria-describedby='basic-addon1'
+                      placeholder="From"
+                      aria-label="GPA-from"
+                      aria-describedby="basic-addon1"
                       onChange={(e) =>
                         setGPA({
                           ...gpa,
@@ -217,9 +222,9 @@ const StudentFilters = ({
                       }
                     />
                     <Form.Control
-                      placeholder='To'
-                      aria-label='GPA-to'
-                      aria-describedby='basic-addon1'
+                      placeholder="To"
+                      aria-label="GPA-to"
+                      aria-describedby="basic-addon1"
                       onChange={(e) =>
                         setGPA({
                           ...gpa,
@@ -229,10 +234,11 @@ const StudentFilters = ({
                     />
                     <InputGroup.Append>
                       <Button
-                        variant='outline-secondary'
-                        className='btn-fill'
-                        name='gpa'
-                        onClick={addFilterHandler}>
+                        variant="outline-secondary"
+                        className="btn-fill"
+                        name="gpa"
+                        onClick={addFilterHandler}
+                      >
                         +
                       </Button>
                     </InputGroup.Append>
@@ -247,17 +253,18 @@ const StudentFilters = ({
             <Card>
               <Accordion.Toggle
                 as={Card.Header}
-                eventKey='4'
-                className='accordion-header'>
-                Review Score
+                eventKey="4"
+                className="accordion-header"
+              >
+                Professor Rating
               </Accordion.Toggle>
-              <Accordion eventKey='4'>
+              <Accordion eventKey="4">
                 <Card.Body>
-                  <InputGroup className='mb-3'>
+                  <InputGroup className="mb-3">
                     <Form.Control
-                      placeholder='From'
-                      aria-label='Review-from'
-                      aria-describedby='basic-addon1'
+                      placeholder="From"
+                      aria-label="Review-from"
+                      aria-describedby="basic-addon1"
                       onChange={(e) =>
                         setRating({
                           ...rating,
@@ -266,9 +273,9 @@ const StudentFilters = ({
                       }
                     />
                     <Form.Control
-                      placeholder='To'
-                      aria-label='Review-to'
-                      aria-describedby='basic-addon1'
+                      placeholder="To"
+                      aria-label="Review-to"
+                      aria-describedby="basic-addon1"
                       onChange={(e) =>
                         setRating({
                           ...rating,
@@ -278,10 +285,11 @@ const StudentFilters = ({
                     />
                     <InputGroup.Append>
                       <Button
-                        variant='outline-secondary'
-                        className='btn-fill'
-                        name='rating'
-                        onClick={addFilterHandler}>
+                        variant="outline-secondary"
+                        className="btn-fill"
+                        name="rating"
+                        onClick={addFilterHandler}
+                      >
                         +
                       </Button>
                     </InputGroup.Append>

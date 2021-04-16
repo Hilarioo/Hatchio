@@ -8,28 +8,29 @@ import InputGroup from "react-bootstrap/InputGroup";
 
 const StudentSearchBar = ({ keywordFilterHandler, setKeyword }) => {
   return (
-    <div class='header'>
-      <Form id='search-students'>
-        <InputGroup className='mb-3'>
+    <div class="header">
+      <Form id="search-students">
+        <InputGroup className="mb-3">
           <InputGroup.Prepend>
-            <InputGroup.Text id='basic-addon1' className='search-prepend'>
+            <InputGroup.Text id="basic-addon1" className="search-prepend">
               Find
             </InputGroup.Text>
           </InputGroup.Prepend>
           <Form.Control
-            placeholder='Student Name, Major, or Keyword'
-            aria-label='text'
-            aria-describedby='basic-addon1'
-            className='search-bar'
+            placeholder="Student Name, Major, or Keyword"
+            aria-label="text"
+            aria-describedby="basic-addon1"
+            className="search-bar"
             onChange={(e) => {
               setKeyword(e.target.value);
             }}
           />
         </InputGroup>
         <Button
-          type='submit'
-          className='search-btn'
-          onClick={keywordFilterHandler}>
+          type="submit"
+          className="search-btn"
+          onClick={keywordFilterHandler}
+        >
           Search
         </Button>
       </Form>

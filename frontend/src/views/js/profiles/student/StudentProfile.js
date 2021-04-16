@@ -1,15 +1,38 @@
-import "../../../css/Profiles.css";
 import { useState, useEffect } from "react";
+// CSS
+import "../../../css/Profiles.css";
+import "../../../css/Theme.css";
+// React Boostrap
+import Button from "react-bootstrap/Button";
+import ProgressBar from "react-bootstrap/ProgressBar";
+//Import SVG Icons
+import LocationIcon from "../../../content/svg/location-icon.svg";
+import GlobeIcon from "../../../content/svg/globe-icon.svg";
+import LinkedinIcon from "../../../content/svg/linkedin-icon.svg";
+import ResumeIcon from "../../../content/svg/resume-icon.svg";
+import GithubIcon from "../../../content/svg/github-icon.svg";
+import EditIcon from "../../../content/svg/edit-icon.svg";
+import AddIcon from "../../../content/svg/add-icon.svg";
+import ProjectIcon from "../../../content/svg/project-icon.svg";
+import ExperienceIcon from "../../../content/svg/experience-icon.svg";
+import EducationIcon from "../../../content/svg/education-icon.svg";
+// Form Components
+import AboutPopup from "../../forms/Description";
+import ListPopup from "../../forms/List";
+import ProjectPopup from "../../forms/Project";
+import EducationPopup from "../../forms/Education";
+import ExperiencePopup from "../../forms/Experience";
 // Default Image
 import { defaultImage } from "../../global/DefaultImage";
+
 const StudentProfile = ({
   // default props provided if empty
   image = "",
   studentName = "Jose Gonzalez Martinez",
   location = "Pleasant Hill, CA",
-  rating = "no ratings yet",
+  rating = 3,
   links = ["web", "gtihub", "linkedin", "pdf"],
-  about = "This is something about me",
+  about = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   qualities = [
     "one",
     "two",
@@ -72,97 +95,250 @@ const StudentProfile = ({
     },
   ],
 }) => {
+  // Form States
+  const [aboutPopup, setAboutPopup] = useState(false);
+  const [listPopup, setListPopup] = useState(false);
+  const [projectPopup, setProjectPopup] = useState(false);
+  const [educationPopup, setEducationPopup] = useState(false);
+  const [experiencePopup, setExperiencePopup] = useState(false);
+
   return (
     <>
       {/* heading */}
-      <div className="student-heading">
+      <div className='student-heading'>
         {/* creates default image if none provided */}
         <img
           src={image.length <= 0 ? defaultImage(studentName) : image}
           alt={studentName.charAt(0)}
         />
-        <div className="right">
+        <div className='right'>
           <h1>{studentName}</h1>
-          <p>{location}</p>
-          <button>message</button>
-          <button>reflection</button>
+          <div className='flex-box'>
+            <img src={LocationIcon} alt='location pins' />
+            <p>{location}</p>
+          </div>
+          <div className='flex-box'>
+            <Button>Message</Button>
+            <Button id='reflection'>Rate</Button>
+          </div>
         </div>
       </div>
       {/* links */}
-      <div className="student-links">
-        <img src="" alt="website url" />
-        <img src="" alt="linkedin" />
-        <img src="" alt="resume-pdf" />
+      <div className='student-links'>
+        <img src={GlobeIcon} alt='website url' />
+        <img src={GithubIcon} alt='github' />
+        <img src={LinkedinIcon} alt='linkedin' />
+        <img src={ResumeIcon} alt='resume-pdf' />
       </div>
       {/* about */}
-      <h3>About</h3>
-      <p>{about}</p>
+      <div className='student-about'>
+        <div className='flex-box'>
+          <h4>About Me</h4>
+          {/* Edit Pencil --> Popup */}
+          <img
+            id='edit-button'
+            src={EditIcon}
+            alt='edit pencil button'
+            onClick={() => setAboutPopup(true)}
+          />
+          <AboutPopup
+            show={aboutPopup}
+            onHide={() => setAboutPopup(false)}
+            heading='Edit About Me'
+            about={about}
+          />
+        </div>
+        <p>{about}</p>
+      </div>
       {/* qualities */}
-      <h3>Top Qualities</h3>
-
-      <li>
-        {qualities.map((quality) => (
-          <ul>{quality}</ul>
-        ))}
-        <ul>strength</ul>
-      </li>
-      <div class="grid-container-profile">
-        <div class="projects">
+      <div className='student-qualities'>
+        <div className='flex-box'>
+          <h4>Top Qualities</h4>
+          {/* Edit Pencil --> Popup */}
+          <img
+            id='edit-button'
+            src={EditIcon}
+            alt='edit pencil button'
+            onClick={() => setListPopup(true)}
+          />
+          <ListPopup show={listPopup} onHide={() => setListPopup(false)} />
+        </div>
+        <li>
+          {qualities.map((quality) => (
+            <ul>{quality}</ul>
+          ))}
+          <ul>strength</ul>
+        </li>
+      </div>
+      <div className='student-grid'>
+        <div className='projects'>
           {/* projects */}
-          <h3>Projects</h3>
-          <div className="student-project">
-            <img src="" alt="project img" />
-            <div className="right">
-              <p>date</p>
-              <h5>project name </h5>
-              <h6>author(s): </h6>
+          <div className='flex-box'>
+            <h4>Projects</h4>
+            {/* Edit Pencil --> Popup */}
+            <img
+              id='edit-button'
+              src={AddIcon}
+              alt='edit pencil button'
+              onClick={() => setProjectPopup(true)}
+            />
+            <ProjectPopup
+              show={projectPopup}
+              onHide={() => setProjectPopup(false)}
+            />
+          </div>
+          <div className='student-project flex-box'>
+            {/* creates default image if none provided */}
+            <div className='img-box'>
+              <img src={ProjectIcon} alt='project icon' />
+            </div>
+            <div className='right'>
+              <p id='date'>November 20, 2020</p>
+              <div className='flex-box'>
+                <h5>Pac-Man Python Project</h5>
+                {/* Edit Pencil --> Popup */}
+                <img
+                  id='edit-button'
+                  src={EditIcon}
+                  alt='edit pencil button'
+                  onClick={() => setProjectPopup(true)}
+                />
+                <ProjectPopup
+                  show={projectPopup}
+                  onHide={() => setProjectPopup(false)}
+                />
+              </div>
+              <h6>Collaborator(s): </h6>
               <h6>Professor: </h6>
               <li>
-                <ul>one</ul>
+                <ul style={{ backgroundColor: "#66D3D9" }}>one</ul>
+                <ul style={{ backgroundColor: "#66D3D9" }}>two</ul>
+                <ul style={{ backgroundColor: "#66D3D9" }}>three</ul>
               </li>
             </div>
           </div>
         </div>
-        <div class="education">
-          {/* education */}
-          <h3>Education</h3>
-          <div className="student-education">
-            <img src="" alt="education img" />
-            <div className="right">
-              <h5>degree title: </h5>
-              <h6>school </h6>
-              <p>date </p>
+        <div>
+          <div className='education'>
+            {/* education */}
+            <div className='flex-box'>
+              <h5>Education</h5>
+              {/* Edit Pencil --> Popup */}
+              <img
+                id='edit-button'
+                src={AddIcon}
+                alt='edit pencil button'
+                onClick={() => setEducationPopup(true)}
+              />
+              <EducationPopup
+                show={educationPopup}
+                onHide={() => setEducationPopup(false)}
+              />
+            </div>
+            <div className='student-education flex-box'>
+              {/* creates default image if none provided */}
+              <div className='img-box'>
+                <img src={EducationIcon} alt='project icon' />
+              </div>
+              <div className='right'>
+                <div className='flex-box'>
+                  <h5>BS Computer Science</h5>
+                  {/* Edit Pencil --> Popup */}
+                  <img
+                    id='edit-button'
+                    src={EditIcon}
+                    alt='edit pencil button'
+                    onClick={() => setEducationPopup(true)}
+                  />
+                  <EducationPopup
+                    show={educationPopup}
+                    onHide={() => setEducationPopup(false)}
+                  />
+                </div>
+                <h6>San Francisco State University</h6>
+                <p>November 13, 2021 - Current</p>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="experience">
-          {/* experience */}
-          <h3>Experience</h3>
-          <div className="student-experience">
-            <img src="" alt="experience img" />
-            <div className="right">
-              <h5>job title</h5>
-              <h6>company </h6>
-              <p>date </p>
-              <li>
-                <ul>one</ul>
-              </li>
+          <div className='experience'>
+            {/* experience */}
+            <div className='flex-box'>
+              <h4>Experience</h4>
+              {/* Edit Pencil --> Popup */}
+              <img
+                id='edit-button'
+                src={AddIcon}
+                alt='edit pencil button'
+                onClick={() => setExperiencePopup(true)}
+              />
+              <ExperiencePopup
+                show={experiencePopup}
+                onHide={() => setExperiencePopup(false)}
+              />
+            </div>
+            <div className='student-experience flex-box'>
+              {/* creates default image if none provided */}
+              <div className='img-box'>
+                <img src={ExperienceIcon} alt='project icon' />
+              </div>
+              <div className='right'>
+                <div className='flex-box'>
+                  <h5>Jelly Bean Packer</h5>
+                  {/* Edit Pencil --> Popup */}
+                  <img
+                    id='edit-button'
+                    src={EditIcon}
+                    alt='edit pencil button'
+                    onClick={() => setExperiencePopup(true)}
+                  />
+                  <ExperiencePopup
+                    show={experiencePopup}
+                    onHide={() => setExperiencePopup(false)}
+                  />
+                </div>
+                <h6>The Pickle Factory Inc.</h6>
+                <p>November 20, 2020 - Current</p>
+                <li>
+                  <ul style={{ backgroundColor: "#EFE271" }}>one</ul>
+                  <ul style={{ backgroundColor: "#EFE271" }}>two</ul>
+                  <ul style={{ backgroundColor: "#EFE271" }}>three</ul>
+                </li>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      {/* reflection */}
-      <h3>Reflection</h3>
-      <div className="review-heading">
-        <p>score </p>
-        <p>user</p>
-        <p>date</p>
+      <div className='student-reflection'>
+        {/* reflection */}
+        <h4>Ratings</h4>
+        <div className='rating'>
+          <header className='flex-box'>
+            <span className='flex-box'>
+              <h5>Henry Villar</h5>
+              <ProgressBar
+                now={rating}
+                label={`${rating}` + " / 5"}
+                min='0'
+                max='5'
+                variant='info'
+                style={{ width: "35%", marginTop: "5px" }}
+                id='progress-bar'
+              />
+            </span>
+            <p>November 20, 2021</p>
+          </header>
+          <h6>San Francisco State University</h6>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+          <li>
+            <ul>one</ul>
+            <ul>two </ul>
+            <ul>three</ul>
+          </li>
+        </div>
       </div>
-      <h6>school</h6>
-      <p>Recommendation:</p>
-      <li>
-        <ul>one</ul>
-      </li>
     </>
   );
 };

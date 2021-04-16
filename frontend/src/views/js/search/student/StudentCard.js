@@ -1,98 +1,67 @@
-import { useState, useContext } from "react";
+/*
+Author: Jose Gonzalez
+File: Search.css
+Styling for the following pages:
+  1. StudentSearch.js
+  2. StudentCard.js
+  3. JobSearch.js
+  4. JobCard.js
+*/
+
 // CSS
-import "../../../css/Theme.css";
 import "../../../css/Search.css";
-// Default Image
+// Default Image (if user has no image)
 import { defaultImage } from "../../global/DefaultImage";
 // React Boostrap
-import Accordion from "react-bootstrap/Accordion";
-import { useAccordionToggle } from "react-bootstrap/AccordionToggle";
 import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
+import ProgressBar from "react-bootstrap/ProgressBar";
 
 const StudentCard = ({
   // default props provided if empty
   image = "",
   studentName = "student name",
   major = "undeclared",
-  rating = "no ratings yet",
+  rating = 3,
   gpa = "0",
   schoolName = "school name",
-  year = "",
-  about = "This is something about me",
-  tags = ["one", "two", "three"],
   student_enrollment = "",
+  about,
 }) => {
-  // expands & collpases user's more info
-  const ContextAwareToggle = ({ children, eventKey, callback }) => {
-    // styling currently not working, but functionallity is
-    const currentEventKey = useContext(0);
-
-    const decoratedOnClick = useAccordionToggle(
-      eventKey,
-      () => callback && callback(eventKey)
-    );
-
-    const isCurrentEventKey = currentEventKey === eventKey;
-
-    return (
-      <button
-        type='button'
-        style={{
-          backgroundColor: isCurrentEventKey ? "yellow" : "#2b2b2b",
-          color: isCurrentEventKey ? "yellow" : "#fff",
-        }}
-        onClick={decoratedOnClick}>
-        {children}
-      </button>
-    );
-  };
-
   return (
-    <div className='student-card'>
-      <img
-        src={image.length <= 0 ? defaultImage(studentName) : image}
-        alt={studentName.charAt(0)}
-      />
-      <h4>{studentName}</h4>
-      <p>
-        <b>Major</b>:{major}
-      </p>
-      <p>
-        <b>GPA</b>:{gpa}
-      </p>
-      <p>
-        <b>Rating Total</b>:{rating}
-      </p>
-      <p>
-        <b>Starting Year</b>: {year}
-      </p>
-      <p>
-        <b>Student Year: {student_enrollment}</b>
-      </p>
-      <Button>Message</Button>
-      <Button>Profile</Button>
-      {/* More information about the student */}
-      <Accordion>
-        <Card>
-          <Card.Header>
-            <ContextAwareToggle eventKey='0'>Expand</ContextAwareToggle>
-          </Card.Header>
-          <Accordion.Collapse eventKey='0'>
-            <Card.Body>
-              <p>{schoolName}</p>
-              <p>{year}</p>
-              <p>{about}</p>
-              {/* Top 3 qualities */}
-              <ul>
-                {tags.map((tag) => (
-                  <li>{tag}</li>
-                ))}
-              </ul>
-            </Card.Body>
-          </Accordion.Collapse>
-        </Card>
-      </Accordion>
+    <div className="student-card">
+      <header>
+        <img
+          src={image.length <= 0 ? defaultImage(studentName) : image}
+          alt={studentName.charAt(0)}
+        />
+        <div className="info">
+          <div className="flex-box name-enrollment">
+            <h4>{studentName}</h4>
+            <p id="enrollment">{student_enrollment}</p>
+          </div>
+          <h6>{schoolName}</h6>
+          <div className="flex-box">
+            <p className="gpa">{gpa} GPA</p>
+            {rating === 0 ? (
+              <p id="no-rating">No ratings yet</p>
+            ) : (
+              <ProgressBar
+                now={rating}
+                label={`${rating}` + " / 5"}
+                min="0"
+                max="5"
+                variant="info"
+                style={{ width: "60%" }}
+                id="progress-bar"
+              />
+            )}
+          </div>
+        </div>
+      </header>
+      <div className="flex-box">
+        <Button>Message</Button>
+        <Button>Profile</Button>
+      </div>
     </div>
   );
 };
