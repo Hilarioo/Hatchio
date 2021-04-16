@@ -25,76 +25,85 @@ import ExperiencePopup from "../../forms/Experience";
 // Default Image
 import { defaultImage } from "../../global/DefaultImage";
 
-const StudentProfile = ({
-  // default props provided if empty
-  image = "",
-  studentName = "Jose Gonzalez Martinez",
-  location = "Pleasant Hill, CA",
-  rating = 3,
-  links = ["web", "gtihub", "linkedin", "pdf"],
-  about = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-  qualities = [
-    "one",
-    "two",
-    "three",
-    "four",
-    "five",
-    "six",
-    "seven",
-    "eight",
-    "nine",
-    "ten",
-  ],
-  projects = [
-    {
-      rating: 4,
-      user: "user00",
-      date: "November 12, 2020",
-      desc:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-    },
-    {
-      rating: 2,
-      user: "user30",
-      date: "November 12, 1920",
-      desc:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-    },
-  ],
-  education = [
-    {
-      degree: "BS Computer Science",
-      school: "San Francisco State University",
-      start: "November 01, 9109",
-      end: "present",
-    },
-    {
-      degree: "BS Procrastination",
-      school: "San Francisco State University",
-      start: "November 01, 1920",
-      end: "December 01, 2000",
-    },
-  ],
-  experience = [
-    {
-      position: "Jelly Bean Packager",
-      company: "The Pickle Factory Inc.",
-      start: "November 01, 1920",
-      end: "December 01, 2000",
-      tags: ["one", "two", "three"],
-    },
-  ],
-  reflections = [
-    {
-      rating: 4,
-      reviewer: "Professor User Name",
-      date: "November 23, 2020",
-      desc:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-      tags: ["one", "two", "three"],
-    },
-  ],
-}) => {
+const StudentProfile = (
+  props, //Passed in userProfile state from Dashboard.js
+  {
+    // default props provided if empty
+    image = "",
+    studentName = "Jose Gonzalez Martinez",
+    location = "Pleasant Hill, CA",
+    rating = 3,
+    links = ["web", "gtihub", "linkedin", "pdf"],
+    about = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    qualities = [
+      "one",
+      "two",
+      "three",
+      "four",
+      "five",
+      "six",
+      "seven",
+      "eight",
+      "nine",
+      "ten",
+    ],
+    projects = [
+      {
+        rating: 4,
+        user: "user00",
+        date: "November 12, 2020",
+        desc:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+      },
+      {
+        rating: 2,
+        user: "user30",
+        date: "November 12, 1920",
+        desc:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+      },
+    ],
+    education = [
+      {
+        degree: "BS Computer Science",
+        school: "San Francisco State University",
+        start: "November 01, 9109",
+        end: "present",
+      },
+      {
+        degree: "BS Procrastination",
+        school: "San Francisco State University",
+        start: "November 01, 1920",
+        end: "December 01, 2000",
+      },
+    ],
+    experience = [
+      {
+        position: "Jelly Bean Packager",
+        company: "The Pickle Factory Inc.",
+        start: "November 01, 1920",
+        end: "December 01, 2000",
+        tags: ["one", "two", "three"],
+      },
+    ],
+    reflections = [
+      {
+        rating: 4,
+        reviewer: "Professor User Name",
+        date: "November 23, 2020",
+        desc:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+        tags: ["one", "two", "three"],
+      },
+    ],
+  }
+) => {
+  //Get Profile State
+  const [profileState, setProfileState] = useState([]);
+  useEffect(() => {
+    setProfileState(props);
+  }, [props]);
+
   // Form States
   const [aboutPopup, setAboutPopup] = useState(false);
   const [listPopup, setListPopup] = useState(false);
@@ -104,61 +113,63 @@ const StudentProfile = ({
 
   return (
     <>
+      {/* Passed In State from Dashboard.js */}
+      {JSON.stringify(profileState)}
       {/* heading */}
-      <div className='student-heading'>
+      <div className="student-heading">
         {/* creates default image if none provided */}
         <img
           src={image.length <= 0 ? defaultImage(studentName) : image}
           alt={studentName.charAt(0)}
         />
-        <div className='right'>
+        <div className="right">
           <h1>{studentName}</h1>
-          <div className='flex-box'>
-            <img src={LocationIcon} alt='location pins' />
+          <div className="flex-box">
+            <img src={LocationIcon} alt="location pins" />
             <p>{location}</p>
           </div>
-          <div className='flex-box'>
+          <div className="flex-box">
             <Button>Message</Button>
-            <Button id='reflection'>Rate</Button>
+            <Button id="reflection">Rate</Button>
           </div>
         </div>
       </div>
       {/* links */}
-      <div className='student-links'>
-        <img src={GlobeIcon} alt='website url' />
-        <img src={GithubIcon} alt='github' />
-        <img src={LinkedinIcon} alt='linkedin' />
-        <img src={ResumeIcon} alt='resume-pdf' />
+      <div className="student-links">
+        <img src={GlobeIcon} alt="website url" />
+        <img src={GithubIcon} alt="github" />
+        <img src={LinkedinIcon} alt="linkedin" />
+        <img src={ResumeIcon} alt="resume-pdf" />
       </div>
       {/* about */}
-      <div className='student-about'>
-        <div className='flex-box'>
+      <div className="student-about">
+        <div className="flex-box">
           <h4>About Me</h4>
           {/* Edit Pencil --> Popup */}
           <img
-            id='edit-button'
+            id="edit-button"
             src={EditIcon}
-            alt='edit pencil button'
+            alt="edit pencil button"
             onClick={() => setAboutPopup(true)}
           />
           <AboutPopup
             show={aboutPopup}
             onHide={() => setAboutPopup(false)}
-            heading='Edit About Me'
+            heading="Edit About Me"
             about={about}
           />
         </div>
         <p>{about}</p>
       </div>
       {/* qualities */}
-      <div className='student-qualities'>
-        <div className='flex-box'>
+      <div className="student-qualities">
+        <div className="flex-box">
           <h4>Top Qualities</h4>
           {/* Edit Pencil --> Popup */}
           <img
-            id='edit-button'
+            id="edit-button"
             src={EditIcon}
-            alt='edit pencil button'
+            alt="edit pencil button"
             onClick={() => setListPopup(true)}
           />
           <ListPopup show={listPopup} onHide={() => setListPopup(false)} />
@@ -170,16 +181,16 @@ const StudentProfile = ({
           <ul>strength</ul>
         </li>
       </div>
-      <div className='student-grid'>
-        <div className='projects'>
+      <div className="student-grid">
+        <div className="projects">
           {/* projects */}
-          <div className='flex-box'>
+          <div className="flex-box">
             <h4>Projects</h4>
             {/* Edit Pencil --> Popup */}
             <img
-              id='edit-button'
+              id="edit-button"
               src={AddIcon}
-              alt='edit pencil button'
+              alt="edit pencil button"
               onClick={() => setProjectPopup(true)}
             />
             <ProjectPopup
@@ -187,20 +198,20 @@ const StudentProfile = ({
               onHide={() => setProjectPopup(false)}
             />
           </div>
-          <div className='student-project flex-box'>
+          <div className="student-project flex-box">
             {/* creates default image if none provided */}
-            <div className='img-box'>
-              <img src={ProjectIcon} alt='project icon' />
+            <div className="img-box">
+              <img src={ProjectIcon} alt="project icon" />
             </div>
-            <div className='right'>
-              <p id='date'>November 20, 2020</p>
-              <div className='flex-box'>
+            <div className="right">
+              <p id="date">November 20, 2020</p>
+              <div className="flex-box">
                 <h5>Pac-Man Python Project</h5>
                 {/* Edit Pencil --> Popup */}
                 <img
-                  id='edit-button'
+                  id="edit-button"
                   src={EditIcon}
-                  alt='edit pencil button'
+                  alt="edit pencil button"
                   onClick={() => setProjectPopup(true)}
                 />
                 <ProjectPopup
@@ -219,15 +230,15 @@ const StudentProfile = ({
           </div>
         </div>
         <div>
-          <div className='education'>
+          <div className="education">
             {/* education */}
-            <div className='flex-box'>
+            <div className="flex-box">
               <h5>Education</h5>
               {/* Edit Pencil --> Popup */}
               <img
-                id='edit-button'
+                id="edit-button"
                 src={AddIcon}
-                alt='edit pencil button'
+                alt="edit pencil button"
                 onClick={() => setEducationPopup(true)}
               />
               <EducationPopup
@@ -235,19 +246,19 @@ const StudentProfile = ({
                 onHide={() => setEducationPopup(false)}
               />
             </div>
-            <div className='student-education flex-box'>
+            <div className="student-education flex-box">
               {/* creates default image if none provided */}
-              <div className='img-box'>
-                <img src={EducationIcon} alt='project icon' />
+              <div className="img-box">
+                <img src={EducationIcon} alt="project icon" />
               </div>
-              <div className='right'>
-                <div className='flex-box'>
+              <div className="right">
+                <div className="flex-box">
                   <h5>BS Computer Science</h5>
                   {/* Edit Pencil --> Popup */}
                   <img
-                    id='edit-button'
+                    id="edit-button"
                     src={EditIcon}
-                    alt='edit pencil button'
+                    alt="edit pencil button"
                     onClick={() => setEducationPopup(true)}
                   />
                   <EducationPopup
@@ -260,15 +271,15 @@ const StudentProfile = ({
               </div>
             </div>
           </div>
-          <div className='experience'>
+          <div className="experience">
             {/* experience */}
-            <div className='flex-box'>
+            <div className="flex-box">
               <h4>Experience</h4>
               {/* Edit Pencil --> Popup */}
               <img
-                id='edit-button'
+                id="edit-button"
                 src={AddIcon}
-                alt='edit pencil button'
+                alt="edit pencil button"
                 onClick={() => setExperiencePopup(true)}
               />
               <ExperiencePopup
@@ -276,19 +287,19 @@ const StudentProfile = ({
                 onHide={() => setExperiencePopup(false)}
               />
             </div>
-            <div className='student-experience flex-box'>
+            <div className="student-experience flex-box">
               {/* creates default image if none provided */}
-              <div className='img-box'>
-                <img src={ExperienceIcon} alt='project icon' />
+              <div className="img-box">
+                <img src={ExperienceIcon} alt="project icon" />
               </div>
-              <div className='right'>
-                <div className='flex-box'>
+              <div className="right">
+                <div className="flex-box">
                   <h5>Jelly Bean Packer</h5>
                   {/* Edit Pencil --> Popup */}
                   <img
-                    id='edit-button'
+                    id="edit-button"
                     src={EditIcon}
-                    alt='edit pencil button'
+                    alt="edit pencil button"
                     onClick={() => setExperiencePopup(true)}
                   />
                   <ExperiencePopup
@@ -308,21 +319,21 @@ const StudentProfile = ({
           </div>
         </div>
       </div>
-      <div className='student-reflection'>
+      <div className="student-reflection">
         {/* reflection */}
         <h4>Ratings</h4>
-        <div className='rating'>
-          <header className='flex-box'>
-            <span className='flex-box'>
+        <div className="rating">
+          <header className="flex-box">
+            <span className="flex-box">
               <h5>Henry Villar</h5>
               <ProgressBar
                 now={rating}
                 label={`${rating}` + " / 5"}
-                min='0'
-                max='5'
-                variant='info'
+                min="0"
+                max="5"
+                variant="info"
                 style={{ width: "35%", marginTop: "5px" }}
-                id='progress-bar'
+                id="progress-bar"
               />
             </span>
             <p>November 20, 2021</p>

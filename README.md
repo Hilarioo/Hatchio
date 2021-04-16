@@ -1,12 +1,30 @@
 # Node Hatchio Dev Change Log
 
 i. Change Log
+ii. Issues
+
+#### Unresolved Issues
+
+- Passing in a useState to another component as a prop w/ update. <- Go to dashboard.js and sign in w/ any of these credentials to see what i mean
+
+Professor
+ducTa@mail.com
+pass12345
+
+Student
+jackseptikey@mail.com
+pass12345
+
+Employer
+microsoft@mailr.com
+los12345
 
 #### Friday, April 13, 2021 :: Aaron
 
 - Updated ES6 asyn/await API fetch
 - Added code signatures
-- Currently working on P1 Functions & Merging Jose's Push on branch page/StudentPofile
+- Dashboard.js w/ Jose's revamped Profile Components for Employers | Professors | Students
+- Currently working on P1 Functions & ~~Merging Jose's Push on branch page/StudentPofile~~ done
 - Old logs for History Table for one of the milestone documents
 
 #### Tuesday, April 13, 2021 :: Aaron
