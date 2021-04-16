@@ -34,7 +34,7 @@ const StudentProfile = (
     location = "Pleasant Hill, CA",
     rating = 3,
     links = ["web", "gtihub", "linkedin", "pdf"],
-    about = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    about = "Lorem",
     qualities = [
       "one",
       "two",
@@ -98,10 +98,36 @@ const StudentProfile = (
     ],
   }
 ) => {
-  //Get Profile State
-  const [profileState, setProfileState] = useState([]);
+  //Get General Information
+  const [profilePage, setProfilePage] = useState({
+    null: "null",
+  });
+  //Student Projects
+  const [studentProjects, setStudentProjects] = useState([
+    { null: "null" },
+    { null: "null" },
+  ]);
+  //Ratings
+  const [studentRatings, setStudentRatings] = useState([
+    { null: "null" },
+    { null: "null" },
+  ]);
+  //Education
+  const [studentEducation, setStudentEducation] = useState([
+    { null: "null" },
+    { null: "null" },
+  ]);
+
   useEffect(() => {
-    setProfileState(props);
+    console.log(props[0]); // Array of {Student Education}
+    console.log(props[1][0]); // Object { General Information }
+    console.log(props[2]); // Array of { Projects }
+    console.log(props[3]); // Array of { Ratings }
+
+    setProfilePage(props[1][0]); // Object { General Information }
+    setStudentProjects(props[2]); // Array of { Projects }
+    setStudentRatings(props[3]); // Array of { Ratings }
+    setStudentEducation(props[0]); // Array of { Student Education }
   }, [props]);
 
   // Form States
@@ -113,8 +139,10 @@ const StudentProfile = (
 
   return (
     <>
-      {/* Passed In State from Dashboard.js */}
-      {JSON.stringify(profileState)}
+      <h3>Student Project One{studentProjects[1].project_name}</h3>
+      <h3>Student Project Two{studentProjects[0].project_name}</h3>
+      <h3>Student Ratings{studentRatings[0].responsible_level}</h3>
+      <h3>Student Education{studentEducation[0].school}</h3>
       {/* heading */}
       <div className="student-heading">
         {/* creates default image if none provided */}
@@ -126,11 +154,13 @@ const StudentProfile = (
           <h1>{studentName}</h1>
           <div className="flex-box">
             <img src={LocationIcon} alt="location pins" />
-            <p>{location}</p>
+            <p>{profilePage.location}</p>
           </div>
           <div className="flex-box">
+            {/** .
             <Button>Message</Button>
             <Button id="reflection">Rate</Button>
+             */}
           </div>
         </div>
       </div>
@@ -156,15 +186,16 @@ const StudentProfile = (
             show={aboutPopup}
             onHide={() => setAboutPopup(false)}
             heading="Edit About Me"
-            about={about}
+            about={profilePage.about_me}
           />
         </div>
-        <p>{about}</p>
+        <p>{profilePage.about_me}</p>
       </div>
       {/* qualities */}
       <div className="student-qualities">
         <div className="flex-box">
           <h4>Top Qualities</h4>
+          <p>{profilePage.strengths_qualities}</p>
           {/* Edit Pencil --> Popup */}
           <img
             id="edit-button"

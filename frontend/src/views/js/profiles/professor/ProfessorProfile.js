@@ -1,21 +1,25 @@
+/**
+ * File: ProfessorProfile.js
+ * Purpose | Functionality: Profile Page from Dashboard js
+ * Authors: Jose(Format & Structure) | Aaron(Insert in Format)
+ */
 import { useEffect, useState } from "react";
 
 const ProfessorProfile = (props) => {
-  const [profileState, setProfileState] = useState([]);
+  const [profileState, setProfileState] = useState({
+    null: "null",
+  });
   useEffect(() => {
-    setProfileState(props);
+    console.log("proppy", props[0]);
+    setProfileState(props[0]); //General Information
   }, [props]);
-
-  const USER_LOG = () => {
-    console.log(profileState[0]); //General Information
-    //second table might be profile page
-  };
 
   return (
     <div>
-      {/* for debugging purposes */}
-      <button onClick={USER_LOG}>Log Information Inside Profile</button>
-      {JSON.stringify(profileState)}
+      <h5>First Name : {profileState.first_name}</h5>
+      <h5>Last Name : {profileState.last_name}</h5>
+      <h5>Email : {profileState.email}</h5>
+      <h5>School : {profileState.school_name}</h5>
     </div>
   );
 };

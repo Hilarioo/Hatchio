@@ -5,19 +5,7 @@ ii. Issues
 
 #### Unresolved Issues
 
-- Passing in a useState to another component as a prop w/ update. <- Go to dashboard.js and sign in w/ any of these credentials to see what i mean
-
-Professor
-ducTa@mail.com
-pass12345
-
-Student
-jackseptikey@mail.com
-pass12345
-
-Employer
-microsoft@mailr.com
-los12345
+~~- Passing in a useState to another component as a prop w/ update. <- Go to dashboard.js and sign in w/ any of these credentials to see what i mean~~ fixed
 
 #### Friday, April 13, 2021 :: Aaron
 

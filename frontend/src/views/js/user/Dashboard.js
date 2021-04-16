@@ -13,7 +13,13 @@ const Dashboard = () => {
     API_USER_GET_PROFILE(cookie.Type_User, cookie.ID_OF_USER, setuserProfile);
   }, []);
   const [cookie] = useCookies(["Type_User", "ID_OF_USER", "First_Name"]); //Cur use
-  const [userProfile, setuserProfile] = useState([]);
+  const [userProfile, setuserProfile] = useState([
+    [{ null: "null" }, { null: "null" }],
+    [{ null: "null" }, { null: "null" }],
+    [{ null: "null" }, { null: "null" }],
+    [{ null: "null" }, { null: "null" }],
+    [{ null: "null" }, { null: "null" }],
+  ]);
 
   if (cookie.Type_User === "student") {
     return (
