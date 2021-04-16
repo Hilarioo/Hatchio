@@ -1,13 +1,16 @@
 import PORT_HOST from "../config";
 
-export default function API_JOB_LISTINGS_FETCH_FILTER(
+const API_JOB_LISTINGS_FETCH_FILTER = async (
   setArr,
   JobType,
   PositionTitle
-) {
-  fetch(
+) => {
+  const response = await fetch(
     `${PORT_HOST.PORT_HOST}/filter_job_cards?job_type=${JobType}&position_title=${PositionTitle}`
-  )
-    .then((response) => response.json())
-    .then((json) => setArr(json));
-}
+  );
+  const data = await response.json();
+  setArr(data);
+  return;
+};
+
+export default API_JOB_LISTINGS_FETCH_FILTER;

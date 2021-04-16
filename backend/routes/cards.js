@@ -1,3 +1,9 @@
+/**
+ * File: cards.js
+ * Purpose: Get data from SQL database node_hatchio_db to serve on the frontend for search pages
+ * Functionality IE: Fetch request with the frontend under search/jobs | search/students page
+ * Author:Aaron
+ */
 const mysql = require("mysql");
 const CONFIG = require("../config");
 const SQL_QUERY = require("../mysql/cards");
@@ -12,6 +18,7 @@ module.exports = (app) => {
         console.log(SQL_QUERY.API_STUDENT_CARD);
         return res.send(err);
       } else {
+        //Time out
         return res.json(results);
       }
     });

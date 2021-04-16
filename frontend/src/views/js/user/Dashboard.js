@@ -7,7 +7,7 @@ const Dashboard = () => {
   useEffect(() => {
     setuserProfile(API_USER_GET_PROFILE(cookie.Type_User, cookie.ID_OF_USER));
   }, []);
-  const [cookie] = useCookies(["Type_User", "ID_OF_USER", "First_Name"]); //Cur use
+  const [cookie] = useCookies(["Type_User", "ID_OF_USER", "First_Name"]);
   const [userProfile, setuserProfile] = useState([]);
 
   const USER_PROFILE_LOG = () => {
@@ -15,9 +15,9 @@ const Dashboard = () => {
   };
 
   if (
-    (cookie.Type_User == "professor") |
-    (cookie.Type_User == "student") |
-    (cookie.Type_User == "employer")
+    (cookie.Type_User === "professor") |
+    (cookie.Type_User === "student") |
+    (cookie.Type_User === "employer")
   ) {
     return (
       <div>

@@ -1,3 +1,9 @@
+/**
+ * File: verification.js
+ * Purpose:
+ * Functionality:
+ * Authors: Roland
+ */
 var nodemailer = require("nodemailer");
 const mysql = require("mysql");
 const CONFIG = require("../config");

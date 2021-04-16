@@ -1,3 +1,9 @@
+/**
+ * File: config.js
+ * Purpose: Replacement for .env or environment file
+ * Functionality IE: Export Credentials | Configurations for different environment hosting
+ * Authors: Aaron
+ */
 const MYSQL_CRED = [
   //AWS EC2 Instance
   {

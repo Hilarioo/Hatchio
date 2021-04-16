@@ -49,11 +49,9 @@ const StudentSearch = () => {
   const [keyword, setKeyword] = useState(""); // Search Bar Keyword storing
 
   // fetch students from DB && initialize the results
-  useEffect(async () => {
-    const Student_Database = await API_FETCH_STUDENTS();
-    setdbStudents(Student_Database);
-    setResults(Student_Database);
-    console.log(dbStudents);
+  useEffect(() => {
+    API_FETCH_STUDENTS(setdbStudents);
+    API_FETCH_STUDENTS(setResults);
   }, []);
 
   //filter dbStudents based on the keyword entered

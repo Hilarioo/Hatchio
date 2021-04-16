@@ -1,9 +1,15 @@
+/**
+ * File: server.js
+ * Purpose: Define HTTP Prototype Route definitions for web server.
+ * Functionality IE: Handle Requests for Frontend to communicate writing and reading from database.
+ * Authors: Aaron
+ */
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const app = express();
 const cookieparser = require("cookie-parser");
-//MiddleWare
+//MiddleWare: client request configuration
 app.use(
   cors({
     credentials: true,
@@ -22,7 +28,7 @@ app.use(cookieparser());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-//Backend UI To View Database Tables
+//Backend UI Views for Database Tables (temporarily for dev)
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname + "/views/index.html"));
 });

@@ -1,3 +1,11 @@
+/**
+ * File: users.js
+ * Purpose: Store GET | POST Methods any time user is directly involved
+ * Functionality IE: Frontend Sign In | Sign Up | User Dashboard
+ * Authors:
+ * Aaron : Sign In | Profile | Professor Rate Students
+ * Roland: Sign Up
+ */
 const mysql = require("mysql");
 const CONFIG = require("../config");
 const db_connection = mysql.createConnection(CONFIG.SQL_PORT);
