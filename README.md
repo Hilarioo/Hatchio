@@ -7,7 +7,12 @@ ii. Issues
 
 ~~- Passing in a useState to another component as a prop w/ update. <- Go to dashboard.js and sign in w/ any of these credentials to see what i mean~~ fixed
 
-#### Friday, April 13, 2021 :: Aaron
+#### Saturday, April 17, 2021 :: Aaron
+
+- POST handling with Job Form Set and Confirmed working
+- Form still needs to be set For Employer/Post-Jobs Route but the query is set on the page w/ proper useState key/values
+
+#### Friday, April 16, 2021 :: Aaron
 
 - Updated ES6 asyn/await API fetch
 - Added code signatures

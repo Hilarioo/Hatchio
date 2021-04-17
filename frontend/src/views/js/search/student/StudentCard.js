@@ -7,6 +7,11 @@ Styling for the following pages:
   3. JobSearch.js
   4. JobCard.js
 */
+/*
+And Author: Aaron
+File: StudentCard.js
+Functionality: Employ,Rate,Profile Button Functions
+*/
 
 // CSS
 import "../../../css/Search.css";
@@ -50,17 +55,8 @@ const StudentCard = ({
   const [leadership, setLeadership] = useState(0);
   const [committedToSuccess, setCommittedToSuccess] = useState(0);
 
-  //Redirec to Post Jobs
-  const Redirect_Insert_Jobs = () => {
-    history.push("/insert-jobs");
-  };
   //Redirect to Profile
   const RedirectProfile = () => {
-    //send to another page
-    //send in the student id
-    //fetch the id with all the information
-    //thats it
-    console.log("Redirecting Profile");
     history.push({
       pathname: "/full-student-profile",
       example: studentID,
@@ -272,7 +268,13 @@ const StudentCard = ({
           </div>
         </header>
         <div className="flex-box">
-          <Button onClick={() => Redirect_Insert_Jobs()}>Employ</Button>
+          <Popup trigger={<button> Employ</button>}>
+            <div>
+              {" "}
+              Sent! Will Notify Students in there Dashbaord/notifications still
+              working on this
+            </div>
+          </Popup>
           <Button onClick={() => RedirectProfile()}>Profile</Button>
           <Popup trigger={<button> Rate</button>}>
             <div> Sign in as a professor!</div>

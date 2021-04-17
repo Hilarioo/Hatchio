@@ -25,7 +25,7 @@ app.use(
   })
 );
 app.use(cookieparser());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //Backend UI Views for Database Tables (temporarily for dev)
@@ -40,5 +40,6 @@ require("./routes/tables")(app);
 require("./routes/cards")(app);
 require("./routes/users")(app);
 require("./routes/verification")(app);
+require("./routes/insert")(app);
 
 app.listen(5000, () => `Backend-Live`);
