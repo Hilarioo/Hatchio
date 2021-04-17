@@ -11,6 +11,7 @@ ii. Issues
 
 - Updated ES6 asyn/await API fetch
 - Added code signatures
+- Added onto Revamped Student Cards w/ PopUp Rate Functionality for Professors & Redirect to View Full Student Profile Page
 - Dashboard.js w/ Jose's revamped Profile Components for Employers | Professors | Students
 - Currently working on P1 Functions & ~~Merging Jose's Push on branch page/StudentPofile~~ done
 - Old logs for History Table for one of the milestone documents

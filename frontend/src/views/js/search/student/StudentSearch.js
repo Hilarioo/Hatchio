@@ -198,14 +198,15 @@ const StudentSearch = () => {
             <StudentCard
               // image={student.profile_image == null ? `""` : student.profile_image}
               image={""}
+              schoolName={student.school}
               studentName={student.first_name + " " + student.last_name}
+              studentEnrollment={student.school_grade_level}
               major={student.study_major}
               rating={student.rating_total}
               gpa={student.school_gpa}
-              schoolName={student.school}
               year={student.start_year}
               about={student.about_me}
-              student_enrollment={student.school_grade_level}
+              studentID={student.student_id}
             />
           ))}
         </div>

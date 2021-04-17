@@ -51,7 +51,6 @@ const DefaultNav = () => {
             <NavLink to="/about">About</NavLink>
             <NavLink to="/help">Help</NavLink>
             <NavLink to="/dashboard">Dashboard</NavLink>
-            <NavLink to="/rate-students">Rate Students</NavLink>
           </Nav>
           <Nav className="nav-right">
             <NavLink to="/" className="auth-btn">

@@ -1,5 +1,6 @@
 import "./views/css/Theme.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 // Components
 import Nav from "./views/js/global/Nav";
 import Home from "./views/js/home/Home";
@@ -10,10 +11,11 @@ import JobSearch from "./views/js/search/jobs/JobSearch";
 import About from "./views/js/about/About";
 import Help from "./views/js/help/Help";
 import StudentProfile from "./views/js/profiles/student/StudentProfile";
-import Ratings from "./views/js/rating/Ratings";
 import StudentForm from "./views/js/forms/FirstTimeUser";
 import Dashboard from "./views/js/user/Dashboard";
 
+//Full Profile View
+import Full_Student_Profile from "./views/js/search/student/StudentProfile";
 // Testing
 import Forms from "./views/js/forms/forms";
 
@@ -72,9 +74,8 @@ const App = () => {
             <Route path="/welcome-student-form">
               <StudentForm />
             </Route>
-            {/* Rating */}
-            <Route path="/rate-students">
-              <Ratings />
+            <Route path="/full-student-profile">
+              <Full_Student_Profile />
             </Route>
             <Route path="/dashboard">
               <Dashboard />
