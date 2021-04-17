@@ -1,3 +1,11 @@
+/**
+ * File: Dashboard.js
+ * Purpose: Serve Unique Dashboard for varying users
+ * Functionality IE: Render dynamically based on logged in User.
+ * Authors:
+ * Aaron implementing Cookies & Condition
+ * Jose: Profile Components for Student | Professor | Employer
+ */
 import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 // CSS
@@ -6,18 +14,21 @@ import "../../css/Help.css";
 import StudentProfile from "../profiles/student/StudentProfile";
 import ProfessorProfile from "../profiles/professor/ProfessorProfile";
 import CompanyProfile from "../profiles/company/CompanyProfile";
-
+//API
 import API_USER_GET_PROFILE from "../../../models/user_profile";
 const Dashboard = () => {
+  //Get Profile from Database
   useEffect(() => {
     API_USER_GET_PROFILE(cookie.Type_User, cookie.ID_OF_USER, setuserProfile);
   }, []);
-  const [cookie] = useCookies(["Type_User", "ID_OF_USER", "First_Name"]); //Cur use
+  //Current User
+  const [cookie] = useCookies(["Type_User", "ID_OF_USER", "First_Name"]);
+  //User Profile Return
   const [userProfile, setuserProfile] = useState([
-    [{ null: "null" }, { null: "null" }],
-    [{ null: "null" }, { null: "null" }],
-    [{ null: "null" }, { null: "null" }],
-    [{ null: "null" }, { null: "null" }],
+    [{ null: "null" }, { null: "null" }], //General Information
+    [{ null: "null" }, { null: "null" }], //Education
+    [{ null: "null" }, { null: "null" }], //Ratings
+    [{ null: "null" }, { null: "null" }], //Job Listings
     [{ null: "null" }, { null: "null" }],
   ]);
 
