@@ -98,36 +98,55 @@ const StudentProfile = (
     ],
   }
 ) => {
-  //Get General Information
-  const [profilePage, setProfilePage] = useState({
-    null: "null",
-  });
-  //Student Projects
-  const [studentProjects, setStudentProjects] = useState([
-    { null: "null" },
-    { null: "null" },
-  ]);
-  //Ratings
-  const [studentRatings, setStudentRatings] = useState([
-    { null: "null" },
-    { null: "null" },
+  //Transferred User Profile State
+  const [userProfile, setUserProfile] = useState([
+    [{ null: "null" }, { null: "null" }],
+    [{ null: "null" }, { null: "null" }],
+    [{ null: "null" }, { null: "null" }],
+    [{ null: "null" }, { null: "null" }],
+    [{ null: "null" }, { null: "null" }],
   ]);
   //Education
-  const [studentEducation, setStudentEducation] = useState([
-    { null: "null" },
-    { null: "null" },
-  ]);
+  const EducationList = userProfile[0].map((data) => (
+    <div>
+      <p>School:{data.school}</p>
+      <p>Degree:{data.degree}</p>
+      <p>GPA:{data.school_gpa}</p>
+      <p>Major:{data.study_major}</p>
+    </div>
+  ));
+  //Profile Page
+  const GeneralInfoList = userProfile[1].map((data) => (
+    <div>
+      <p>About Me: {data.about_me}</p>
+      <p>Strengths and Qualities: {data.strengths_qualities}</p>
+      <p>Location: {data.location}</p>
+      <p>School Grade Level {data.school_grade_level}</p>
+    </div>
+  ));
+  //Projects
+  const ProjectsList = userProfile[2].map((data) => (
+    <div>
+      <p>Project Name: {data.project_name}</p>
+      <p>Summary: {data.summary}</p>
+      <p>Tools Used: {data.arr_tools_used}</p>
+      <p>Proffesor Involved: {data.professor}</p>
+      <p>Links & Websites: {data.links_website}</p>
+    </div>
+  ));
+  //Ratings
+  const RatingsList = userProfile[3].map((data) => (
+    <div>
+      <p>Rated By Professor {data.first_name + data.last_name}</p>
+      <p>Responsble Level {data.recommendation_comment}</p>
+      <p>Leadership Level {data.leadership_level}</p>
+      <p>Recommendation Comment: {data.recommendation_comment}</p>
+      <b>There's more but i got lazy</b>
+    </div>
+  ));
 
   useEffect(() => {
-    console.log(props[0]); // Array of {Student Education}
-    console.log(props[1][0]); // Object { General Information }
-    console.log(props[2]); // Array of { Projects }
-    console.log(props[3]); // Array of { Ratings }
-
-    setProfilePage(props[1][0]); // Object { General Information }
-    setStudentProjects(props[2]); // Array of { Projects }
-    setStudentRatings(props[3]); // Array of { Ratings }
-    setStudentEducation(props[0]); // Array of { Student Education }
+    setUserProfile(props);
   }, [props]);
 
   // Form States
@@ -139,10 +158,21 @@ const StudentProfile = (
 
   return (
     <>
-      <h3>Student Project One{studentProjects[1].project_name}</h3>
-      <h3>Student Project Two{studentProjects[0].project_name}</h3>
-      <h3>Student Ratings{studentRatings[0].responsible_level}</h3>
-      <h3>Student Education{studentEducation[0].school}</h3>
+      {/* User Profile Information */}
+      <div>
+        <h4>Profile Information</h4>
+        {GeneralInfoList}
+        <hr></hr>
+        <h4>Projects</h4>
+        {ProjectsList}
+        <hr></hr>
+        <h4>Education</h4>
+        {EducationList}
+        <hr></hr>
+        <h4>Ratings</h4>
+        {RatingsList}
+      </div>
+
       {/* heading */}
       <div className="student-heading">
         {/* creates default image if none provided */}
@@ -154,13 +184,11 @@ const StudentProfile = (
           <h1>{studentName}</h1>
           <div className="flex-box">
             <img src={LocationIcon} alt="location pins" />
-            <p>{profilePage.location}</p>
+            <p>{location}</p>
           </div>
           <div className="flex-box">
-            {/** .
             <Button>Message</Button>
             <Button id="reflection">Rate</Button>
-             */}
           </div>
         </div>
       </div>
@@ -186,16 +214,15 @@ const StudentProfile = (
             show={aboutPopup}
             onHide={() => setAboutPopup(false)}
             heading="Edit About Me"
-            about={profilePage.about_me}
+            about={about}
           />
         </div>
-        <p>{profilePage.about_me}</p>
+        <p>{about}</p>
       </div>
       {/* qualities */}
       <div className="student-qualities">
         <div className="flex-box">
           <h4>Top Qualities</h4>
-          <p>{profilePage.strengths_qualities}</p>
           {/* Edit Pencil --> Popup */}
           <img
             id="edit-button"
