@@ -13,6 +13,7 @@ import Help from "./views/js/help/Help";
 import StudentProfile from "./views/js/profiles/student/StudentProfile";
 import StudentForm from "./views/js/forms/FirstTimeUser";
 import Dashboard from "./views/js/user/Dashboard";
+import PostJobs from "./views/js/profiles/company/PostJobs";
 
 //Full Profile View
 import Full_Student_Profile from "./views/js/search/student/StudentProfile";
@@ -76,6 +77,9 @@ const App = () => {
             </Route>
             <Route path="/full-student-profile">
               <Full_Student_Profile />
+            </Route>
+            <Route path="/insert-jobs">
+              <PostJobs />
             </Route>
             <Route path="/dashboard">
               <Dashboard />

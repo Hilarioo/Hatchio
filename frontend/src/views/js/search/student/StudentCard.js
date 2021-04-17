@@ -49,6 +49,11 @@ const StudentCard = ({
   const [teamwork, setTeamWork] = useState(0);
   const [leadership, setLeadership] = useState(0);
   const [committedToSuccess, setCommittedToSuccess] = useState(0);
+
+  //Redirec to Post Jobs
+  const Redirect_Insert_Jobs = () => {
+    history.push("/insert-jobs");
+  };
   //Redirect to Profile
   const RedirectProfile = () => {
     //send to another page
@@ -267,9 +272,7 @@ const StudentCard = ({
           </div>
         </header>
         <div className="flex-box">
-          <Popup trigger={<button>Employ</button>}>
-            <div>Okay nice, i'm still working on this page</div>
-          </Popup>
+          <Button onClick={() => Redirect_Insert_Jobs()}>Employ</Button>
           <Button onClick={() => RedirectProfile()}>Profile</Button>
           <Popup trigger={<button> Rate</button>}>
             <div> Sign in as a professor!</div>

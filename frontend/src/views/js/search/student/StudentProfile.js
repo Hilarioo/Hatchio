@@ -67,7 +67,6 @@ const StudentProfile = (props) => {
         Go Back to Student Search
       </button>
       <hr></hr>
-
       <h4>Profile Information</h4>
       {GeneralInfoList}
       <hr></hr>

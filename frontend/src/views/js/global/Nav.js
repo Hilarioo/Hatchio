@@ -122,7 +122,7 @@ const DefaultNav = () => {
             </NavDropdown>
             <NavLink to="/about">About</NavLink>
             <NavLink to="/help">Help</NavLink>
-            <NavLink to="/">Post Jobs</NavLink>
+            <NavLink to="/insert-jobs">Post Jobs</NavLink>
             <NavLink to="/dashboard">Dashboard</NavLink>
           </Nav>
           <Nav className="nav-right">
@@ -159,8 +159,6 @@ const DefaultNav = () => {
           </NavDropdown>
           <NavLink to="/about">About</NavLink>
           <NavLink to="/help">Help</NavLink>
-          {/** <NavLink to="/student-profile">Profile</NavLink> */}
-          {/** <NavLink to="/forms">Forms</NavLink> */}
           <NavLink to="/dashboard">Dashboard</NavLink>
         </Nav>
         <Nav className="nav-right">

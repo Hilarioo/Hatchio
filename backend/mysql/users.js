@@ -18,7 +18,31 @@ select student_id,p.first_name,p.last_name,p.school_name,sr.responsible_level,sr
     return `select * from ${table}s where ${table}_id= ${id};`;
   }
   if (table == "employer") {
-    return `select * from employers e right join company_listings cl on e.employer_id=cl.employer_id where e.employer_id =${id};`;
+    //Return Employer Information
+    //Then return Employer Employed Jobs
+    return `
+select
+    first_name, last_name, organization_name, email
+from
+    employers e
+where
+    e.employer_id = ${id};
+
+select
+    position_title,
+    location,
+    job_type,
+    experience_years,
+    salary,
+    about_us,
+    the_opportunity,
+    task_responsibilities,
+    skillset,
+    benefits
+from
+    company_listings cl
+where
+    cl.employer_id = ${id};`;
   }
 };
 
