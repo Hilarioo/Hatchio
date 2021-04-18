@@ -29,14 +29,12 @@ import ListPopup from "../../forms/List";
 import ProjectPopup from "../../forms/Project";
 import EducationPopup from "../../forms/Education";
 import ExperiencePopup from "../../forms/Experience";
-//import Form from "react-bootstrap/Form";
+import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 // Default Image
 import { defaultImage } from "../../global/DefaultImage";
 //Form Pop Up
 import Popup from "reactjs-popup";
-//Form
-import { Formik, Field, Form } from "formik";
 //API
 import API_USER_GET_PROFILE from "../../../../models/user_profile";
 import API_PROFESSOR_RATE_STUDENT from "../../../../models/professor_rate";
