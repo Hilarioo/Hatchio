@@ -187,16 +187,16 @@ insert into student_projects(student_id,project_name,summary,arr_tools_used,prof
 (10,"FooCry","CRUD application for CSC648","1.JavaScript2.Mysql","Henry Villar","http.hatchio.com","1.Jacob2.Bobby");
 
 insert into student_education(student_id, school, degree, school_gpa, study_major, start_year, end_year) values
-(1,"San francisco State University","Bachelors",4.0,"English",2018,2022),
-(3,"east bay University","Doctoral",3.5,"Biology",2017,2021),
-(2,"harvard university","Masters",3.0,"Bio Medical",2012,2016),
-(4,"east bay University","Accounting",3.7,"Accounting",2017,2021),
-(5,"east bay University","Doctoral",3.5,"Biology",2017,2021),
-(6,"harvard university","Masters",3.0,"Bio Medical",2012,2016),
-(7,"east bay University","Accounting",3.7,"Accounting",2017,2021),
-(8,"east bay University","Doctoral",3.5,"Biology",2017,2021),
-(9,"harvard university","Masters",3.0,"Bio Medical",2012,2016),
-(10,"east bay university","Accounting",3.7,"Accounting",2017,2021);
+(1,"San Francisco State University","Bachelors",4.0,"English",2018,2022),
+(3,"East Bay University","Doctoral",3.5,"Computer Science",2017,2021),
+(2,"Harvard University","Masters",3.0,"Art",2012,2016),
+(4,"East bay University","Accounting",3.7,"Botany",2017,2021),
+(5,"East bay University","Doctoral",3.5,"Biology",2017,2021),
+(6,"Harvard University","Masters",3.0,"Cinema",2012,2016),
+(7,"East bay University","Accounting",3.7,"Ecology",2017,2021),
+(8,"East bay University","Doctoral",3.5,"Japanese",2017,2021),
+(9,"Harvard University","Masters",3.0,"Social Work",2012,2016),
+(10,"East Bay University","Accounting",3.7,"Accounting",2017,2021);
 
 insert into student_profile_page(student_id,about_me,strengths_qualities,location,school_grade_level) values
 (1,"I've always loved the Victorian period in English literature. Even as a kid, Dickens captured my imagination more thoroughly than the Harry Potter stories or anything else. As an undergraduate at Northwestern University, I studied English with a concentration on Victorian fiction. Now, I hope to continue exploring this fundamentally important literary period as a graduate student.","1.honest2.courages3.strong4.brave","New York","Freshman"),

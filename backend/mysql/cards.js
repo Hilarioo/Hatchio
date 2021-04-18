@@ -1,4 +1,5 @@
-const API_STUDENT_CARD = `SELECT
+const API_STUDENT_CARD = `
+SELECT Distinct
     students.student_id,
     students.first_name,
     students.last_name,
@@ -9,13 +10,18 @@ const API_STUDENT_CARD = `SELECT
     student_profile_page.about_me,
     student_profile_page.profile_image,
     student_profile_page.school_grade_level,
-    strengths_qualities
+    strengths_qualities,
+    student_ratings.rating_total
 FROM
     students
         JOIN
     student_profile_page ON students.student_id = student_profile_page.student_id
         JOIN
-    student_education ON students.student_id = student_education.student_id;`;
+    student_education ON students.student_id = student_education.student_id
+     left join
+    student_ratings ON students.student_id = student_ratings.student_id;
+    ;
+`;
 // STILL_WORKING_ON
 
 const API_JOB_CARD =

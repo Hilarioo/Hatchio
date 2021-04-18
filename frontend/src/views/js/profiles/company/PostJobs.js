@@ -2,57 +2,95 @@
  * File: PostJobs.js
  * Purpose: Employers to Insert Job
  * Functionality IE: Send POST request to Backend Server
- * Authors: Aaron Set API and Response Check | Jose Form Handling & Format
+ * Authors: Aaron Set API and Response Check
  */
 
 import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
+import { Formik, Field, Form } from "formik";
 //API
 import API_EMPLOYER_INSERT_JOB from "../../../../models/insert_job";
 const PostJobs = () => {
   //Init user
   const [cookie] = useCookies(["Type_User", "ID_OF_USER", "First_Name"]); //Cur use
-
-  //Change Objects Value W/ Form
-  const [jobListing, setJobListing] = useState({
-    Employer_ID: cookie.ID_OF_USER,
-    organization_name: "Organization_Name",
-    position_title: "User Experience Designer",
-    location: "location",
-    job_type: "full time",
-    experience_years: 2,
-    experience_levels: "Senior Level",
-    salary: 500000,
-    about_us: "Scale up the product with developers then reap profits",
-    the_opportunity: "Paycheck",
-    task_responsibilites: "Work along w/ Developers",
-    skillset: "Good Stamina",
-    benefits: "401k",
-    landing_image: null,
-  });
-  //Form Submit
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const response = await API_EMPLOYER_INSERT_JOB(jobListing);
-    console.log(response);
-    if (response == 400) {
-      console.log("error");
-    }
-    if (response == 200) {
-      console.log("success");
-    }
-    return;
-  };
   if (cookie.Type_User === "employer") {
     return (
       <div>
+        <h3>
+          Page will refresh and populate under job listings if query was success
+        </h3>
+        <h3>
+          Otherwise if there was an error no refresh will happen, check logs
+          with error res
+        </h3>
         <p>Employer Insert Jobs</p>
-        <p>
-          Form Post @JOSE can you set up the form so it changes the object{}{" "}
-          inside of useState, look at the file PostJobs.js and you'll know what.
-          The query is ready to go in this file to use, i just need help w/ the
-          form i mean
-        </p>
+
+        <Formik
+          initialValues={{
+            Employer_ID: cookie.ID_OF_USER,
+            organization_name: "Organization Name",
+            position_title: "User Experience Designer | Backend Developer Etc",
+            location: "California | New York | Etc",
+            job_type: "Full Time | Part Time | Remote | Contract",
+            experience_years: 2,
+            experience_levels: "Senior Level | Junior | First Time ",
+            salary: 0,
+            about_us: "About Us Description",
+            the_opportunity: "Paycheck",
+            task_responsibilites: "Work along w/ Developers",
+            skillset: "Good Stamina",
+            benefits: "401k Plan",
+            landing_image: null,
+          }}
+          onSubmit={async (values) => {
+            const response = await API_EMPLOYER_INSERT_JOB(values);
+            console.log(response);
+            if (response == 400) {
+              console.log("error");
+            }
+            if (response == 200) {
+              window.location.reload();
+              console.log("success");
+            }
+            return;
+          }}
+        >
+          <Form>
+            <label>Organization Name</label>
+            <Field
+              id="organization_name"
+              name="organization_name"
+              placeholder="Organization Name"
+            />
+            <label>Position Title</label>
+            <Field
+              id="position_title"
+              name="position_title"
+              placeholder="Position Title"
+            />
+            <label>Location</label>
+            <Field id="location" name="location" />
+            <label>Job Type</label>
+            <Field id="job_type" name="job_type" />
+            <label>Experience Years</label>
+            <Field id="experience_years" name="experience_years" />
+            <label>Experience Levels</label>
+            <Field id="experience_levels" name="experience_levels" />
+            <label>Salary </label>
+            <Field id="salary" name="salary" />
+            <label>About Us </label>
+            <Field id="about_us" name="about_us" />
+            <label>The Opportunity </label>
+            <Field id="the_opportunity" name="the_opportunity" />
+            <label>Task Responsibilities </label>
+            <Field id="task_responsibilites" name="task_responsibilites" />
+            <label>Skillset </label>
+            <Field id="skillset" name="skillset" />
+            <label>Benefits </label>
+            <Field id="benefits" name="benefits" />
+            <button type="submit">Submit</button>
+          </Form>
+        </Formik>
       </div>
     );
   }

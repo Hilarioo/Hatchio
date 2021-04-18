@@ -52,6 +52,7 @@ const StudentSearch = () => {
   useEffect(() => {
     API_FETCH_STUDENTS(setdbStudents);
     API_FETCH_STUDENTS(setResults);
+    console.log(dbStudents);
   }, []);
 
   //filter dbStudents based on the keyword entered
