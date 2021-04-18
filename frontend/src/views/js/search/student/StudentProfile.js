@@ -62,7 +62,9 @@ const StudentProfile = (props) => {
 
   return (
     <>
+      <h1>DO NOT REFRESH THIS PAGE USE THE BUTTON TO GO BACK OR NAV LINKS</h1>
       <h2>Sudent Profile</h2>
+
       <button onClick={() => RedirectStudentSearch()}>
         Go Back to Student Search
       </button>

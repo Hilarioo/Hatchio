@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 // CSS
 import "../../../css/Theme.css";
-import "../../../css/Search.css";
+import "../../../css/Jobs.css";
 // React Boostrap
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -26,60 +26,62 @@ const JobSearch = () => {
 
   return (
     <>
-      <div className='grid-container'>
-        <div className='header'>
+      <div className="grid-container">
+        <div className="header">
           <h3>Browse Jobs</h3>
         </div>
-        <div className='filter'>
+        <div className="filter">
           <h3>Filter(s)</h3>
           <Form onSubmit={handleSubmit}>
-            <InputGroup className='mb-3'>
+            <InputGroup className="mb-3">
               <InputGroup.Prepend>
-                <InputGroup.Text id='basic-addon1'>Job Type </InputGroup.Text>
+                <InputGroup.Text id="basic-addon1">Job Type </InputGroup.Text>
               </InputGroup.Prepend>
 
               <Form.Control
-                name='student_year'
-                as='select'
-                className='mr-sm-2'
-                id='inlineFormCustomSelect'
-                custom>
-                <option value='Select'>Select</option>
-                <option value='Full Time'>Full Time</option>
-                <option value='PartTime'>Part Time</option>
-                <option value='Internship'>Internship</option>
-                <option value='Contract'>Contract</option>
-                <option value='Remote'>Remote</option>
+                name="student_year"
+                as="select"
+                className="mr-sm-2"
+                id="inlineFormCustomSelect"
+                custom
+              >
+                <option value="Select">Select</option>
+                <option value="Full Time">Full Time</option>
+                <option value="PartTime">Part Time</option>
+                <option value="Internship">Internship</option>
+                <option value="Contract">Contract</option>
+                <option value="Remote">Remote</option>
               </Form.Control>
               <InputGroup.Prepend>
-                <InputGroup.Text id='basic-addon1'>
+                <InputGroup.Text id="basic-addon1">
                   Position Type{" "}
                 </InputGroup.Text>
               </InputGroup.Prepend>
 
               <Form.Control
-                name='student_year'
-                as='select'
-                className='mr-sm-2'
-                id='inlineFormCustomSelect'
-                custom>
-                <option value='Select'>Select</option>
-                <option value='User Experience Designer'>
+                name="student_year"
+                as="select"
+                className="mr-sm-2"
+                id="inlineFormCustomSelect"
+                custom
+              >
+                <option value="Select">Select</option>
+                <option value="User Experience Designer">
                   User Experience Designer
                 </option>
-                <option value='Backend Developer'>Backend Developer</option>
-                <option value='Frontend Developer'>Frontend Developer</option>
-                <option value='Full Stack Developer'>
+                <option value="Backend Developer">Backend Developer</option>
+                <option value="Frontend Developer">Frontend Developer</option>
+                <option value="Full Stack Developer">
                   Full Stack Developer
                 </option>
               </Form.Control>
             </InputGroup>
-            <Button variant='dark' type='submit'>
+            <Button variant="dark" type="submit">
               Filter
             </Button>
           </Form>
         </div>
-        <div className='results'>
+        <div className="results">
           <h4>results</h4>
           <JobCard />
           {dbJobListings.map((jobs) => (
