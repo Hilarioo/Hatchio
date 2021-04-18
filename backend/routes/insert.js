@@ -22,4 +22,19 @@ module.exports = (app) => {
       }
     });
   });
+  //POST: Student Profile Page
+  app.post("/insert_student_profile_page", (req, res) => {
+    let sql_insert_student_profile_page = `
+    insert into student_profile_page(student_id,about_me,strengths_qualities,location,school_grade_level) values (${req.body.Student_ID},"${req.body.about_me}","${req.body.strengths_qualities}","${req.body.location}","${req.body.school_grade_level}");
+    `;
+    db_connection.query(sql_insert_student_profile_page, (err, result) => {
+      if (err) {
+        //Send 400: Bad Request
+        return res.sendStatus(400);
+      } else {
+        //Send 201: Request Created
+        return res.sendStatus(200);
+      }
+    });
+  });
 };

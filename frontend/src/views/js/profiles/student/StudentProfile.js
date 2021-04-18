@@ -3,6 +3,7 @@ import { useCookies } from "react-cookie";
 // CSS
 import "../../../css/Profiles.css";
 import "../../../css/Theme.css";
+import styled from "styled-components";
 // React Boostrap
 import Button from "react-bootstrap/Button";
 import ProgressBar from "react-bootstrap/ProgressBar";
@@ -18,14 +19,90 @@ import ProjectIcon from "../../../content/svg/project-icon.svg";
 import ExperienceIcon from "../../../content/svg/experience-icon.svg";
 import EducationIcon from "../../../content/svg/education-icon.svg";
 // Form Components
+import Popup from "reactjs-popup";
+import { Formik, Field, Form } from "formik";
 import AboutPopup from "../../forms/Description";
 import ListPopup from "../../forms/List";
 import ProjectPopup from "../../forms/Project";
 import EducationPopup from "../../forms/Education";
 import ExperiencePopup from "../../forms/Experience";
+//Import API
+import API_STUDENT_INSERT_PROFILE from "../../../../models/insert_student_profile";
 // Default Image
 import { defaultImage } from "../../global/DefaultImage";
-import { Formik, Field, Form } from "formik";
+
+//Form
+const StyledPopup = styled(Popup)`
+  &-content[role="tooltip"] {
+    font-size: 15px;
+    height: 100%;
+    width: 100%;
+    background-color: pink;
+    text-color: white;
+    text-align: center;
+  }
+`;
+
+//POP UP Student Profile Page
+const POPUP = (Student_ID) => {
+  return (
+    <div>
+      <h3>Pop Up Form for Profile Page</h3>
+      <StyledPopup trigger={<button> Profile Page Insert</button>}>
+        <Formik
+          initialValues={{
+            Student_ID: Student_ID,
+            about_me: "about me",
+            strengths_qualities: "honest,strong",
+            location: "Location",
+            school_grade_level: "Freshman,etc",
+            //TODO: RESUME
+            //TODO: PROFILE IMAGE
+          }}
+          onSubmit={async (values) => {
+            console.log(values);
+            const response = await API_STUDENT_INSERT_PROFILE(values);
+            console.log(response);
+            if (response == 400) {
+              console.log("error");
+            }
+            if (response == 200) {
+              window.location.reload();
+              console.log("success");
+            }
+            return;
+          }}
+        >
+          <Form>
+            <br></br>
+            <label>___________________________________________About Me</label>
+            <Field id="about_me" name="about_me" />
+            <hr></hr>
+
+            <br></br>
+            <label>
+              ________________________________________Strenth Qualities
+            </label>
+            <Field id="strengths_qualities" name="strengths_qualities" />
+
+            <hr></hr>
+            <label>_____________________________________Location</label>
+            <Field id="location" name="location" />
+
+            <hr></hr>
+            <label>
+              ________________________________________School Grade Level
+            </label>
+            <Field id="school_grade_level" name="school_grade_level" />
+
+            <button type="submit">Submit</button>
+          </Form>
+        </Formik>
+      </StyledPopup>
+    </div>
+  );
+};
+
 const StudentProfile = (props) => {
   const [cookie] = useCookies(["Type_User", "ID_OF_USER", "First_Name"]);
 
@@ -53,43 +130,7 @@ const StudentProfile = (props) => {
   return (
     <>
       {/** EMPTY PROFILE PAGE */}
-      {userProfile[1].length == 0 ? (
-        <div>
-          <h3>No Student Profile Page</h3>
-          <Formik
-            initialValues={{
-              Student_ID: cookie.ID_OF_USER,
-              about_me: "about me",
-              strengths_qualities: "honest,strong",
-              location: "Location",
-              school_grade_level: "Freshman,etc",
-              //TODO: RESUME
-              //TODO: PROFILE IMAGE
-            }}
-            onSubmit={async (values) => {
-              console.log(values);
-            }}
-          >
-            <Form>
-              <label>About Me</label>
-              <Field id="about_me" name="about_me" />
-
-              <label>Strenth Qualities</label>
-              <Field id="strengths_qualities" name="strengths_qualities" />
-
-              <label>Location</label>
-              <Field id="school_grade_level" name="school_grade_level" />
-
-              <label>School Grade Level</label>
-              <Field id="school_grade_level" name="school_grade_level" />
-
-              <button type="submit">Submit</button>
-            </Form>
-          </Formik>
-        </div>
-      ) : (
-        true
-      )}
+      {userProfile[1].length == 0 ? POPUP(cookie.ID_OF_USER) : true}
       {/** EMPTY PROJECTS */}
       {userProfile[2].length == 0 ? (
         <div>
