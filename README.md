@@ -13,6 +13,7 @@ ii. Issues
 
 - POST handling with Job Form Submission Complete // but pretty poor css but works
 - Fixed Student Ratings Query for Student Cards
+- Cleaner Database Populate
 
 #### Friday, April 16, 2021 :: Aaron
 
