@@ -29,6 +29,7 @@ create table admins (
 );
 create table professors (
     professor_id int auto_increment primary key,
+    new_user int default 0,
     first_name varchar(255) not null,
     last_name varchar(255) not null,
     school_name varchar(255),
@@ -39,6 +40,7 @@ create table professors (
 );
 create table employers (
     employer_id int auto_increment primary key,
+    new_user int default 0,
     first_name varchar(255),
     last_name varchar(255),
     organization_name varchar(255) not null,
@@ -49,6 +51,7 @@ create table employers (
 );
 create table students (
     student_id int auto_increment primary key,
+    new_user int default 0,
     first_name varchar(255) not null,
     last_name varchar(255) not null,
     school_name varchar(255),
@@ -174,17 +177,17 @@ insert into student_ratings(student_id,professor_id,responsible_level,team_work_
 (10,2,5,1,5,5,"jacky’s wide-ranging intellect is such that he would be bored by most freshman- and sophomore-level Liberal Arts courses. He is ready to assume and excel in upper division classwork, and possesses the self-motivation to successfully create and execute an independent course of honors study.",2);
 
 insert into student_projects(student_id,project_name,summary,arr_tools_used,professor,links_website,arr_collaborators_arr) values
-(1,"Node hatchio","CRUD application for CSC648","1.JavaScript2.Mysql","Henry Villar","http.hatchio.com","1.Jacob2.Bobby"),
-(2,"BigFish","CRUD application for CSC648","1.JavaScript2.Mysql","Henry Villar","http.hatchio.com","1.Jacob2.Bobby"),
-(3,"TriFish","CRUD application for CSC648","1.JavaScript2.Mysql","Henry Villar","http.hatchio.com","1.Jacob2.Bobby"),
-(4,"SeaFish","CRUD application for CSC648","1.JavaScript2.Mysql","Henry Villar","http.hatchio.com","1.Jacob2.Bobby"),
-(5,"BigFish","CRUD application for CSC648","1.JavaScript2.Mysql","Henry Villar","http.hatchio.com","1.Jacob2.Bobby"),
-(6,"TriFish","CRUD application for CSC648","1.JavaScript2.Mysql","Henry Villar","http.hatchio.com","1.Jacob2.Bobby"),
-(7,"FarCry","CRUD application for CSC648","1.JavaScript2.Mysql","Henry Villar","http.hatchio.com","1.Jacob2.Bobby"),
-(8,"SuperCry","CRUD application for CSC648","1.JavaScript2.Mysql","Henry Villar","http.hatchio.com","1.Jacob2.Bobby"),
-(9,"LooCry","CRUD application for CSC648","1.JavaScript2.Mysql","Henry Villar","http.hatchio.com","1.Jacob2.Bobby"),
-(10,"FooCry","CRUD application for CSC648","1.JavaScript2.Mysql","Henry Villar","http.hatchio.com","1.Jacob2.Bobby"),
-(10,"FooCry","CRUD application for CSC648","1.JavaScript2.Mysql","Henry Villar","http.hatchio.com","1.Jacob2.Bobby");
+(1,"Node hatchio","CRUD application for CSC648","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby,Smith"),
+(2,"BigFish","CRUD application for CSC648","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby"),
+(3,"TriFish","CRUD application for CSC648","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby"),
+(4,"SeaFish","CRUD application for CSC648","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby"),
+(5,"BigFish","CRUD application for CSC648","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby"),
+(6,"TriFish","CRUD application for CSC648","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby"),
+(7,"FarCry","CRUD application for CSC648","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby"),
+(8,"SuperCry","CRUD application for CSC648","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby"),
+(9,"LooCry","CRUD application for CSC648","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby"),
+(10,"FooCry","CRUD application for CSC648","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby"),
+(10,"FooCry","CRUD application for CSC648","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby");
 
 insert into student_education(student_id, school, degree, school_gpa, study_major, start_year, end_year) values
 (1,"San Francisco State University","Bachelors",4.0,"English",2018,2022),
@@ -199,16 +202,16 @@ insert into student_education(student_id, school, degree, school_gpa, study_majo
 (10,"East Bay University","Accounting",3.7,"Accounting",2017,2021);
 
 insert into student_profile_page(student_id,about_me,strengths_qualities,location,school_grade_level) values
-(1,"I've always loved the Victorian period in English literature. Even as a kid, Dickens captured my imagination more thoroughly than the Harry Potter stories or anything else. As an undergraduate at Northwestern University, I studied English with a concentration on Victorian fiction. Now, I hope to continue exploring this fundamentally important literary period as a graduate student.","1.honest2.courages3.strong4.brave","New York","Freshman"),
-(2,"I'm a senior at Michigan Technological University, majoring in biomedical engineering. Ever since I was a kid, I've wanted to work in the field of prosthetics. I saw first-hand how a prosthetic limb helped give my best friend a normal teenage life, and I've always wanted to be a part of that process. I'm drawn to prosthetic design and research, which is why I'm so excited to learn more about the internship your company is offering","1.cold2.happy3.adaptive4.String collaborator ","California","Sophomore"),
-(3,"I graduated this spring from Montana State University. It took me basically forever to decide what I wanted to major in, but I finally settled on biology. It's better than the other sciences, I guess, and I'm pretty decent at it. I've taken all kinds of biology classes, but I like marine biology best. It's just fun. That's why I want to go to grad school for marine biology.","1.Good Teamworker 2.Leadership 3.Organization","Ohio","Junior"),
-(4,"I graduated in May from the University of Pennsylvania with a degree in accounting, but my passion for numbers goes back much further than that. Even as a kid, I loved tax season. My parents used to think it was funny, and it definitely didn't endear me to other fifth graders. When I was 11, my mom let me do her taxes, and I just can't describe the satisfaction I felt when I saved her money. Wisely, she had an accountant check my work, and she came back shocked that I hadn't made any mistakes. She used the money from her refund to buy me books on accounting. For as long as I can remember, I've dreamt of working at H&R Block, and this internship opportunity is that dream come true.","1.Capable2.Insightful","California","Senior"),
-(5,"I've always loved the Victorian period in English literature. Even as a kid, Dickens captured my imagination more thoroughly than the Harry Potter stories or anything else. As an undergraduate at Northwestern University, I studied English with a concentration on Victorian fiction. Now, I hope to continue exploring this fundamentally important literary period as a graduate student.","1.honest2.courages3.strong4.brave","New York","Masters"),
-(6,"I'm a senior at Michigan Technological University, majoring in biomedical engineering. Ever since I was a kid, I've wanted to work in the field of prosthetics. I saw first-hand how a prosthetic limb helped give my best friend a normal teenage life, and I've always wanted to be a part of that process. I'm drawn to prosthetic design and research, which is why I'm so excited to learn more about the internship your company is offering","1.cold2.happy3.adaptive4.String collaborator ","California","Doctorate"),
-(7,"I graduated this spring from Montana State University. It took me basically forever to decide what I wanted to major in, but I finally settled on biology. It's better than the other sciences, I guess, and I'm pretty decent at it. I've taken all kinds of biology classes, but I like marine biology best. It's just fun. That's why I want to go to grad school for marine biology.","1.Good Teamworker 2.Leadership 3.Organization","Ohio","Alumni"),
-(8,"I graduated in May from the University of Pennsylvania with a degree in accounting, but my passion for numbers goes back much further than that. Even as a kid, I loved tax season. My parents used to think it was funny, and it definitely didn't endear me to other fifth graders. When I was 11, my mom let me do her taxes, and I just can't describe the satisfaction I felt when I saved her money. Wisely, she had an accountant check my work, and she came back shocked that I hadn't made any mistakes. She used the money from her refund to buy me books on accounting. For as long as I can remember, I've dreamt of working at H&R Block, and this internship opportunity is that dream come true.","1.Capable2.Insightful","California","Freshman"),
-(9,"I graduated this spring from Montana State University. It took me basically forever to decide what I wanted to major in, but I finally settled on biology. It's better than the other sciences, I guess, and I'm pretty decent at it. I've taken all kinds of biology classes, but I like marine biology best. It's just fun. That's why I want to go to grad school for marine biology.","1.Good Teamworker 2.Leadership 3.Organization","Ohio","Junior"),
-(10,"I graduated in May from the University of Pennsylvania with a degree in accounting, but my passion for numbers goes back much further than that. Even as a kid, I loved tax season. My parents used to think it was funny, and it definitely didn't endear me to other fifth graders. When I was 11, my mom let me do her taxes, and I just can't describe the satisfaction I felt when I saved her money. Wisely, she had an accountant check my work, and she came back shocked that I hadn't made any mistakes. She used the money from her refund to buy me books on accounting. For as long as I can remember, I've dreamt of working at H&R Block, and this internship opportunity is that dream come true.","1.Capable2.Insightful","California","Doctorate");
+(1,"I've always loved the Victorian period in English literature. Even as a kid, Dickens captured my imagination more thoroughly than the Harry Potter stories or anything else. As an undergraduate at Northwestern University, I studied English with a concentration on Victorian fiction. Now, I hope to continue exploring this fundamentally important literary period as a graduate student.","honest,courages,strong,brave","New York","Freshman"),
+(2,"I'm a senior at Michigan Technological University, majoring in biomedical engineering. Ever since I was a kid, I've wanted to work in the field of prosthetics. I saw first-hand how a prosthetic limb helped give my best friend a normal teenage life, and I've always wanted to be a part of that process. I'm drawn to prosthetic design and research, which is why I'm so excited to learn more about the internship your company is offering","cold,happy,adaptive,collaborator ","California","Sophomore"),
+(3,"I graduated this spring from Montana State University. It took me basically forever to decide what I wanted to major in, but I finally settled on biology. It's better than the other sciences, I guess, and I'm pretty decent at it. I've taken all kinds of biology classes, but I like marine biology best. It's just fun. That's why I want to go to grad school for marine biology.","Good Teamworker,Leadership,Organization","Ohio","Junior"),
+(4,"I graduated in May from the University of Pennsylvania with a degree in accounting, but my passion for numbers goes back much further than that. Even as a kid, I loved tax season. My parents used to think it was funny, and it definitely didn't endear me to other fifth graders. When I was 11, my mom let me do her taxes, and I just can't describe the satisfaction I felt when I saved her money. Wisely, she had an accountant check my work, and she came back shocked that I hadn't made any mistakes. She used the money from her refund to buy me books on accounting. For as long as I can remember, I've dreamt of working at H&R Block, and this internship opportunity is that dream come true.","Capable,Insightful","Pleasant Hill, CA","Senior"),
+(5,"I've always loved the Victorian period in English literature. Even as a kid, Dickens captured my imagination more thoroughly than the Harry Potter stories or anything else. As an undergraduate at Northwestern University, I studied English with a concentration on Victorian fiction. Now, I hope to continue exploring this fundamentally important literary period as a graduate student.","honest,courages,strong,brave","New York","Masters"),
+(6,"I'm a senior at Michigan Technological University, majoring in biomedical engineering. Ever since I was a kid, I've wanted to work in the field of prosthetics. I saw first-hand how a prosthetic limb helped give my best friend a normal teenage life, and I've always wanted to be a part of that process. I'm drawn to prosthetic design and research, which is why I'm so excited to learn more about the internship your company is offering","cold,happy,adaptive,collaborator ","California","Doctorate"),
+(7,"I graduated this spring from Montana State University. It took me basically forever to decide what I wanted to major in, but I finally settled on biology. It's better than the other sciences, I guess, and I'm pretty decent at it. I've taken all kinds of biology classes, but I like marine biology best. It's just fun. That's why I want to go to grad school for marine biology.","Good Teamworker,Leadership,Organization","Ohio","Alumni"),
+(8,"I graduated in May from the University of Pennsylvania with a degree in accounting, but my passion for numbers goes back much further than that. Even as a kid, I loved tax season. My parents used to think it was funny, and it definitely didn't endear me to other fifth graders. When I was 11, my mom let me do her taxes, and I just can't describe the satisfaction I felt when I saved her money. Wisely, she had an accountant check my work, and she came back shocked that I hadn't made any mistakes. She used the money from her refund to buy me books on accounting. For as long as I can remember, I've dreamt of working at H&R Block, and this internship opportunity is that dream come true.","Capable,Insightful","San Diego, CA","Freshman"),
+(9,"I graduated this spring from Montana State University. It took me basically forever to decide what I wanted to major in, but I finally settled on biology. It's better than the other sciences, I guess, and I'm pretty decent at it. I've taken all kinds of biology classes, but I like marine biology best. It's just fun. That's why I want to go to grad school for marine biology.","Good Teamworker,Leadership,Organization","Ohio","Junior"),
+(10,"I graduated in May from the University of Pennsylvania with a degree in accounting, but my passion for numbers goes back much further than that. Even as a kid, I loved tax season. My parents used to think it was funny, and it definitely didn't endear me to other fifth graders. When I was 11, my mom let me do her taxes, and I just can't describe the satisfaction I felt when I saved her money. Wisely, she had an accountant check my work, and she came back shocked that I hadn't made any mistakes. She used the money from her refund to buy me books on accounting. For as long as I can remember, I've dreamt of working at H&R Block, and this internship opportunity is that dream come true.","Capable,Insightful","San Francisco, CA","Doctorate");
 
 insert into company_listings(employer_id,organization_name,position_title,location,job_type,experience_years,experience_level,salary,about_us,the_opportunity,skillset,benefits) values
 (1,"Google","User Experience Designer","Pleasant Hill, Ca","Full Time","minimum 5 Years","Senior Level",105000,"Our mission is to organize the world’s information and make it universally accessible and useful.","Work with the top class engineers and mentors that will help you grow with the company and as an individual","1.Enthusiasm2.Willing to work hard3.Passionate","1.401k2.Good Salary3.great Experience"),

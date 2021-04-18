@@ -4,6 +4,22 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
 const FirstTimeUser = () => {
+  // about, and strengths
+  const [about, setAbout] = useState("");
+  const [strength, setStrength] = useState(["test", "l"]);
+  const [strengths, setStrengths] = useState({
+    one: "",
+    two: "",
+    three: "",
+    four: "",
+    five: "",
+    six: "",
+    seven: "",
+    eight: "",
+    nine: "",
+    ten: "",
+  });
+
   // saves school name, degree, gpa, start year, end year
   const [education, setEducation] = useState({
     schoolName: "",
@@ -26,10 +42,29 @@ const FirstTimeUser = () => {
   // saves website, linkedin, and github URL links
   const [links, setLinks] = useState({ website: "", linkedin: "", github: "" });
 
+  // saves role, employement type, tools used, company, location, start year, and end year
+  const [project, setProject] = useState({
+    position: "",
+    employementType: "fulltime",
+    description: "",
+    company: "",
+    location: "",
+    startYear: "",
+    endYear: "",
+  });
+
   // Submits the Student Education to the DB
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(education);
+    let str;
+    // reformats the strengths for DB
+    for (const strength in strengths)
+      if (strengths[strength] !== "") str += strengths[strength] + ".";
+    str.replace("undefined", ".");
+    console.log("about: " + about);
+    console.log("string: " + str);
+    console.log("experience: " + experience);
+    console.log("education:" + education);
   };
   return (
     <div style={{ maxWidth: 600 }}>
@@ -40,7 +75,11 @@ const FirstTimeUser = () => {
       <Form>
         <Form.Label>About</Form.Label>
         <Form.Group>
-          <Form.Control type='text' as='textarea' />
+          <Form.Control
+            type='text'
+            as='textarea'
+            onChange={(e) => setAbout(e.target.value)}
+          />
         </Form.Group>
 
         {/* Top stengths / Qualtiies */}
@@ -49,52 +88,100 @@ const FirstTimeUser = () => {
           <ol>
             <li>
               <Form.Group>
-                <Form.Control type='text' />
+                <Form.Control
+                  type='text'
+                  onChange={(e) => setStrengths((strength[1] = e.target.value))}
+                />
               </Form.Group>
             </li>
             <li>
               <Form.Group>
-                <Form.Control type='text' />
+                <Form.Control
+                  type='text'
+                  onChange={(e) =>
+                    setStrengths({ ...strengths, two: e.target.value })
+                  }
+                />
               </Form.Group>
             </li>
             <li>
               <Form.Group>
-                <Form.Control type='text' />
+                <Form.Control
+                  type='text'
+                  onChange={(e) =>
+                    setStrengths({ ...strengths, three: e.target.value })
+                  }
+                />
               </Form.Group>
             </li>
             <li>
               <Form.Group>
-                <Form.Control type='text' />
+                <Form.Control
+                  type='text'
+                  onChange={(e) =>
+                    setStrengths({ ...strengths, four: e.target.value })
+                  }
+                />
               </Form.Group>
             </li>
             <li>
               <Form.Group>
-                <Form.Control type='text' />
+                <Form.Control
+                  type='text'
+                  onChange={(e) =>
+                    setStrengths({ ...strengths, five: e.target.value })
+                  }
+                />
               </Form.Group>
             </li>
             <li>
               <Form.Group>
-                <Form.Control type='text' />
+                <Form.Control
+                  type='text'
+                  onChange={(e) =>
+                    setStrengths({ ...strengths, six: e.target.value })
+                  }
+                />
               </Form.Group>
             </li>
             <li>
               <Form.Group>
-                <Form.Control type='text' />
+                <Form.Control
+                  type='text'
+                  onChange={(e) =>
+                    setStrengths({ ...strengths, seven: e.target.value })
+                  }
+                />
               </Form.Group>
             </li>
             <li>
               <Form.Group>
-                <Form.Control type='text' />
+                <Form.Control
+                  type='text'
+                  onChange={(e) =>
+                    setStrengths({ ...strengths, eight: e.target.value })
+                  }
+                />
               </Form.Group>
             </li>
             <li>
               <Form.Group>
-                <Form.Control type='text' />
+                <Form.Control
+                  type='text'
+                  onChange={(e) =>
+                    setStrengths({ ...strengths, nine: e.target.value })
+                  }
+                />
               </Form.Group>
             </li>
             <li>
               <Form.Group>
-                <Form.Control type='text' />
+                <Form.Control
+                  type='text'
+                  onChange={(e) =>
+                    setStrengths({ ...strengths, ten: e.target.value })
+                  }
+                />
               </Form.Group>
             </li>
           </ol>
@@ -277,7 +364,7 @@ const FirstTimeUser = () => {
           />
         </Form.Group>
 
-        <Button type='submit' variant='primary'>
+        <Button variant='primary' onClick={handleSubmit}>
           Submit
         </Button>
       </Form>

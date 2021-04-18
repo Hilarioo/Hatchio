@@ -25,6 +25,7 @@ function Signin() {
       //auth true
       history.push("/dashboard");
       window.location.reload();
+      console.log("THE BOOL OF USER: " + bool_user_auth);
     }
     //Auth False
     if (bool_user_auth == false) {
@@ -35,33 +36,32 @@ function Signin() {
   return (
     <>
       <h1>Welcome Back!</h1>
-      <Form className="auth-form" onSubmit={handleSubmit}>
-        <InputGroup className="mb-3">
+      <Form className='auth-form' onSubmit={handleSubmit}>
+        <InputGroup className='mb-3'>
           <InputGroup.Prepend>
-            <InputGroup.Text id="basic-addon1">
+            <InputGroup.Text id='basic-addon1'>
               Select User Type{" "}
             </InputGroup.Text>
           </InputGroup.Prepend>
 
           <Form.Control
-            name="student_year"
-            as="select"
-            className="mr-sm-2"
-            id="inlineFormCustomSelect"
-            custom
-          >
-            <option value="select">Select</option>
-            <option value="professor">Professor</option>
-            <option value="employer">Employer</option>
-            <option value="student">Student</option>
+            name='student_year'
+            as='select'
+            className='mr-sm-2'
+            id='inlineFormCustomSelect'
+            custom>
+            <option value='select'>Select</option>
+            <option value='professor'>Professor</option>
+            <option value='employer'>Employer</option>
+            <option value='student'>Student</option>
           </Form.Control>
         </InputGroup>
-        <Form.Control type="email" placeholder="Email" required />
-        <Form.Group id="passwd">
-          <Form.Control type="password" placeholder="Password" required />
-          <Form.Text className="text-muted">Forgot Password?</Form.Text>
+        <Form.Control type='email' placeholder='Email' required />
+        <Form.Group id='passwd'>
+          <Form.Control type='password' placeholder='Password' required />
+          <Form.Text className='text-muted'>Forgot Password?</Form.Text>
         </Form.Group>
-        <Button variant="dark" type="submit">
+        <Button variant='dark' type='submit'>
           Sign in
         </Button>
       </Form>

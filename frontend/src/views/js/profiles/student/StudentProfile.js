@@ -30,23 +30,12 @@ const StudentProfile = (
   {
     // default props provided if empty
     image = "",
-    studentName = "Jose Gonzalez Martinez",
-    location = "Pleasant Hill, CA",
-    rating = 3,
+    studentName = "Student Name",
+    location = "Location Not Available",
+    rating,
     links = ["web", "gtihub", "linkedin", "pdf"],
-    about = "Lorem",
-    qualities = [
-      "one",
-      "two",
-      "three",
-      "four",
-      "five",
-      "six",
-      "seven",
-      "eight",
-      "nine",
-      "ten",
-    ],
+    about,
+    qualities = ["No Qualities Yet"],
     projects = [
       {
         rating: 4,
@@ -106,47 +95,10 @@ const StudentProfile = (
     [{ null: "null" }, { null: "null" }],
     [{ null: "null" }, { null: "null" }],
   ]);
-  //Education
-  const EducationList = userProfile[0].map((data) => (
-    <div>
-      <p>School:{data.school}</p>
-      <p>Degree:{data.degree}</p>
-      <p>GPA:{data.school_gpa}</p>
-      <p>Major:{data.study_major}</p>
-    </div>
-  ));
-  //Profile Page
-  const GeneralInfoList = userProfile[1].map((data) => (
-    <div>
-      <p>About Me: {data.about_me}</p>
-      <p>Strengths and Qualities: {data.strengths_qualities}</p>
-      <p>Location: {data.location}</p>
-      <p>School Grade Level {data.school_grade_level}</p>
-    </div>
-  ));
-  //Projects
-  const ProjectsList = userProfile[2].map((data) => (
-    <div>
-      <p>Project Name: {data.project_name}</p>
-      <p>Summary: {data.summary}</p>
-      <p>Tools Used: {data.arr_tools_used}</p>
-      <p>Proffesor Involved: {data.professor}</p>
-      <p>Links & Websites: {data.links_website}</p>
-    </div>
-  ));
-  //Ratings
-  const RatingsList = userProfile[3].map((data) => (
-    <div>
-      <p>Rated By Professor {data.first_name + data.last_name}</p>
-      <p>Responsble Level {data.recommendation_comment}</p>
-      <p>Leadership Level {data.leadership_level}</p>
-      <p>Recommendation Comment: {data.recommendation_comment}</p>
-      <b>There's more but i got lazy</b>
-    </div>
-  ));
 
   useEffect(() => {
     setUserProfile(props);
+    console.log(setUserProfile);
   }, [props]);
 
   // Form States
@@ -158,97 +110,96 @@ const StudentProfile = (
 
   return (
     <>
-      {/* User Profile Information */}
-      <div>
-        <h4>Profile Information</h4>
-        {GeneralInfoList}
-        <hr></hr>
-        <h4>Projects</h4>
-        {ProjectsList}
-        <hr></hr>
-        <h4>Education</h4>
-        {EducationList}
-        <hr></hr>
-        <h4>Ratings</h4>
-        {RatingsList}
-      </div>
-
       {/* heading */}
-      <div className="student-heading">
+      <div className='student-heading'>
         {/* creates default image if none provided */}
         <img
-          src={image.length <= 0 ? defaultImage(studentName) : image}
-          alt={studentName.charAt(0)}
+          src={
+            userProfile[1][0].profile_image === null
+              ? defaultImage("Student Name")
+              : userProfile[1][0].profile_image
+          }
+          alt={"S"}
         />
-        <div className="right">
-          <h1>{studentName}</h1>
-          <div className="flex-box">
-            <img src={LocationIcon} alt="location pins" />
-            <p>{location}</p>
+        <div className='right'>
+          {/* TODO:: Student Name */}
+          <h1>Student Name</h1>
+
+          {/* Student Location */}
+          <div className='flex-box'>
+            <img src={LocationIcon} alt='location pin' />
+            <p>{userProfile[1][0].location}</p>
           </div>
-          <div className="flex-box">
+          <div className='flex-box'>
             <Button>Message</Button>
-            <Button id="reflection">Rate</Button>
+            <Button id='reflection'>Rate</Button>
           </div>
         </div>
       </div>
-      {/* links */}
-      <div className="student-links">
-        <img src={GlobeIcon} alt="website url" />
-        <img src={GithubIcon} alt="github" />
-        <img src={LinkedinIcon} alt="linkedin" />
-        <img src={ResumeIcon} alt="resume-pdf" />
+
+      {/* TODO:: Links */}
+      <div className='student-links'>
+        <img src={GlobeIcon} alt='website url' />
+        <img src={GithubIcon} alt='github' />
+        <img src={LinkedinIcon} alt='linkedin' />
+        <img src={ResumeIcon} alt='resume-pdf' />
       </div>
-      {/* about */}
-      <div className="student-about">
-        <div className="flex-box">
+
+      {/* Student About Me */}
+      <div className='student-about'>
+        <div className='flex-box'>
           <h4>About Me</h4>
-          {/* Edit Pencil --> Popup */}
+          {/* About Me Edit Popup */}
           <img
-            id="edit-button"
+            id='edit-button'
             src={EditIcon}
-            alt="edit pencil button"
+            alt='edit pencil button'
             onClick={() => setAboutPopup(true)}
           />
           <AboutPopup
             show={aboutPopup}
             onHide={() => setAboutPopup(false)}
-            heading="Edit About Me"
-            about={about}
+            heading='Edit About Me'
+            about={userProfile[1][0].about_me}
           />
         </div>
-        <p>{about}</p>
+        {/* About Me */}
+        <p>{userProfile[1][0].about_me}</p>
       </div>
-      {/* qualities */}
-      <div className="student-qualities">
-        <div className="flex-box">
+
+      {/* Student Qualities */}
+      <div className='student-qualities'>
+        <div className='flex-box'>
           <h4>Top Qualities</h4>
-          {/* Edit Pencil --> Popup */}
+          {/* Qualities Edit Popup */}
           <img
-            id="edit-button"
+            id='edit-button'
             src={EditIcon}
-            alt="edit pencil button"
+            alt='edit pencil button'
             onClick={() => setListPopup(true)}
           />
           <ListPopup show={listPopup} onHide={() => setListPopup(false)} />
         </div>
+        {/* Maps Every Quality Stored For The Student */}
         <li>
-          {qualities.map((quality) => (
-            <ul>{quality}</ul>
-          ))}
-          <ul>strength</ul>
+          {String(userProfile[1][0].strengths_qualities)
+            .split(",")
+            .map((quality) => (
+              <ul>{quality}</ul>
+            ))}
         </li>
       </div>
-      <div className="student-grid">
-        <div className="projects">
-          {/* projects */}
-          <div className="flex-box">
+
+      <div className='student-grid'>
+        {/* Student Projects */}
+        <div className='projects'>
+          <div className='flex-box'>
             <h4>Projects</h4>
-            {/* Edit Pencil --> Popup */}
+            {/* Add New Project Popup */}
             <img
-              id="edit-button"
+              id='edit-button'
               src={AddIcon}
-              alt="edit pencil button"
+              alt='edit pencil button'
               onClick={() => setProjectPopup(true)}
             />
             <ProjectPopup
@@ -256,47 +207,67 @@ const StudentProfile = (
               onHide={() => setProjectPopup(false)}
             />
           </div>
-          <div className="student-project flex-box">
-            {/* creates default image if none provided */}
-            <div className="img-box">
-              <img src={ProjectIcon} alt="project icon" />
-            </div>
-            <div className="right">
-              <p id="date">November 20, 2020</p>
-              <div className="flex-box">
-                <h5>Pac-Man Python Project</h5>
-                {/* Edit Pencil --> Popup */}
-                <img
-                  id="edit-button"
-                  src={EditIcon}
-                  alt="edit pencil button"
-                  onClick={() => setProjectPopup(true)}
-                />
-                <ProjectPopup
-                  show={projectPopup}
-                  onHide={() => setProjectPopup(false)}
-                />
+          {/* Maps Every Project Stored For The Student */}
+          {userProfile[2].map((project) => (
+            <div className='student-project flex-box'>
+              {/* Project Icon */}
+              <div className='img-box'>
+                <img src={ProjectIcon} alt='project icon' />
               </div>
-              <h6>Collaborator(s): </h6>
-              <h6>Professor: </h6>
-              <li>
-                <ul style={{ backgroundColor: "#66D3D9" }}>one</ul>
-                <ul style={{ backgroundColor: "#66D3D9" }}>two</ul>
-                <ul style={{ backgroundColor: "#66D3D9" }}>three</ul>
-              </li>
+              {/* Project Details */}
+              <div className='right'>
+                {/* TODO:: Project Date */}
+                <p id='date'>November 20, 2020</p>
+                <div className='flex-box'>
+                  {/* Project Name */}
+                  <h5>{project.project_name}</h5>
+                  {/* Edit Project Popup */}
+                  <img
+                    id='edit-button'
+                    src={EditIcon}
+                    alt='edit pencil button'
+                    onClick={() => setProjectPopup(true)}
+                  />
+                  <ProjectPopup
+                    show={projectPopup}
+                    onHide={() => setProjectPopup(false)}
+                  />
+                </div>
+                {/* Project Description */}
+                <p>{project.summary}</p>
+                <div className='flex-box'>
+                  {/* Project Collaborator(s) */}
+                  <h6>Collaborator(s):</h6>
+                  {String(project.arr_collaborators_arr)
+                    .split(",")
+                    .map((collaborator) => (
+                      <h6>&nbsp;{collaborator}</h6>
+                    ))}
+                </div>
+                {/* Project Professor */}
+                <h6>Professor: {project.professor}</h6>
+                <li>
+                  {String(project.arr_tools_used)
+                    .split(",")
+                    .map((tool) => (
+                      <ul style={{ backgroundColor: "#66D3D9" }}>{tool}</ul>
+                    ))}
+                </li>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
+
         <div>
-          <div className="education">
-            {/* education */}
-            <div className="flex-box">
+          <div className='education'>
+            {/* Student Education */}
+            <div className='flex-box'>
               <h5>Education</h5>
-              {/* Edit Pencil --> Popup */}
+              {/* Add Education Popup */}
               <img
-                id="edit-button"
+                id='edit-button'
                 src={AddIcon}
-                alt="edit pencil button"
+                alt='edit pencil button'
                 onClick={() => setEducationPopup(true)}
               />
               <EducationPopup
@@ -304,40 +275,49 @@ const StudentProfile = (
                 onHide={() => setEducationPopup(false)}
               />
             </div>
-            <div className="student-education flex-box">
-              {/* creates default image if none provided */}
-              <div className="img-box">
-                <img src={EducationIcon} alt="project icon" />
-              </div>
-              <div className="right">
-                <div className="flex-box">
-                  <h5>BS Computer Science</h5>
-                  {/* Edit Pencil --> Popup */}
-                  <img
-                    id="edit-button"
-                    src={EditIcon}
-                    alt="edit pencil button"
-                    onClick={() => setEducationPopup(true)}
-                  />
-                  <EducationPopup
-                    show={educationPopup}
-                    onHide={() => setEducationPopup(false)}
-                  />
+            {/* Maps Every Education The Student Has Stored */}
+            {userProfile[0].map((education) => (
+              <div className='student-education flex-box'>
+                {/* creates default image if none provided */}
+                <div className='img-box'>
+                  <img src={EducationIcon} alt='project icon' />
                 </div>
-                <h6>San Francisco State University</h6>
-                <p>November 13, 2021 - Current</p>
+                <div className='right'>
+                  <div className='flex-box'>
+                    {/* Education Degree Recieved */}
+                    <h5>{education.degree}</h5>
+                    {/* Edit Education Popup */}
+                    <img
+                      id='edit-button'
+                      src={EditIcon}
+                      alt='edit pencil button'
+                      onClick={() => setEducationPopup(true)}
+                    />
+                    <EducationPopup
+                      show={educationPopup}
+                      onHide={() => setEducationPopup(false)}
+                    />
+                  </div>
+                  {/* Education School Name */}
+                  <h6>{education.school}</h6>
+                  <p>GPA: {education.school_gpa}</p>
+                  {/* Education Start - End Date (current or date) */}
+                  <p>
+                    {education.start_year} - {education.end_year}
+                  </p>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
-          <div className="experience">
+          <div className='experience'>
             {/* experience */}
-            <div className="flex-box">
+            <div className='flex-box'>
               <h4>Experience</h4>
-              {/* Edit Pencil --> Popup */}
+              {/* Add Experience Popup */}
               <img
-                id="edit-button"
+                id='edit-button'
                 src={AddIcon}
-                alt="edit pencil button"
+                alt='edit pencil button'
                 onClick={() => setExperiencePopup(true)}
               />
               <ExperiencePopup
@@ -345,19 +325,20 @@ const StudentProfile = (
                 onHide={() => setExperiencePopup(false)}
               />
             </div>
-            <div className="student-experience flex-box">
+            {/* TODO:: Maps Every Experience The Student Has Stored */}
+            <div className='student-experience flex-box'>
               {/* creates default image if none provided */}
-              <div className="img-box">
-                <img src={ExperienceIcon} alt="project icon" />
+              <div className='img-box'>
+                <img src={ExperienceIcon} alt='project icon' />
               </div>
-              <div className="right">
-                <div className="flex-box">
+              <div className='right'>
+                <div className='flex-box'>
                   <h5>Jelly Bean Packer</h5>
                   {/* Edit Pencil --> Popup */}
                   <img
-                    id="edit-button"
+                    id='edit-button'
                     src={EditIcon}
-                    alt="edit pencil button"
+                    alt='edit pencil button'
                     onClick={() => setExperiencePopup(true)}
                   />
                   <ExperiencePopup
@@ -377,36 +358,44 @@ const StudentProfile = (
           </div>
         </div>
       </div>
-      <div className="student-reflection">
-        {/* reflection */}
+      {/* Student's Ratings */}
+      <div className='student-reflection'>
         <h4>Ratings</h4>
-        <div className="rating">
-          <header className="flex-box">
-            <span className="flex-box">
-              <h5>Henry Villar</h5>
-              <ProgressBar
-                now={rating}
-                label={`${rating}` + " / 5"}
-                min="0"
-                max="5"
-                variant="info"
-                style={{ width: "35%", marginTop: "5px" }}
-                id="progress-bar"
-              />
-            </span>
-            <p>November 20, 2021</p>
-          </header>
-          <h6>San Francisco State University</h6>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-          <li>
-            <ul>one</ul>
-            <ul>two </ul>
-            <ul>three</ul>
-          </li>
-        </div>
+        {/* Maps Every Review From Professor(s) to Student */}
+        {userProfile[3].map((review) => (
+          <div className='rating'>
+            <header className='flex-box'>
+              <span className='flex-box'>
+                {/* Review: Professor Name */}
+                <h5>
+                  {review.first_name} {review.last_name}
+                </h5>
+                {/* Sum of Review */}
+                <ProgressBar
+                  now={review.rating_total}
+                  label={`${review.rating_total}` + " / 5"}
+                  min='0'
+                  max='5'
+                  variant='info'
+                  style={{ width: "35%", marginTop: "5px" }}
+                  id='progress-bar'
+                />
+              </span>
+              {/* TODO:: date of the review */}
+              <p>November 20, 2021</p>
+            </header>
+            {/* Professor's School At The Time Of The Review */}
+            <h6>{review.school_name}</h6>
+            {/* Professor's Review */}
+            <p>{review.recommendation_comment}</p>
+            <li>
+              <ul>Commited To Success: {review.committed_to_success_level}</ul>
+              <ul>Leadership: {review.leadership_level}</ul>
+              <ul>Responsible: {review.responsible_level}</ul>
+              <ul>Team Work: {review.team_work_level}</ul>
+            </li>
+          </div>
+        ))}
       </div>
     </>
   );

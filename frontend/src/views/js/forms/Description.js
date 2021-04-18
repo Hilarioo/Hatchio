@@ -24,7 +24,11 @@ const Description = (props) => {
         </Modal.Header>
         <Modal.Body>
           <Form.Group>
-            <Form.Control type='text' as='textarea' />
+            <Form.Control
+              type='text'
+              as='textarea'
+              defaultValue={props.about}
+            />
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
