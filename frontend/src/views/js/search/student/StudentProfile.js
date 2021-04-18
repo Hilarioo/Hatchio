@@ -35,9 +35,16 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { defaultImage } from "../../global/DefaultImage";
 //Form Pop Up
 import Popup from "reactjs-popup";
+import styled from "styled-components";
 //API
 import API_USER_GET_PROFILE from "../../../../models/user_profile";
 import API_PROFESSOR_RATE_STUDENT from "../../../../models/professor_rate";
+//CSS Form Pop Up
+const StyledPopup = styled(Popup)`
+  &-content[role="tooltip"] {
+    width: 1000px;
+  }
+`;
 const StudentProfile = (props) => {
   const location = useLocation();
   const history = useHistory();
@@ -63,10 +70,9 @@ const StudentProfile = (props) => {
       recommendation, //str
       (responsible + teamwork + leadership + committedToSuccess) / 4 //average
     );
-    //If Succesful Sent, Reload Page
+    //If Succesful Sent,Redirect to Dashboard
     if (sent_bool === true) {
       history.push("/dashboard");
-      // window.location.reload();
     }
     console.log(sent_bool);
     //Send Rating to Back end
@@ -79,8 +85,8 @@ const StudentProfile = (props) => {
   const [committedToSuccess, setCommittedToSuccess] = useState(0);
 
   useEffect(() => {
-    API_USER_GET_PROFILE("student", location.example, setuserProfile);
-    setStudentID(location.example);
+    API_USER_GET_PROFILE("student", location.Student_ID, setuserProfile);
+    setStudentID(location.Student_ID);
     console.log(setuserProfile);
   }, [location]);
 
@@ -441,7 +447,7 @@ const StudentProfile = (props) => {
                 <p>You must be a Employee! Sign In as an Employee</p>
               </Popup>
 
-              <Popup trigger={<button> Rate</button>}>
+              <StyledPopup trigger={<button> Rate</button>}>
                 <div>
                   <Form onSubmit={handleSubmit}>
                     <InputGroup className="mb-3">
@@ -550,7 +556,7 @@ const StudentProfile = (props) => {
                     </InputGroup>
                   </Form>
                 </div>
-              </Popup>
+              </StyledPopup>
             </div>
           </div>
         </div>
