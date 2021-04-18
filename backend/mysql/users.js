@@ -12,6 +12,7 @@ const USER_PROFILE = (table, id) => {
 select sp.about_me, sp.strengths_qualities, sp.location, sp.school_grade_level, sp.resume, sp.profile_image from student_profile_page sp where sp.student_id=${id};  #profile
 select sp.project_name,sp.summary,sp.arr_tools_used,sp.professor, sp.links_website, sp.arr_collaborators_arr from student_projects sp where sp.student_id=${id}; #projects
 select student_id,p.first_name,p.last_name,p.school_name,sr.responsible_level,sr.team_work_level,sr.leadership_level,sr.committed_to_success_level,sr.recommendation_comment,sr.rating_total from student_ratings sr inner join professors p on sr.professor_id = p.professor_id where sr.student_id = ${id};
+select s.first_name,s.last_name,s.email from students s where s.student_id = ${id};
 `;
   }
   if (table == "professor") {

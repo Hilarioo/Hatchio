@@ -7,6 +7,15 @@ ii. Issues
 
 ~~- Passing in a useState to another component as a prop w/ update. <- Go to dashboard.js and sign in w/ any of these credentials to see what i mean~~ fixed
 
+#### Currently Working
+
+- First Time Users and View Layer Dashboard.js
+
+#### Sunday, April 17, 2021 :: Aaron
+
+- Fixed Profile Page Rendering
+- First Time User Form
+
 #### Saturday, April 17, 2021 :: Aaron
 
 - POST handling with Job Form Submission Complete // but pretty poor css but works
