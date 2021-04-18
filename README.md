@@ -14,7 +14,7 @@ ii. Issues
 #### Sunday, April 17, 2021 :: Aaron
 
 - Fixed Profile Page Rendering
-- First Time User Form
+- Post method for Student Profile Page popup
 
 #### Saturday, April 17, 2021 :: Aaron
 
