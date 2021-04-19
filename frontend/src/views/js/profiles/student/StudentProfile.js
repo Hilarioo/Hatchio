@@ -45,7 +45,7 @@ const StyledPopup = styled(Popup)`
   }
 `;
 
-//POP UP Student Profile Page
+//POP UP Profile Page Insert
 const POPUP_STUDENT_PROFILE_PAGE = (Student_ID) => {
   return (
     <div>
@@ -103,7 +103,7 @@ const POPUP_STUDENT_PROFILE_PAGE = (Student_ID) => {
     </div>
   );
 };
-//POP UP Student Profile Page
+//POP UP Student Education
 const POPUP_STUDENT_EDUCATION = (Student_ID) => {
   return (
     <div>
@@ -228,6 +228,10 @@ const StudentProfile = (props) => {
 
   return (
     <>
+      <h1>
+        IF THE FORMS DONT REFRESH, THERES AN ISSUE WITH THE INPUT, KEEP TRYING
+        UNTIL IT REFRESHES AND DONT USE THE EDIT OR ADD BUTTON
+      </h1>
       {/* heading */}
       <div className="student-heading">
         {/* creates default image if none provided */}

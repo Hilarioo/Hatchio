@@ -157,19 +157,6 @@ const StudentProfile = (props) => {
         <div className="student-about">
           <div className="flex-box">
             <h4>About Me</h4>
-            {/* About Me Edit Popup */}
-            <img
-              id="edit-button"
-              src={EditIcon}
-              alt="edit pencil button"
-              onClick={() => setAboutPopup(true)}
-            />
-            <AboutPopup
-              show={aboutPopup}
-              onHide={() => setAboutPopup(false)}
-              heading="Edit About Me"
-              about={userProfile[1][0].about_me}
-            />
           </div>
           {/* About Me */}
           <p>{userProfile[1][0].about_me}</p>
@@ -178,14 +165,6 @@ const StudentProfile = (props) => {
         <div className="student-qualities">
           <div className="flex-box">
             <h4>Top Qualities</h4>
-            {/* Qualities Edit Popup */}
-            <img
-              id="edit-button"
-              src={EditIcon}
-              alt="edit pencil button"
-              onClick={() => setListPopup(true)}
-            />
-            <ListPopup show={listPopup} onHide={() => setListPopup(false)} />
           </div>
           {/* Maps Every Quality Stored For The Student */}
           <li>
@@ -202,17 +181,6 @@ const StudentProfile = (props) => {
           <div className="projects">
             <div className="flex-box">
               <h4>Projects</h4>
-              {/* Add New Project Popup */}
-              <img
-                id="edit-button"
-                src={AddIcon}
-                alt="edit pencil button"
-                onClick={() => setProjectPopup(true)}
-              />
-              <ProjectPopup
-                show={projectPopup}
-                onHide={() => setProjectPopup(false)}
-              />
             </div>
             {/* Maps Every Project Stored For The Student */}
             {userProfile[2].map((project) => (
@@ -228,17 +196,6 @@ const StudentProfile = (props) => {
                   <div className="flex-box">
                     {/* Project Name */}
                     <h5>{project.project_name}</h5>
-                    {/* Edit Project Popup */}
-                    <img
-                      id="edit-button"
-                      src={EditIcon}
-                      alt="edit pencil button"
-                      onClick={() => setProjectPopup(true)}
-                    />
-                    <ProjectPopup
-                      show={projectPopup}
-                      onHide={() => setProjectPopup(false)}
-                    />
                   </div>
                   {/* Project Description */}
                   <p>{project.summary}</p>
@@ -270,17 +227,6 @@ const StudentProfile = (props) => {
               {/* Student Education */}
               <div className="flex-box">
                 <h5>Education</h5>
-                {/* Add Education Popup */}
-                <img
-                  id="edit-button"
-                  src={AddIcon}
-                  alt="edit pencil button"
-                  onClick={() => setEducationPopup(true)}
-                />
-                <EducationPopup
-                  show={educationPopup}
-                  onHide={() => setEducationPopup(false)}
-                />
               </div>
               {/* Maps Every Education The Student Has Stored */}
               {userProfile[0].map((education) => (
@@ -572,19 +518,6 @@ const StudentProfile = (props) => {
         <div className="student-about">
           <div className="flex-box">
             <h4>About Me</h4>
-            {/* About Me Edit Popup */}
-            <img
-              id="edit-button"
-              src={EditIcon}
-              alt="edit pencil button"
-              onClick={() => setAboutPopup(true)}
-            />
-            <AboutPopup
-              show={aboutPopup}
-              onHide={() => setAboutPopup(false)}
-              heading="Edit About Me"
-              about={userProfile[1][0].about_me}
-            />
           </div>
           {/* About Me */}
           <p>{userProfile[1][0].about_me}</p>
@@ -593,14 +526,6 @@ const StudentProfile = (props) => {
         <div className="student-qualities">
           <div className="flex-box">
             <h4>Top Qualities</h4>
-            {/* Qualities Edit Popup */}
-            <img
-              id="edit-button"
-              src={EditIcon}
-              alt="edit pencil button"
-              onClick={() => setListPopup(true)}
-            />
-            <ListPopup show={listPopup} onHide={() => setListPopup(false)} />
           </div>
           {/* Maps Every Quality Stored For The Student */}
           <li>
@@ -617,17 +542,6 @@ const StudentProfile = (props) => {
           <div className="projects">
             <div className="flex-box">
               <h4>Projects</h4>
-              {/* Add New Project Popup */}
-              <img
-                id="edit-button"
-                src={AddIcon}
-                alt="edit pencil button"
-                onClick={() => setProjectPopup(true)}
-              />
-              <ProjectPopup
-                show={projectPopup}
-                onHide={() => setProjectPopup(false)}
-              />
             </div>
             {/* Maps Every Project Stored For The Student */}
             {userProfile[2].map((project) => (
@@ -643,17 +557,6 @@ const StudentProfile = (props) => {
                   <div className="flex-box">
                     {/* Project Name */}
                     <h5>{project.project_name}</h5>
-                    {/* Edit Project Popup */}
-                    <img
-                      id="edit-button"
-                      src={EditIcon}
-                      alt="edit pencil button"
-                      onClick={() => setProjectPopup(true)}
-                    />
-                    <ProjectPopup
-                      show={projectPopup}
-                      onHide={() => setProjectPopup(false)}
-                    />
                   </div>
                   {/* Project Description */}
                   <p>{project.summary}</p>
@@ -686,16 +589,6 @@ const StudentProfile = (props) => {
               <div className="flex-box">
                 <h5>Education</h5>
                 {/* Add Education Popup */}
-                <img
-                  id="edit-button"
-                  src={AddIcon}
-                  alt="edit pencil button"
-                  onClick={() => setEducationPopup(true)}
-                />
-                <EducationPopup
-                  show={educationPopup}
-                  onHide={() => setEducationPopup(false)}
-                />
               </div>
               {/* Maps Every Education The Student Has Stored */}
               {userProfile[0].map((education) => (
@@ -708,17 +601,6 @@ const StudentProfile = (props) => {
                     <div className="flex-box">
                       {/* Education Degree Recieved */}
                       <h5>{education.degree}</h5>
-                      {/* Edit Education Popup */}
-                      <img
-                        id="edit-button"
-                        src={EditIcon}
-                        alt="edit pencil button"
-                        onClick={() => setEducationPopup(true)}
-                      />
-                      <EducationPopup
-                        show={educationPopup}
-                        onHide={() => setEducationPopup(false)}
-                      />
                     </div>
                     {/* Education School Name */}
                     <h6>{education.school}</h6>
@@ -736,16 +618,6 @@ const StudentProfile = (props) => {
               <div className="flex-box">
                 <h4>Experience</h4>
                 {/* Add Experience Popup */}
-                <img
-                  id="edit-button"
-                  src={AddIcon}
-                  alt="edit pencil button"
-                  onClick={() => setExperiencePopup(true)}
-                />
-                <ExperiencePopup
-                  show={experiencePopup}
-                  onHide={() => setExperiencePopup(false)}
-                />
               </div>
               {/* TODO:: Maps Every Experience The Student Has Stored */}
               <div className="student-experience flex-box">
@@ -756,17 +628,6 @@ const StudentProfile = (props) => {
                 <div className="right">
                   <div className="flex-box">
                     <h5>Jelly Bean Packer</h5>
-                    {/* Edit Pencil --> Popup */}
-                    <img
-                      id="edit-button"
-                      src={EditIcon}
-                      alt="edit pencil button"
-                      onClick={() => setExperiencePopup(true)}
-                    />
-                    <ExperiencePopup
-                      show={experiencePopup}
-                      onHide={() => setExperiencePopup(false)}
-                    />
                   </div>
                   <h6>The Pickle Factory Inc.</h6>
                   <p>November 20, 2020 - Current</p>
@@ -880,18 +741,6 @@ const StudentProfile = (props) => {
         <div className="flex-box">
           <h4>About Me</h4>
           {/* About Me Edit Popup */}
-          <img
-            id="edit-button"
-            src={EditIcon}
-            alt="edit pencil button"
-            onClick={() => setAboutPopup(true)}
-          />
-          <AboutPopup
-            show={aboutPopup}
-            onHide={() => setAboutPopup(false)}
-            heading="Edit About Me"
-            about={userProfile[1][0].about_me}
-          />
         </div>
         {/* About Me */}
         <p>{userProfile[1][0].about_me}</p>
@@ -900,14 +749,6 @@ const StudentProfile = (props) => {
       <div className="student-qualities">
         <div className="flex-box">
           <h4>Top Qualities</h4>
-          {/* Qualities Edit Popup */}
-          <img
-            id="edit-button"
-            src={EditIcon}
-            alt="edit pencil button"
-            onClick={() => setListPopup(true)}
-          />
-          <ListPopup show={listPopup} onHide={() => setListPopup(false)} />
         </div>
         {/* Maps Every Quality Stored For The Student */}
         <li>
@@ -925,16 +766,6 @@ const StudentProfile = (props) => {
           <div className="flex-box">
             <h4>Projects</h4>
             {/* Add New Project Popup */}
-            <img
-              id="edit-button"
-              src={AddIcon}
-              alt="edit pencil button"
-              onClick={() => setProjectPopup(true)}
-            />
-            <ProjectPopup
-              show={projectPopup}
-              onHide={() => setProjectPopup(false)}
-            />
           </div>
           {/* Maps Every Project Stored For The Student */}
           {userProfile[2].map((project) => (
@@ -947,21 +778,7 @@ const StudentProfile = (props) => {
               <div className="right">
                 {/* TODO:: Project Date */}
                 <p id="date">November 20, 2020</p>
-                <div className="flex-box">
-                  {/* Project Name */}
-                  <h5>{project.project_name}</h5>
-                  {/* Edit Project Popup */}
-                  <img
-                    id="edit-button"
-                    src={EditIcon}
-                    alt="edit pencil button"
-                    onClick={() => setProjectPopup(true)}
-                  />
-                  <ProjectPopup
-                    show={projectPopup}
-                    onHide={() => setProjectPopup(false)}
-                  />
-                </div>
+                <div className="flex-box"></div>
                 {/* Project Description */}
                 <p>{project.summary}</p>
                 <div className="flex-box">
@@ -992,17 +809,6 @@ const StudentProfile = (props) => {
             {/* Student Education */}
             <div className="flex-box">
               <h5>Education</h5>
-              {/* Add Education Popup */}
-              <img
-                id="edit-button"
-                src={AddIcon}
-                alt="edit pencil button"
-                onClick={() => setEducationPopup(true)}
-              />
-              <EducationPopup
-                show={educationPopup}
-                onHide={() => setEducationPopup(false)}
-              />
             </div>
             {/* Maps Every Education The Student Has Stored */}
             {userProfile[0].map((education) => (
@@ -1012,21 +818,7 @@ const StudentProfile = (props) => {
                   <img src={EducationIcon} alt="project icon" />
                 </div>
                 <div className="right">
-                  <div className="flex-box">
-                    {/* Education Degree Recieved */}
-                    <h5>{education.degree}</h5>
-                    {/* Edit Education Popup */}
-                    <img
-                      id="edit-button"
-                      src={EditIcon}
-                      alt="edit pencil button"
-                      onClick={() => setEducationPopup(true)}
-                    />
-                    <EducationPopup
-                      show={educationPopup}
-                      onHide={() => setEducationPopup(false)}
-                    />
-                  </div>
+                  <div className="flex-box"></div>
                   {/* Education School Name */}
                   <h6>{education.school}</h6>
                   <p>GPA: {education.school_gpa}</p>
@@ -1042,17 +834,6 @@ const StudentProfile = (props) => {
             {/* experience */}
             <div className="flex-box">
               <h4>Experience</h4>
-              {/* Add Experience Popup */}
-              <img
-                id="edit-button"
-                src={AddIcon}
-                alt="edit pencil button"
-                onClick={() => setExperiencePopup(true)}
-              />
-              <ExperiencePopup
-                show={experiencePopup}
-                onHide={() => setExperiencePopup(false)}
-              />
             </div>
             {/* TODO:: Maps Every Experience The Student Has Stored */}
             <div className="student-experience flex-box">
@@ -1063,17 +844,6 @@ const StudentProfile = (props) => {
               <div className="right">
                 <div className="flex-box">
                   <h5>Jelly Bean Packer</h5>
-                  {/* Edit Pencil --> Popup */}
-                  <img
-                    id="edit-button"
-                    src={EditIcon}
-                    alt="edit pencil button"
-                    onClick={() => setExperiencePopup(true)}
-                  />
-                  <ExperiencePopup
-                    show={experiencePopup}
-                    onHide={() => setExperiencePopup(false)}
-                  />
                 </div>
                 <h6>The Pickle Factory Inc.</h6>
                 <p>November 20, 2020 - Current</p>

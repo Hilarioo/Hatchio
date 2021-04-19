@@ -9,7 +9,7 @@ ii. Issues
 
 #### Currently Working
 
-- First Time Users and View Layer Dashboard.js
+- Notifications for Employers & Students
 
 #### Sunday, April 17, 2021 :: Aaron
 
