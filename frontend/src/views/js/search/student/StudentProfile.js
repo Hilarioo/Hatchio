@@ -69,9 +69,9 @@ const StudentProfile = (props) => {
       recommendation, //str
       (responsible + teamwork + leadership + committedToSuccess) / 4 //average
     );
-    //If Succesful Sent,Redirect to Dashboard
+    //If Succesful Sent,Redirect to Student Search View
     if (sent_bool === true) {
-      history.push("/dashboard");
+      history.push("/search-candidates");
     }
     console.log(sent_bool);
     //Send Rating to Back end

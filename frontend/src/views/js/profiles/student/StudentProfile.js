@@ -114,9 +114,9 @@ const POPUP_STUDENT_EDUCATION = (Student_ID) => {
             school: "School Name",
             degree: "Degree Name",
             school_gpa: 0,
-            study_major: "Study Major: Computer Science etc",
-            start_year: 500,
-            end_year: 400,
+            study_major: "Computer Science or Art or",
+            start_year: 10,
+            end_year: 15,
           }}
           onSubmit={async (values) => {
             console.log(values);

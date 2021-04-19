@@ -16,6 +16,9 @@ const ProfessorProfile = (props) => {
 
   return (
     <div>
+      <h3>
+        Your are a professor. You can now rate students under search/students
+      </h3>
       <h5>First Name : {profileState.first_name}</h5>
       <h5>Last Name : {profileState.last_name}</h5>
       <h5>Email : {profileState.email}</h5>

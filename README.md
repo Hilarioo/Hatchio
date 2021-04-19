@@ -5,11 +5,16 @@ ii. Issues
 
 #### Unresolved Issues
 
-~~- Passing in a useState to another component as a prop w/ update. <- Go to dashboard.js and sign in w/ any of these credentials to see what i mean~~ fixed
+- In milestone 04, i saw "best check for security practices" to show passwords being encrypted which we currently do not have, and i dont think we'll have enough time to do this
 
 #### Currently Working
 
 - Notifications for Employers & Students
+
+#### Monday, April 18, 2021 :: Aaron
+
+- Tested everything from scratch, every thing functions as expected
+- Deployed onto aws
 
 #### Sunday, April 17, 2021 :: Aaron
 
