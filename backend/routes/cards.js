@@ -13,15 +13,20 @@ const db_connection = mysql.createConnection(CONFIG.SQL_PORT);
 module.exports = (app) => {
   //Student Cards Preload
   app.get("/student_cards", (req, res) => {
-    db_connection.query(SQL_QUERY.API_STUDENT_CARD, (err, results) => {
-      if (err) {
-        console.log(SQL_QUERY.API_STUDENT_CARD);
-        return res.send(err);
-      } else {
-        //Time out
-        return res.json(results);
-      }
-    });
+    try {
+      db_connection.query(SQL_QUERY.API_STUDENT_CARD, (err, results) => {
+        if (err) {
+          console.log(SQL_QUERY.API_STUDENT_CARD);
+          return res.send(err);
+        } else {
+          //Time out
+          return res.json(results);
+        }
+      });
+    } catch (e) {
+      console.log(`Error ${e}`);
+      return res.sendStatus(400);
+    }
   });
   //Job Cards Preload
   app.get("/job_cards", (req, res) => {

@@ -14,7 +14,8 @@ ii. Issues
 #### Sunday, April 17, 2021 :: Aaron
 
 - Fixed Profile Page Rendering
-- Post method for Student Profile Page popup
+- POST | Pop UP Forms for Student Profile Page | Education | Projects
+- Added protection for backend routes try{}catch()
 
 #### Saturday, April 17, 2021 :: Aaron
 

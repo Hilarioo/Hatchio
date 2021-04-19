@@ -28,6 +28,8 @@ import EducationPopup from "../../forms/Education";
 import ExperiencePopup from "../../forms/Experience";
 //Import API
 import API_STUDENT_INSERT_PROFILE from "../../../../models/insert_student_profile";
+import API_STUDENT_INSERT_EDUCATION from "../../../../models/insert_student_education";
+import API_STUDENT_INSERT_PROJECTS from "../../../../models/insert_student_projects";
 // Default Image
 import { defaultImage } from "../../global/DefaultImage";
 
@@ -44,10 +46,9 @@ const StyledPopup = styled(Popup)`
 `;
 
 //POP UP Student Profile Page
-const POPUP = (Student_ID) => {
+const POPUP_STUDENT_PROFILE_PAGE = (Student_ID) => {
   return (
     <div>
-      <h3>Pop Up Form for Profile Page</h3>
       <StyledPopup trigger={<button> Profile Page Insert</button>}>
         <Formik
           initialValues={{
@@ -102,6 +103,104 @@ const POPUP = (Student_ID) => {
     </div>
   );
 };
+//POP UP Student Profile Page
+const POPUP_STUDENT_EDUCATION = (Student_ID) => {
+  return (
+    <div>
+      <StyledPopup trigger={<button> Student Education Insert</button>}>
+        <Formik
+          initialValues={{
+            Student_ID: Student_ID,
+            school: "School Name",
+            degree: "Degree Name",
+            school_gpa: 0,
+            study_major: "Study Major: Computer Science etc",
+            start_year: 500,
+            end_year: 400,
+          }}
+          onSubmit={async (values) => {
+            console.log(values);
+            const response = await API_STUDENT_INSERT_EDUCATION(values);
+            console.log(response);
+            if (response == 400) {
+              console.log("error");
+            }
+            if (response == 200) {
+              window.location.reload();
+              console.log("success");
+            }
+            return;
+          }}
+        >
+          <Form>
+            <label> School Name</label>
+            <Field id="school" name="school" />
+            <label> Degree</label>
+            <Field id="degree" name="degree" />
+            <label> School GPA</label>
+            <Field id="school_gpa" name="school_gpa" />
+            <label> Study Major</label>
+            <Field id="study_major" name="study_major" />
+            <label> Start Year</label>
+            <Field id="start_year" name="start_year" />
+            <label> End Year</label>
+            <Field id="end_year" name="end_year" />
+
+            <button type="submit">Submit</button>
+          </Form>
+        </Formik>
+      </StyledPopup>
+    </div>
+  );
+};
+//POP UP Student Projects
+const POPUP_STUDENT_PROJECTS = (Student_ID) => {
+  return (
+    <div>
+      <StyledPopup trigger={<button> Insert Projects</button>}>
+        <Formik
+          initialValues={{
+            Student_ID: Student_ID,
+            project_name: "Project Name",
+            summary: "Summary",
+            professor: "professors name",
+            arr_tools_used: "c++,java,etcs",
+            links_website: "links_webiste",
+            arr_collaborators_arr: "collarborates",
+          }}
+          onSubmit={async (values) => {
+            console.log(values);
+            const response = await API_STUDENT_INSERT_PROJECTS(values);
+            console.log(response);
+            if (response == 400) {
+              console.log("error");
+            }
+            if (response == 200) {
+              window.location.reload();
+              console.log("success");
+            }
+            return;
+          }}
+        >
+          <Form>
+            <label> Projecct Name</label>
+            <Field id="project_name" name="project_name" />
+            <label> Summary</label>
+            <Field id="summary" name="summary" />
+            <label> Professors</label>
+            <Field id="professor" name="professor" />
+            <label> Array of Tools</label>
+            <Field id="arr_tools_used" name="arr_tools_used" />
+            <label> Links & Websites</label>
+            <Field id="links_website" name="links_website" />
+
+            <button type="submit">Submit</button>
+          </Form>
+        </Formik>
+      </StyledPopup>
+    </div>
+  );
+};
 
 const StudentProfile = (props) => {
   const [cookie] = useCookies(["Type_User", "ID_OF_USER", "First_Name"]);
@@ -129,25 +228,6 @@ const StudentProfile = (props) => {
 
   return (
     <>
-      {/** EMPTY PROFILE PAGE */}
-      {userProfile[1].length == 0 ? POPUP(cookie.ID_OF_USER) : true}
-      {/** EMPTY PROJECTS */}
-      {userProfile[2].length == 0 ? (
-        <div>
-          <h3>No Projects</h3>
-        </div>
-      ) : (
-        true
-      )}
-      {/** EMPTY EDUCATION */}
-      {userProfile[0].length == 0 ? (
-        <div>
-          <h3>No Education Provided</h3>
-        </div>
-      ) : (
-        true
-      )}
-
       {/* heading */}
       <div className="student-heading">
         {/* creates default image if none provided */}
@@ -211,7 +291,7 @@ const StudentProfile = (props) => {
         {/* About Me */}
         <p>
           {userProfile[1].length == 0
-            ? "About Me Not Provided"
+            ? POPUP_STUDENT_PROFILE_PAGE(cookie.ID_OF_USER)
             : userProfile[1][0].about_me}
         </p>
       </div>
@@ -232,7 +312,7 @@ const StudentProfile = (props) => {
         {/* Maps Every Quality Stored For The Student */}
         <li>
           {userProfile[1].length == 0
-            ? "Strength Qualities Not Provided"
+            ? "Add in Insert Profile Page"
             : String(userProfile[1][0].strengths_qualities)
                 .split(",")
                 .map((quality) => <ul>{quality}</ul>)}
@@ -258,7 +338,7 @@ const StudentProfile = (props) => {
           </div>
           {/* Maps Every Project Stored For The Student */}
           {userProfile[2].length == 0
-            ? "No Projects Provided"
+            ? "No Projects Found"
             : userProfile[2].map((project) => (
                 <div className="student-project flex-box">
                   {/* Project Icon */}
@@ -307,6 +387,7 @@ const StudentProfile = (props) => {
                   </div>
                 </div>
               ))}
+          {POPUP_STUDENT_PROJECTS(cookie.ID_OF_USER)}
         </div>
 
         <div>
@@ -328,7 +409,7 @@ const StudentProfile = (props) => {
             </div>
             {/* Maps Every Education The Student Has Stored */}
             {userProfile[0].length == 0
-              ? "No Education Provided"
+              ? "No Education Found"
               : userProfile[0].map((education) => (
                   <div className="student-education flex-box">
                     {/* creates default image if none provided */}
@@ -361,6 +442,7 @@ const StudentProfile = (props) => {
                     </div>
                   </div>
                 ))}
+            {POPUP_STUDENT_EDUCATION(cookie.ID_OF_USER)}
           </div>
           <div className="experience">
             {/* experience */}

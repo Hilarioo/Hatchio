@@ -9,6 +9,7 @@ import { useCookies } from "react-cookie";
 // CSS
 import "../../../css/Profiles.css";
 import "../../../css/Theme.css";
+import styled from "styled-components";
 // React Boostrap
 import Button from "react-bootstrap/Button";
 import ProgressBar from "react-bootstrap/ProgressBar";
@@ -24,6 +25,7 @@ import ProjectIcon from "../../../content/svg/project-icon.svg";
 import ExperienceIcon from "../../../content/svg/experience-icon.svg";
 import EducationIcon from "../../../content/svg/education-icon.svg";
 // Form Components
+import Popup from "reactjs-popup";
 import AboutPopup from "../../forms/Description";
 import ListPopup from "../../forms/List";
 import ProjectPopup from "../../forms/Project";
@@ -33,9 +35,6 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 // Default Image
 import { defaultImage } from "../../global/DefaultImage";
-//Form Pop Up
-import Popup from "reactjs-popup";
-import styled from "styled-components";
 //API
 import API_USER_GET_PROFILE from "../../../../models/user_profile";
 import API_PROFESSOR_RATE_STUDENT from "../../../../models/professor_rate";
