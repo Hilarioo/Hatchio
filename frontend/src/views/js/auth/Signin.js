@@ -21,14 +21,14 @@ function Signin() {
       event.target[0].value
     );
     //Auth True
-    if (bool_user_auth == true) {
+    if (bool_user_auth === true) {
       //auth true
       history.push("/dashboard");
       window.location.reload();
       console.log("THE BOOL OF USER: " + bool_user_auth);
     }
     //Auth False
-    if (bool_user_auth == false) {
+    if (bool_user_auth === false) {
       //Control UI response
     }
   };

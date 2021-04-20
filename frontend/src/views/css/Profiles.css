@@ -43,11 +43,6 @@
   margin-left: 2rem;
 }
 
-.student-heading .right h1 {
-  font-size: 150%;
-  font-weight: bold;
-}
-
 /* location pin */
 .right img {
   width: 1.2rem;
@@ -74,8 +69,6 @@
 .student-links {
   width: 400px;
   margin: 2.5rem auto 0 auto;
-  display: flex;
-  justify-content: space-between;
 }
 .student-links img {
   width: 1.75rem;
@@ -90,9 +83,8 @@
   text-align: justify;
 }
 
-.student-about h4,
-.student-qualities h4,
-.student-reflection h4 {
+/* bolds any h4 heading */
+.category-heading {
   font-weight: 600;
 }
 

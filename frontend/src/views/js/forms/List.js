@@ -5,6 +5,12 @@ import Form from "react-bootstrap/Form";
 
 // POPUP List will be used to add benefits (for comapany), qualities (for students)
 const List = (props) => {
+  // Adds empty inputs if qualities prop are less than 10
+  let empty = [];
+  for (let i = 0; i < 10 - props.qualities.length; i++) {
+    empty.push("");
+  }
+
   // Submits the 'qualities' or 'benefits' to the DB
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,7 +20,7 @@ const List = (props) => {
     for (let i = 1; i <= formCount; i++) {
       try {
         // combines all qualities into string for DB storing
-        if (e.target[i].value.localeCompare("")) str += i + e.target[i].value;
+        if (e.target[i].value.localeCompare("")) str += e.target[i].value;
       } catch (e) {
         console.log(e);
       }
@@ -25,74 +31,34 @@ const List = (props) => {
   };
 
   return (
-    <Modal
-      {...props}
-      size='lg'
-      aria-labelledby='contained-modal-title-vcenter'
-      centered>
+    <Modal {...props} aria-labelledby='contained-modal-title-vcenter' centered>
       <Form onSubmit={handleSubmit}>
         <Modal.Header closeButton>
           <Modal.Title id='contained-modal-title-vcenter'>
-            Add Benefits / Strengths
+            Add Top Qualities
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <ol>
-            <li>
-              <Form.Group>
-                <Form.Control type='text' />
-              </Form.Group>
-            </li>
-            <li>
-              <Form.Group>
-                <Form.Control type='text' />
-              </Form.Group>
-            </li>
-            <li>
-              <Form.Group>
-                <Form.Control type='text' />
-              </Form.Group>
-            </li>
-            <li>
-              <Form.Group>
-                <Form.Control type='text' />
-              </Form.Group>
-            </li>
-            <li>
-              <Form.Group>
-                <Form.Control type='text' />
-              </Form.Group>
-            </li>
-            <li>
-              <Form.Group>
-                <Form.Control type='text' />
-              </Form.Group>
-            </li>
-            <li>
-              <Form.Group>
-                <Form.Control type='text' />
-              </Form.Group>
-            </li>
-            <li>
-              <Form.Group>
-                <Form.Control type='text' />
-              </Form.Group>
-            </li>
-            <li>
-              <Form.Group>
-                <Form.Control type='text' />
-              </Form.Group>
-            </li>
-            <li>
-              <Form.Group>
-                <Form.Control type='text' />
-              </Form.Group>
-            </li>
+          <ol style={{ paddingLeft: "1rem" }}>
+            {props.qualities.map((quality) => (
+              <li>
+                <Form.Group>
+                  <Form.Control type='text' defaultValue={quality} />
+                </Form.Group>
+              </li>
+            ))}
+            {empty.map((quality) => (
+              <li>
+                <Form.Group>
+                  <Form.Control type='text' defaultValue={quality} />
+                </Form.Group>
+              </li>
+            ))}
           </ol>
         </Modal.Body>
         <Modal.Footer>
-          <Button type='submit' variant='primary'>
-            Save
+          <Button type='submit' variant='dark'>
+            {empty.length === 10 ? "Save" : "Update"}
           </Button>
         </Modal.Footer>
       </Form>

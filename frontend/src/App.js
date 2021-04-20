@@ -11,77 +11,66 @@ import JobSearch from "./views/js/search/jobs/JobSearch";
 import About from "./views/js/about/About";
 import Help from "./views/js/help/Help";
 import StudentProfile from "./views/js/profiles/student/StudentProfile";
-import StudentForm from "./views/js/forms/FirstTimeUser";
 import Dashboard from "./views/js/user/Dashboard";
 import PostJobs from "./views/js/profiles/company/PostJobs";
 
 //Full Profile View
 import Full_Student_Profile from "./views/js/search/student/StudentProfile";
-// Testing
-import Forms from "./views/js/forms/forms";
 
 const App = () => {
   return (
     <Router>
-      <div className="App">
+      <div className='App'>
         <Nav />
-        <div className="content">
+        <div className='content'>
           <Switch>
             {/* Home */}
-            <Route exact path="/">
+            <Route exact path='/'>
               <Home />
             </Route>
             {/* Signin */}
             <Route
-              path="/signin"
+              path='/signin'
               exact
               component={() => <Auth type={"signin"} />}
             />
             {/* Signup */}
             <Route
-              path="/signup"
+              path='/signup'
               exact
               component={() => <Auth type={"signup"} />}
             />
             {/* Signup Redirect */}
-            <Route path="/signup-redirect">
+            <Route path='/signup-redirect'>
               <SignupRedirect />
             </Route>
             {/* Search Students */}
-            <Route path="/search-candidates">
+            <Route path='/search-candidates'>
               <StudentSearch />
             </Route>
             {/* Search Jobs */}
-            <Route path="/search-jobs">
+            <Route path='/search-jobs'>
               <JobSearch />
             </Route>
             {/* Profile */}
-            <Route path="/student-profile">
+            <Route path='/student-profile'>
               <StudentProfile />
             </Route>
             {/* About */}
-            <Route path="/about">
+            <Route path='/about'>
               <About />
             </Route>
             {/* Contact / Help */}
-            <Route path="/help">
+            <Route path='/help'>
               <Help />
             </Route>
-            {/* TESTING FORMS */}
-            <Route path="/forms">
-              <Forms />
-            </Route>
-            {/* First Time User Form */}
-            <Route path="/welcome-student-form">
-              <StudentForm />
-            </Route>
-            <Route path="/full-student-profile">
+            <Route path='/full-student-profile'>
               <Full_Student_Profile />
             </Route>
-            <Route path="/insert-jobs">
+            <Route path='/insert-jobs'>
               <PostJobs />
             </Route>
-            <Route path="/dashboard">
+            <Route path='/dashboard'>
               <Dashboard />
             </Route>
           </Switch>

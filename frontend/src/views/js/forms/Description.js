@@ -11,15 +11,11 @@ const Description = (props) => {
   };
 
   return (
-    <Modal
-      {...props}
-      size='lg'
-      aria-labelledby='contained-modal-title-vcenter'
-      centered>
+    <Modal {...props} aria-labelledby='contained-modal-title-vcenter' centered>
       <Form onSubmit={handleSubmit}>
         <Modal.Header closeButton>
           <Modal.Title id='contained-modal-title-vcenter'>
-            Add About / Why Us
+            {props.about === "" ? "Add About Me" : "Edit About Me"}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -27,13 +23,14 @@ const Description = (props) => {
             <Form.Control
               type='text'
               as='textarea'
+              rows='15'
               defaultValue={props.about}
             />
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button type='submit' variant='primary'>
-            Save
+          <Button type='submit' variant='dark'>
+            {props.about === "" ? "Save" : "Update"}
           </Button>
         </Modal.Footer>
       </Form>
