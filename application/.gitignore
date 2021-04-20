@@ -9,8 +9,8 @@ node_modules/
 coverage/
 
 # production
-build/
-
+# build/
+# ^ Aaron: for the time being i need the build/ files in order to efficiently deploy it onto aws which has been a hassle
 # misc
 .DS_Store
 .env.local
