@@ -1,15 +1,34 @@
-# Node Hatchio Dev Change Log
+# Node Hatchio Dev Log
 
-i. Change Log
-ii. Issues
+i. Project Requirments
+ii. Change Log
+
+---
+
+## Place table w/ members/ etc stuff here
+
+---
+
+## Change Logs
+
+#### Urgent TODO
+
+- place back the credentials folder for the graders i think we had before
 
 #### Unresolved Issues
 
-- In milestone 04, i saw "best check for security practices" to show passwords being encrypted which we currently do not have, and i dont think we'll have enough time to do this
+- In milestone 04, i saw "best check for security practices" to show passwords being encrypted which we currently do not have, and i dont think we'll have enough time to do this before deadline // roland working on it
 
 #### Currently Working
 
-- Notifications for Employers & Students
+- Notifications for Employers & Students :: Aaron
+- Redeploying onto aws :: Aaron
+- PUT requests for users to edit their information :: Aaron
+
+#### Tuesday, April 19, 2021 :: Aaron
+
+- changes after jose's push , refresh only after inserts for student profile are succesful with response code 200
+- check condition for first time users
 
 #### Monday, April 18, 2021 :: Aaron
 
