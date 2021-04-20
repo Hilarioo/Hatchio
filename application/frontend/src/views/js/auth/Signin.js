@@ -1,24 +1,34 @@
 import { useHistory } from "react-router-dom";
+import { useState } from "react";
 // CSS
 import "../../css/Theme.css";
 import "../../css/Auth.css";
 // React Boostrap
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
+import Col from "react-bootstrap/esm/Col";
+// Image(s) or SVG
+import { ReactComponent as Student } from "../../content/svg/student.svg";
+import { ReactComponent as Professor } from "../../content/svg/professor.svg";
+import { ReactComponent as Company } from "../../content/svg/company.svg";
 //API
 import API_USER_LOG_IN from "../../../models/user_sign_in";
 
 function Signin() {
+  const [email, setEmail] = useState("Email"); //School Email
+  const [userType, setUserType] = useState("");
   const history = useHistory();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     //Boolean if User Exists | Incorrect authentication field
+    console.log(event.target[3].value);
+    console.log(event.target[4].value);
+    console.log(userType);
     let bool_user_auth = await API_USER_LOG_IN(
-      event.target[1].value,
-      event.target[2].value,
-      event.target[0].value
+      event.target[3].value,
+      event.target[4].value,
+      userType
     );
     //Auth True
     if (bool_user_auth === true) {
@@ -35,28 +45,53 @@ function Signin() {
 
   return (
     <>
-      <h1>Welcome Back!</h1>
+      <h1 id='h1-signup'>Welcome Back!</h1>
       <Form className='auth-form' onSubmit={handleSubmit}>
-        <InputGroup className='mb-3'>
-          <InputGroup.Prepend>
-            <InputGroup.Text id='basic-addon1'>
-              Select User Type{" "}
-            </InputGroup.Text>
-          </InputGroup.Prepend>
-
-          <Form.Control
-            name='student_year'
-            as='select'
-            className='mr-sm-2'
-            id='inlineFormCustomSelect'
-            custom>
-            <option value='select'>Select</option>
-            <option value='professor'>Professor</option>
-            <option value='employer'>Employer</option>
-            <option value='student'>Student</option>
-          </Form.Control>
-        </InputGroup>
-        <Form.Control type='email' placeholder='Email' required />
+        <Form.Row id='profiles'>
+          <Col>
+            <label>
+              <input
+                type='radio'
+                name='account'
+                value='student'
+                onClick={() => {
+                  setEmail("Enter Your Student Email");
+                  setUserType("student");
+                }}
+              />
+              <Student id='student-radio' fill='#EEEEEE' />
+            </label>
+          </Col>
+          <Col>
+            <label>
+              <input
+                type='radio'
+                name='account'
+                value='professor'
+                onClick={() => {
+                  setEmail("Enter Your School Email");
+                  setUserType("professor");
+                }}
+              />
+              <Professor id='professor-radio' fill='#EEEEEE' />
+            </label>
+          </Col>
+          <Col>
+            <label>
+              <input
+                type='radio'
+                name='account'
+                value='employer'
+                onClick={() => {
+                  setEmail("Enter Your Company Email");
+                  setUserType("employer");
+                }}
+              />
+              <Company id='company-radio' fill='#EEEEEE' />
+            </label>
+          </Col>
+        </Form.Row>
+        <Form.Control type='email' placeholder={email} required />
         <Form.Group id='passwd'>
           <Form.Control type='password' placeholder='Password' required />
           <Form.Text className='text-muted'>Forgot Password?</Form.Text>

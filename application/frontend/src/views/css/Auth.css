@@ -1,6 +1,7 @@
 .left-auth {
   min-height: 100vh !important;
   min-width: 400px;
+  display: none;
 }
 
 .right-auth {
