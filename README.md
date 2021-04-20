@@ -27,6 +27,7 @@ ii. Change Log
 
 #### Tuesday, April 19, 2021 :: Aaron
 
+- I needed to upload the build/ folder (8.3mb) to more efficiently deploy onto aws which has been a hassle
 - changes after jose's push , refresh only after inserts for student profile are succesful with response code 200
 - check condition for first time users
 
