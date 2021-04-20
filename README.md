@@ -5,15 +5,20 @@ ii. Change Log
 
 ---
 
-## Place table w/ members/ etc stuff here
+## The Entire Dev Team
 
----
+| Student Name | Student Email           | GitHub Username |
+|    :---:     |     :---:               |     :---:       |
+| member1      |mlee38@mail.sfsu.edu     |rolandlee0308    |
+| member2      |jgonzalez34@mail.sfsu.edu|Hilarioo         |
+| member3      |asingh26@mail.sfsu.edu   |singhaaron       |
+| member4      |lsolomon3@mail.sfsu.edu  |LyraSolomon      |
 
 ## Change Logs
 
 #### Urgent TODO
 
-- place back the credentials folder for the graders i think we had before
+-
 
 #### Unresolved Issues
 
