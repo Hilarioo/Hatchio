@@ -10,13 +10,21 @@ ii. Issues
 #### Currently Working
 
 - Notifications for Employers & Students
+- Improved Professor Review System
 
-#### Monday, April 18, 2021 :: Aaron
+#### Tuesday, April 20, 2021 :: Lyra
+
+- Fix SQL injection vulnerabilities where the purpose of the function was understandable
+- Fix email verification functionality
+- Prevent passwords from being leaked to the users
+- Programmatically determine whether the server is AWS or a debug environment
+
+#### Monday, April 19, 2021 :: Aaron
 
 - Tested everything from scratch, every thing functions as expected
 - Deployed onto aws
 
-#### Sunday, April 17, 2021 :: Aaron
+#### Sunday, April 18, 2021 :: Aaron
 
 - Fixed Profile Page Rendering
 - POST | Pop UP Forms for Student Profile Page | Education | Projects

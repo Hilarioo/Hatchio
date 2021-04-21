@@ -1,24 +1,10 @@
 /**
  * File: verification.js
- * Purpose:
- * Functionality:
- * Authors: Roland
+ * Purpose: Verify the email accounts of users
+ * Authors: Roland, Lyra
  */
-var nodemailer = require("nodemailer");
-const mysql = require("mysql");
-const CONFIG = require("../config");
-const db_connection = mysql.createConnection(CONFIG.SQL_PORT);
-
-const profileSearch = (UserType, search_keyword) => {
-  if ((UserType == "students") | (UserType == "professors")) {
-    return `SELECT first_name,last_name,email,school_name,password,code FROM ${UserType} WHERE ( first_name LIKE '${search_keyword}' OR last_name LIKE '${search_keyword}' OR email LIKE '${search_keyword}' OR school_name LIKE '${search_keyword}'OR password LIKE '${search_keyword}'OR code LIKE '${search_keyword}' )`;
-  }
-  return `SELECT first_name,last_name,email,organization_name,password,code FROM ${UserType} WHERE ( first_name LIKE '${search_keyword}' OR last_name LIKE '${search_keyword}' OR email LIKE '${search_keyword}' OR organization_name LIKE '${search_keyword}'OR password LIKE '${search_keyword}'OR code LIKE '${search_keyword}' )`;
-};
-
-const updateKey = (UserType, key, value, search_keyword, value2) => {
-  return `UPDATE ${UserType} SET ${key}='${value}' WHERE ${search_keyword}='${value2}'`;
-};
+const nodemailer = require("nodemailer");
+const SQL_CONNECTION = require('../config').SQL_CONNECTION;
 
 //Create SMTP Transport
 var smtpTransport = nodemailer.createTransport({
@@ -29,10 +15,9 @@ var smtpTransport = nodemailer.createTransport({
   },
 });
 
-var mailOptions, host, link;
-
 module.exports = function (app) {
   app.get("/send", (req, res) => {
+    // TODO: The code should be generated server side. This does not set the code in the DB, the two features should be in the same place.
     const { email, code, UserType } = req.query;
     console.log("send function");
     console.log(UserType);
@@ -56,43 +41,35 @@ module.exports = function (app) {
     smtpTransport.sendMail(mailOptions, function (error, response) {
       if (error) {
         console.log(error);
-        res.end("error");
+        res.send("error");
       } else {
         console.log("Message sent: " + response.message);
-        res.end("sent");
+        res.send("sent");
       }
     });
   });
 
-  app.get("/verify", function (req, res) {
-    console.log(req.protocol + ":/" + req.get("host"));
-    if (req.protocol + "://" + req.get("host") == "http://" + host) {
-      console.log("Domain is matched. Information is from Authentic email");
-      if (
-        db_connection.query(profileSearch(req.query.UserType, req.query.id))
-      ) {
-        db_connection.query(
-          updateKey(req.query.UserType, "state", 1, "code", req.query.id)
-        ); //update status
-        db_connection.query(
-          updateKey(
-            req.query.UserType,
-            "code",
-            "Not Assigned",
-            "code",
-            req.query.id
-          )
-        ); //remove code
-        console.log("email is verified");
-        res.end(
-          "<h1>Email " + mailOptions.to + " is been Successfully verified"
-        );
+  app.get('/verify', function (req, res) {
+    var callback = function(err, results) {
+      if (err) {
+        res.send('<h1>Bad Request</h1>');
       } else {
-        console.log("email is not verified");
-        res.end("<h1>Bad Request</h1>");
+        res.send('<h1>Email has been successfully verified');
       }
-    } else {
-      res.end("<h1>Request is from unknown source");
+    }
+    switch (req.query.UserType) {
+      case 'students':
+        SQL_CONNECTION.query('UPDATE students SET code="Not Assigned" WHERE code=?', [req.query.id], callback);
+        break;
+      case 'professors':
+        SQL_CONNECTION.query('UPDATE professors SET code="Not Assigned" WHERE code=?', [req.query.id], callback);
+        break;
+      case 'employers':
+        SQL_CONNECTION.query('UPDATE employers SET code="Not Assigned" WHERE code=?', [req.query.id], callback);
+        break;
+      default:
+        res.send('<h1>Bad Request</h1>');
+        break;
     }
   });
 };

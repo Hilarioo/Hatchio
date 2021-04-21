@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "node_hatchio_init": "npm install && cd ../frontend && npm install && cd ../ && cd database && node reset.js && cd ../ && cd backend",
+    "node_hatchio_init": "npm install; cd ../frontend; npm install; cd ../; cd database; node reset.js; cd ../; cd backend",
     "backend": "nodemon server.js",
-    "frontend": "cd .. && cd frontend/ &&npm start",
+    "frontend": "cd ../frontend/; echo 'const SERVER =\"' $(whoami) '\"; module.exports={SERVER};' > src/servername.js; npm start",
     "backend_frontend": "concurrently \"npm run backend\" \"npm run frontend \""
   },
   "author": "",
@@ -17,6 +17,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mysql": "^2.18.1",
+    "os": "^6.0.0",
     "nodemailer": "^6.5.0",
     "nodemon": "^1.14.6"
   }
