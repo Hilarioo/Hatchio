@@ -1,16 +1,41 @@
-# Node Hatchio Dev Change Log
+# Node Hatchio Dev Log
 
-i. Change Log
-ii. Issues
+i. Project Requirments
+ii. Change Log
+
+---
+
+## The Entire Dev Team
+
+| Student Name | Student Email           | GitHub Username |
+|    :---:     |     :---:               |     :---:       |
+| member1      |mlee38@mail.sfsu.edu     |rolandlee0308    |
+| member2      |jgonzalez34@mail.sfsu.edu|Hilarioo         |
+| member3      |asingh26@mail.sfsu.edu   |singhaaron       |
+| member4      |lsolomon3@mail.sfsu.edu  |LyraSolomon      |
+
+## Change Logs
+
+#### Urgent TODO
+
+-
 
 #### Unresolved Issues
 
-- In milestone 04, i saw "best check for security practices" to show passwords being encrypted which we currently do not have, and i dont think we'll have enough time to do this
+- In milestone 04, i saw "best check for security practices" to show passwords being encrypted which we currently do not have, and i dont think we'll have enough time to do this before deadline // roland working on it
 
 #### Currently Working
 
-- Notifications for Employers & Students
-- Improved Professor Review System
+- Notifications for Employers & Students :: Aaron
+- Redeploying onto aws :: Aaron
+- PUT requests for users to edit their information :: Aaron
+- Improved Professor Review System :: Lyra
+
+#### Tuesday, April 19, 2021 :: Aaron
+
+- I needed to upload the build/ folder (8.3mb) to more efficiently deploy onto aws which has been a hassle
+- changes after jose's push , refresh only after inserts for student profile are succesful with response code 200
+- check condition for first time users
 
 #### Tuesday, April 20, 2021 :: Lyra
 
