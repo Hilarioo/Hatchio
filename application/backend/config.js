@@ -59,9 +59,11 @@ const LOCAL_PORT = `http://localhost:5000`;
 const HOST_PORT = username === 'ubuntu' ? AWS_PORT : LOCAL_PORT;
 const SQL_PORT = MYSQL_CRED[credIndex(username)];
 const SQL_CONNECTION = mysql.createConnection(SQL_PORT);
+const DEBUG_ENVIRONMENT = HOST_PORT === LOCAL_PORT;
 
 module.exports = {
   SQL_PORT,
+  DEBUG_ENVIRONMENT,
   HOST_PORT,
   SQL_CONNECTION,
 };

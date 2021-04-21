@@ -12,7 +12,7 @@ coverage/
 #build/ This shouldn't have to be tracked but apparently it makes AWS happy. Maybe we can use SCP?
 
 # genrule
-frontend/src/servername.js
+application/frontend/src/servername.js
 
 # misc
 .DS_Store

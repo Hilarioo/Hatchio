@@ -1,5 +1,4 @@
 const CONFIG = require('../config');
-const debugEnvironment = CONFIG.HOST_PORT === CONFIG.LOCAL_PORT;
 
 //User Tables
 const USER_STUDENTS = 'select * from students';
@@ -49,4 +48,4 @@ const debugExports = {
   USER_ADMINS,
   USER_PROFILE,
 };
-module.exports = debugEnvironment ? debugExports : { USER_PROFILE };
+module.exports = CONFIG.DEBUG_ENVIRONMENT ? debugExports : { USER_PROFILE };

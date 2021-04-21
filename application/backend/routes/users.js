@@ -32,7 +32,7 @@ module.exports = (app) => {
   app.get("/sign_in", (req, res) => {
     const { Email, Password, Type } = req.query;
     const Query_Verify = `select x.${Type}_id,x.first_name from ${Type}s x where email="${Email}" and password="${Password}";`;
-    db_connection.query(Query_Verify, (err, results) => {
+    SQL_CONNECTION.query(Query_Verify, (err, results) => {
       if (err) {
         res.send(false);
       } else {
