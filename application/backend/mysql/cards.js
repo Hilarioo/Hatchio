@@ -1,6 +1,5 @@
-const API_STUDENT_CARD = function(db, query, callback) {
-  const queryString =
-`
+const API_STUDENT_CARD = function (db, query, callback) {
+  const queryString = `
 SELECT Distinct
     students.student_id,
     students.first_name,
@@ -26,8 +25,9 @@ FROM
   db.query(queryString, [], callback);
 };
 
-const API_JOB_CARD_FILTER = function(db, query, callback) {
-  var queryString = "select position_title,organization_name,salary,location,about_us,job_type from company_listings";
+const API_JOB_CARD_FILTER = function (db, query, callback) {
+  var queryString =
+    "select position_title,organization_name,salary,location,about_us,job_type from company_listings";
   if (query.job_type === "Select" && query.position_title === "Select") {
     queryString += ";";
     db.query(queryString, [], callback);
@@ -43,7 +43,7 @@ const API_JOB_CARD_FILTER = function(db, query, callback) {
   }
 };
 
-const API_JOB_CARD = function(db, query, callback) {
+const API_JOB_CARD = function (db, query, callback) {
   const blankQuery = { job_type: "Select", position_title: "Select" };
   API_JOB_CARD_FILTER(db, blankQuery, callback);
 };

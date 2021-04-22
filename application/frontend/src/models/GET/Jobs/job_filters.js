@@ -1,4 +1,4 @@
-import PORT_HOST from "../config";
+import PORT_HOST from "../../../config";
 
 const API_JOB_LISTINGS_FETCH_FILTER = async (
   setArr,

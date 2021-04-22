@@ -16,13 +16,23 @@ const JobCard = ({
 }) => {
   const [tags, setTags] = useState(["tag01", "tag02", "tag03"]);
   return (
-    <div className='job-card'>
-      <img src={circle} alt='' />
-      <h4>Position Title: {PositionTitle}</h4>
-      <p>Company Name: {CompanyName}</p>
-      <p>Income {Income}</p>
-      <p>Job Type {JobType}</p>
-      <p>About Us: {AboutUs}</p>
+    <div className="job-card">
+      <img src={circle} alt="" />
+      <h4>
+        <b>Position Title:</b> {PositionTitle}
+      </h4>
+      <p>
+        <b>Company Name:</b> {CompanyName}
+      </p>
+      <p>
+        <b>Income:</b> {Income}
+      </p>
+      <p>
+        <b>Job Type:</b> {JobType}
+      </p>
+      <p>
+        <b>About Us:</b> {AboutUs}
+      </p>
       <Button>View</Button>
       <Button>Apply</Button>
     </div>

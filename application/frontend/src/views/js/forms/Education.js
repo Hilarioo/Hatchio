@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 // Import API
-import API_STUDENT_INSERT_EDUCATION from "../../../models/insert_student_education";
+import API_STUDENT_INSERT_EDUCATION from "../../../models/POST/Students/insert_student_education";
 
 const Education = (props) => {
   const [education, setEducation] = useState({

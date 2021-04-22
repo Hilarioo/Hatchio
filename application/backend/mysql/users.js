@@ -1,18 +1,19 @@
-const CONFIG = require('../config');
+const CONFIG = require("../config");
 
 //User Tables
-const USER_STUDENTS = 'select * from students';
-const USER_PROFESSORS = 'select * from professors';
-const USER_EMPLOYERS = 'select * from employers';
-const USER_ADMINS = 'select * from admins;';
+const USER_STUDENTS = "select * from students";
+const USER_PROFESSORS = "select * from professors";
+const USER_EMPLOYERS = "select * from employers";
+const USER_ADMINS = "select * from admins;";
 
 //User Profile Joined Tables
-const USER_PROFILE = function(db, query, callback) {
+const USER_PROFILE = function (db, query, callback) {
   const table = query.ts;
-  const id = query.bs
-  if (table === 'student') {
-    //Return Student Education, Student Ratings, Student Projects, Student Profile
-    db.query(`select school,degree,school_gpa,study_major,start_year,end_year from student_education where student_id = ?;
+  const id = query.bs;
+  if (table === "student") {
+    //Return Student Education, Student Ratings, Student Projects, Student Profile, Student Experience
+    db.query(
+      `select school,degree,school_gpa,study_major,start_year,end_year from student_education where student_id = ?;
               select about_me, strengths_qualities, location, school_grade_level, resume, profile_image from student_profile_page where student_id=?;  #profile
               select project_name,summary,arr_tools_used,professor,links_website,arr_collaborators_arr from student_projects where student_id=?; #projects
               select sr.student_id,
@@ -25,17 +26,28 @@ const USER_PROFILE = function(db, query, callback) {
                      sr.committed_to_success_level,
                      sr.recommendation_comment,
                      sr.rating_total from student_ratings sr inner join professors p on sr.professor_id = p.professor_id where sr.student_id = ?;
-              select first_name,last_name,email from students where student_id = ?;`,
-             [id, id, id, id, id], callback);
-  } else if (table === 'professor') {
-    db.query('select first_name, last_name, school_name, email from professors where professor_id=?;', [id], callback);
-  } else if (table === 'employer') {
+              select first_name,last_name,email from students where student_id = ?;
+              select * from student_experience where student_id= ?;#student_experience
+              `,
+      [id, id, id, id, id, id],
+      callback
+    );
+  } else if (table === "professor") {
+    db.query(
+      "select first_name, last_name, school_name, email from professors where professor_id=?;",
+      [id],
+      callback
+    );
+  } else if (table === "employer") {
     //Return Employer Information
     //Then return Employer Employed Jobs
-    db.query(`select first_name, last_name, organization_name, email from employers where employer_id=?;
+    db.query(
+      `select first_name, last_name, organization_name, email from employers where employer_id=?;
               select position_title, location, job_type, experience_years, salary, about_us, the_opportunity, task_responsibilities, skillset, benefits
                   from company_listings where employer_id=?;`,
-             [id, id], callback);
+      [id, id],
+      callback
+    );
   }
 };
 

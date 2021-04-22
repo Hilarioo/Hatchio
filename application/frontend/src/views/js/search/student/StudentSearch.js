@@ -7,40 +7,12 @@ import StudentFilters from "./StudentFilters";
 import StudentCard from "./StudentCard";
 import StudentSearchBar from "./StudentSearchBar";
 //API
-import API_FETCH_STUDENTS from "../../../../models/student_cards";
+import API_FETCH_STUDENTS from "../../../../models/GET/Students/student_cards";
 
 const StudentSearch = () => {
   // All students fetched from DB
-  const [dbStudents, setdbStudents] = useState([
-    {
-      about_me: "null",
-      first_name: "null",
-      last_name: "null",
-      profile_image: null,
-      school: "null",
-      school_gpa: 0,
-      school_grade_level: "null",
-      start_year: 0,
-      strengths_qualities: "",
-      student_id: 0,
-      study_major: "null",
-    },
-  ]);
-  const [results, setResults] = useState([
-    {
-      about_me: "null",
-      first_name: "null",
-      last_name: "null",
-      profile_image: null,
-      school: "null",
-      school_gpa: 0,
-      school_grade_level: "null",
-      start_year: 0,
-      strengths_qualities: "",
-      student_id: 0,
-      study_major: "null",
-    },
-  ]); // holds filtered students (avoids having to fetch from DB again)
+  const [dbStudents, setdbStudents] = useState([]);
+  const [results, setResults] = useState([]); // holds filtered students (avoids having to fetch from DB again)
   const [activeFilters, setActiveFilters] = useState([]); // Active filters
   const [schoolYear, setSchoolYear] = useState([]); // Active school year(s)
   const [strength, setStrength] = useState("");
@@ -194,21 +166,23 @@ const StudentSearch = () => {
           setRating={setRating}
         />
         <div className="results">
-          {results.map((student) => (
-            <StudentCard
-              // image={student.profile_image == null ? `""` : student.profile_image}
-              image={""}
-              schoolName={student.school}
-              studentName={student.first_name + " " + student.last_name}
-              studentEnrollment={student.school_grade_level}
-              major={student.study_major}
-              rating={student.rating_total}
-              gpa={student.school_gpa}
-              year={student.start_year}
-              about={student.about_me}
-              studentID={student.student_id}
-            />
-          ))}
+          {results.length == 0
+            ? "Database Not Connected"
+            : results.map((student) => (
+                <StudentCard
+                  // image={student.profile_image == null ? `""` : student.profile_image}
+                  image={""}
+                  schoolName={student.school}
+                  studentName={student.first_name + " " + student.last_name}
+                  studentEnrollment={student.school_grade_level}
+                  major={student.study_major}
+                  rating={student.rating_total}
+                  gpa={student.school_gpa}
+                  year={student.start_year}
+                  about={student.about_me}
+                  studentID={student.student_id}
+                />
+              ))}
         </div>
       </div>
     </>

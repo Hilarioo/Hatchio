@@ -29,7 +29,7 @@ import ListPopup from "../../forms/List";
 import LocationPopup from "../../forms/Location";
 import ProjectPopup from "../../forms/Project";
 //Import API
-import API_STUDENT_INSERT_PROFILE from "../../../../models/insert_student_profile";
+import API_STUDENT_INSERT_PROFILE from "../../../../models/POST/Students/insert_student_profile";
 // Default Image
 import { defaultImage } from "../../global/DefaultImage";
 //Form

@@ -7,31 +7,34 @@ ii. Change Log
 
 ## The Entire Dev Team
 
-| Student Name | Student Email           | GitHub Username |
-|    :---:     |     :---:               |     :---:       |
-| member1      |mlee38@mail.sfsu.edu     |rolandlee0308    |
-| member2      |jgonzalez34@mail.sfsu.edu|Hilarioo         |
-| member3      |asingh26@mail.sfsu.edu   |singhaaron       |
-| member4      |lsolomon3@mail.sfsu.edu  |LyraSolomon      |
+| Student Name |       Student Email       | GitHub Username |
+| :----------: | :-----------------------: | :-------------: |
+|   member1    |   mlee38@mail.sfsu.edu    |  rolandlee0308  |
+|   member2    | jgonzalez34@mail.sfsu.edu |    Hilarioo     |
+|   member3    |  asingh26@mail.sfsu.edu   |   singhaaron    |
+|   member4    |  lsolomon3@mail.sfsu.edu  |   LyraSolomon   |
 
 ## Change Logs
 
 #### Urgent TODO
 
--
-
 #### Unresolved Issues
-
-- In milestone 04, i saw "best check for security practices" to show passwords being encrypted which we currently do not have, and i dont think we'll have enough time to do this before deadline // roland working on it
 
 #### Currently Working
 
+- Transfering roland's branch code for hashing first time users > id10
 - Notifications for Employers & Students :: Aaron
-- Redeploying onto aws :: Aaron
-- PUT requests for users to edit their information :: Aaron
+- Profile Pages for Professors | Employers :: Aaron
+- PUT requests for all users to edit their information :: Aaron
 - Improved Professor Review System :: Lyra
 
-#### Tuesday, April 19, 2021 :: Aaron
+#### Wenesday, April 21, 2021 :: Aaron
+
+- Error handling and removed warning for refreshing the full view public profile pages
+- Added Student Experience and GET request to send corresponding table
+- Models/ Dir structure to align w/ GET POST PUT
+
+#### Tuesday, April 20, 2021 :: Aaron
 
 - I needed to upload the build/ folder (8.3mb) to more efficiently deploy onto aws which has been a hassle
 - changes after jose's push , refresh only after inserts for student profile are succesful with response code 200

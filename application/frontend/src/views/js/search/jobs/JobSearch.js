@@ -9,11 +9,11 @@ import InputGroup from "react-bootstrap/InputGroup";
 import JobCard from "./JobCard";
 
 //API
-import API_JOB_LISTINGS_FETCH from "../../../../models/job_cards";
-import API_JOB_LISTINGS_FETCH_FILTER from "../../../../models/job_filters";
+import API_JOB_LISTINGS_FETCH from "../../../../models/GET/Jobs/job_cards";
+import API_JOB_LISTINGS_FETCH_FILTER from "../../../../models/GET/Jobs/job_filters";
 
 const JobSearch = () => {
-  useEffect(() => API_JOB_LISTINGS_FETCH(setdbJobListings), []);
+  useEffect(() => API_JOB_LISTINGS_FETCH(setdbJobListings), []); // Load From DB
   const [dbJobListings, setdbJobListings] = useState([]); //Search Results
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -83,17 +83,19 @@ const JobSearch = () => {
         </div>
         <div className="results">
           <h4>results</h4>
-          <JobCard />
-          {dbJobListings.map((jobs) => (
-            <JobCard
-              PositionTitle={jobs.position_title}
-              CompanyName={jobs.organization_name}
-              Salary={jobs.salary}
-              Income={jobs.salary}
-              JobType={jobs.job_type}
-              AboutUs={jobs.about_us}
-            />
-          ))}
+          {/** IF Database Not Connected */}
+          {dbJobListings.length == 0
+            ? "Database Not Connected"
+            : dbJobListings.map((jobs) => (
+                <JobCard
+                  PositionTitle={jobs.position_title}
+                  CompanyName={jobs.organization_name}
+                  Salary={jobs.salary}
+                  Income={jobs.salary}
+                  JobType={jobs.job_type}
+                  AboutUs={jobs.about_us}
+                />
+              ))}
         </div>
       </div>
     </>

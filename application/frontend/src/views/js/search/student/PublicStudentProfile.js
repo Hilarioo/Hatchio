@@ -19,18 +19,11 @@ import GlobeIcon from "../../../content/svg/globe-icon.svg";
 import LinkedinIcon from "../../../content/svg/linkedin-icon.svg";
 import ResumeIcon from "../../../content/svg/resume-icon.svg";
 import GithubIcon from "../../../content/svg/github-icon.svg";
-import EditIcon from "../../../content/svg/edit-icon.svg";
-import AddIcon from "../../../content/svg/add-icon.svg";
 import ProjectIcon from "../../../content/svg/project-icon.svg";
 import ExperienceIcon from "../../../content/svg/experience-icon.svg";
 import EducationIcon from "../../../content/svg/education-icon.svg";
 // Form Components
 import Popup from "reactjs-popup";
-import AboutPopup from "../../forms/Description";
-import ListPopup from "../../forms/List";
-import ProjectPopup from "../../forms/Project";
-import EducationPopup from "../../forms/Education";
-import ExperiencePopup from "../../forms/Experience";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 // Default Image
@@ -44,7 +37,8 @@ const StyledPopup = styled(Popup)`
     width: 1000px;
   }
 `;
-const StudentProfile = (props) => {
+
+const PublicStudentProfile = (props) => {
   const location = useLocation();
   const history = useHistory();
   const [cookie] = useCookies(["Type_User", "ID_OF_USER", "First_Name"]); //Current User
@@ -73,8 +67,9 @@ const StudentProfile = (props) => {
     if (sent_bool === true) {
       history.push("/search-candidates");
     }
-    console.log(sent_bool);
-    //Send Rating to Back end
+    if (sent_bool === false) {
+      console.log("Ratings Unsuccesful");
+    }
   };
   //Form Inputs
   const [recommendation, setRecommendation] = useState("");
@@ -83,27 +78,40 @@ const StudentProfile = (props) => {
   const [leadership, setLeadership] = useState(0);
   const [committedToSuccess, setCommittedToSuccess] = useState(0);
 
+  //Handle Refresh
+  const [locationStatus, setLocationStatus] = useState(0);
+
   useEffect(() => {
-    API_USER_GET_PROFILE("student", location.Student_ID, setuserProfile);
-    setStudentID(location.Student_ID);
-    console.log(setuserProfile);
+    //If History was not Pushed
+    if (location.Student_ID == undefined) {
+      console.log("Undefined");
+    } else {
+      setLocationStatus(1); //Succesfull Location Status Push
+      API_USER_GET_PROFILE("student", location.Student_ID, setuserProfile);
+      setStudentID(location.Student_ID);
+    }
   }, [location]);
 
   const RedirectStudentSearch = () => {
     history.push("/search-candidates");
   };
-  // Form States
-  const [aboutPopup, setAboutPopup] = useState(false);
-  const [listPopup, setListPopup] = useState(false);
-  const [projectPopup, setProjectPopup] = useState(false);
-  const [educationPopup, setEducationPopup] = useState(false);
-  const [experiencePopup, setExperiencePopup] = useState(false);
+  if (locationStatus == 0) {
+    return (
+      <div>
+        <h3>
+          Please return back to the student search view page and do not refresh
+          when viewing a student's full profile page.
+        </h3>
+        <button onClick={() => RedirectStudentSearch()}>
+          Go Back to Student Search
+        </button>
+      </div>
+    );
+  }
 
   if (cookie.Type_User === `employer`) {
     return (
       <>
-        <h1>DO NOT REFRESH THIS PAGE USE THE BUTTON TO GO BACK OR NAV LINKS</h1>
-
         <button onClick={() => RedirectStudentSearch()}>
           Go Back to Student Search
         </button>
@@ -230,7 +238,7 @@ const StudentProfile = (props) => {
             <div className="education">
               {/* Student Education */}
               <div className="flex-box">
-                <h5>Education</h5>
+                <h4>Education</h4>
               </div>
               {/* Maps Every Education The Student Has Stored */}
               {userProfile[0].map((education) => (
@@ -243,17 +251,6 @@ const StudentProfile = (props) => {
                     <div className="flex-box">
                       {/* Education Degree Recieved */}
                       <h5>{education.degree}</h5>
-                      {/* Edit Education Popup */}
-                      <img
-                        id="edit-button"
-                        src={EditIcon}
-                        alt="edit pencil button"
-                        onClick={() => setEducationPopup(true)}
-                      />
-                      <EducationPopup
-                        show={educationPopup}
-                        onHide={() => setEducationPopup(false)}
-                      />
                     </div>
                     {/* Education School Name */}
                     <h6>{education.school}</h6>
@@ -270,47 +267,6 @@ const StudentProfile = (props) => {
               {/* experience */}
               <div className="flex-box">
                 <h4>Experience</h4>
-                {/* Add Experience Popup */}
-                <img
-                  id="edit-button"
-                  src={AddIcon}
-                  alt="edit pencil button"
-                  onClick={() => setExperiencePopup(true)}
-                />
-                <ExperiencePopup
-                  show={experiencePopup}
-                  onHide={() => setExperiencePopup(false)}
-                />
-              </div>
-              {/* TODO:: Maps Every Experience The Student Has Stored */}
-              <div className="student-experience flex-box">
-                {/* creates default image if none provided */}
-                <div className="img-box">
-                  <img src={ExperienceIcon} alt="project icon" />
-                </div>
-                <div className="right">
-                  <div className="flex-box">
-                    <h5>Jelly Bean Packer</h5>
-                    {/* Edit Pencil --> Popup */}
-                    <img
-                      id="edit-button"
-                      src={EditIcon}
-                      alt="edit pencil button"
-                      onClick={() => setExperiencePopup(true)}
-                    />
-                    <ExperiencePopup
-                      show={experiencePopup}
-                      onHide={() => setExperiencePopup(false)}
-                    />
-                  </div>
-                  <h6>The Pickle Factory Inc.</h6>
-                  <p>November 20, 2020 - Current</p>
-                  <li>
-                    <ul style={{ backgroundColor: "#EFE271" }}>one</ul>
-                    <ul style={{ backgroundColor: "#EFE271" }}>two</ul>
-                    <ul style={{ backgroundColor: "#EFE271" }}>three</ul>
-                  </li>
-                </div>
               </div>
             </div>
           </div>
@@ -363,8 +319,6 @@ const StudentProfile = (props) => {
   if (cookie.Type_User === `professor`) {
     return (
       <>
-        <h1>DO NOT REFRESH THIS PAGE USE THE BUTTON TO GO BACK OR NAV LINKS</h1>
-
         <button onClick={() => RedirectStudentSearch()}>
           Go Back to Student Search
         </button>
@@ -529,7 +483,9 @@ const StudentProfile = (props) => {
         {/* Student Qualities */}
         <div className="student-qualities">
           <div className="flex-box">
-            <h4>Top Qualities</h4>
+            <h4>
+              <b>Top Qualities</b>
+            </h4>
           </div>
           {/* Maps Every Quality Stored For The Student */}
           <li>
@@ -595,8 +551,7 @@ const StudentProfile = (props) => {
             <div className="education">
               {/* Student Education */}
               <div className="flex-box">
-                <h5>Education</h5>
-                {/* Add Education Popup */}
+                <h4>Education</h4>
               </div>
               {/* Maps Every Education The Student Has Stored */}
               {userProfile[0].map((education) => (
@@ -697,8 +652,6 @@ const StudentProfile = (props) => {
   //Normal User
   return (
     <>
-      <h1>DO NOT REFRESH THIS PAGE USE THE BUTTON TO GO BACK OR NAV LINKS</h1>
-
       <button onClick={() => RedirectStudentSearch()}>
         Go Back to Student Search
       </button>
@@ -820,7 +773,7 @@ const StudentProfile = (props) => {
           <div className="education">
             {/* Student Education */}
             <div className="flex-box">
-              <h5>Education</h5>
+              <h4>Education</h4>
             </div>
             {/* Maps Every Education The Student Has Stored */}
             {userProfile[0].map((education) => (
@@ -912,4 +865,4 @@ const StudentProfile = (props) => {
   );
 };
 
-export default StudentProfile;
+export default PublicStudentProfile;

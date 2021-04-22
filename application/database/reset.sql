@@ -15,6 +15,7 @@ drop table if exists student_ratings;
 drop table if exists student_projects;
 drop table if exists student_education;
 drop table if exists student_ratings;
+drop table if exists student_experience;
 -- -----------------------------------------------------
 -- Create Users
 -- -----------------------------------------------------
@@ -113,6 +114,16 @@ create table student_ratings (
     foreign key (professor_id)
         references professors (professor_id)
 );
+create table student_experience (
+    student_id int,
+    experience_title_position varchar(50),
+    company_name varchar(100),
+    date_start date,
+    date_end date,
+    arr_work_done_keywords varchar(500),
+    foreign key (student_id)
+        references students (student_id)
+);
 create table company_listings (
     employer_id int,
     organization_name varchar(255),
@@ -155,16 +166,16 @@ insert into professors(first_name,last_name,school_name,password,email,state,cod
  ("Duc","Ta","San Francisco State University","pass12345","ducTa@mail.com",0,"500");
  
 insert into employers(first_name,last_name,organization_name,password,email,state,code) values
-("Jack","Man","Google","los12345","microsoft@mailr.com",0,"500"),
-("Steve","Job","Apple","los12345","apple@mailr.com",0,"500"),
-("Jalon","Musk","Tesla","los12345","tesla@mailr.com",0,"500"),
-("Tim","Dillon","SquareSpace","los12345","squarespace@mailr.com",0,"500");
+("Jack","Man","Google","pass12345","microsoft@mailr.com",0,"500"),
+("Steve","Job","Apple","pass12345","apple@mailr.com",0,"500"),
+("Jalon","Musk","Tesla","pass12345","tesla@mailr.com",0,"500"),
+("Tim","Dillon","SquareSpace","pass12345","squarespace@mailr.com",0,"500");
 
 -- -----------------------------------------------------
 -- Insert User Tables   
 -- -----------------------------------------------------
 insert into student_ratings(student_id,professor_id,responsible_level,team_work_level,leadership_level,committed_to_success_level,recommendation_comment,rating_total) values
-(1,1,5,5,5,5,"It is with much enthusiasm that I recommend Tom Bloom for inclusion in the College Scholars Program at the University of Tennessee",2),
+(1,1,5,5,5,5,"It is with much enthusiasm that I recommend Tom Bloom for inclusion in the College Scholars Program at the University of Tennessee.",2),
 (2,2,1,2,3,5,"I recommend this student because of Jonathen enthusiasm.",1),
 (3,1,2,5,5,5,"Zorba wide-ranging intellect is such that he would be bored by most freshman- and sophomore-level Liberal Arts courses. He is ready to assume and excel in upper division classwork, and possesses the self-motivation to successfully create and execute an independent course of honors study.",1),
 (4,1,5,2,5,5,"Bob academic strengths are complemented by his demonstrated leadership skills – he was our band’s drum major for two years and served as Vice President of the Student Council and Editor of our high school yearbook. He is also very active in his church and in the Sierra Student Coalition.",5),
@@ -193,13 +204,24 @@ insert into student_education(student_id, school, degree, school_gpa, study_majo
 (1,"San Francisco State University","Bachelors",4.0,"English",2018,2022),
 (3,"East Bay University","Doctoral",3.5,"Computer Science",2017,2021),
 (2,"Harvard University","Masters",3.0,"Art",2012,2016),
-(4,"East bay University","Accounting",3.7,"Botany",2017,2021),
-(5,"East bay University","Doctoral",3.5,"Biology",2017,2021),
+(4,"East Bay University","Accounting",3.7,"Botany",2017,2021),
+(5,"East Bay University","Doctoral",3.5,"Biology",2017,2021),
 (6,"Harvard University","Masters",3.0,"Cinema",2012,2016),
-(7,"East bay University","Accounting",3.7,"Ecology",2017,2021),
-(8,"East bay University","Doctoral",3.5,"Japanese",2017,2021),
+(7,"East Bay University","Accounting",3.7,"Ecology",2017,2021),
+(8,"East Bay University","Doctoral",3.5,"Japanese",2017,2021),
 (9,"Harvard University","Masters",3.0,"Social Work",2012,2016),
 (10,"East Bay University","Accounting",3.7,"Accounting",2017,2021);
+
+insert into student_experience(student_id,experience_title_position,company_name, date_start,date_end,arr_work_done_keywords) values
+(1,"Jelly Bean Packager","The Pickle Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend"),
+(1,"Jelly Rean Packager","The Pickle Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend"),
+(2,"Jelly Bean Packager","The Pickle Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend"),
+(3,"Jelly Tean Packager","The Pickle Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend"),
+(4,"Jelly Bean Packager","The Pickle Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend"),
+(5,"Jelly Tean Packager","The Pickle Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend"),
+(6,"Jelly Bean Packager","The Pickle Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend"),
+(7,"Jelly Tean Packager","The Pickle Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend"),
+(8,"Jelly Tean Packager","The Pickle Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend");
 
 insert into student_profile_page(student_id,about_me,strengths_qualities,location,school_grade_level) values
 (1,"I've always loved the Victorian period in English literature. Even as a kid, Dickens captured my imagination more thoroughly than the Harry Potter stories or anything else. As an undergraduate at Northwestern University, I studied English with a concentration on Victorian fiction. Now, I hope to continue exploring this fundamentally important literary period as a graduate student.","honest,courages,strong,brave","New York","Freshman"),

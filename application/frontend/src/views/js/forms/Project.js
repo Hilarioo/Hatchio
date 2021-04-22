@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 // Import API
-import API_STUDENT_INSERT_PROJECTS from "../../../models/insert_student_projects";
+import API_STUDENT_INSERT_PROJECTS from "../../../models/POST/Students/insert_student_projects";
 
 const Project = (props) => {
   const [project, setProject] = useState({
