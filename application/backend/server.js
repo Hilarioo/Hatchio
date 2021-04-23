@@ -38,5 +38,6 @@ require("./routes/cards")(app);
 require("./routes/users")(app);
 require("./routes/verification")(app);
 require("./routes/insert")(app);
+require("./routes/tmp")(app);
 
 app.listen(5000, () => `Backend-Live`);

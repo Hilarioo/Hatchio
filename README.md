@@ -30,7 +30,7 @@ ii. Change Log
 #### Friday, April 23, 2021 :: Aaron
 
 -Home page (commented out search jobs with title footer) also we already have search at seach-jobs
--Adding functionality to Job search page
+-Adding functionality to Job search page 'View' and but 'Apply' functionality is (in progress)
 -Button Formatting w/ bootstrap
 
 #### Thursday, April 22, 2021 :: Aaron
