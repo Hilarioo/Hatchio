@@ -102,9 +102,9 @@ const PublicStudentProfile = (props) => {
           Please return back to the student search view page and do not refresh
           when viewing a student's full profile page.
         </h3>
-        <button onClick={() => RedirectStudentSearch()}>
+        <Button onClick={() => RedirectStudentSearch()}>
           Go Back to Student Search
-        </button>
+        </Button>
       </div>
     );
   }
@@ -112,9 +112,9 @@ const PublicStudentProfile = (props) => {
   if (cookie.Type_User === `employer`) {
     return (
       <>
-        <button onClick={() => RedirectStudentSearch()}>
+        <Button onClick={() => RedirectStudentSearch()}>
           Go Back to Student Search
-        </button>
+        </Button>
         <hr></hr>
         {/* heading */}
         <div className="student-heading">
@@ -139,14 +139,14 @@ const PublicStudentProfile = (props) => {
               <p>{userProfile[1][0].location}</p>
             </div>
             <div className="flex-box">
-              <Popup trigger={<button> Employ</button>}>
+              <Popup trigger={<Button> Employ</Button>}>
                 <div>
                   {" "}
                   Sent! Will Notify Students in there Dashbaord/notifications
                   still working on this
                 </div>
               </Popup>
-              <Popup trigger={<button> Rate</button>}>
+              <Popup trigger={<Button> Rate</Button>}>
                 <div> Sign in as a professor!</div>
               </Popup>
             </div>
@@ -319,9 +319,9 @@ const PublicStudentProfile = (props) => {
   if (cookie.Type_User === `professor`) {
     return (
       <>
-        <button onClick={() => RedirectStudentSearch()}>
+        <Button onClick={() => RedirectStudentSearch()}>
           Go Back to Student Search
-        </button>
+        </Button>
         <hr></hr>
         {/* heading */}
         <div className="student-heading">
@@ -346,11 +346,11 @@ const PublicStudentProfile = (props) => {
               <p>{userProfile[1][0].location}</p>
             </div>
             <div className="flex-box">
-              <Popup trigger={<button>Employ</button>}>
+              <Popup trigger={<Button>Employ</Button>}>
                 <p>You must be a Employee! Sign In as an Employee</p>
               </Popup>
 
-              <StyledPopup trigger={<button> Rate</button>}>
+              <StyledPopup trigger={<Button> Rate</Button>}>
                 <div>
                   <Form onSubmit={handleSubmit}>
                     <InputGroup className="mb-3">
@@ -652,9 +652,9 @@ const PublicStudentProfile = (props) => {
   //Normal User
   return (
     <>
-      <button onClick={() => RedirectStudentSearch()}>
+      <Button onClick={() => RedirectStudentSearch()}>
         Go Back to Student Search
-      </button>
+      </Button>
       <hr></hr>
       {/* heading */}
       <div className="student-heading">
@@ -679,10 +679,10 @@ const PublicStudentProfile = (props) => {
             <p>{userProfile[1][0].location}</p>
           </div>
           <div className="flex-box">
-            <Popup trigger={<button>Employ</button>}>
+            <Popup trigger={<Button>Employ</Button>}>
               <p>You must be an Employee! Sign In as an Employee</p>
             </Popup>
-            <Popup trigger={<button> Rate</button>}>
+            <Popup trigger={<Button> Rate</Button>}>
               <div> Sign in as a professor!</div>
             </Popup>
           </div>

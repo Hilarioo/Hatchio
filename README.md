@@ -27,7 +27,12 @@ ii. Change Log
 - PUT requests for all users to edit their information :: Aaron
 - Improved Professor Review System :: Lyra
 
-#### Thursday, April 21, 2021 :: Aaron
+#### Friday, April 23, 2021 :: Aaron
+
+-Home page (commented out search jobs with title footer) also we already have search at seach-jobs
+-Button Formatting w/ bootstrap
+
+#### Thursday, April 22, 2021 :: Aaron
 
 - Transfered roalnd's branch code for hasing firs time users in database // to work around the issue of default users, i used an efficient solution because it works for the time being
 - I re-added the ec2 instance because /routes can't be accessed without the url

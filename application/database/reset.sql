@@ -11,11 +11,11 @@ drop table if exists employers;
 drop table if exists admins;
 drop table if exists company_listings;
 drop table if exists student_profile_page;
-drop table if exists student_ratings;
 drop table if exists student_projects;
 drop table if exists student_education;
-drop table if exists student_ratings;
 drop table if exists student_experience;
+drop table if exists student_ratings;
+drop table if exists student_ratings;
 -- -----------------------------------------------------
 -- Create Users
 -- -----------------------------------------------------

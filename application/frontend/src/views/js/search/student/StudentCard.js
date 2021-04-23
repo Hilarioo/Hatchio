@@ -120,11 +120,11 @@ const StudentCard = ({
           </div>
         </header>
         <div className="flex-box">
-          <Popup trigger={<button>Employ</button>}>
-            <p>You must be a Employee! Sign In as an Employee</p>
+          <Popup trigger={<Button>Hire</Button>}>
+            <p>You must be a Employer! Sign In | Sign Up as an Employer</p>
           </Popup>
           <Button onClick={() => RedirectProfile()}>Profile</Button>
-          <StyledPopup trigger={<button> Rate</button>}>
+          <StyledPopup trigger={<Button> Rate</Button>}>
             <div>
               <Form onSubmit={handleSubmit}>
                 <InputGroup className="mb-3">
@@ -272,7 +272,7 @@ const StudentCard = ({
           </div>
         </header>
         <div className="flex-box">
-          <Popup trigger={<button> Employ</button>}>
+          <Popup trigger={<Button> Employ</Button>}>
             <div>
               {" "}
               Sent! Will Notify Students in there Dashbaord/notifications still
@@ -280,7 +280,7 @@ const StudentCard = ({
             </div>
           </Popup>
           <Button onClick={() => RedirectProfile()}>Profile</Button>
-          <Popup trigger={<button> Rate</button>}>
+          <Popup trigger={<Button> Rate</Button>}>
             <div> Sign in as a professor!</div>
           </Popup>
         </div>
@@ -320,11 +320,11 @@ const StudentCard = ({
         </div>
       </header>
       <div className="flex-box">
-        <Popup trigger={<button>Employ</button>}>
-          <p>You must be an Employee! Sign In as an Employee</p>
+        <Popup trigger={<Button>Hire</Button>}>
+          <p>You must be a Employer! Sign In | Sign Up as an Employer</p>
         </Popup>
         <Button onClick={() => RedirectProfile()}>Profile</Button>
-        <Popup trigger={<button> Rate</button>}>
+        <Popup trigger={<Button> Rate</Button>}>
           <div> Sign in as a professor!</div>
         </Popup>
       </div>

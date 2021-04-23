@@ -3,10 +3,12 @@ import "../../css/Theme.css";
 import "../../css/Home.css";
 // React Boostrap
 import Button from "react-bootstrap/Button";
+//Pop Up Form
+import Popup from "reactjs-popup";
 
 const PostJobs = () => {
   return (
-    <div className='box'>
+    <div className="box">
       <h1>
         Post Jobs <br /> Your next hire is here
       </h1>
@@ -15,9 +17,15 @@ const PostJobs = () => {
         their careers. We put your job in front of the most qualified members —
         and those open to new opportunities.
       </p>
-      <Button variant='flat' size='xl' className='home-btn'>
-        Post Jobs
-      </Button>
+      <Popup
+        trigger={
+          <Button variant="flat" size="xl" className="home-btn">
+            Post Jobs
+          </Button>
+        }
+      >
+        <p>Sign In/Up as a Employer!</p>
+      </Popup>
     </div>
   );
 };
