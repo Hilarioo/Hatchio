@@ -25,10 +25,11 @@ const Dashboard = () => {
   const [cookie] = useCookies(["Type_User", "ID_OF_USER", "First_Name"]);
   //User Profile Return
   const [userProfile, setuserProfile] = useState([
-    [{ null: "null" }, { null: "null" }], //General Information
-    [{ null: "null" }, { null: "null" }], //Education
-    [{ null: "null" }, { null: "null" }], //Ratings
-    [{ null: "null" }, { null: "null" }], //Job Listings
+    [{ null: "null" }, { null: "null" }],
+    [{ null: "null" }, { null: "null" }],
+    [{ null: "null" }, { null: "null" }],
+    [{ null: "null" }, { null: "null" }],
+    [{ null: "null" }, { null: "null" }],
     [{ null: "null" }, { null: "null" }],
   ]);
 
@@ -53,7 +54,6 @@ const Dashboard = () => {
   }
   return (
     <div>
-      ``
       <h1 className="mini-title">Refresh page or Sign in </h1>
     </div>
   );

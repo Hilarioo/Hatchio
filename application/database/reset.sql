@@ -15,7 +15,6 @@ drop table if exists student_projects;
 drop table if exists student_education;
 drop table if exists student_experience;
 drop table if exists student_ratings;
-drop table if exists student_ratings;
 -- -----------------------------------------------------
 -- Create Users
 -- -----------------------------------------------------
@@ -121,6 +120,9 @@ create table student_experience (
     date_start date,
     date_end date,
     arr_work_done_keywords varchar(500),
+    description_experience mediumtext,
+    location varchar(500),
+    employment_type varchar(500),
     foreign key (student_id)
         references students (student_id)
 );
@@ -213,16 +215,18 @@ insert into student_education(student_id, school, degree, school_gpa, study_majo
 (9,"Harvard University","Masters",3.0,"Social Work",2012,2016),
 (10,"East Bay University","Accounting",3.7,"Accounting",2017,2021);
 
-insert into student_experience(student_id,experience_title_position,company_name, date_start,date_end,arr_work_done_keywords) values
-(1,"Jelly Bean Packager","The Pickle Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend"),
-(1,"Jelly Rean Packager","The Pickle Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend"),
-(2,"Jelly Bean Packager","The Pickle Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend"),
-(3,"Jelly Tean Packager","The Pickle Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend"),
-(4,"Jelly Bean Packager","The Pickle Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend"),
-(5,"Jelly Tean Packager","The Pickle Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend"),
-(6,"Jelly Bean Packager","The Pickle Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend"),
-(7,"Jelly Tean Packager","The Pickle Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend"),
-(8,"Jelly Tean Packager","The Pickle Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend");
+insert into student_experience(student_id,experience_title_position,company_name, date_start,date_end,arr_work_done_keywords,description_experience,location,employment_type) values
+(1,"Jelly Bean Packager","The America Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend","Worked on taking out the trash.","California","Full Time"),
+(1,"Jelly Rean Packager","The Spain Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend","Worked on taking out the trash.","California","Full Time"),
+(2,"Jelly Bean Packager","The Mexico Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend","Worked on taking out the trash.","California","Full Time"),
+(3,"Jelly Tean Packager","The Korea Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend","Worked on taking out the trash.","California","Full Time"),
+(4,"Jelly Bean Packager","The Pink Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend","Worked on taking out the trash.","California","Full Time"),
+(5,"Jelly Tean Packager","The Yellow Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend","Worked on taking out the trash.","California","Full Time"),
+(6,"Jelly Bean Packager","The Green Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend","Worked on taking out the trash.","California","Full Time"),
+(7,"Jelly Tean Packager","The Blue Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend","Worked on taking out the trash.","California","Full Time"),
+(8,"Jelly Tean Packager","The Red Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend","Worked on taking out the trash.","California","Full Time"),
+(9,"Jelly Sean Packager","The Cheese Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend","Worked on taking out the trash.","California","Full Time"),
+(10,"Jelly Lean Packager","The Apple Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend","Worked on taking out the trash.","California","Full Time");
 
 insert into student_profile_page(student_id,about_me,strengths_qualities,location,school_grade_level) values
 (1,"I've always loved the Victorian period in English literature. Even as a kid, Dickens captured my imagination more thoroughly than the Harry Potter stories or anything else. As an undergraduate at Northwestern University, I studied English with a concentration on Victorian fiction. Now, I hope to continue exploring this fundamentally important literary period as a graduate student.","honest,courages,strong,brave","New York","Freshman"),
@@ -238,7 +242,7 @@ insert into student_profile_page(student_id,about_me,strengths_qualities,locatio
 
 insert into company_listings(employer_id,organization_name,position_title,location,job_type,experience_years,experience_level,salary,about_us,the_opportunity,skillset,benefits) values
 (1,"Google","User Experience Designer","Pleasant Hill, Ca","Full Time","minimum 5 Years","Senior Level",105000,"Our mission is to organize the world’s information and make it universally accessible and useful.","Work with the top class engineers and mentors that will help you grow with the company and as an individual","1.Enthusiasm2.Willing to work hard3.Passionate","1.401k2.Good Salary3.great Experience"),
-(1,"Google","Backend developer","San Diego, Ca","Remote","Minimum 2 Years","Mid Level",15000,"Our mission is to organize the world’s information and make it universally accessible and useful.","Work with the top class engineers and mentors that will help you grow with the company and as an individual","1.Enthusiasm2.Willing to work hard3.Passionate","1.401k2.Good Salary3.Great Experience"),
+(1,"Google","Backend Developer","San Diego, Ca","Remote","Minimum 2 Years","Mid Level",15000,"Our mission is to organize the world’s information and make it universally accessible and useful.","Work with the top class engineers and mentors that will help you grow with the company and as an individual","1.Enthusiasm2.Willing to work hard3.Passionate","1.401k2.Good Salary3.Great Experience"),
 (2,"Apple","Frontend Developer","san Diego, Ca","Contract","Maximum 10 Years","senior Level",10500,"Our mission is to organize the world’s information and make it universally accessible and useful.","Work with the top class engineers and mentors that will help you grow with the company and as an individual","1.Enthusiasm2.Willing to work hard3.Passionate","1.401k2.Good Salary3.Great Experience"),
 (3,"Tesla","Full Stack Developer","Pleasant Hill, Ca","Internship","Minimum 3 Years","Directors",35000,"Our mission is to organize the world’s information and make it universally accessible and useful.","Work with the top class engineers and mentors that will help you grow with the company and as an individual","1.Enthusiasm2.Willing to work hard3.Passionate","1.401k2.Good Salary3.Great Experience");
 -- -----------------------------------------------------

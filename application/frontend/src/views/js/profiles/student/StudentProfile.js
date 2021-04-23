@@ -5,7 +5,6 @@ import "../../../css/Profiles.css";
 import "../../../css/Theme.css";
 import styled from "styled-components";
 // React Boostrap
-import Button from "react-bootstrap/Button";
 import ProgressBar from "react-bootstrap/ProgressBar";
 //Import SVG Icons
 import LocationIcon from "../../../content/svg/location-icon.svg";
@@ -60,9 +59,7 @@ const POPUP_STUDENT_PROFILE_PAGE = (Student_ID) => {
             //TODO: PROFILE IMAGE
           }}
           onSubmit={async (values) => {
-            console.log(values);
             const response = await API_STUDENT_INSERT_PROFILE(values);
-            console.log(response);
             if (response === 400) {
               console.log("error");
             }
@@ -75,24 +72,20 @@ const POPUP_STUDENT_PROFILE_PAGE = (Student_ID) => {
         >
           <Form>
             <br></br>
-            <label>___________________________________________About Me</label>
+            <label>About Me</label>
             <Field id="about_me" name="about_me" />
             <hr></hr>
 
             <br></br>
-            <label>
-              ________________________________________Strenth Qualities
-            </label>
+            <label>Strenth Qualities</label>
             <Field id="strengths_qualities" name="strengths_qualities" />
 
             <hr></hr>
-            <label>_____________________________________Location</label>
+            <label>Location</label>
             <Field id="location" name="location" />
 
             <hr></hr>
-            <label>
-              ________________________________________School Grade Level
-            </label>
+            <label>School Grade Level</label>
             <Field id="school_grade_level" name="school_grade_level" />
 
             <button type="submit">Submit</button>
@@ -114,13 +107,13 @@ const StudentProfile = (props) => {
     [{ null: "null" }, { null: "null" }],
     [{ null: "null" }, { null: "null" }],
     [{ null: "null" }, { null: "null" }],
+    [{ null: "null" }, { null: "null" }],
   ]);
   // User Qualities
   const [qualities, setQualities] = useState([]);
 
   useEffect(() => {
     setUserProfile(props);
-    console.log(props);
 
     setQualities(
       String(
@@ -390,6 +383,7 @@ const StudentProfile = (props) => {
           </div>
           <div className="experience">
             {/* experience */}
+
             <div className="flex-box">
               <h4 className="category-heading">Experience</h4>
               {/* Add Experience Popup */}
@@ -404,36 +398,42 @@ const StudentProfile = (props) => {
                 onHide={() => setExperiencePopup(false)}
               />
             </div>
-            {/* TODO:: Maps Every Experience The Student Has Stored */}
-            <div className="student-experience flex-box">
-              {/* creates default image if none provided */}
-              <div className="img-box">
-                <img src={ExperienceIcon} alt="project icon" />
-              </div>
-              <div className="right">
-                <div className="flex-box">
-                  <h5>Jelly Bean Packer</h5>
-                  {/* Edit Pencil --> Popup */}
-                  <img
-                    id="edit-button"
-                    src={EditIcon}
-                    alt="edit pencil button"
-                    onClick={() => setExperiencePopup(true)}
-                  />
-                  <ExperiencePopup
-                    show={experiencePopup}
-                    onHide={() => setExperiencePopup(false)}
-                  />
-                </div>
-                <h6>The Pickle Factory Inc.</h6>
-                <p>November 20, 2020 - Current</p>
-                <li>
-                  <ul style={{ backgroundColor: "#EFE271" }}>one</ul>
-                  <ul style={{ backgroundColor: "#EFE271" }}>two</ul>
-                  <ul style={{ backgroundColor: "#EFE271" }}>three</ul>
-                </li>
-              </div>
-            </div>
+            {/** Map Experience */}
+            {userProfile[5].length == 0
+              ? "No Experience"
+              : userProfile[5].map((data) => (
+                  <div className="student-experience flex-box">
+                    {/* creates default image if none provided */}
+                    <div className="img-box">
+                      <img src={ExperienceIcon} alt="project icon" />
+                    </div>
+                    <div className="right">
+                      <div className="flex-box">
+                        <h5>{data.experience_title_position}</h5>
+                        {/* Edit Pencil --> Popup */}
+                        <img
+                          id="edit-button"
+                          src={EditIcon}
+                          alt="edit pencil button"
+                          onClick={() => setExperiencePopup(true)}
+                        />
+                        <ExperiencePopup
+                          show={experiencePopup}
+                          onHide={() => setExperiencePopup(false)}
+                        />
+                      </div>
+                      <h6>{data.company_name}</h6>
+                      <p>
+                        {data.date_start} - {data.date_end}
+                      </p>
+                      <li>
+                        <ul style={{ backgroundColor: "#EFE271" }}>
+                          {data.arr_work_done_keywords}
+                        </ul>
+                      </li>
+                    </div>
+                  </div>
+                ))}
           </div>
         </div>
       </div>

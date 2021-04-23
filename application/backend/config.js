@@ -4,7 +4,7 @@
  * Functionality IE: Export Credentials | Configurations for different environment hosting
  * Authors: Aaron, Lyra
  */
-const os = require('os');
+const os = require("os");
 const mysql = require("mysql");
 
 const MYSQL_CRED = [
@@ -44,19 +44,24 @@ const MYSQL_CRED = [
   },
 ];
 const username = os.userInfo().username;
-const credIndex = function(name) {
-  switch(name) {
-    case "ubuntu": return 0;
-    case "lyra": return 0;
-    case "aaron": return 1;
-    case "jose": return 2;
-    case "roland": return 3;
+const credIndex = function (name) {
+  switch (name) {
+    case "ubuntu":
+      return 0;
+    case "lyra":
+      return 0;
+    case "aaron":
+      return 1;
+    case "jose":
+      return 2;
+    case "roland":
+      return 3;
   }
-}
+};
 
 const AWS_PORT = `http://3.141.216.125:5000`;
 const LOCAL_PORT = `http://localhost:5000`;
-const HOST_PORT = username === 'ubuntu' ? AWS_PORT : LOCAL_PORT;
+const HOST_PORT = username === "ubuntu" ? AWS_PORT : LOCAL_PORT;
 const SQL_PORT = MYSQL_CRED[credIndex(username)];
 const SQL_CONNECTION = mysql.createConnection(SQL_PORT);
 const DEBUG_ENVIRONMENT = HOST_PORT === LOCAL_PORT;
