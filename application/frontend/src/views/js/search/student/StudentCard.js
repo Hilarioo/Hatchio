@@ -238,7 +238,7 @@ const StudentCard = ({
       </div>
     );
   }
-
+  //Employer
   if (cookie.Type_User === "employer") {
     return (
       <div className="student-card">

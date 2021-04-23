@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 // CSS
 import "../../../css/Theme.css";
 import "../../../css/Search.css";
@@ -8,13 +9,21 @@ import circle from "../../../content/svg/demo-card-profile.svg";
 import Button from "react-bootstrap/Button";
 
 const JobCard = ({
+  Listing_ID = 0,
   PositionTitle = "",
   CompanyName = "",
   Income = 0,
   AboutUs = "",
   JobType = "",
 }) => {
-  const [tags, setTags] = useState(["tag01", "tag02", "tag03"]);
+  const history = useHistory();
+  const Redirect_Job_View = (Listing_ID) => {
+    console.log(`Listing ID: ${Listing_ID}`);
+    history.push({
+      pathname: "/full-job-view",
+      Listing_id: Listing_ID,
+    });
+  };
   return (
     <div className="job-card">
       <img src={circle} alt="" />
@@ -33,7 +42,7 @@ const JobCard = ({
       <p>
         <b>About Us:</b> {AboutUs}
       </p>
-      <Button>View</Button>
+      <Button onClick={() => Redirect_Job_View(Listing_ID)}>View</Button>
       <Button>Apply</Button>
     </div>
   );

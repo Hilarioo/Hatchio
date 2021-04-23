@@ -15,6 +15,7 @@ import API_JOB_LISTINGS_FETCH_FILTER from "../../../../models/GET/Jobs/job_filte
 const JobSearch = () => {
   useEffect(() => API_JOB_LISTINGS_FETCH(setdbJobListings), []); // Load From DB
   const [dbJobListings, setdbJobListings] = useState([]); //Search Results
+
   const handleSubmit = (e) => {
     e.preventDefault();
     API_JOB_LISTINGS_FETCH_FILTER(
@@ -88,6 +89,7 @@ const JobSearch = () => {
             ? "Database Not Connected"
             : dbJobListings.map((jobs) => (
                 <JobCard
+                  Listing_ID={jobs.listing_id}
                   PositionTitle={jobs.position_title}
                   CompanyName={jobs.organization_name}
                   Salary={jobs.salary}

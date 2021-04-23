@@ -16,8 +16,9 @@ import Dashboard from "./views/js/user/Dashboard";
 //Employers
 import PostJobs from "./views/js/profiles/company/PostJobs";
 
-//Full Profile View
+//Full View
 import Full_Student_Profile from "./views/js/search/student/PublicStudentProfile";
+import Full_Job_View from "./views/js/search/jobs/JobView";
 
 const App = () => {
   return (
@@ -66,9 +67,13 @@ const App = () => {
             <Route path="/help">
               <Help />
             </Route>
-            {/** Public View of Student profile */}
+            {/** Public View of Student Profile */}
             <Route path="/full-student-profile">
               <Full_Student_Profile />
+            </Route>
+            {/** Full Job View */}
+            <Route path="/full-job-view">
+              <Full_Job_View />
             </Route>
             {/** ONLY Professors */}
             <Route path="/insert-jobs">

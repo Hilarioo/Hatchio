@@ -125,6 +125,7 @@ create table student_experience (
         references students (student_id)
 );
 create table company_listings (
+	listing_id int auto_increment primary key,
     employer_id int,
     organization_name varchar(255),
     position_title varchar(255),
