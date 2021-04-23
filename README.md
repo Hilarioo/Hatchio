@@ -22,11 +22,15 @@ ii. Change Log
 
 #### Currently Working
 
-- Transfering roland's branch code for hashing first time users > id10
 - Notifications for Employers & Students :: Aaron
 - Profile Pages for Professors | Employers :: Aaron
 - PUT requests for all users to edit their information :: Aaron
 - Improved Professor Review System :: Lyra
+
+#### Thursday, April 21, 2021 :: Aaron
+
+- Transfered roalnd's branch code for hasing firs time users in database // to work around the issue of default users, i used an efficient solution because it works for the time being
+- I re-added the ec2 instance because /routes can't be accessed without the url
 
 #### Wenesday, April 21, 2021 :: Aaron
 

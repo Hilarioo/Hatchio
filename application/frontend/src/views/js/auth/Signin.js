@@ -39,64 +39,65 @@ function Signin() {
     }
     //Auth False
     if (bool_user_auth === false) {
+      console.log("false");
       //Control UI response
     }
   };
 
   return (
     <>
-      <h1 id='h1-signup'>Welcome Back!</h1>
-      <Form className='auth-form' onSubmit={handleSubmit}>
-        <Form.Row id='profiles'>
+      <h1 id="h1-signup">Welcome Back!</h1>
+      <Form className="auth-form" onSubmit={handleSubmit}>
+        <Form.Row id="profiles">
           <Col>
             <label>
               <input
-                type='radio'
-                name='account'
-                value='student'
+                type="radio"
+                name="account"
+                value="student"
                 onClick={() => {
                   setEmail("Enter Your Student Email");
                   setUserType("student");
                 }}
               />
-              <Student id='student-radio' fill='#EEEEEE' />
+              <Student id="student-radio" fill="#EEEEEE" />
             </label>
           </Col>
           <Col>
             <label>
               <input
-                type='radio'
-                name='account'
-                value='professor'
+                type="radio"
+                name="account"
+                value="professor"
                 onClick={() => {
                   setEmail("Enter Your School Email");
                   setUserType("professor");
                 }}
               />
-              <Professor id='professor-radio' fill='#EEEEEE' />
+              <Professor id="professor-radio" fill="#EEEEEE" />
             </label>
           </Col>
           <Col>
             <label>
               <input
-                type='radio'
-                name='account'
-                value='employer'
+                type="radio"
+                name="account"
+                value="employer"
                 onClick={() => {
                   setEmail("Enter Your Company Email");
                   setUserType("employer");
                 }}
               />
-              <Company id='company-radio' fill='#EEEEEE' />
+              <Company id="company-radio" fill="#EEEEEE" />
             </label>
           </Col>
         </Form.Row>
-        <Form.Control type='email' placeholder={email} required />
-        <Form.Group id='passwd'>
-          <Form.Control type='password' placeholder='Password' required />
-          <Form.Text className='text-muted'>Forgot Password?</Form.Text>
+        <Form.Control type="email" placeholder={email} required />
+        <Form.Group id="passwd">
+          <Form.Control type="password" placeholder="Password" required />
+          <Form.Text className="text-muted">Forgot Password?</Form.Text>
         </Form.Group>
-        <Button variant='dark' type='submit'>
+        <Button variant="dark" type="submit">
           Sign in
         </Button>
       </Form>
