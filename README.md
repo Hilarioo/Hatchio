@@ -20,6 +20,10 @@ ii. Change Log
 
 #### Unresolved Issues
 
+- Can't get Update PopUp Information
+- Experience Unable to transfer Student Id from cookies as a prop
+- Some Routes are not able to be process w/, so i brought back some of the routes from past
+
 #### Currently Working
 
 - Notifications for Employers & Students :: Aaron
@@ -29,9 +33,10 @@ ii. Change Log
 
 #### Friday, April 23, 2021 :: Aaron
 
--Home page (commented out search jobs with title footer) also we already have search at seach-jobs
--Adding functionality to Job search page 'View' and but 'Apply' functionality is (in progress)
--Button Formatting w/ bootstrap
+- Home page (commented out search jobs with title footer) also we already have search at seach-jobs
+- Adding functionality to Job search page 'View' and but 'Apply' functionality is (in progress)
+- Button Formatting w/ bootstrap
+- Editi About Me for Profile Page
 
 #### Thursday, April 22, 2021 :: Aaron
 

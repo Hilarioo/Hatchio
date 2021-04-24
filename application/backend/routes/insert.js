@@ -60,6 +60,7 @@ module.exports = (app) => {
       "school_grade_level",
     ]
   );
+  /*
   //POST Methods for Student Education
   insertRoute(
     "/insert_student_education",
@@ -74,6 +75,7 @@ module.exports = (app) => {
       "end_year",
     ]
   );
+  */
   //POST Methods for Student Projects
   insertRoute(
     "/insert_student_projects",
@@ -83,7 +85,7 @@ module.exports = (app) => {
       "project_name",
       "summary",
       "arr_tools_used",
-      "arr_tools_used" /* TODO I assume this should be professor */,
+      "professor",
       "links_website",
       "arr_collaborators_arr",
     ]

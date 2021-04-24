@@ -48,6 +48,7 @@ const PublicStudentProfile = (props) => {
     [{ null: "null" }, { null: "null" }],
     [{ null: "null" }, { null: "null" }],
     [{ null: "null" }, { null: "null" }],
+    [{ null: "null" }, { null: "null" }],
   ]);
   const [studentID, setStudentID] = useState(0);
   //Rate Form Submission
@@ -265,9 +266,35 @@ const PublicStudentProfile = (props) => {
             </div>
             <div className="experience">
               {/* experience */}
+
               <div className="flex-box">
-                <h4>Experience</h4>
+                <h4 className="category-heading">Experience</h4>
               </div>
+              {/** Map Experience */}
+              {userProfile[5].length == 0
+                ? "No Experience"
+                : userProfile[5].map((data) => (
+                    <div className="student-experience flex-box">
+                      {/* creates default image if none provided */}
+                      <div className="img-box">
+                        <img src={ExperienceIcon} alt="project icon" />
+                      </div>
+                      <div className="right">
+                        <div className="flex-box">
+                          <h5>{data.experience_title_position}</h5>
+                        </div>
+                        <h6>{data.company_name}</h6>
+                        <p>
+                          {data.date_start} - {data.date_end}
+                        </p>
+                        <li>
+                          <ul style={{ backgroundColor: "#EFE271" }}>
+                            {data.arr_work_done_keywords}
+                          </ul>
+                        </li>
+                      </div>
+                    </div>
+                  ))}
             </div>
           </div>
         </div>
@@ -346,8 +373,8 @@ const PublicStudentProfile = (props) => {
               <p>{userProfile[1][0].location}</p>
             </div>
             <div className="flex-box">
-              <Popup trigger={<Button>Employ</Button>}>
-                <p>You must be a Employee! Sign In as an Employee</p>
+              <Popup trigger={<Button>Hire</Button>}>
+                <p>You must be a Employer! Sign In as an Employer</p>
               </Popup>
 
               <StyledPopup trigger={<Button> Rate</Button>}>
@@ -578,29 +605,35 @@ const PublicStudentProfile = (props) => {
             </div>
             <div className="experience">
               {/* experience */}
+
               <div className="flex-box">
-                <h4>Experience</h4>
-                {/* Add Experience Popup */}
+                <h4 className="category-heading">Experience</h4>
               </div>
-              {/* TODO:: Maps Every Experience The Student Has Stored */}
-              <div className="student-experience flex-box">
-                {/* creates default image if none provided */}
-                <div className="img-box">
-                  <img src={ExperienceIcon} alt="project icon" />
-                </div>
-                <div className="right">
-                  <div className="flex-box">
-                    <h5>Jelly Bean Packer</h5>
-                  </div>
-                  <h6>The Pickle Factory Inc.</h6>
-                  <p>November 20, 2020 - Current</p>
-                  <li>
-                    <ul style={{ backgroundColor: "#EFE271" }}>one</ul>
-                    <ul style={{ backgroundColor: "#EFE271" }}>two</ul>
-                    <ul style={{ backgroundColor: "#EFE271" }}>three</ul>
-                  </li>
-                </div>
-              </div>
+              {/** Map Experience */}
+              {userProfile[5].length == 0
+                ? "No Experience"
+                : userProfile[5].map((data) => (
+                    <div className="student-experience flex-box">
+                      {/* creates default image if none provided */}
+                      <div className="img-box">
+                        <img src={ExperienceIcon} alt="project icon" />
+                      </div>
+                      <div className="right">
+                        <div className="flex-box">
+                          <h5>{data.experience_title_position}</h5>
+                        </div>
+                        <h6>{data.company_name}</h6>
+                        <p>
+                          {data.date_start} - {data.date_end}
+                        </p>
+                        <li>
+                          <ul style={{ backgroundColor: "#EFE271" }}>
+                            {data.arr_work_done_keywords}
+                          </ul>
+                        </li>
+                      </div>
+                    </div>
+                  ))}
             </div>
           </div>
         </div>
@@ -797,28 +830,35 @@ const PublicStudentProfile = (props) => {
           </div>
           <div className="experience">
             {/* experience */}
+
             <div className="flex-box">
-              <h4>Experience</h4>
+              <h4 className="category-heading">Experience</h4>
             </div>
-            {/* TODO:: Maps Every Experience The Student Has Stored */}
-            <div className="student-experience flex-box">
-              {/* creates default image if none provided */}
-              <div className="img-box">
-                <img src={ExperienceIcon} alt="project icon" />
-              </div>
-              <div className="right">
-                <div className="flex-box">
-                  <h5>Jelly Bean Packer</h5>
-                </div>
-                <h6>The Pickle Factory Inc.</h6>
-                <p>November 20, 2020 - Current</p>
-                <li>
-                  <ul style={{ backgroundColor: "#EFE271" }}>one</ul>
-                  <ul style={{ backgroundColor: "#EFE271" }}>two</ul>
-                  <ul style={{ backgroundColor: "#EFE271" }}>three</ul>
-                </li>
-              </div>
-            </div>
+            {/** Map Experience */}
+            {userProfile[5].length == 0
+              ? "No Experience"
+              : userProfile[5].map((data) => (
+                  <div className="student-experience flex-box">
+                    {/* creates default image if none provided */}
+                    <div className="img-box">
+                      <img src={ExperienceIcon} alt="project icon" />
+                    </div>
+                    <div className="right">
+                      <div className="flex-box">
+                        <h5>{data.experience_title_position}</h5>
+                      </div>
+                      <h6>{data.company_name}</h6>
+                      <p>
+                        {data.date_start} - {data.date_end}
+                      </p>
+                      <li>
+                        <ul style={{ backgroundColor: "#EFE271" }}>
+                          {data.arr_work_done_keywords}
+                        </ul>
+                      </li>
+                    </div>
+                  </div>
+                ))}
           </div>
         </div>
       </div>

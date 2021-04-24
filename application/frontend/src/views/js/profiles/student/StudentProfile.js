@@ -198,6 +198,7 @@ const StudentProfile = (props) => {
           <AboutPopup
             show={aboutPopup}
             onHide={() => setAboutPopup(false)}
+            userID={cookie.ID_OF_USER}
             heading="Edit About Me"
             about={
               userProfile[1].length === 0 ? "" : userProfile[1][0].about_me
@@ -394,6 +395,7 @@ const StudentProfile = (props) => {
                 onClick={() => setExperiencePopup(true)}
               />
               <ExperiencePopup
+                userID={cookie.ID_OF_USER}
                 show={experiencePopup}
                 onHide={() => setExperiencePopup(false)}
               />

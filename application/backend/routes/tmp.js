@@ -36,6 +36,7 @@ module.exports = (app) => {
       SQL_CONNECTION.query(sql_insert_job_listings, (err, results) => {
         if (err) {
           //Send 400: Bad Request
+          console.log("here");
           return res.sendStatus(400);
         } else {
           //Send 201: Request Created
@@ -45,6 +46,65 @@ module.exports = (app) => {
     } catch (e) {
       console.log(`Error ${e}`);
       return res.sendStatus(400);
+    }
+  });
+  //POST Methods for Student Education
+  app.post("/insert_student_education", (req, res) => {
+    try {
+      let sql_insert_student_education = `insert into student_education(student_id, school, degree, school_gpa, study_major, start_year, end_year) values(${req.body.Student_ID},"${req.body.school}","${req.body.degree}",${req.body.school_gpa},"${req.body.study_major}",${req.body.start_year},${req.body.end_year});`;
+      console.log(sql_insert_student_education);
+      SQL_CONNECTION.query(sql_insert_student_education, (err, results) => {
+        if (err) {
+          //Send 400: Bad Request
+          return res.sendStatus(400);
+        } else {
+          //Send 201: Request Created
+          return res.sendStatus(200);
+        }
+      });
+    } catch (e) {
+      console.log(`Error ${e}`);
+      return res.sendStatus(400);
+    }
+  });
+  //POST: Student Experience
+  app.post("/insert-experience", (req, res) => {
+    try {
+      console.log(req.body);
+
+      let sql_insert_experience = `
+insert into student_experience
+(student_id,experience_title_position,company_name, date_start,date_end,arr_work_done_keywords,description_experience,location,employment_type)
+ values
+(1,"Jelly Bean Packager","The America Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend","Worked on taking out the trash.","California","Full Time"),`;
+      SQL_CONNECTION.query(sql_insert_experience, (err, results) => {
+        if (err) {
+          return res.sendStatus(400);
+        } else {
+          return res.sendStatus(200);
+        }
+      });
+    } catch (e) {
+      console.log(`${e}`);
+    }
+  });
+  //PUT: Student About Me
+  app.put("/about-me", (req, res) => {
+    let sql = `update student_profile_page sp set about_me = "${req.query.about_me}" where sp.student_id = ${req.query.id};`;
+    try {
+      SQL_CONNECTION.query(sql, (err, results) => {
+        if (err) {
+          //Error
+          console.log(err);
+          return res.sendStatus(400);
+        } else {
+          console.log("ok");
+          //True
+          return res.sendStatus(200);
+        }
+      });
+    } catch (e) {
+      console.log(`${e}`);
     }
   });
 };
