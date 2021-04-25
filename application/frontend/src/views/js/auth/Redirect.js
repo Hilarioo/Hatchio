@@ -37,7 +37,7 @@ const Redirect = () => {
           <Link
             to='#'
             onClick={(e) => {
-              window.location = "mailto:help@hatchio.io";
+              window.location = "mailto:hatchionoreply9@gmail.com"
               e.preventDefault();
             }}>
             help@hatchio.io
