@@ -3,10 +3,22 @@ import "../../css/Theme.css";
 import "../../css/Home.css";
 // React Boostrap
 import Button from "react-bootstrap/Button";
-//Pop Up Form
-import Popup from "reactjs-popup";
+//Cookies
+import { useCookies } from "react-cookie";
 
+//TODO: ID_OF_USER needs to be an existing employer. The easiest solution might be creating another default employer
+//for anonymous.
 const PostJobs = () => {
+  const [cookies, setCookie] = useCookies(["Type_User", "ID_OF_USER", "First_Name"]);
+
+  function postJobs(e){
+    e.preventDefault();
+    setCookie('Type_User', 'employer');
+    setCookie('ID_OF_USER', '4');
+    setCookie('First_Name', 'anonymous');
+    window.location.href='/insert-jobs';
+  }
+
   return (
     <div className="box">
       <h1>
@@ -17,15 +29,9 @@ const PostJobs = () => {
         their careers. We put your job in front of the most qualified members —
         and those open to new opportunities.
       </p>
-      <Popup
-        trigger={
-          <Button variant="flat" size="xl" className="home-btn">
-            Post Jobs
-          </Button>
-        }
-      >
-        <p>Sign In/Up as a Employer!</p>
-      </Popup>
+      <Button variant="flat" size="xl" className="home-btn" onClick={postJobs}>
+        Post Jobs
+      </Button>
     </div>
   );
 };

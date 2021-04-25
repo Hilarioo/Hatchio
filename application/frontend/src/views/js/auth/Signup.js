@@ -44,6 +44,7 @@ function Signup() {
       alert("Verification email has been sent to " + email);
       api_send_email(FORM_REQUEST);
       api_register_user(FORM_REQUEST);
+      window.location.href='/signup-redirect';
     }
 
     setValidated(true);
