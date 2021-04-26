@@ -25,6 +25,7 @@ const USER_PROFILE = function (db, query, callback) {
                      sr.leadership_level,
                      sr.committed_to_success_level,
                      sr.recommendation_comment,
+                     sr.publish_date,
                      sr.rating_total from student_ratings sr inner join professors p on sr.professor_id = p.professor_id where sr.student_id = ?;
               select first_name,last_name,email from students where student_id = ?;
               select * from student_experience where student_id= ?;#student_experience

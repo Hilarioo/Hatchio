@@ -10,6 +10,7 @@ import StudentSearch from "./views/js/search/student/StudentSearch";
 import JobSearch from "./views/js/search/jobs/JobSearch";
 import About from "./views/js/about/About";
 import Help from "./views/js/help/Help";
+import Notifications from "./views/js/notifications/Notification";
 import StudentProfile from "./views/js/profiles/student/StudentProfile";
 //All Users
 import Dashboard from "./views/js/user/Dashboard";
@@ -82,6 +83,10 @@ const App = () => {
             {/** ALL USERS */}
             <Route path="/dashboard">
               <Dashboard />
+            </Route>
+            {/** Notifications */}
+            <Route path="/notifications">
+              <Notifications />
             </Route>
           </Switch>
         </div>

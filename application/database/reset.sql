@@ -108,6 +108,9 @@ create table student_ratings (
     committed_to_success_level int,
     recommendation_comment mediumtext,
     rating_total float,
+    student_seen TINYINT default 0,
+    student_hide TINYINT default 0,
+    publish_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     foreign key (student_id)
         references students (student_id),
     foreign key (professor_id)
@@ -179,6 +182,7 @@ insert into employers(first_name,last_name,organization_name,password,email,stat
 -- -----------------------------------------------------
 insert into student_ratings(student_id,professor_id,responsible_level,team_work_level,leadership_level,committed_to_success_level,recommendation_comment,rating_total) values
 (1,1,5,5,5,5,"It is with much enthusiasm that I recommend Tom Bloom for inclusion in the College Scholars Program at the University of Tennessee.",2),
+(1,2,5,5,5,5,"Very Noice",5),
 (2,2,1,2,3,5,"I recommend this student because of Jonathen enthusiasm.",1),
 (3,1,2,5,5,5,"Zorba wide-ranging intellect is such that he would be bored by most freshman- and sophomore-level Liberal Arts courses. He is ready to assume and excel in upper division classwork, and possesses the self-motivation to successfully create and execute an independent course of honors study.",1),
 (4,1,5,2,5,5,"Bob academic strengths are complemented by his demonstrated leadership skills – he was our band’s drum major for two years and served as Vice President of the Student Council and Editor of our high school yearbook. He is also very active in his church and in the Sierra Student Coalition.",5),

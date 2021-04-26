@@ -107,4 +107,23 @@ insert into student_experience
       console.log(`${e}`);
     }
   });
+  //GET: Student Ratings for Notifications
+  app.get("/student-ratings", (req, res) => {
+    let sql = `select * from student_Ratings where student_id =${req.query.s_id} `;
+    let sql_v = `select professors.professor_id,rating_total,professors.first_name,publish_date,student_seen,student_hide  from student_ratings sr inner join professors on sr.professor_id = professors.professor_id where sr.student_id = ${req.query.s_id};`;
+    console.log(sql);
+    try {
+      SQL_CONNECTION.query(sql_v, (err, results) => {
+        if (err) {
+          console.log(err);
+          return res.sendStatus(400); //Error code easier for frontend to process
+        } else {
+          return res.json(results);
+        }
+      });
+    } catch (e) {
+      console.log(`Error ${e}`);
+    }
+  });
+  //POST: Altering states to control student ratings notifications
 };

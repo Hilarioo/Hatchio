@@ -269,7 +269,7 @@ const StudentProfile = (props) => {
                   {/* Project Details */}
                   <div className="right">
                     {/* TODO:: Project Date */}
-                    <p id="date">November 20, 2020</p>
+                    <p id="date">{project.publish_date}</p>
                     <div className="flex-box">
                       {/* Project Name */}
                       <h5>{project.project_name}</h5>
@@ -465,7 +465,7 @@ const StudentProfile = (props) => {
                     />
                   </span>
                   {/* TODO:: date of the review */}
-                  <p>November 20, 2021</p>
+                  <p>{review.publish_date}</p>
                 </header>
                 {/* Professor's School At The Time Of The Review */}
                 <h6>{review.school_name}</h6>

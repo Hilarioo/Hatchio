@@ -27,32 +27,34 @@ const DefaultNav = () => {
   };
   if (cookie.Type_User === "professor") {
     return (
-      <Navbar collapseOnSelect expand='lg' className='nav-bar'>
-        <Navbar.Brand id='nav-logo'>
-          <NavLink to='/'>
+      <Navbar collapseOnSelect expand="lg" className="nav-bar">
+        <Navbar.Brand id="nav-logo">
+          <NavLink to="/">
             <Logo />
           </NavLink>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls='responsive-navbar-nav' />
-        <Navbar.Collapse id='responsive-navbar-nav'>
-          <Nav className='mr-auto nav-left'>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="mr-auto nav-left">
             <NavDropdown
-              title='Search'
-              id='collasible-nav-dropdown'
-              className='nav-search'>
+              title="Search"
+              id="collasible-nav-dropdown"
+              className="nav-search"
+            >
               <NavDropdown.Item>
-                <NavLink to='/search-jobs'>Jobs</NavLink>
+                <NavLink to="/search-jobs">Jobs</NavLink>
               </NavDropdown.Item>
               <NavDropdown.Item>
-                <NavLink to='/search-candidates'>Students</NavLink>
+                <NavLink to="/search-candidates">Students</NavLink>
               </NavDropdown.Item>
             </NavDropdown>
-            <NavLink to='/about'>About</NavLink>
-            <NavLink to='/help'>Help</NavLink>
-            <NavLink to='/dashboard'>Dashboard</NavLink>
+            <NavLink to="/about">About</NavLink>
+            <NavLink to="/help">Help</NavLink>
+            <NavLink to="/dashboard">Dashboard</NavLink>
+            <NavLink to="/notifications">Notifications</NavLink>
           </Nav>
-          <Nav className='nav-right'>
-            <NavLink to='/' className='auth-btn'>
+          <Nav className="nav-right">
+            <NavLink to="/" className="auth-btn">
               <button onClick={handleRemoveCookie}>Sign Out</button>
             </NavLink>
           </Nav>
@@ -62,32 +64,34 @@ const DefaultNav = () => {
   }
   if (cookie.Type_User === "student") {
     return (
-      <Navbar collapseOnSelect expand='lg' className='nav-bar'>
-        <Navbar.Brand id='nav-logo'>
-          <NavLink to='/'>
+      <Navbar collapseOnSelect expand="lg" className="nav-bar">
+        <Navbar.Brand id="nav-logo">
+          <NavLink to="/">
             <Logo />
           </NavLink>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls='responsive-navbar-nav' />
-        <Navbar.Collapse id='responsive-navbar-nav'>
-          <Nav className='mr-auto nav-left'>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="mr-auto nav-left">
             <NavDropdown
-              title='Search'
-              id='collasible-nav-dropdown'
-              className='nav-search'>
+              title="Search"
+              id="collasible-nav-dropdown"
+              className="nav-search"
+            >
               <NavDropdown.Item>
-                <NavLink to='/search-jobs'>Jobs</NavLink>
+                <NavLink to="/search-jobs">Jobs</NavLink>
               </NavDropdown.Item>
               <NavDropdown.Item>
-                <NavLink to='/search-candidates'>Students</NavLink>
+                <NavLink to="/search-candidates">Students</NavLink>
               </NavDropdown.Item>
             </NavDropdown>
-            <NavLink to='/about'>About</NavLink>
-            <NavLink to='/help'>Help</NavLink>
-            <NavLink to='/dashboard'>Dashboard</NavLink>
+            <NavLink to="/about">About</NavLink>
+            <NavLink to="/help">Help</NavLink>
+            <NavLink to="/dashboard">Dashboard</NavLink>
+            <NavLink to="/notifications">Notifications</NavLink>
           </Nav>
-          <Nav className='nav-right'>
-            <NavLink to='/' className='auth-btn'>
+          <Nav className="nav-right">
+            <NavLink to="/" className="auth-btn">
               <button onClick={handleRemoveCookie}>Sign Out</button>
             </NavLink>
           </Nav>
@@ -97,33 +101,35 @@ const DefaultNav = () => {
   }
   if (cookie.Type_User === "employer") {
     return (
-      <Navbar collapseOnSelect expand='lg' className='nav-bar'>
-        <Navbar.Brand id='nav-logo'>
-          <NavLink to='/'>
+      <Navbar collapseOnSelect expand="lg" className="nav-bar">
+        <Navbar.Brand id="nav-logo">
+          <NavLink to="/">
             <Logo />
           </NavLink>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls='responsive-navbar-nav' />
-        <Navbar.Collapse id='responsive-navbar-nav'>
-          <Nav className='mr-auto nav-left'>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="mr-auto nav-left">
             <NavDropdown
-              title='Search'
-              id='collasible-nav-dropdown'
-              className='nav-search'>
+              title="Search"
+              id="collasible-nav-dropdown"
+              className="nav-search"
+            >
               <NavDropdown.Item>
-                <NavLink to='/search-jobs'>Jobs</NavLink>
+                <NavLink to="/search-jobs">Jobs</NavLink>
               </NavDropdown.Item>
               <NavDropdown.Item>
-                <NavLink to='/search-candidates'>Students</NavLink>
+                <NavLink to="/search-candidates">Students</NavLink>
               </NavDropdown.Item>
             </NavDropdown>
-            <NavLink to='/about'>About</NavLink>
-            <NavLink to='/help'>Help</NavLink>
-            <NavLink to='/insert-jobs'>Post Jobs</NavLink>
-            <NavLink to='/dashboard'>Dashboard</NavLink>
+            <NavLink to="/about">About</NavLink>
+            <NavLink to="/help">Help</NavLink>
+            <NavLink to="/insert-jobs">Post Jobs</NavLink>
+            <NavLink to="/dashboard">Dashboard</NavLink>
+            <NavLink to="/notifications">Notifications</NavLink>
           </Nav>
-          <Nav className='nav-right'>
-            <NavLink to='/' className='auth-btn'>
+          <Nav className="nav-right">
+            <NavLink to="/" className="auth-btn">
               <button onClick={handleRemoveCookie}>Sign Out</button>
             </NavLink>
           </Nav>
@@ -133,35 +139,36 @@ const DefaultNav = () => {
   }
 
   return (
-    <Navbar collapseOnSelect expand='lg' className='nav-bar'>
-      <Navbar.Brand id='nav-logo'>
-        <NavLink to='/'>
+    <Navbar collapseOnSelect expand="lg" className="nav-bar">
+      <Navbar.Brand id="nav-logo">
+        <NavLink to="/">
           <Logo />
         </NavLink>
       </Navbar.Brand>
-      <Navbar.Toggle aria-controls='responsive-navbar-nav' />
-      <Navbar.Collapse id='responsive-navbar-nav'>
-        <Nav className='mr-auto nav-left'>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav className="mr-auto nav-left">
           <NavDropdown
-            title='Search'
-            id='collasible-nav-dropdown'
-            className='nav-search'>
+            title="Search"
+            id="collasible-nav-dropdown"
+            className="nav-search"
+          >
             <NavDropdown.Item>
-              <NavLink to='/search-jobs'>Jobs</NavLink>
+              <NavLink to="/search-jobs">Jobs</NavLink>
             </NavDropdown.Item>
             <NavDropdown.Item>
-              <NavLink to='/search-candidates'>Students</NavLink>
+              <NavLink to="/search-candidates">Students</NavLink>
             </NavDropdown.Item>
           </NavDropdown>
-          <NavLink to='/about'>About</NavLink>
-          <NavLink to='/help'>Help</NavLink>
-          <NavLink to='/dashboard'>Dashboard</NavLink>
+          <NavLink to="/about">About</NavLink>
+          <NavLink to="/help">Help</NavLink>
+          <NavLink to="/dashboard">Dashboard</NavLink>
         </Nav>
-        <Nav className='nav-right'>
-          <NavLink to='/signup' className='auth-btn'>
+        <Nav className="nav-right">
+          <NavLink to="/signup" className="auth-btn">
             Sign Up
           </NavLink>
-          <NavLink to='/signin' className='auth-btn'>
+          <NavLink to="/signin" className="auth-btn">
             Sign In
           </NavLink>
         </Nav>

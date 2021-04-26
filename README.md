@@ -26,10 +26,14 @@ ii. Change Log
 
 #### Currently Working
 
-- Notifications for Employers & Students :: Aaron
-- Profile Pages for Professors | Employers :: Aaron
-- PUT requests for all users to edit their information :: Aaron
+- Notifications for Employers & Students :: Aaron | Roland
+- Profile Pages for Professors | Employers :: Aaron | Jose
+- PUT requests for student users to edit their information (remaining: experience,project,schools) :: Aaron
 - Improved Professor Review System :: Lyra
+
+#### Monday, April 26, 2021 :: Aaron
+
+- Notifications page for students when receiving professor ratings TODO: add buttons for seeing/deleting notifications
 
 #### Friday, April 23, 2021 :: Aaron
 
