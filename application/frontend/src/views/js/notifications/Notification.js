@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import API_STUDENT_RATING_NOTIFICATIONS from "../../../models/GET/Students/rating_notifications";
+import API_UPDATE_STUDENT_RATING_NOTIFICATION from "../../../models/PUT/Students/update_ratings_notification";
 
 const Notifications = () => {
   useEffect(() => {
@@ -10,13 +11,31 @@ const Notifications = () => {
   const [cookie] = useCookies(["Type_User", "ID_OF_USER", "First_Name"]); //Current User
   const [ratingNotifications, setRatingNotifications] = useState([]);
 
+  const seenNotification = async (reflection_id) => {
+    console.log(`Reflection ID: ${reflection_id}`);
+    const response = await API_UPDATE_STUDENT_RATING_NOTIFICATION(
+      reflection_id
+    );
+    if (response.status == 400) {
+      console.log("Failed to Update");
+    }
+    if (response.status == 200) {
+      console.log("Sucess ");
+      window.location.reload();
+    }
+  };
+
+  const deleteNotification = async (reflection_id) => {
+    //TODO: Set Delte Boolean Off
+  };
+
   var seen_notifications = [];
   const unseen_notifications =
     ratingNotifications.length == 0
       ? `Empty`
       : ratingNotifications.map((row) => {
           //Not Seen
-          if (row.student_seen == 0) {
+          if (row.student_seen == 0 && row.student_hide == 0) {
             return (
               <>
                 <tr>
@@ -30,7 +49,9 @@ const Notifications = () => {
                     <b>Rating Total</b> {row.rating_total}
                   </td>
                   <td>
-                    <b>ADD BUTTON SEEN</b>
+                    <button onClick={() => seenNotification(row.reflection_id)}>
+                      SEEN
+                    </button>
                   </td>
                 </tr>
               </>

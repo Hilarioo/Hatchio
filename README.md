@@ -22,6 +22,7 @@ ii. Change Log
 
 - Can't get Update PopUp Information
 - Experience Unable to transfer Student Id from cookies as a prop
+- Instead of window.location.reload() we should be able to refire the useEffect to cause a state change w/o having to reload
 - Some Routes are not able to be process w/, so i brought back some of the routes from past
 
 #### Currently Working
@@ -33,7 +34,7 @@ ii. Change Log
 
 #### Monday, April 26, 2021 :: Aaron
 
-- Notifications page for students when receiving professor ratings TODO: add buttons for seeing/deleting notifications
+- Notifications page for students when receiving professor ratings. done with seen/unseen TODO: add buttons for deleting notifications
 
 #### Friday, April 23, 2021 :: Aaron
 

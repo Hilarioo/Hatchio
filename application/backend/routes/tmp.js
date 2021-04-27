@@ -1,18 +1,16 @@
 /**
- * File: users.js
- * Purpose: Store GET | POST Methods any time user is directly involved
- * Functionality IE: Frontend Sign In | Sign Up | User Dashboard
+ * File: tmp.js
+ * Purpose:Temporary file to get routes working because of corruption or smn from last update
+ * Functionality IE: Updating Rows, Inserting new rows, etc
  * Authors:
- * Aaron : Sign In | Profile | Professor Rate Students
- * Roland: Sign Up
- * Lyra: Security fix
+ * Aaron : GET | POST | PUT not imported in other files due to last revamp
  */
 const mysql = require("mysql");
 const CONFIG = require("../config");
 const SQL_CONNECTION = mysql.createConnection(CONFIG.SQL_PORT);
 
 module.exports = (app) => {
-  //Register USER
+  //GET: Get all information for Jobs Listings
   app.get("/full-job-view", (req, res) => {
     //Get Row Identifier
     let sql_job_information = `select * from company_listings where listing_id = ${req.query.identifier_listing_row};`;
@@ -67,16 +65,12 @@ module.exports = (app) => {
       return res.sendStatus(400);
     }
   });
-  //POST: Student Experience
+  //TODO-POST: Student Experience
   app.post("/insert-experience", (req, res) => {
     try {
       console.log(req.body);
 
-      let sql_insert_experience = `
-insert into student_experience
-(student_id,experience_title_position,company_name, date_start,date_end,arr_work_done_keywords,description_experience,location,employment_type)
- values
-(1,"Jelly Bean Packager","The America Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend","Worked on taking out the trash.","California","Full Time"),`;
+      let sql_insert_experience = `insert into student_experience (student_id,experience_title_position,company_name, date_start,date_end,arr_work_done_keywords,description_experience,location,employment_type) values (1,"Jelly Bean Packager","The America Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend","Worked on taking out the trash.","California","Full Time"),`;
       SQL_CONNECTION.query(sql_insert_experience, (err, results) => {
         if (err) {
           return res.sendStatus(400);
@@ -109,9 +103,7 @@ insert into student_experience
   });
   //GET: Student Ratings for Notifications
   app.get("/student-ratings", (req, res) => {
-    let sql = `select * from student_Ratings where student_id =${req.query.s_id} `;
-    let sql_v = `select professors.professor_id,rating_total,professors.first_name,publish_date,student_seen,student_hide  from student_ratings sr inner join professors on sr.professor_id = professors.professor_id where sr.student_id = ${req.query.s_id};`;
-    console.log(sql);
+    let sql_v = `select professors.professor_id,rating_total,professors.first_name,publish_date,student_seen,student_hide, reflection_id  from student_ratings sr inner join professors on sr.professor_id = professors.professor_id where sr.student_id = ${req.query.s_id};`;
     try {
       SQL_CONNECTION.query(sql_v, (err, results) => {
         if (err) {
@@ -126,4 +118,20 @@ insert into student_experience
     }
   });
   //POST: Altering states to control student ratings notifications
+  app.put("/student-ratings", (req, res) => {
+    let sql = `update student_ratings set student_seen = 1 where reflection_id = ${req.query.id};`;
+    console.log(req.body);
+    try {
+      SQL_CONNECTION.query(sql, (err, results) => {
+        if (err) {
+          return res.sendStatus(400);
+        } else {
+          return res.sendStatus(200);
+        }
+      });
+      console.log(sql);
+    } catch (e) {
+      console.log(`Error ${e}`);
+    }
+  });
 };
