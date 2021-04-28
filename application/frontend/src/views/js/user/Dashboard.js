@@ -34,27 +34,15 @@ const Dashboard = () => {
   ]);
 
   if (cookie.Type_User === "student") {
-    return (
-      <>
-        <StudentProfile {...userProfile} />
-      </>
-    );
+    return <StudentProfile {...userProfile} />;
   } else if (cookie.Type_User === "professor") {
-    return (
-      <>
-        <ProfessorProfile {...userProfile} />
-      </>
-    );
+    return <ProfessorProfile {...userProfile} />;
   } else if (cookie.Type_User === "employer") {
-    return (
-      <>
-        <CompanyProfile {...userProfile} />
-      </>
-    );
+    return <CompanyProfile {...userProfile} />;
   }
   return (
     <div>
-      <h1 className="mini-title">Refresh page or Sign in </h1>
+      <h1 className='mini-title'>Refresh page or Sign in </h1>
     </div>
   );
 };

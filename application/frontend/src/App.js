@@ -13,7 +13,7 @@ import Help from "./views/js/help/Help";
 import Notifications from "./views/js/notifications/Notification";
 import StudentProfile from "./views/js/profiles/student/StudentProfile";
 //All Users
-import Dashboard from "./views/js/user/Dashboard";
+import Profile from "./views/js/user/Dashboard";
 //Employers
 import PostJobs from "./views/js/profiles/company/PostJobs";
 
@@ -24,68 +24,78 @@ import Full_Job_View from "./views/js/search/jobs/JobView";
 const App = () => {
   return (
     <Router>
-      <div className="App">
-        <Nav />
-        <div className="content">
+      <div className='App'>
+        <div className='content'>
           <Switch>
             {/* Home */}
-            <Route exact path="/">
+            <Route exact path='/'>
+              <Nav />
               <Home />
             </Route>
             {/* Signin */}
             <Route
-              path="/signin"
+              path='/signin'
               exact
               component={() => <Auth type={"signin"} />}
             />
             {/* Signup */}
             <Route
-              path="/signup"
+              path='/signup'
               exact
               component={() => <Auth type={"signup"} />}
             />
             {/* Signup Redirect */}
-            <Route path="/signup-redirect">
+            <Route path='/signup-redirect'>
               <SignupRedirect />
             </Route>
             {/* Search Students */}
-            <Route path="/search-candidates">
+            <Route path='/search-candidates'>
+              <Nav />
               <StudentSearch />
             </Route>
             {/* Search Jobs */}
-            <Route path="/search-jobs">
+            <Route path='/search-jobs'>
+              <Nav />
               <JobSearch />
             </Route>
             {/* Profile */}
-            <Route path="/student-profile">
+            <Route path='/student-profile'>
+              <Nav />
               <StudentProfile />
             </Route>
             {/* About */}
-            <Route path="/about">
+            <Route path='/about'>
+              <Nav />
               <About />
             </Route>
             {/* Contact / Help */}
-            <Route path="/help">
+            <Route path='/help'>
+              <Nav />
               <Help />
             </Route>
             {/** Public View of Student Profile */}
-            <Route path="/full-student-profile">
+            <Route path='/full-student-profile'>
+              <Nav />
               <Full_Student_Profile />
             </Route>
             {/** Full Job View */}
-            <Route path="/full-job-view">
+            <Route path='/full-job-view'>
+              <Nav />
               <Full_Job_View />
             </Route>
             {/** ONLY Professors */}
-            <Route path="/insert-jobs">
+            <Route path='/insert-jobs'>
+              <Nav />
               <PostJobs />
             </Route>
             {/** ALL USERS */}
-            <Route path="/dashboard">
-              <Dashboard />
+            <Route path='/profile'>
+              <Nav />
+              <Profile />
             </Route>
             {/** Notifications */}
-            <Route path="/notifications">
+            <Route path='/notifications'>
+              <Nav />
               <Notifications />
             </Route>
           </Switch>

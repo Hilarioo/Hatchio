@@ -2,6 +2,8 @@ import { NavLink, useHistory } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import Dropdown from "react-bootstrap/Dropdown";
 import "../../css/Nav.css";
 // Image(s) or SVG
 import { ReactComponent as Logo } from "../../content/svg/logo.svg";
@@ -25,113 +27,52 @@ const DefaultNav = () => {
     history.push("/");
     window.location.reload();
   };
-  if (cookie.Type_User === "professor") {
+  if (
+    cookie.Type_User === "professor" ||
+    cookie.Type_User === "student" ||
+    cookie.Type_User === "employer"
+  ) {
     return (
-      <Navbar collapseOnSelect expand="lg" className="nav-bar">
-        <Navbar.Brand id="nav-logo">
-          <NavLink to="/">
+      <Navbar collapseOnSelect expand='lg' className='nav-bar'>
+        <Navbar.Brand id='nav-logo'>
+          <NavLink to='/'>
             <Logo />
           </NavLink>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="mr-auto nav-left">
+        <Navbar.Toggle aria-controls='responsive-navbar-nav' />
+        <Navbar.Collapse id='responsive-navbar-nav'>
+          <Nav className='mr-auto nav-left'>
             <NavDropdown
-              title="Search"
-              id="collasible-nav-dropdown"
-              className="nav-search"
-            >
+              title='Search '
+              id='collasible-nav-dropdown'
+              className='nav-search'>
               <NavDropdown.Item>
-                <NavLink to="/search-jobs">Jobs</NavLink>
+                <NavLink to='/search-jobs'>Jobs</NavLink>
               </NavDropdown.Item>
               <NavDropdown.Item>
-                <NavLink to="/search-candidates">Students</NavLink>
+                <NavLink to='/search-candidates'>Students</NavLink>
               </NavDropdown.Item>
             </NavDropdown>
-            <NavLink to="/about">About</NavLink>
-            <NavLink to="/help">Help</NavLink>
-            <NavLink to="/dashboard">Dashboard</NavLink>
-            <NavLink to="/notifications">Notifications</NavLink>
-          </Nav>
-          <Nav className="nav-right">
-            <NavLink to="/" className="auth-btn">
-              <button onClick={handleRemoveCookie}>Sign Out</button>
+            <NavLink to='/about' className='mr-5 pt-2'>
+              About
+            </NavLink>
+            <NavLink to='/help' className='mr-5 pt-2'>
+              Help
             </NavLink>
           </Nav>
-        </Navbar.Collapse>
-      </Navbar>
-    );
-  }
-  if (cookie.Type_User === "student") {
-    return (
-      <Navbar collapseOnSelect expand="lg" className="nav-bar">
-        <Navbar.Brand id="nav-logo">
-          <NavLink to="/">
-            <Logo />
-          </NavLink>
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="mr-auto nav-left">
-            <NavDropdown
-              title="Search"
-              id="collasible-nav-dropdown"
-              className="nav-search"
-            >
-              <NavDropdown.Item>
-                <NavLink to="/search-jobs">Jobs</NavLink>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <NavLink to="/search-candidates">Students</NavLink>
-              </NavDropdown.Item>
-            </NavDropdown>
-            <NavLink to="/about">About</NavLink>
-            <NavLink to="/help">Help</NavLink>
-            <NavLink to="/dashboard">Dashboard</NavLink>
-            <NavLink to="/notifications">Notifications</NavLink>
-          </Nav>
-          <Nav className="nav-right">
-            <NavLink to="/" className="auth-btn">
-              <button onClick={handleRemoveCookie}>Sign Out</button>
-            </NavLink>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
-    );
-  }
-  if (cookie.Type_User === "employer") {
-    return (
-      <Navbar collapseOnSelect expand="lg" className="nav-bar">
-        <Navbar.Brand id="nav-logo">
-          <NavLink to="/">
-            <Logo />
-          </NavLink>
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="mr-auto nav-left">
-            <NavDropdown
-              title="Search"
-              id="collasible-nav-dropdown"
-              className="nav-search"
-            >
-              <NavDropdown.Item>
-                <NavLink to="/search-jobs">Jobs</NavLink>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <NavLink to="/search-candidates">Students</NavLink>
-              </NavDropdown.Item>
-            </NavDropdown>
-            <NavLink to="/about">About</NavLink>
-            <NavLink to="/help">Help</NavLink>
-            <NavLink to="/insert-jobs">Post Jobs</NavLink>
-            <NavLink to="/dashboard">Dashboard</NavLink>
-            <NavLink to="/notifications">Notifications</NavLink>
-          </Nav>
-          <Nav className="nav-right">
-            <NavLink to="/" className="auth-btn">
-              <button onClick={handleRemoveCookie}>Sign Out</button>
-            </NavLink>
+          <Nav className='nav-right'>
+            <DropdownButton
+              id='dropdown-item-button'
+              title={cookie.First_Name + "'s Account"}
+              variant='dark'>
+              <Dropdown.Item href='/profile' className='dark-a'>
+                Profile
+              </Dropdown.Item>
+              <Dropdown.Item href='/notifications'>Notifications</Dropdown.Item>
+              <Dropdown.Item href='/' onClick={handleRemoveCookie}>
+                Sign Out
+              </Dropdown.Item>
+            </DropdownButton>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -139,37 +80,26 @@ const DefaultNav = () => {
   }
 
   return (
-    <Navbar collapseOnSelect expand="lg" className="nav-bar">
-      <Navbar.Brand id="nav-logo">
-        <NavLink to="/">
+    <Navbar collapseOnSelect expand='lg' className='nav-bar' bg='#fff'>
+      <Navbar.Brand id='nav-logo'>
+        <NavLink to='/'>
           <Logo />
         </NavLink>
       </Navbar.Brand>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="mr-auto nav-left">
-          <NavDropdown
-            title="Search"
-            id="collasible-nav-dropdown"
-            className="nav-search"
-          >
-            <NavDropdown.Item>
-              <NavLink to="/search-jobs">Jobs</NavLink>
-            </NavDropdown.Item>
-            <NavDropdown.Item>
-              <NavLink to="/search-candidates">Students</NavLink>
-            </NavDropdown.Item>
-          </NavDropdown>
-          <NavLink to="/about">About</NavLink>
-          <NavLink to="/help">Help</NavLink>
-          <NavLink to="/dashboard">Dashboard</NavLink>
-        </Nav>
-        <Nav className="nav-right">
-          <NavLink to="/signup" className="auth-btn">
-            Sign Up
+      <Navbar.Toggle aria-controls='responsive-navbar-nav' />
+      <Navbar.Collapse id='responsive-navbar-nav'>
+        <Nav className='mr-auto nav-left'>
+          <NavLink to='/search-jobs' className='mr-5'>
+            Search
           </NavLink>
-          <NavLink to="/signin" className="auth-btn">
-            Sign In
+          <NavLink to='/about' className='mr-5'>
+            About
+          </NavLink>
+          <NavLink to='/help'>Help</NavLink>
+        </Nav>
+        <Nav className='nav-right'>
+          <NavLink to='/signup' className='navbar-btn'>
+            My Account
           </NavLink>
         </Nav>
       </Navbar.Collapse>

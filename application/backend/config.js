@@ -52,7 +52,7 @@ const credIndex = function (name) {
       return 0;
     case "aaron":
       return 1;
-    case "jose":
+    case "hilarioo":
       return 2;
     case "roland":
       return 3;
