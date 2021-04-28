@@ -1,3 +1,9 @@
+/*
+ * File: Signup.js
+ * Functionality: User Create Account Page
+ * Author: Jose (Component & Structure) | Aaron (API)
+ */
+
 import { useState } from "react";
 // CSS
 import "../../css/Theme.css";
@@ -44,7 +50,7 @@ function Signup() {
       alert("Verification email has been sent to " + email);
       api_send_email(FORM_REQUEST);
       api_register_user(FORM_REQUEST);
-      window.location.href='/signup-redirect';
+      window.location.href = "/signup-redirect";
     }
 
     setValidated(true);

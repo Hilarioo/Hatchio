@@ -1,3 +1,9 @@
+/*
+ * File: Nav.js
+ * Functionality: Navbar for users to navigate the website
+ * Author: Jose (Component & Structure) | Aaron (Cookie)
+ */
+
 import { NavLink, useHistory } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";

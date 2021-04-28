@@ -1,3 +1,9 @@
+/*
+ * File: MemberPage.js
+ * Functionality: Produces User's Page
+ * Author: Jose (Component & Structure)
+ */
+
 import "../../css/About.css";
 
 const MemberPage = ({ location }) => {

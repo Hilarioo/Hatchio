@@ -1,3 +1,9 @@
+/*
+ * File: LnikStudent.js
+ * Functionality: Modal for Students to add or edit their Social Media Links
+ * Author: Jose (Component & Structure) | Aaron (API)
+ */
+
 import "../../css/Forms.css";
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
@@ -15,15 +21,11 @@ const LinksStudent = (props) => {
   };
 
   return (
-    <Modal
-      {...props}
-      size='lg'
-      aria-labelledby='contained-modal-title-vcenter'
-      centered>
+    <Modal {...props} aria-labelledby='contained-modal-title-vcenter' centered>
       <Form onSubmit={handleSubmit}>
         <Modal.Header closeButton>
           <Modal.Title id='contained-modal-title-vcenter'>
-            Add Links
+            Edit Links
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -54,9 +56,16 @@ const LinksStudent = (props) => {
               onChange={(e) => setLinks({ ...links, github: e.target.value })}
             />
           </Form.Group>
+          {/* resume PDF */}
+          <Form.Group>
+            <Form.Label>Resume PDF</Form.Label>
+            <Form.File id='custom-file' label='Upload Resume' custom />
+          </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button type='submit'>Save</Button>
+          <Button type='submit' variant='dark'>
+            Save
+          </Button>
         </Modal.Footer>
       </Form>
     </Modal>

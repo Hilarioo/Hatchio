@@ -1,3 +1,9 @@
+/*
+ * File: Course.js
+ * Functionality: Modal for Students to add their Courses
+ * Author: Jose (Component & Structure)
+ */
+
 import "../../css/Forms.css";
 import Form from "react-bootstrap/Form";
 

@@ -1,9 +1,7 @@
 /*
  * File: Experience.js
- * Purpose: Modal for users to add or edit their experience
- * Functionality: Renders when user clicks on "Add" or "Edit" button within their profile page,
- *                calls API once user clicks submit
- * Authors: Jose
+ * Functionality: Modal for Students to add or edit their Experience
+ * Author: Jose (Component & Structure) | Aaron (API)
  */
 
 import "../../css/Forms.css";

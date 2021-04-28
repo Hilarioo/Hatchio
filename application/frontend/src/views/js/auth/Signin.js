@@ -1,3 +1,9 @@
+/*
+ * File: Signin.js
+ * Functionality: User Log In Page
+ * Author: Jose (Component & Structure) | Aaron (API)
+ */
+
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 // CSS

@@ -1,3 +1,9 @@
+/*
+ * File: LinkProfessor.js
+ * Functionality: Modal for Professor's to add or edit their Social Media Links
+ * Author: Jose (Component & Structure) | Aaron (API)
+ */
+
 import "../../css/Forms.css";
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";

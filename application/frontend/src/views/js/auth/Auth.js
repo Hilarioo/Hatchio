@@ -1,3 +1,9 @@
+/*
+ * File: Auth.js
+ * Functionality: Template for Authentication pages
+ * Author: Jose
+ */
+
 // CSS
 import "../../css/Theme.css";
 import "../../css/Auth.css";

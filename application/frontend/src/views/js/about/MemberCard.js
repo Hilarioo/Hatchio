@@ -1,3 +1,9 @@
+/*
+ * File: MemberCard.js
+ * Functionality: Produces User's Card
+ * Author: Jose (Component & Structure)
+ */
+
 import "../../css/About.css";
 
 const MemberCard = ({ member }) => {

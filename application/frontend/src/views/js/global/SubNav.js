@@ -1,10 +1,15 @@
+/*
+ * File: SubNav.js
+ * Functionality: Authentication Navbar for users to navigate between Sign In & Sign Up
+ * Author: Jose
+ */
+
 import { NavLink } from "react-router-dom";
 // CSS
 import "../../css/Theme.css";
 import "../../css/Nav.css";
 // React Bootstrap
 import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
 // Image(s) or SVG
 import { ReactComponent as Logo } from "../../content/svg/logo.svg";
 

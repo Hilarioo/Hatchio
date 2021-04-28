@@ -1,3 +1,9 @@
+/*
+ * File: LinkCompany.js
+ * Functionality: Modal for Companies to add or edit their Social Media Links and Company Website
+ * Author: Jose (Component & Structure) | Aaron (API)
+ */
+
 import "../../css/Forms.css";
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";

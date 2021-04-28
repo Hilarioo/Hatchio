@@ -1,3 +1,9 @@
+/*
+ * File: DefaultImage.js
+ * Functionality: A default image is produced for every user if they do not upload an image
+ * Author: Jose
+ */
+
 // (if image URL empty) Creates a default logo with the First Letter of the User's Name
 export const defaultImage = (name) => {
   const canvas = document.createElement("canvas");

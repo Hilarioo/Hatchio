@@ -1,3 +1,9 @@
+/*
+ * File: Project.js
+ * Functionality: Modal for Students to add or edit their project(s)
+ * Author: Jose (Component & Structure) | Aaron (API)
+ */
+
 import "../../css/Forms.css";
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
@@ -29,7 +35,7 @@ const Project = (props) => {
       console.log(project);
       const response = await API_STUDENT_INSERT_PROJECTS(project);
       //Check Response Status Code
-      if (response == 200) {
+      if (response === 200) {
         //Reload if success -- alternative might be just to refresh the userProfile props but idk how to do this yet
         window.location.reload();
       } else {

@@ -1,3 +1,9 @@
+/*
+ * File: Education.js
+ * Functionality: Modal for Students to add or edit their Education
+ * Author: Jose (Component & Structure) | Aaron (API)
+ */
+
 import "../../css/Forms.css";
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";

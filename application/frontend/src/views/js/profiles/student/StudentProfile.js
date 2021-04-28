@@ -3,7 +3,6 @@ import { useCookies } from "react-cookie";
 // CSS
 import "../../../css/Profiles.css";
 import "../../../css/Theme.css";
-import styled from "styled-components";
 // React Boostrap
 import ProgressBar from "react-bootstrap/ProgressBar";
 //Import SVG Icons
@@ -18,8 +17,6 @@ import ProjectIcon from "../../../content/svg/project-icon.svg";
 import ExperienceIcon from "../../../content/svg/experience-icon.svg";
 import EducationIcon from "../../../content/svg/education-icon.svg";
 // Form Components
-import Popup from "reactjs-popup";
-import { Formik, Field, Form } from "formik";
 import AboutPopup from "../../forms/Description";
 import EducationPopup from "../../forms/Education";
 import ExperiencePopup from "../../forms/Experience";
@@ -27,73 +24,8 @@ import LinksPopup from "../../forms/LinksStudent";
 import ListPopup from "../../forms/List";
 import LocationPopup from "../../forms/Location";
 import ProjectPopup from "../../forms/Project";
-//Import API
-import API_STUDENT_INSERT_PROFILE from "../../../../models/POST/Students/insert_student_profile";
 // Default Image
 import { defaultImage } from "../../global/DefaultImage";
-//Form
-const StyledPopup = styled(Popup)`
-  &-content[role="tooltip"] {
-    font-size: 15px;
-    height: 100%;
-    width: 100%;
-    background-color: pink;
-    text-color: white;
-    text-align: center;
-  }
-`;
-
-//POP UP Profile Page Insert
-const POPUP_STUDENT_PROFILE_PAGE = (Student_ID) => {
-  return (
-    <div>
-      <StyledPopup trigger={<button> Profile Page Insert</button>}>
-        <Formik
-          initialValues={{
-            Student_ID: Student_ID,
-            about_me: "about me",
-            strengths_qualities: "honest,strong",
-            location: "Location",
-            school_grade_level: "Freshman,etc",
-            //TODO: RESUME
-            //TODO: PROFILE IMAGE
-          }}
-          onSubmit={async (values) => {
-            const response = await API_STUDENT_INSERT_PROFILE(values);
-            if (response === 400) {
-              console.log("error");
-            }
-            if (response === 200) {
-              window.location.reload();
-              console.log("success");
-            }
-            return;
-          }}>
-          <Form>
-            <br></br>
-            <label>About Me</label>
-            <Field id='about_me' name='about_me' />
-            <hr></hr>
-
-            <br></br>
-            <label>Strenth Qualities</label>
-            <Field id='strengths_qualities' name='strengths_qualities' />
-
-            <hr></hr>
-            <label>Location</label>
-            <Field id='location' name='location' />
-
-            <hr></hr>
-            <label>School Grade Level</label>
-            <Field id='school_grade_level' name='school_grade_level' />
-
-            <button type='submit'>Submit</button>
-          </Form>
-        </Formik>
-      </StyledPopup>
-    </div>
-  );
-};
 
 const StudentProfile = (props) => {
   const [cookie] = useCookies(["Type_User", "ID_OF_USER", "First_Name"]);
@@ -124,8 +56,9 @@ const StudentProfile = (props) => {
     );
   }, [props]);
 
-  // Form States
+  // Location Popup
   const [location, setLocation] = useState(false);
+  // Links Popup
   const [links, setLinks] = useState(false);
   const [aboutPopup, setAboutPopup] = useState(false);
   const [listPopup, setListPopup] = useState(false);
@@ -163,6 +96,23 @@ const StudentProfile = (props) => {
           {/* === Student Location ===*/}
           <div className='flex-box'>
             <h6 className='category-heading'>Location</h6>
+            {/* Location Edit Popup */}
+            <img
+              id='edit-button'
+              src={EditIcon}
+              alt='edit pencil button'
+              onClick={() => setLocation(true)}
+            />
+            <LocationPopup
+              show={location}
+              onHide={() => setLocation(false)}
+              userID={cookie.ID_OF_USER}
+              location={
+                userProfile[1][0].location === 0
+                  ? ""
+                  : userProfile[1][0].location
+              }
+            />
           </div>
           <div className='flex-box'>
             <img src={LocationIcon} alt='location pin' />
@@ -177,7 +127,21 @@ const StudentProfile = (props) => {
 
       {/* TODO:: Links */}
       <div className='student-links'>
-        <h5 className='category-heading'>Links</h5>
+        <div className='flex-box'>
+          <h5 className='category-heading'>Links</h5>
+          {/* Links Edit Popup */}
+          <img
+            id='edit-button'
+            src={EditIcon}
+            alt='edit pencil button'
+            onClick={() => setLinks(true)}
+          />
+          <LinksPopup
+            show={links}
+            onHide={() => setLinks(false)}
+            userID={cookie.ID_OF_USER}
+          />
+        </div>
         <div className='flex-box' style={{ justifyContent: "space-between" }}>
           <img src={GlobeIcon} alt='website url' />
           <img src={GithubIcon} alt='github' />
@@ -208,11 +172,7 @@ const StudentProfile = (props) => {
           />
         </div>
         {/* About Me */}
-        <p>
-          {userProfile[1].length === 0
-            ? POPUP_STUDENT_PROFILE_PAGE(cookie.ID_OF_USER)
-            : userProfile[1][0].about_me}
-        </p>
+        <p>{userProfile[1][0].about_me}</p>
       </div>
 
       {/* Student Qualities */}
