@@ -205,7 +205,7 @@ insert into student_projects(student_id,project_name,summary,arr_tools_used,prof
 (8,"SuperCry","CRUD application for CSC648","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby"),
 (9,"LooCry","CRUD application for CSC648","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby"),
 (10,"FooCry","CRUD application for CSC648","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby"),
-(10,"FooCry","CRUD application for CSC648","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby");
+(10,"FooCry02","CRUD application for CSC667","JavaScript,Mysql,React JS","Henry Villar","hatchio.com","Jacob,Bobby");
 
 insert into student_education(student_id, school, degree, school_gpa, study_major, start_year, end_year) values
 (1,"San Francisco State University","Bachelors",4.0,"English",2018,2022),

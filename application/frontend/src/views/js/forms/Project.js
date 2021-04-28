@@ -22,7 +22,6 @@ const Project = (props) => {
     arr_tools_used: "",
     links_website: "",
     arr_collaborators_arr: "",
-    date: "",
   });
 
   // Submits the Student Education to the DB
@@ -73,13 +72,13 @@ const Project = (props) => {
               </Col>
               {/* Project Date */}
               <Col>
-                <Form.Label>Date</Form.Label>
+                <Form.Label>URL</Form.Label>
                 <Form.Control
                   required
-                  type='date'
-                  defaultValue={props.popupName === "Edit" ? props.date : ""}
+                  type='text'
+                  defaultValue={props.popupName === "Edit" ? props.website : ""}
                   onChange={(e) =>
-                    setProject({ ...project, date: e.target.value })
+                    setProject({ ...project, links_website: e.target.value })
                   }
                 />
               </Col>

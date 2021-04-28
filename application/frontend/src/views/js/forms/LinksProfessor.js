@@ -21,11 +21,7 @@ const LinksProfessor = (props) => {
   };
 
   return (
-    <Modal
-      {...props}
-      size='lg'
-      aria-labelledby='contained-modal-title-vcenter'
-      centered>
+    <Modal {...props} aria-labelledby='contained-modal-title-vcenter' centered>
       <Form onSubmit={handleSubmit}>
         <Modal.Header closeButton>
           <Modal.Title id='contained-modal-title-vcenter'>
@@ -53,7 +49,9 @@ const LinksProfessor = (props) => {
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button type='submit'>Save</Button>
+          <Button type='submit' variant='dark'>
+            Save
+          </Button>
         </Modal.Footer>
       </Form>
     </Modal>

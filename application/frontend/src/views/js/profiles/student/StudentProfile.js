@@ -234,7 +234,11 @@ const StudentProfile = (props) => {
                     <p id='date'>{project.publish_date}</p>
                     <div className='flex-box'>
                       {/* Project Name */}
-                      <h5>{project.project_name}</h5>
+                      <a
+                        href={"https://" + project.links_website}
+                        alt='project website'>
+                        <h5>{project.project_name}</h5>
+                      </a>
                       {/* Edit Project Popup */}
                       <img
                         id='edit-button'
@@ -250,7 +254,7 @@ const StudentProfile = (props) => {
                         summary={project.summary}
                         professor={project.professor}
                         tools={project.arr_tools_used}
-                        link={project.links_website}
+                        website={project.links_website}
                         collaborators={project.arr_collaborators_arr}
                         onHide={() => setEditProject(false)}
                       />
