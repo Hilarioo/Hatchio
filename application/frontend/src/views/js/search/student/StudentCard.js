@@ -6,29 +6,17 @@ File: StudentCard.js
 // React
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-// Cookie
 import { useCookies } from "react-cookie";
-//API
-import API_PROFESSOR_RATE_STUDENT from "../../../../models/professor_rate";
 // CSS
 import "../../../css/Search.css";
-import styled from "styled-components";
 // Default Image (if user has no image)
 import { defaultImage } from "../../global/DefaultImage";
 // React Boostrap
 import Button from "react-bootstrap/Button";
 import ProgressBar from "react-bootstrap/ProgressBar";
 //Pop Up Form
-import Popup from "reactjs-popup";
-import "reactjs-popup/dist/index.css";
-import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
-//CSS Form Pop Up
-const StyledPopup = styled(Popup)`
-  &-content[role="tooltip"] {
-    width: 1000px;
-  }
-`;
+import RatingPopup from "../../forms/Rating";
+import HirePopup from "../../forms/Hire";
 
 const StudentCard = ({
   // default props, if props are empty
@@ -42,16 +30,13 @@ const StudentCard = ({
   studentID = 0,
   about,
 }) => {
+  // Popups
+  const [ratingPopup, setRatingPopup] = useState(false);
+  const [hirePopup, setHirePopup] = useState(false);
   //Redirect
   const history = useHistory();
   //Cookie
   const [cookie] = useCookies(["Type_User", "ID_OF_USER", "First_Name"]); //Cur use
-  //Form Inputs
-  const [recommendation, setRecommendation] = useState("");
-  const [responsible, setResponsible] = useState(0);
-  const [teamwork, setTeamWork] = useState(0);
-  const [leadership, setLeadership] = useState(0);
-  const [committedToSuccess, setCommittedToSuccess] = useState(0);
 
   //Redirect to Profile
   const RedirectProfile = () => {
@@ -60,229 +45,6 @@ const StudentCard = ({
       Student_ID: studentID,
     });
   };
-  //Rate Form Submission
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const sent_bool = await API_PROFESSOR_RATE_STUDENT(
-      studentID, //Student ID
-      cookie.ID_OF_USER, //Professor ID
-      responsible, //Responsible int
-      teamwork, //Teamwork int
-      leadership, //leaderhsip int
-      committedToSuccess, //int
-      recommendation, //str
-      (responsible + teamwork + leadership + committedToSuccess) / 4 //total rating by average
-    );
-    //If Succesful Sent, Reload Page
-    if (sent_bool === true) {
-      window.location.reload();
-    }
-    if (sent_bool === false) {
-      console.log("Ratings Unsuccesful");
-    }
-  };
-
-  /*
-    Professors will see this card, which gives them access to
-    rating students, messaging students, and seeing the profile page
-  */
-  if (cookie.Type_User === "professor") {
-    return (
-      <div className='card-result'>
-        <header>
-          <img
-            src={image.length <= 0 ? defaultImage(studentName) : image}
-            alt={studentName.charAt(0)}
-          />
-          <div className='info'>
-            <div className='flex-box name-enrollment'>
-              <h4>{studentName}</h4>
-              <p id='enrollment'>{studentEnrollment}</p>
-            </div>
-            <h6>{schoolName}</h6>
-            <div className='flex-box'>
-              <p className='gpa'>{gpa} GPA</p>
-              {/* Indicates that there is no ratings for the user if the prop is 0 */}
-              {rating === 0 ? (
-                <p id='no-rating'>No ratings yet</p>
-              ) : (
-                <ProgressBar
-                  now={rating}
-                  label={`${rating}` + " / 5"}
-                  min='0'
-                  max='5'
-                  variant='info'
-                  style={{ width: "60%" }}
-                  id='progress-bar'
-                />
-              )}
-            </div>
-          </div>
-        </header>
-        <div className='flex-box'>
-          <Popup trigger={<Button>Hire</Button>}>
-            <p>You must be a Employer! Sign In | Sign Up as an Employer</p>
-          </Popup>
-          <Button onClick={() => RedirectProfile()}>Profile</Button>
-          <StyledPopup trigger={<Button> Rate</Button>}>
-            <div>
-              <Form onSubmit={handleSubmit}>
-                <InputGroup className='mb-3'>
-                  <InputGroup.Prepend>
-                    <InputGroup.Text id='basic-addon1'>
-                      Recommendation{" "}
-                    </InputGroup.Text>
-                  </InputGroup.Prepend>
-                  <Form.Control
-                    placeholder='String text with words that assess students in generic categories like his/her honesty,integrity,courage,skillset,etc.'
-                    aria-label='text'
-                    aria-describedby='basic-addon1'
-                    onChange={(e) => setRecommendation(e.target.value)}
-                  />
-                </InputGroup>
-                <InputGroup className='mb-3'>
-                  <InputGroup.Prepend>
-                    <InputGroup.Text id='basic-addon1'>
-                      Responsible{" "}
-                    </InputGroup.Text>
-                  </InputGroup.Prepend>
-
-                  <Form.Control
-                    as='select'
-                    className='mr-sm-2'
-                    id='inlineFormCustomSelect'
-                    onChange={(e) => setResponsible(e.target.value)}
-                    custom>
-                    <option value='Select'>Select</option>
-                    <option value='1'>1</option>
-                    <option value='2'>2</option>
-                    <option value='3'>3</option>
-                    <option value='4'>4</option>
-                    <option value='5'>5</option>
-                  </Form.Control>
-                </InputGroup>
-                <InputGroup className='mb-3'>
-                  <InputGroup.Prepend>
-                    <InputGroup.Text id='basic-addon1'>
-                      TeamWork{" "}
-                    </InputGroup.Text>
-                  </InputGroup.Prepend>
-
-                  <Form.Control
-                    as='select'
-                    className='mr-sm-2'
-                    id='inlineFormCustomSelect'
-                    onChange={(e) => setTeamWork(e.target.value)}
-                    custom>
-                    <option value='Select'>Select</option>
-                    <option value='1'>1</option>
-                    <option value='2'>2</option>
-                    <option value='3'>3</option>
-                    <option value='4'>4</option>
-                    <option value='5'>5</option>
-                  </Form.Control>
-                </InputGroup>
-                <InputGroup className='mb-3'>
-                  <InputGroup.Prepend>
-                    <InputGroup.Text id='basic-addon1'>
-                      Leadership{" "}
-                    </InputGroup.Text>
-                  </InputGroup.Prepend>
-
-                  <Form.Control
-                    as='select'
-                    className='mr-sm-2'
-                    id='inlineFormCustomSelect'
-                    onChange={(e) => setLeadership(e.target.value)}
-                    custom>
-                    <option value='Select'>Select</option>
-                    <option value='1'>1</option>
-                    <option value='2'>2</option>
-                    <option value='3'>3</option>
-                    <option value='4'>4</option>
-                    <option value='5'>5</option>
-                  </Form.Control>
-                </InputGroup>
-                <InputGroup className='mb-3'>
-                  <InputGroup.Prepend>
-                    <InputGroup.Text id='basic-addon1'>
-                      Committed to Success{" "}
-                    </InputGroup.Text>
-                  </InputGroup.Prepend>
-
-                  <Form.Control
-                    as='select'
-                    className='mr-sm-2'
-                    id='inlineFormCustomSelect'
-                    onChange={(e) => setCommittedToSuccess(e.target.value)}
-                    custom>
-                    <option value='Select'>Select</option>
-                    <option value='1'>1</option>
-                    <option value='2'>2</option>
-                    <option value='3'>3</option>
-                    <option value='4'>4</option>
-                    <option value='5'>5</option>
-                  </Form.Control>
-                  <Button variant='dark' type='submit'>
-                    Rate Send
-                  </Button>
-                </InputGroup>
-              </Form>
-            </div>
-          </StyledPopup>
-        </div>
-      </div>
-    );
-  }
-  //Employer
-  if (cookie.Type_User === "employer") {
-    return (
-      <div className='card-result'>
-        <header>
-          <img
-            src={image.length <= 0 ? defaultImage(studentName) : image}
-            alt={studentName.charAt(0)}
-          />
-          <div className='info'>
-            <div className='flex-box name-enrollment'>
-              <h4>{studentName}</h4>
-              <p id='enrollment'>{studentEnrollment}</p>
-            </div>
-            <h6>{schoolName}</h6>
-            <div className='flex-box'>
-              <p className='gpa'>{gpa} GPA</p>
-              {rating === 0 ? (
-                <p id='no-rating'>No ratings yet</p>
-              ) : (
-                <ProgressBar
-                  now={rating}
-                  label={`${rating}` + " / 5"}
-                  min='0'
-                  max='5'
-                  variant='info'
-                  style={{ width: "60%" }}
-                  id='progress-bar'
-                />
-              )}
-            </div>
-          </div>
-        </header>
-        <div className='flex-box'>
-          <Popup trigger={<Button> Employ</Button>}>
-            <div>
-              {" "}
-              Sent! Will Notify Students in there Dashbaord/notifications still
-              working on this
-            </div>
-          </Popup>
-          <Button onClick={() => RedirectProfile()}>Profile</Button>
-          <Popup trigger={<Button> Rate</Button>}>
-            <div> Sign in as a professor!</div>
-          </Popup>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className='card-result'>
@@ -299,6 +61,7 @@ const StudentCard = ({
           <h6>{schoolName}</h6>
           <div className='flex-box'>
             <p className='gpa'>{gpa} GPA</p>
+            {/* Indicates that there is no ratings for the user if the prop is 0 */}
             {rating === 0 ? (
               <p id='no-rating'>No ratings yet</p>
             ) : (
@@ -315,14 +78,29 @@ const StudentCard = ({
           </div>
         </div>
       </header>
-      <div className='flex-box'>
-        <Popup trigger={<Button>Hire</Button>}>
-          <p>You must be a Employer! Sign In | Sign Up as an Employer</p>
-        </Popup>
+      <div className='flex-box' style={{ justifyContent: "space-around" }}>
+        {/* Only visible to employers */}
+        {cookie.Type_User === "employer" ? (
+          <Button onClick={() => setHirePopup(true)}>Hire</Button>
+        ) : null}
+        <HirePopup
+          show={hirePopup}
+          onHide={() => setHirePopup(false)}
+          setHirePopup={setHirePopup}
+        />
+        {/* Profile Page */}
         <Button onClick={() => RedirectProfile()}>Profile</Button>
-        <Popup trigger={<Button> Rate</Button>}>
-          <div> Sign in as a professor!</div>
-        </Popup>
+        {/* Only visible to professors */}
+        {cookie.Type_User === "professor" ? (
+          <Button onClick={() => setRatingPopup(true)}>Rate</Button>
+        ) : null}
+        <RatingPopup
+          show={ratingPopup}
+          onHide={() => setRatingPopup(false)}
+          student={studentID}
+          professor={cookie.ID_OF_USER}
+          user={cookie.Type_User}
+        />
       </div>
     </div>
   );

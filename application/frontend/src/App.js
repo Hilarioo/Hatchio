@@ -1,5 +1,10 @@
 import "./views/css/Theme.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  useParams,
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from "react-router-dom";
 
 // Components
 import Nav from "./views/js/global/Nav";
@@ -18,7 +23,7 @@ import Profile from "./views/js/user/Dashboard";
 import PostJobs from "./views/js/profiles/company/PostJobs";
 
 //Full View
-import Full_Student_Profile from "./views/js/search/student/PublicStudentProfile";
+import PublicProfile from "./views/js/search/student/PublicStudentProfile";
 import Full_Job_View from "./views/js/search/jobs/JobView";
 
 const App = () => {
@@ -76,7 +81,7 @@ const App = () => {
             {/** Public View of Student Profile */}
             <Route path='/full-student-profile'>
               <Nav />
-              <Full_Student_Profile />
+              <PublicProfile />
             </Route>
             {/** Full Job View */}
             <Route path='/full-job-view'>
