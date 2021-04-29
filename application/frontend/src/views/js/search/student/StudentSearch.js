@@ -5,7 +5,7 @@ import "../../../css/Search.css";
 // Componenets
 import StudentFilters from "./StudentFilters";
 import StudentCard from "./StudentCard";
-import StudentSearchBar from "./StudentSearchBar";
+import StudentSearchBar from "../SearchBar";
 //API
 import API_FETCH_STUDENTS from "../../../../models/GET/Students/student_cards";
 
@@ -140,8 +140,11 @@ const StudentSearch = () => {
 
   return (
     <>
-      <div className="grid-container">
+      <div className='grid-container'>
         <StudentSearchBar
+          // placeholder
+          placeholder='Student Name, Major, or Keyword'
+          // keyword filter
           keywordFilterHandler={keywordFilterHandler}
           setKeyword={setKeyword}
         />
@@ -165,9 +168,9 @@ const StudentSearch = () => {
           rating={rating}
           setRating={setRating}
         />
-        <div className="results">
-          {results.length == 0
-            ? "Database Not Connected"
+        <div className='results'>
+          {results.length === 0
+            ? "No Results"
             : results.map((student) => (
                 <StudentCard
                   // image={student.profile_image == null ? `""` : student.profile_image}
