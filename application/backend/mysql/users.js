@@ -44,9 +44,10 @@ const USER_PROFILE = function (db, query, callback) {
     //Then return Employer Employed Jobs
     db.query(
       `select first_name, last_name, organization_name, email from employers where employer_id=?;
-              select position_title, location, job_type, experience_years, salary, about_us, the_opportunity, task_responsibilities, skillset, benefits
-                  from company_listings where employer_id=?;`,
-      [id, id],
+              select listing_id, position_title, location, job_type, experience_years, salary, about_us, the_opportunity, task_responsibilities, skillset, benefits
+                  from company_listings where employer_id=?;
+                  select compalert_id, student_id, listing_id, time, hidden from company_alerts where employer_id=?;`,
+      [id, id, id],
       callback
     );
   }

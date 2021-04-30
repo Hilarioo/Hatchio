@@ -137,4 +137,33 @@ module.exports = (app) => {
       console.log(`Error ${e}`);
     }
   });
+
+  app.delete("/delete_job", (req, res) => {
+    try{
+      SQL_CONNECTION.query(`delete from company_listings where listing_id = ?;`, [req.query.id],(err, results) => {
+        if(err){
+          return res.sendStatus(400);
+        }
+        return res.sendStatus(200);
+      });
+    }catch(e){
+      console.log(`Error ${e}`);
+    }
+  });
+
+  app.get("/find_student", (req, res) => {
+    try{
+      SQL_CONNECTION.query(`select first_name, last_name, school_name from students where student_id = ?;
+        select study_major from student_education where student_id = ?;
+          select school_grade_level from student_profile_page where student_id = ?;`, [req.query.id, req.query.id,
+             req.query.id],(err, results) => {
+        if(err){
+          return res.sendStatus(400);
+        }
+        return res.sendStatus(200);
+      });
+    }catch(e){
+      console.log(`Error ${e}`);
+    }
+  });
 };

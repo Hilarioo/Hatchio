@@ -1,15 +1,32 @@
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
+import CompanyProfile from "../profiles/company/CompanyProfile";
+
 import API_STUDENT_RATING_NOTIFICATIONS from "../../../models/GET/Students/rating_notifications";
 import API_UPDATE_STUDENT_RATING_NOTIFICATION from "../../../models/PUT/Students/update_ratings_notification";
+import API_USER_GET_PROFILE from "../../../models/user_profile";
 
 const Notifications = () => {
   useEffect(() => {
-    API_STUDENT_RATING_NOTIFICATIONS(setRatingNotifications, cookie.ID_OF_USER); //Rating Notification
-    console.log(ratingNotifications);
+    if(cookie.Type_User === 'student'){
+      API_STUDENT_RATING_NOTIFICATIONS(setRatingNotifications, cookie.ID_OF_USER);
+      console.log(ratingNotifications);
+    }
+    if(cookie.Type_User === 'employer'){
+      API_USER_GET_PROFILE(cookie.Type_User,cookie.ID_OF_USER,setuserProfile);
+    }
   }, []);
   const [cookie] = useCookies(["Type_User", "ID_OF_USER", "First_Name"]); //Current User
   const [ratingNotifications, setRatingNotifications] = useState([]);
+  //Employed Jobs
+  const [userProfile, setuserProfile] = useState([
+    [{ null: "null" }, { null: "null" }],
+    [{ null: "null" }, { null: "null" }],
+    [{ null: "null" }, { null: "null" }],
+    [{ null: "null" }, { null: "null" }],
+    [{ null: "null" }, { null: "null" }],
+    [{ null: "null" }, { null: "null" }],
+  ]);
 
   const seenNotification = async (reflection_id) => {
     console.log(`Reflection ID: ${reflection_id}`);
@@ -108,7 +125,12 @@ const Notifications = () => {
   if (cookie.Type_User === "employer") {
     return (
       <div>
-        <h3>Employer Notifications</h3>
+        <h3>Alerts</h3>
+        <div>
+        <>
+        <CompanyProfile {...userProfile} />
+        </>
+        </div>
       </div>
     );
   }
