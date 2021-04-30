@@ -9,7 +9,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 //API
-import API_PROFESSOR_RATE_STUDENT from "../../../models/professor_rate";
+import API_PROFESSOR_RATE_STUDENT from "../../../models/POST/Professors/professor_rate";
 
 const Rating = (props) => {
   //Form Inputs
@@ -42,10 +42,10 @@ const Rating = (props) => {
   };
 
   return (
-    <Modal {...props} aria-labelledby='contained-modal-title-vcenter' centered>
+    <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered>
       <Form onSubmit={handleSubmit}>
         <Modal.Header closeButton>
-          <Modal.Title id='contained-modal-title-vcenter'>
+          <Modal.Title id="contained-modal-title-vcenter">
             Rate Student
           </Modal.Title>
         </Modal.Header>
@@ -53,19 +53,20 @@ const Rating = (props) => {
           <Form.Group>
             <Form.Label>Recommendation</Form.Label>
             <Form.Control
-              type='text'
-              as='textarea'
+              type="text"
+              as="textarea"
               onChange={(e) => setRecommendation(e.target.value)}
               required
             />
           </Form.Group>
 
-          <Form.Group controlId='responsibility'>
+          <Form.Group controlId="responsibility">
             <Form.Label>Responsibility</Form.Label>
             <Form.Control
-              as='select'
+              as="select"
               onChange={(e) => setResponsible(e.target.value)}
-              required>
+              required
+            >
               <option></option>
               <option>1</option>
               <option>2</option>
@@ -75,12 +76,13 @@ const Rating = (props) => {
             </Form.Control>
           </Form.Group>
 
-          <Form.Group controlId='teamwork'>
+          <Form.Group controlId="teamwork">
             <Form.Label>Team Work</Form.Label>
             <Form.Control
-              as='select'
+              as="select"
               onChange={(e) => setTeamWork(e.target.value)}
-              required>
+              required
+            >
               <option></option>
               <option>1</option>
               <option>2</option>
@@ -90,12 +92,13 @@ const Rating = (props) => {
             </Form.Control>
           </Form.Group>
 
-          <Form.Group controlId='leadership'>
+          <Form.Group controlId="leadership">
             <Form.Label>Leadership</Form.Label>
             <Form.Control
-              as='select'
+              as="select"
               onChange={(e) => setLeadership(e.target.value)}
-              required>
+              required
+            >
               <option></option>
               <option>1</option>
               <option>2</option>
@@ -105,12 +108,13 @@ const Rating = (props) => {
             </Form.Control>
           </Form.Group>
 
-          <Form.Group controlId='success'>
+          <Form.Group controlId="success">
             <Form.Label>Committed to Success</Form.Label>
             <Form.Control
-              as='select'
+              as="select"
               onChange={(e) => setCommittedToSuccess(e.target.value)}
-              required>
+              required
+            >
               <option></option>
               <option>1</option>
               <option>2</option>
@@ -121,7 +125,7 @@ const Rating = (props) => {
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant='dark' type='submit'>
+          <Button variant="dark" type="submit">
             Rate Student
           </Button>
         </Modal.Footer>

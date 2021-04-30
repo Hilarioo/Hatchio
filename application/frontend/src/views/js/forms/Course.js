@@ -21,19 +21,19 @@ const Course = ({ course, courseList, setCourseList }) => {
   return (
     <Form.Group>
       <Form.Control
-        type='text'
-        placeholder='Course Name'
-        name='courseName'
+        type="text"
+        placeholder="Course Name"
+        name="courseName"
         onChange={updateCourse}
       />
-      <Form.Control type='text' placeholder='Course Section' />
-      <Form.Control as='select'>
+      <Form.Control type="text" placeholder="Course Section" />
+      <Form.Control as="select">
         <option>Fall</option>
         <option>Winter</option>
         <option>Spring</option>
         <option>Summer</option>
       </Form.Control>
-      <Form.Control type='text' placeholder='Course Year' />
+      <Form.Control type="text" placeholder="Course Year" />
     </Form.Group>
   );
 };

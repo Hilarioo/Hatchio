@@ -26,6 +26,79 @@ import LocationPopup from "../../forms/Location";
 import ProjectPopup from "../../forms/Project";
 // Default Image
 import { defaultImage } from "../../global/DefaultImage";
+//Import TMP
+import API_STUDENT_INSERT_PROFILE from "../../../../models/POST/Students/insert_student_profile";
+import styled from "styled-components";
+import Popup from "reactjs-popup";
+import { Formik, Field, Form } from "formik";
+const StyledPopup = styled(Popup)`
+  &-content[role="tooltip"] {
+    font-size: 15px;
+    height: 100%;
+    width: 100%;
+    background-color: pink;
+    text-color: white;
+    text-align: center;
+  }
+`;
+//POP UP Profile Page Insert
+const POPUP_STUDENT_PROFILE_PAGE = (Student_ID) => {
+  return (
+    <div>
+      <StyledPopup trigger={<button> Profile Page Insert</button>}>
+        <Formik
+          initialValues={{
+            Student_ID: Student_ID,
+            about_me: "about me",
+            strengths_qualities: "honest,strong",
+            location: "Location",
+            school_grade_level: "Freshman,etc",
+            //TODO: RESUME
+            //TODO: PROFILE IMAGE
+          }}
+          onSubmit={async (values) => {
+            console.log(values);
+            const response = await API_STUDENT_INSERT_PROFILE(values);
+            console.log(response);
+            if (response === 400) {
+              console.log("error");
+            }
+            if (response === 200) {
+              window.location.reload();
+              console.log("success");
+            }
+            return;
+          }}
+        >
+          <Form>
+            <br></br>
+            <label>___________________________________________About Me</label>
+            <Field id="about_me" name="about_me" />
+            <hr></hr>
+
+            <br></br>
+            <label>
+              ________________________________________Strenth Qualities
+            </label>
+            <Field id="strengths_qualities" name="strengths_qualities" />
+
+            <hr></hr>
+            <label>_____________________________________Location</label>
+            <Field id="location" name="location" />
+
+            <hr></hr>
+            <label>
+              ________________________________________School Grade Level
+            </label>
+            <Field id="school_grade_level" name="school_grade_level" />
+
+            <button type="submit">Submit</button>
+          </Form>
+        </Formik>
+      </StyledPopup>
+    </div>
+  );
+};
 
 const StudentProfile = (props) => {
   const [cookie] = useCookies(["Type_User", "ID_OF_USER", "First_Name"]);
@@ -74,7 +147,7 @@ const StudentProfile = (props) => {
 
   return (
     <>
-      <div className='student-heading'>
+      <div className="student-heading">
         {/* creates default image if none provided */}
         <img
           src={
@@ -84,23 +157,23 @@ const StudentProfile = (props) => {
           }
           alt={String(userProfile[4][0].first_name)}
         />
-        <div className='right'>
+        <div className="right">
           {/* === Student Name === */}
-          <div className='flex-box'>
-            <h6 className='category-heading'>Full Name</h6>
+          <div className="flex-box">
+            <h6 className="category-heading">Full Name</h6>
           </div>
           <p>
             {userProfile[4][0].first_name + " " + userProfile[4][0].last_name}
           </p>
 
           {/* === Student Location ===*/}
-          <div className='flex-box'>
-            <h6 className='category-heading'>Location</h6>
+          <div className="flex-box">
+            <h6 className="category-heading">Location</h6>
             {/* Location Edit Popup */}
             <img
-              id='edit-button'
+              id="edit-button"
               src={EditIcon}
-              alt='edit pencil button'
+              alt="edit pencil button"
               onClick={() => setLocation(true)}
             />
             <LocationPopup
@@ -108,14 +181,14 @@ const StudentProfile = (props) => {
               onHide={() => setLocation(false)}
               userID={cookie.ID_OF_USER}
               location={
-                userProfile[1][0].location === 0
-                  ? ""
+                userProfile[1].length === 0
+                  ? "Location Not Provided"
                   : userProfile[1][0].location
               }
             />
           </div>
-          <div className='flex-box'>
-            <img src={LocationIcon} alt='location pin' />
+          <div className="flex-box">
+            <img src={LocationIcon} alt="location pin" />
             <p>
               {userProfile[1].length === 0
                 ? "Location Not Provided"
@@ -126,14 +199,14 @@ const StudentProfile = (props) => {
       </div>
 
       {/* TODO:: Links */}
-      <div className='student-links'>
-        <div className='flex-box'>
-          <h5 className='category-heading'>Links</h5>
+      <div className="student-links">
+        <div className="flex-box">
+          <h5 className="category-heading">Links</h5>
           {/* Links Edit Popup */}
           <img
-            id='edit-button'
+            id="edit-button"
             src={EditIcon}
-            alt='edit pencil button'
+            alt="edit pencil button"
             onClick={() => setLinks(true)}
           />
           <LinksPopup
@@ -142,48 +215,52 @@ const StudentProfile = (props) => {
             userID={cookie.ID_OF_USER}
           />
         </div>
-        <div className='flex-box' style={{ justifyContent: "space-between" }}>
-          <img src={GlobeIcon} alt='website url' />
-          <img src={GithubIcon} alt='github' />
-          <img src={LinkedinIcon} alt='linkedin' />
-          <img src={ResumeIcon} alt='resume-pdf' />
+        <div className="flex-box" style={{ justifyContent: "space-between" }}>
+          <img src={GlobeIcon} alt="website url" />
+          <img src={GithubIcon} alt="github" />
+          <img src={LinkedinIcon} alt="linkedin" />
+          <img src={ResumeIcon} alt="resume-pdf" />
         </div>
       </div>
 
       {/* Student About Me */}
-      <div className='student-about'>
-        <div className='flex-box'>
-          <h4 className='category-heading'>About Me</h4>
+      <div className="student-about">
+        <div className="flex-box">
+          <h4 className="category-heading">About Me</h4>
           {/* About Me Edit Popup */}
           <img
-            id='edit-button'
+            id="edit-button"
             src={EditIcon}
-            alt='edit pencil button'
+            alt="edit pencil button"
             onClick={() => setAboutPopup(true)}
           />
           <AboutPopup
             show={aboutPopup}
             onHide={() => setAboutPopup(false)}
             userID={cookie.ID_OF_USER}
-            heading='Edit About Me'
+            heading="Edit About Me"
             about={
-              userProfile[1].length === 0 ? "" : userProfile[1][0].about_me
+              userProfile[1].length === 0 ? "Empty" : userProfile[1][0].about_me
             }
           />
         </div>
         {/* About Me */}
-        <p>{userProfile[1][0].about_me}</p>
+        <p>
+          {userProfile[1].length === 0
+            ? POPUP_STUDENT_PROFILE_PAGE(cookie.ID_OF_USER)
+            : userProfile[1][0].about_me}
+        </p>
       </div>
 
       {/* Student Qualities */}
-      <div className='student-qualities'>
-        <div className='flex-box'>
-          <h4 className='category-heading'>Top Qualities</h4>
+      <div className="student-qualities">
+        <div className="flex-box">
+          <h4 className="category-heading">Top Qualities</h4>
           {/* Qualities Edit Popup */}
           <img
-            id='edit-button'
+            id="edit-button"
             src={EditIcon}
-            alt='edit pencil button'
+            alt="edit pencil button"
             onClick={() => setListPopup(true)}
           />
           <ListPopup
@@ -200,16 +277,16 @@ const StudentProfile = (props) => {
         </li>
       </div>
 
-      <div className='student-grid'>
+      <div className="student-grid">
         {/* Student Projects */}
-        <div className='projects'>
-          <div className='flex-box'>
-            <h4 className='category-heading'>Projects</h4>
+        <div className="projects">
+          <div className="flex-box">
+            <h4 className="category-heading">Projects</h4>
             {/* Add New Project Popup */}
             <img
-              id='edit-button'
+              id="edit-button"
               src={AddIcon}
-              alt='edit pencil button'
+              alt="edit pencil button"
               onClick={() => setAddProject(true)}
             />
             <ProjectPopup
@@ -223,27 +300,28 @@ const StudentProfile = (props) => {
           {userProfile[2].length === 0
             ? "No Projects Found"
             : userProfile[2].map((project) => (
-                <div className='student-project flex-box'>
+                <div className="student-project flex-box">
                   {/* Project Icon */}
-                  <div className='img-box'>
-                    <img src={ProjectIcon} alt='project icon' />
+                  <div className="img-box">
+                    <img src={ProjectIcon} alt="project icon" />
                   </div>
                   {/* Project Details */}
-                  <div className='right'>
+                  <div className="right">
                     {/* TODO:: Project Date */}
-                    <p id='date'>{project.publish_date}</p>
-                    <div className='flex-box'>
+                    <p id="date">{project.publish_date}</p>
+                    <div className="flex-box">
                       {/* Project Name */}
                       <a
                         href={"https://" + project.links_website}
-                        alt='project website'>
+                        alt="project website"
+                      >
                         <h5>{project.project_name}</h5>
                       </a>
                       {/* Edit Project Popup */}
                       <img
-                        id='edit-button'
+                        id="edit-button"
                         src={EditIcon}
-                        alt='edit pencil button'
+                        alt="edit pencil button"
                         onClick={() => setEditProject(true)}
                       />
                       <ProjectPopup
@@ -261,7 +339,7 @@ const StudentProfile = (props) => {
                     </div>
                     {/* Project Description */}
                     <p>{project.summary}</p>
-                    <div className='flex-box'>
+                    <div className="flex-box">
                       {/* Project Collaborator(s) */}
                       <h6>Collaborator(s):</h6>
                       {String(project.arr_collaborators_arr)
@@ -286,15 +364,15 @@ const StudentProfile = (props) => {
         </div>
 
         <div>
-          <div className='education'>
+          <div className="education">
             {/* Student Education */}
-            <div className='flex-box'>
-              <h4 className='category-heading'>Education</h4>
+            <div className="flex-box">
+              <h4 className="category-heading">Education</h4>
               {/* Add Education Popup */}
               <img
-                id='edit-button'
+                id="edit-button"
                 src={AddIcon}
-                alt='edit pencil button'
+                alt="edit pencil button"
                 onClick={() => setAddEducation(true)}
               />
               <EducationPopup
@@ -308,20 +386,20 @@ const StudentProfile = (props) => {
             {userProfile[0].length === 0
               ? "No Education Found"
               : userProfile[0].map((education) => (
-                  <div className='student-education flex-box'>
+                  <div className="student-education flex-box">
                     {/* creates default image if none provided */}
-                    <div className='img-box'>
-                      <img src={EducationIcon} alt='project icon' />
+                    <div className="img-box">
+                      <img src={EducationIcon} alt="project icon" />
                     </div>
-                    <div className='right'>
-                      <div className='flex-box'>
+                    <div className="right">
+                      <div className="flex-box">
                         {/* Education Degree Recieved */}
                         <h5>{education.degree}</h5>
                         {/* Edit Education Popup */}
                         <img
-                          id='edit-button'
+                          id="edit-button"
                           src={EditIcon}
-                          alt='edit pencil button'
+                          alt="edit pencil button"
                           onClick={() => setEditEducation(true)}
                         />
                         <EducationPopup
@@ -349,16 +427,16 @@ const StudentProfile = (props) => {
                   </div>
                 ))}
           </div>
-          <div className='experience'>
+          <div className="experience">
             {/* experience */}
 
-            <div className='flex-box'>
-              <h4 className='category-heading'>Experience</h4>
+            <div className="flex-box">
+              <h4 className="category-heading">Experience</h4>
               {/* Add Experience Popup */}
               <img
-                id='edit-button'
+                id="edit-button"
                 src={AddIcon}
-                alt='edit pencil button'
+                alt="edit pencil button"
                 onClick={() => setAddExperience(true)}
               />
               <ExperiencePopup
@@ -372,19 +450,19 @@ const StudentProfile = (props) => {
             {userProfile[5].length == 0
               ? "No Experience"
               : userProfile[5].map((experience) => (
-                  <div className='student-experience flex-box'>
+                  <div className="student-experience flex-box">
                     {/* creates default image if none provided */}
-                    <div className='img-box'>
-                      <img src={ExperienceIcon} alt='project icon' />
+                    <div className="img-box">
+                      <img src={ExperienceIcon} alt="project icon" />
                     </div>
-                    <div className='right'>
-                      <div className='flex-box'>
+                    <div className="right">
+                      <div className="flex-box">
                         <h5>{experience.experience_title_position}</h5>
                         {/* Edit Pencil --> Popup */}
                         <img
-                          id='edit-button'
+                          id="edit-button"
                           src={EditIcon}
-                          alt='edit pencil button'
+                          alt="edit pencil button"
                           onClick={() => setEditExperience(true)}
                         />
                         <ExperiencePopup
@@ -423,15 +501,15 @@ const StudentProfile = (props) => {
         </div>
       </div>
       {/* Student's Ratings */}
-      <div className='student-reflection'>
-        <h4 className='category-heading'>Ratings</h4>
+      <div className="student-reflection">
+        <h4 className="category-heading">Ratings</h4>
         {/* Maps Every Review From Professor(s) to Student */}
         {userProfile[3].length === 0
           ? "No Reflections Yet"
           : userProfile[3].map((review) => (
-              <div className='rating'>
-                <header className='flex-box'>
-                  <span className='flex-box'>
+              <div className="rating">
+                <header className="flex-box">
+                  <span className="flex-box">
                     {/* Review: Professor Name */}
                     <h5>
                       {review.first_name} {review.last_name}
@@ -440,11 +518,11 @@ const StudentProfile = (props) => {
                     <ProgressBar
                       now={review.rating_total}
                       label={`${review.rating_total}` + " / 5"}
-                      min='0'
-                      max='5'
-                      variant='info'
+                      min="0"
+                      max="5"
+                      variant="info"
                       style={{ width: "35%", marginTop: "5px" }}
-                      id='progress-bar'
+                      id="progress-bar"
                     />
                   </span>
                   {/* TODO:: date of the review */}

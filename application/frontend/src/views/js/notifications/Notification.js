@@ -5,7 +5,7 @@ import API_UPDATE_STUDENT_RATING_NOTIFICATION from "../../../models/PUT/Students
 
 const Notifications = () => {
   useEffect(() => {
-    API_STUDENT_RATING_NOTIFICATIONS(setRatingNotifications, cookie.ID_OF_USER);
+    API_STUDENT_RATING_NOTIFICATIONS(setRatingNotifications, cookie.ID_OF_USER); //Rating Notification
     console.log(ratingNotifications);
   }, []);
   const [cookie] = useCookies(["Type_User", "ID_OF_USER", "First_Name"]); //Current User
@@ -94,14 +94,21 @@ const Notifications = () => {
           <h4> Rating Seen Ratings Notifications</h4>
           {seen_notifications}
         </div>
+        <div>
+          <h4> Outgoing Job Applications</h4>
+          <p>
+            Row Enteries of Job Listings where student_id is current users and
+            clicked apply, pending status
+          </p>
+        </div>
         <hr></hr>
       </div>
     );
   }
-  if (cookie.Type_User === "professor") {
+  if (cookie.Type_User === "employer") {
     return (
       <div>
-        <h3>Professor Notifications</h3>
+        <h3>Employer Notifications</h3>
       </div>
     );
   }

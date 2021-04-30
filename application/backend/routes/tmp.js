@@ -68,9 +68,12 @@ module.exports = (app) => {
   //TODO-POST: Student Experience
   app.post("/insert-experience", (req, res) => {
     try {
-      console.log(req.body);
-
-      let sql_insert_experience = `insert into student_experience (student_id,experience_title_position,company_name, date_start,date_end,arr_work_done_keywords,description_experience,location,employment_type) values (1,"Jelly Bean Packager","The America Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend","Worked on taking out the trash.","California","Full Time"),`;
+      let sql_insert_experience = `
+      insert into student_experience
+       (student_id,experience_title_position,company_name, date_start,date_end,arr_work_done_keywords,description_experience,location,employment_type)
+       values
+        (${req.body.Student_ID},"${req.body.experience_title_position}","${req.body.company_name}",'${req.body.date_start}','${req.body.date_end}',"${req.body.arr_work_done_keywords}","${req.body.description_experience}","${req.body.location}","${req.body.employement_type}");`;
+      console.log(sql_insert_experience);
       SQL_CONNECTION.query(sql_insert_experience, (err, results) => {
         if (err) {
           return res.sendStatus(400);

@@ -5,7 +5,7 @@
  * Authors: Aaron
  */
 
-import PORT_HOST from "../config";
+import PORT_HOST from "../../../config";
 
 export default async function API_EMPLOYER_INSERT_JOB(JobListings) {
   //Request Body & Header Configuration

@@ -42,7 +42,7 @@ const Dashboard = () => {
   }
   return (
     <div>
-      <h1 className='mini-title'>Refresh page or Sign in </h1>
+      <h1 className="mini-title">Refresh page or Sign in </h1>
     </div>
   );
 };

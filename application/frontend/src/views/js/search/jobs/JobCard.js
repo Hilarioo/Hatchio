@@ -39,38 +39,48 @@ const JobCard = ({
       Listing_id: Listing_ID,
     });
   };
+  const Apply_Job = (Listing_ID, Student_ID) => {
+    console.log("Student ID of logged in user");
+    console.log("Listing Id of Selected Card");
+  };
+  const loger = () => {
+    console.log("something logg");
+  };
 
   return (
-    <div className='card-result'>
+    <div className="card-result">
       <header>
         <img
           src={image.length <= 0 ? defaultImage(CompanyName) : image}
           alt={CompanyName.charAt(0)}
         />
-        <div className='info'>
-          <div className='name-enrollment'>
+        <div className="info">
+          <div className="name-enrollment">
             <h4 style={{ paddingBottom: "10px" }}>{PositionTitle}</h4>
           </div>
 
-          <div className='flex-box'>
+          <div className="flex-box">
             <h6 style={{ marginRight: "0.5rem" }}>{CompanyName}</h6>
-            <p id='enrollment' style={{ marginTop: "-.2rem" }}>
+            <p id="enrollment" style={{ marginTop: "-.2rem" }}>
               {JobType}
             </p>
-            <p id='salary'>${String(Income).slice(0, -3)}k / yr</p>
+            <p id="salary">${String(Income).slice(0, -3)}k / yr</p>
           </div>
-          <div className='flext-box' style={{ marginTop: "-.7rem" }}>
-            <img src={LocationIcon} alt='location pin' id='location' />
+          <div className="flext-box" style={{ marginTop: "-.7rem" }}>
+            <img src={LocationIcon} alt="location pin" id="location" />
             <span>{Location}</span>
           </div>
         </div>
       </header>
-      <div className='flex-box'>
+      <div className="flex-box">
         <Button onClick={() => Redirect_Job_View(Listing_ID)}>View</Button>
-        <Popup trigger={<Button>Apply</Button>}>
-          {cookie.Type_User === "student" ||
-          cookie.Type_User === "employer" ||
-          cookie.Type_User === "professor" ? (
+        {/*
+        <Button onClick={() => Apply_Job(Listing_ID, cookie.ID_OF_USER)}>
+          Apply_V2
+        </Button>
+          */}
+        <Popup trigger={<Button onClick={() => loger()}>Apply</Button>}>
+          {cookie.Type_User === "student" ? (
             <p> Sent!(Aaron working on) </p>
           ) : (
             <p> Sign In to apply! </p>

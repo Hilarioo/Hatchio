@@ -1,4 +1,4 @@
-import PORT_HOST from "../config";
+import PORT_HOST from "../../../config";
 
 export default async function API_PROFESSOR_RATE_STUDENT(
   s_id,

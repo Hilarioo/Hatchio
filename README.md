@@ -20,17 +20,19 @@ ii. Change Log
 
 #### Unresolved Issues
 
-- Can't get Update PopUp Information
-- Experience Unable to transfer Student Id from cookies as a prop
 - Instead of window.location.reload() we should be able to refire the useEffect to cause a state change w/o having to reload
-- Some Routes are not able to be process w/, so i brought back some of the routes from past
+- Student Profiles visibility for general user
 
 #### Currently Working
 
 - Notifications for Employers & Students :: Aaron | Roland
-- Profile Pages for Professors | Employers :: Aaron | Jose
 - PUT requests for student users to edit their information (remaining: experience,project,schools) :: Aaron
 - Improved Professor Review System :: Lyra
+
+#### Thursday, April 29, 2021 :: Aaron
+
+- First User bug fix for employer | students
+- Experience insertion for students
 
 #### Monday, April 26, 2021 :: Aaron
 
