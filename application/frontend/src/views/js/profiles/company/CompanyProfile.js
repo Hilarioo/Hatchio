@@ -3,10 +3,12 @@ import Collapsible from 'react-collapsible';
 
 import API_REMOVE_JOB from "../../../../models/delete_job"
 import API_FIND_CANDIDATE from "../../../../models/GET/Students/student_info";
-//import API_UPDATE_CANDIDATE from ""; PUT
+import API_UPDATE_STUDENT_RATING_NOTIFICATION from "../../../../models/PUT/Students/update_ratings_notification";
 
 const CompanyProfile = (props) => {
-  const [activeComponent, setactiveComponent] = useState(0);
+  const [activeComponent, setactiveComponent] = useState([]);
+  var counter = 3;
+  // const [candidateList, setcandidateList] = useState([]);
   const [userProfilee, setuserProfilee] = useState([
     [{ null: "null" }, { null: "null" }],
     [{ null: "null" }, { null: "null" }],
@@ -27,17 +29,33 @@ const CompanyProfile = (props) => {
     if(response.status === 200) console.log("Success"); window.location.reload();
   };
 
-  const findCandidates = async (student_id) => {
-    const response = await API_FIND_CANDIDATE(student_id);
-    if(response.status === 400) console.log("Failed to update");
-    if(response.status === 200) console.log("Success"); console.log(response);
-  };
+  function findCandidates(student_id){
+    API_FIND_CANDIDATE(setstudentInformation, student_id);
+  }
 
   const assignment = (listing_id) =>{
-    console.log("list:"+listing_id);
-    setactiveComponent(listing_id);
-    console.log("active");
-    //console.log(activeComponent);
+    // console.log("list:"+listing_id);
+    setactiveComponent([...activeComponent, listing_id]);
+    // console.log("active");
+    // console.log("assign",activeComponent);
+  };
+
+  const handleRemoveItem = (listing_id) => {
+      setactiveComponent(activeComponent.filter(item => item !== listing_id));
+      // console.log("remove",activeComponent);
+    };
+
+  const seenNotification = async (compalert_id) => {
+    const response = await API_UPDATE_STUDENT_RATING_NOTIFICATION(
+      compalert_id, 'company_alerts'
+    );
+    if (response.status == 400) {
+      console.log("Failed to Update");
+    }
+    if (response.status == 200) {
+      console.log("Sucess ");
+      window.location.reload();
+    }
   };
 
   function converter(dataitem){
@@ -69,24 +87,82 @@ const CompanyProfile = (props) => {
     </div>
   ));
 
+  // studentInformation[0].map((first_layer) => {
+  //   return <>
+  //   <p><strong>Alert</strong>: {data.compalert_id}</p>
+  //   <p>Notified {converter(data.time)}</p>
+  //   <p><strong>Candidate: </strong>{first_layer.first_name+' '+first_layer.last_name}</p>
+  //   <p><strong>School: </strong>{first_layer.school_name}</p>
+  //   <p><strong>Major: </strong></p>
+  //   <p><strong>School Year: </strong></p>
+  //   <button>Hide</button>
+  //   <br></br>
+  //   <br></br>
+  //   </>
+  // })
+
+  // const Candidate_List = userProfilee[2].map((data) => (
+
+  // ));
   var Employer_Find_Candidates = userProfilee[2].map((data) => (
     <div>
-        {data.hidden === 0 && activeComponent === data.listing_id &&
-        <>
-          <p><strong>Alert</strong>: {data.compalert_id}</p>
-          <p>Notified {converter(data.time)}</p>
-          <p><strong>Candidate: </strong></p>
-          <p><strong>School: </strong></p>
-          <p><strong>Major: </strong></p>
-          <p><strong>School Year: </strong></p>
-          <button>Hide</button>
-          <br></br>
-          <br></br>
-        </>
-        }
+        {activeComponent.map((active) => {
+          if(active === data.listing_id && data.hidden === 0){
+            return <>
+            <p><strong>Alert</strong>: {data.compalert_id}</p>
+            <p>Notified {converter(data.time)}</p>
+            <p>student_id: {data.student_id}</p>
+            <p>listing_id: {data.listing_id}</p>
+            {userProfilee[counter].map((value) => {
+              if (data.student_id === value.id){
+                return <>
+                <p><strong>Candidate: </strong>{value.first_name+" "+value.last_name}</p>
+                <p><strong>School: </strong>{value.school_name}</p>
+                <p><strong>Major: </strong>{value.study_major}</p>
+                <p><strong>School Year: </strong>{value.school_grade_level}</p>
+                <button onClick={() => seenNotification(data.compalert_id)}>Hide</button>
+                <br></br>
+                <br></br>
+                </>
+              }
+            })}
+            </>
+          }
+        })}
     </div>
   ));
 
+
+  // var test = userProfilee[3].map((data) => (
+  //   <div>
+  //     <p>Job Title: {data.first_name} </p>
+  //     <p>Location: {data.last_name}</p>
+  //     <p>Job Type: {data.school_name}</p>
+  //     <p>Experience Years: {data.study_major}</p>
+  //     <p>Salary: {data.school_year}</p>
+  //   </div>
+  // ));
+  //  console.log("test",test);
+//   var Employer_Find_Candidates = [];
+//   console.log(userProfilee.length);
+//   if(userProfilee.length > 2){
+//     userProfilee[2].map(data => (
+//       <div>
+//         {activeComponent.map(active => {
+//           if(active === data.listing_id && data.hidden === 0){
+//             Employer_Find_Candidates.push(
+//               <div>
+//                 <p><strong>Alert</strong>: {data.compalert_id}</p>
+//                 <p>Notified {converter(data.time)}</p>
+//               </div>
+//             );
+//           }
+//         })}
+//       </div>
+//     ));
+//     for (let i = 2; i < userProfilee.length; i++){}
+//   }
+//  console.log(Employer_Find_Candidates);
   useEffect(() => {
     setuserProfilee(props);
   }, [props]);
@@ -95,7 +171,7 @@ const CompanyProfile = (props) => {
     Employer_Jobs_Openings = userProfilee[1].map((data) => (
      <div>
        <Collapsible trigger={data.position_title+" #"+data.listing_id} onOpen={()=>assignment(data.listing_id)}
-        onClose={()=>assignment(0)}>
+        onClose={()=>handleRemoveItem(data.listing_id)}>
          <div>
            <p>Location: {data.location}</p>
            <p>Job Type: {data.job_type}</p>
@@ -115,6 +191,8 @@ const CompanyProfile = (props) => {
       {Employer_Jobs_Openings}
       <h3>Candidates Found</h3>
       {Employer_Find_Candidates}
+      {/* <h3>seperator</h3>
+      {Candidate_List} */}
     </div>
   );
  }

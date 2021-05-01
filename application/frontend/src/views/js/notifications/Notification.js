@@ -31,7 +31,7 @@ const Notifications = () => {
   const seenNotification = async (reflection_id) => {
     console.log(`Reflection ID: ${reflection_id}`);
     const response = await API_UPDATE_STUDENT_RATING_NOTIFICATION(
-      reflection_id
+      reflection_id, 'student_ratings'
     );
     if (response.status == 400) {
       console.log("Failed to Update");

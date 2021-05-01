@@ -122,20 +122,41 @@ module.exports = (app) => {
   });
   //POST: Altering states to control student ratings notifications
   app.put("/student-ratings", (req, res) => {
-    let sql = `update student_ratings set student_seen = 1 where reflection_id = ${req.query.id};`;
-    console.log(req.body);
-    try {
-      SQL_CONNECTION.query(sql, (err, results) => {
-        if (err) {
-          return res.sendStatus(400);
-        } else {
-          return res.sendStatus(200);
-        }
-      });
-      console.log(sql);
-    } catch (e) {
-      console.log(`Error ${e}`);
+    if (req.query.table === 'student_ratings'){
+      let sql = `update ${req.query.table} set student_seen = 1 where reflection_id = ${req.query.id};`;
+      console.log(req.body);
+      try {
+        SQL_CONNECTION.query(sql, (err, results) => {
+          if (err) {
+            return res.sendStatus(400);
+          } else {
+            return res.sendStatus(200);
+          }
+        });
+        console.log(sql);
+      } catch (e) {
+        console.log(`Error ${e}`);
+      }
     }
+    if (req.query.table === 'company_alerts'){
+      let sql = `update ${req.query.table} set hidden = 1 where compalert_id = ${req.query.id};`;
+      console.log(req.body);
+      try {
+        SQL_CONNECTION.query(sql, (err, results) => {
+          if (err) {
+            return res.sendStatus(400);
+          } else {
+            return res.sendStatus(200);
+          }
+        });
+        console.log(sql);
+      } catch (e) {
+        console.log(`Error ${e}`);
+      }
+    }
+
+    
+
   });
 
   app.delete("/delete_job", (req, res) => {
@@ -160,7 +181,7 @@ module.exports = (app) => {
         if(err){
           return res.sendStatus(400);
         }
-        return res.sendStatus(200);
+        return res.json(results);
       });
     }catch(e){
       console.log(`Error ${e}`);

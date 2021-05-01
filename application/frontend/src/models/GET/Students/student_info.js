@@ -1,12 +1,26 @@
 import PORT_HOST from "../../../config";
 
-export default async function API_FIND_CANDIDATE(student_id){
+const API_FIND_CANDIDATE = async(student_id) => {
   const header = {method: "GET"};
   const REQUEST_QUERY = `/find_student?id=${student_id}`;
   const response = await fetch(
     `${PORT_HOST.PORT_HOST}${REQUEST_QUERY}`,
     header
   );
-  console.log(response);
-  return response;
-}
+  const data = await response.json();
+  if (data == 400) {
+    //Dont set the data
+    return;
+  } else {
+    var tempArr = [{id: student_id}];
+    // console.log(tempArr);
+    for (let i = 0; i < data.length; i++) {
+     tempArr = tempArr.concat(data[i]);
+    }
+    //console.log("b4",tempArr);
+    tempArr = Object.assign({}, ...tempArr);
+    //console.log(tempArr);
+    return tempArr;
+  }
+};
+export default API_FIND_CANDIDATE;
