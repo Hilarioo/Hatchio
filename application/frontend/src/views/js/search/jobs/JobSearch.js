@@ -120,10 +120,10 @@ const JobSearch = () => {
 
   return (
     <>
-      <div className='grid-container'>
+      <div className="grid-container">
         <JobSearchBar
           // placeholder
-          placeholder='Job Title, Company, or Keywords'
+          placeholder="Job Title, Company, or Keywords"
           keywordFilterHandler={keywordFilterHandler}
           setKeyword={setKeyword}
         />
@@ -141,7 +141,7 @@ const JobSearch = () => {
           salary={salary}
           setSalary={setSalary}
         />
-        <div className='results'>
+        <div className="results">
           {/** IF Database Not Connected */}
           {results.length === 0
             ? "No Results"
@@ -149,6 +149,7 @@ const JobSearch = () => {
                 <JobCard
                   // image={job.profile_image == null ? `""` : job.profile_image}
                   Listing_ID={job.listing_id}
+                  Employer_ID={job.employer_id}
                   PositionTitle={job.position_title}
                   CompanyName={job.organization_name}
                   Salary={job.salary}

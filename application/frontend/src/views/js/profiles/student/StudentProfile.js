@@ -122,7 +122,7 @@ const StudentProfile = (props) => {
 
     setQualities(
       String(
-        props[1]?.length === 0
+        props[1].length === 0
           ? "Empty Qualities"
           : props[1][0].strengths_qualities
       ).split(",")

@@ -15,6 +15,8 @@ drop table if exists student_projects;
 drop table if exists student_education;
 drop table if exists student_experience;
 drop table if exists student_ratings;
+drop table if exists student_alerts;
+drop table if exists company_alerts;
 -- -----------------------------------------------------
 -- Create Users
 -- -----------------------------------------------------
@@ -29,7 +31,6 @@ create table admins (
 );
 create table professors (
     professor_id int auto_increment primary key,
-    new_user int default 0,
     first_name varchar(255) not null,
     last_name varchar(255) not null,
     school_name varchar(255),
@@ -148,6 +149,36 @@ create table company_listings (
     foreign key (employer_id)
         references employers (employer_id)
 );
+
+create table company_alerts (
+	compalert_id int auto_increment primary key,
+    student_id int,
+    employer_id int,
+    listing_id int,
+    time DATETIME DEFAULT CURRENT_TIMESTAMP,
+    hidden BOOLEAN not null default 0,
+    foreign key (student_id)
+        references students (student_id),
+    foreign key (employer_id)
+        references employers (employer_id),
+    foreign key (listing_id)
+        references company_listings (listing_id) ON DELETE CASCADE
+);
+
+create table student_alerts (
+	stualert_id int auto_increment primary key,
+    employer_id int,
+    student_id int,
+    listing_id int,
+    time DATETIME not null,
+    hidden BOOLEAN default false,
+    foreign key (student_id)
+        references students (student_id),
+    foreign key (employer_id)
+        references employers (employer_id),
+    foreign key (listing_id)
+        references company_listings (listing_id) ON DELETE CASCADE
+);
 -- -----------------------------------------------------
 -- Insert Users  
 -- -----------------------------------------------------
@@ -182,7 +213,6 @@ insert into employers(first_name,last_name,organization_name,password,email,stat
 -- -----------------------------------------------------
 insert into student_ratings(student_id,professor_id,responsible_level,team_work_level,leadership_level,committed_to_success_level,recommendation_comment,rating_total) values
 (1,1,5,5,5,5,"It is with much enthusiasm that I recommend Tom Bloom for inclusion in the College Scholars Program at the University of Tennessee.",2),
-(1,2,5,5,5,5,"Very Noice",5),
 (2,2,1,2,3,5,"I recommend this student because of Jonathen enthusiasm.",1),
 (3,1,2,5,5,5,"Zorba wide-ranging intellect is such that he would be bored by most freshman- and sophomore-level Liberal Arts courses. He is ready to assume and excel in upper division classwork, and possesses the self-motivation to successfully create and execute an independent course of honors study.",1),
 (4,1,5,2,5,5,"Bob academic strengths are complemented by his demonstrated leadership skills – he was our band’s drum major for two years and served as Vice President of the Student Council and Editor of our high school yearbook. He is also very active in his church and in the Sierra Student Coalition.",5),
@@ -205,7 +235,7 @@ insert into student_projects(student_id,project_name,summary,arr_tools_used,prof
 (8,"SuperCry","CRUD application for CSC648","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby"),
 (9,"LooCry","CRUD application for CSC648","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby"),
 (10,"FooCry","CRUD application for CSC648","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby"),
-(10,"FooCry02","CRUD application for CSC667","JavaScript,Mysql,React JS","Henry Villar","hatchio.com","Jacob,Bobby");
+(10,"FooCry","CRUD application for CSC648","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby");
 
 insert into student_education(student_id, school, degree, school_gpa, study_major, start_year, end_year) values
 (1,"San Francisco State University","Bachelors",4.0,"English",2018,2022),
@@ -249,6 +279,14 @@ insert into company_listings(employer_id,organization_name,position_title,locati
 (1,"Google","Backend Developer","San Diego, Ca","Remote","Minimum 2 Years","Mid Level",15000,"Our mission is to organize the world’s information and make it universally accessible and useful.","Work with the top class engineers and mentors that will help you grow with the company and as an individual","1.Enthusiasm2.Willing to work hard3.Passionate","1.401k2.Good Salary3.Great Experience","debugging,c++,collaboration"),
 (2,"Apple","Frontend Developer","san Diego, Ca","Contract","Maximum 10 Years","senior Level",10500,"Our mission is to organize the world’s information and make it universally accessible and useful.","Work with the top class engineers and mentors that will help you grow with the company and as an individual","1.Enthusiasm2.Willing to work hard3.Passionate","1.401k2.Good Salary3.Great Experience","debugging,c++,collaboration"),
 (3,"Tesla","Full Stack Developer","Pleasant Hill, Ca","Internship","Minimum 3 Years","Directors",35000,"Our mission is to organize the world’s information and make it universally accessible and useful.","Work with the top class engineers and mentors that will help you grow with the company and as an individual","1.Enthusiasm2.Willing to work hard3.Passionate","1.401k2.Good Salary3.Great Experience","debugging,c++,collaboration");
+
+#insert into company_alerts(student_id,employer_id,listing_id,time,hidden) values 
+#(1,1,1,'2020-01-01 06:00:00',0),
+#(2,1,2,'2015-03-21 15:25:37',0);
+
+#insert into student_alerts(employer_id,student_id,listing_id,time,hidden) values 
+#(1,1,1,'2020-01-02 08:30:25',0),
+#(1,2,2,'2015-03-21 04:48:20',0);
 -- -----------------------------------------------------
 -- End  
 -- -----------------------------------------------------

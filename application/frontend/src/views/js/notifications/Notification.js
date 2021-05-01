@@ -8,12 +8,15 @@ import API_USER_GET_PROFILE from "../../../models/user_profile";
 
 const Notifications = () => {
   useEffect(() => {
-    if(cookie.Type_User === 'student'){
-      API_STUDENT_RATING_NOTIFICATIONS(setRatingNotifications, cookie.ID_OF_USER);
+    if (cookie.Type_User === "student") {
+      API_STUDENT_RATING_NOTIFICATIONS(
+        setRatingNotifications,
+        cookie.ID_OF_USER
+      );
       console.log(ratingNotifications);
     }
-    if(cookie.Type_User === 'employer'){
-      API_USER_GET_PROFILE(cookie.Type_User,cookie.ID_OF_USER,setuserProfile);
+    if (cookie.Type_User === "employer") {
+      API_USER_GET_PROFILE(cookie.Type_User, cookie.ID_OF_USER, setuserProfile);
     }
   }, []);
   const [cookie] = useCookies(["Type_User", "ID_OF_USER", "First_Name"]); //Current User
@@ -31,7 +34,8 @@ const Notifications = () => {
   const seenNotification = async (reflection_id) => {
     console.log(`Reflection ID: ${reflection_id}`);
     const response = await API_UPDATE_STUDENT_RATING_NOTIFICATION(
-      reflection_id, 'student_ratings'
+      reflection_id,
+      "student_ratings"
     );
     if (response.status == 400) {
       console.log("Failed to Update");
@@ -111,13 +115,6 @@ const Notifications = () => {
           <h4> Rating Seen Ratings Notifications</h4>
           {seen_notifications}
         </div>
-        <div>
-          <h4> Outgoing Job Applications</h4>
-          <p>
-            Row Enteries of Job Listings where student_id is current users and
-            clicked apply, pending status
-          </p>
-        </div>
         <hr></hr>
       </div>
     );
@@ -127,9 +124,9 @@ const Notifications = () => {
       <div>
         <h3>Alerts</h3>
         <div>
-        <>
-        <CompanyProfile {...userProfile} />
-        </>
+          <>
+            <CompanyProfile {...userProfile} />
+          </>
         </div>
       </div>
     );

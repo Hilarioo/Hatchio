@@ -2,6 +2,7 @@
  * File: JobCard.js
  * Functionality: Creates Card Component for jobs available within results
  * Author: Jose
+ * Author: Aaron & Roland , apply and full window page
  */
 
 import { useHistory } from "react-router-dom";
@@ -20,9 +21,12 @@ import Button from "react-bootstrap/Button";
 import Popup from "reactjs-popup";
 //Cookie
 import { useCookies } from "react-cookie";
+//API
+import API_INSERT_STUDENT_APPLICATION from "../../../../models/POST/Students/insert_student_apply";
 const JobCard = ({
   image = "",
   Listing_ID = 0,
+  Employer_ID = 0,
   PositionTitle = "",
   CompanyName = "",
   Income = 0,
@@ -39,12 +43,22 @@ const JobCard = ({
       Listing_id: Listing_ID,
     });
   };
-  const Apply_Job = (Listing_ID, Student_ID) => {
-    console.log("Student ID of logged in user");
-    console.log("Listing Id of Selected Card");
-  };
-  const loger = () => {
-    console.log("something logg");
+  const Apply_Job = async (Student_ID) => {
+    console.log(`Student ${Student_ID}`);
+    console.log(`Listing ID ${Listing_ID}`);
+    console.log(`Employer_ID ${Employer_ID}`);
+    console.log(`ROLAND HELP TIME`);
+    const response = await API_INSERT_STUDENT_APPLICATION({
+      student_id: ` ${Student_ID}`,
+      employer_id: `${Employer_ID}`,
+      listing_id: `${Listing_ID}`,
+    });
+    if (response === 200) {
+      console.log("application success");
+    }
+    if (response === 400) {
+      console.log("application error");
+    }
   };
 
   return (
@@ -74,18 +88,7 @@ const JobCard = ({
       </header>
       <div className="flex-box">
         <Button onClick={() => Redirect_Job_View(Listing_ID)}>View</Button>
-        {/*
-        <Button onClick={() => Apply_Job(Listing_ID, cookie.ID_OF_USER)}>
-          Apply_V2
-        </Button>
-          */}
-        <Popup trigger={<Button onClick={() => loger()}>Apply</Button>}>
-          {cookie.Type_User === "student" ? (
-            <p> Sent!(Aaron working on) </p>
-          ) : (
-            <p> Sign In to apply! </p>
-          )}
-        </Popup>
+        <Button onClick={() => Apply_Job(cookie.ID_OF_USER)}>Apply</Button>
       </div>
     </div>
   );

@@ -46,7 +46,7 @@ module.exports = (app) => {
       return res.sendStatus(400);
     }
   });
-  //POST Methods for Student Education
+  //POST Student Education
   app.post("/insert_student_education", (req, res) => {
     try {
       let sql_insert_student_education = `insert into student_education(student_id, school, degree, school_gpa, study_major, start_year, end_year) values(${req.body.Student_ID},"${req.body.school}","${req.body.degree}",${req.body.school_gpa},"${req.body.study_major}",${req.body.start_year},${req.body.end_year});`;
@@ -65,7 +65,7 @@ module.exports = (app) => {
       return res.sendStatus(400);
     }
   });
-  //TODO-POST: Student Experience
+  //POST Student Experience
   app.post("/insert-experience", (req, res) => {
     try {
       let sql_insert_experience = `
@@ -85,7 +85,7 @@ module.exports = (app) => {
       console.log(`${e}`);
     }
   });
-  //PUT: Student About Me
+  //PUT Student About Me
   app.put("/about-me", (req, res) => {
     let sql = `update student_profile_page sp set about_me = "${req.query.about_me}" where sp.student_id = ${req.query.id};`;
     try {
@@ -122,7 +122,7 @@ module.exports = (app) => {
   });
   //POST: Altering states to control student ratings notifications
   app.put("/student-ratings", (req, res) => {
-    if (req.query.table === 'student_ratings'){
+    if (req.query.table === "student_ratings") {
       let sql = `update ${req.query.table} set student_seen = 1 where reflection_id = ${req.query.id};`;
       console.log(req.body);
       try {
@@ -138,7 +138,7 @@ module.exports = (app) => {
         console.log(`Error ${e}`);
       }
     }
-    if (req.query.table === 'company_alerts'){
+    if (req.query.table === "company_alerts") {
       let sql = `update ${req.query.table} set hidden = 1 where compalert_id = ${req.query.id};`;
       console.log(req.body);
       try {
@@ -154,37 +154,56 @@ module.exports = (app) => {
         console.log(`Error ${e}`);
       }
     }
-
-    
-
   });
 
   app.delete("/delete_job", (req, res) => {
-    try{
-      SQL_CONNECTION.query(`delete from company_listings where listing_id = ?;`, [req.query.id],(err, results) => {
-        if(err){
-          return res.sendStatus(400);
+    try {
+      SQL_CONNECTION.query(
+        `delete from company_listings where listing_id = ?;`,
+        [req.query.id],
+        (err, results) => {
+          if (err) {
+            return res.sendStatus(400);
+          }
+          return res.sendStatus(200);
         }
-        return res.sendStatus(200);
-      });
-    }catch(e){
+      );
+    } catch (e) {
       console.log(`Error ${e}`);
     }
   });
 
   app.get("/find_student", (req, res) => {
-    try{
-      SQL_CONNECTION.query(`select first_name, last_name, school_name from students where student_id = ?;
+    try {
+      SQL_CONNECTION.query(
+        `select first_name, last_name, school_name from students where student_id = ?;
         select study_major from student_education where student_id = ?;
-          select school_grade_level from student_profile_page where student_id = ?;`, [req.query.id, req.query.id,
-             req.query.id],(err, results) => {
-        if(err){
-          return res.sendStatus(400);
+          select school_grade_level from student_profile_page where student_id = ?;`,
+        [req.query.id, req.query.id, req.query.id],
+        (err, results) => {
+          if (err) {
+            return res.sendStatus(400);
+          }
+          return res.json(results);
         }
-        return res.json(results);
-      });
-    }catch(e){
+      );
+    } catch (e) {
       console.log(`Error ${e}`);
     }
   });
+  //POST: Apply Job
+  app.post("/insert_student_application", (req, res) => {
+    let sql = `insert into company_alerts (student_id,employer_id,listing_id,hidden) values (${req.body.student_id},${req.body.employer_id},${req.body.listing_id},0);`;
+    console.log(sql);
+    SQL_CONNECTION.query(sql, (err, results) => {
+      if (err) {
+        console.log(`${err}`);
+        return res.sendStatus(400);
+      } else {
+        console.log(`Success query: ${sql}`);
+        return res.sendStatus(200);
+      }
+    });
+  });
+  //POST: Employer Hire
 };

@@ -29,6 +29,10 @@ ii. Change Log
 - PUT requests for student users to edit their information (remaining: experience,project,schools) :: Aaron
 - Improved Professor Review System :: Lyra
 
+#### Friday and Saturday, May 1, 2021 :: Aaron
+
+-apply and hire
+
 #### Thursday, April 29, 2021 :: Aaron
 
 - First User bug fix for employer | students

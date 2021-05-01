@@ -41,11 +41,10 @@ const MYSQL_CRED = [
     user: "root",
     password: "roland0308",
     database: "acme",
-    multipleStatements: true,   
+    multipleStatements: true,
   },
 ];
-//const username = os.userInfo().username;
-const username = 'roland';
+const username = "roland";
 const credIndex = function (name) {
   switch (name) {
     case "ubuntu":

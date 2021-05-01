@@ -10,22 +10,22 @@ export default async function API_USER_GET_PROFILE(typeUser, idr, setState) {
   //data [[0], [1], [2]]
   //if (data[[2]])
   // console.log("whole data: ",data);
-  if(typeUser === 'employer'){
+  if (typeUser === "employer") {
     var uniqueList = [];
     var output = [];
-    for (let i = 0; i < data[2].length; i++){
+    for (let i = 0; i < data[2].length; i++) {
       uniqueList.push(data[2][i].student_id);
     }
     uniqueList = Array.from(new Set(uniqueList));
     // console.log("uniqueList",uniqueList);
-    for (let i = 0; i< uniqueList.length; i++){
+    for (let i = 0; i < uniqueList.length; i++) {
       output.push(API_FIND_CANDIDATE(uniqueList[i]));
     }
     // console.log("output",output);
     output = await Promise.all(output);
-    console.log("output",output);
+    console.log("output", output);
     data.push(output);
-    console.log("whole data: ",data);
+    console.log("whole data: ", data);
   }
   setState(data);
   return data;
