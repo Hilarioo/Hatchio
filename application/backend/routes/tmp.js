@@ -206,4 +206,32 @@ module.exports = (app) => {
     });
   });
   //POST: Employer Hire
+  app.post("/insert_employer_hire", (req, res) => {
+    let sql = `insert into student_alerts (employer_id,student_id,listing_id,hidden) values (${req.body.employer_id},${req.body.student_id},${req.body.listing_id},0);`;
+    SQL_CONNECTION.query(sql, (err, results) => {
+      if (err) {
+        console.log(`${err}`);
+        return res.sendStatus(400);
+      } else {
+        console.log(`Success query: ${sql}`);
+        return res.sendStatus(200);
+      }
+    });
+  });
+  //GET: Student Alerts TODO- Remove Passwords
+  app.get("/get-student-alerts", (req, res) => {
+    let sql_v_one = `select * from student_alerts left join employers on student_alerts.employer_id = employers.employer_id left join company_listings on student_alerts.listing_id = company_listings.listing_id where student_id= ${req.query.s_id};`;
+    try {
+      SQL_CONNECTION.query(sql_v_one, (err, results) => {
+        if (err) {
+          console.log(err);
+          return res.sendStatus(400); //Error code easier for frontend to process
+        } else {
+          return res.json(results);
+        }
+      });
+    } catch (e) {
+      console.log(`Error ${e}`);
+    }
+  });
 };

@@ -23,6 +23,11 @@ ii. Change Log
 - Instead of window.location.reload() we should be able to refire the useEffect to cause a state change w/o having to reload
 - Student Profiles visibility for general user
 
+#### TODO
+
+- Delete Student Rating Notification
+- Delete Student Employed Notification
+
 #### Currently Working
 
 - Notifications for Employers & Students :: Aaron | Roland

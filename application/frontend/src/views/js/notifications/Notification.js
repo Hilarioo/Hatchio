@@ -11,9 +11,10 @@ const Notifications = () => {
     if (cookie.Type_User === "student") {
       API_STUDENT_RATING_NOTIFICATIONS(
         setRatingNotifications,
+        setHiredNotifications,
         cookie.ID_OF_USER
       );
-      console.log(ratingNotifications);
+      //Pass in Student ID and pull corresponding data
     }
     if (cookie.Type_User === "employer") {
       API_USER_GET_PROFILE(cookie.Type_User, cookie.ID_OF_USER, setuserProfile);
@@ -21,6 +22,7 @@ const Notifications = () => {
   }, []);
   const [cookie] = useCookies(["Type_User", "ID_OF_USER", "First_Name"]); //Current User
   const [ratingNotifications, setRatingNotifications] = useState([]);
+  const [hiredNotifications, setHiredNotifications] = useState([]);
   //Employed Jobs
   const [userProfile, setuserProfile] = useState([
     [{ null: "null" }, { null: "null" }],
@@ -114,6 +116,12 @@ const Notifications = () => {
         <div>
           <h4> Rating Seen Ratings Notifications</h4>
           {seen_notifications}
+        </div>
+        <div>
+          <h4>Applications Outgoing Fullfilled Notification</h4>
+          {/** Remove PASSWORD TODO */}
+          {/** Check Logs for all information, password will be removed eventually */}
+          {hiredNotifications.map((data) => console.log(data))}
         </div>
         <hr></hr>
       </div>

@@ -17,6 +17,8 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 //Pop Up Form
 import RatingPopup from "../../forms/Rating";
 import HirePopup from "../../forms/Hire";
+//API
+import API_INSERT_STUDENT_ALERT from "../../../../models/POST/Employers/insert_hire";
 
 const StudentCard = ({
   // default props, if props are empty
@@ -45,45 +47,51 @@ const StudentCard = ({
       Student_ID: studentID,
     });
   };
+  //Insert Student Alert
+  const hireB = () => {
+    console.log(studentID); //Student ID
+    console.log(cookie.ID_OF_USER); //ID of Employer
+  };
 
   return (
-    <div className='card-result'>
+    <div className="card-result">
       <header>
         <img
           src={image.length <= 0 ? defaultImage(studentName) : image}
           alt={studentName.charAt(0)}
         />
-        <div className='info'>
-          <div className='flex-box name-enrollment'>
+        <div className="info">
+          <div className="flex-box name-enrollment">
             <h4>{studentName}</h4>
-            <p id='enrollment'>{studentEnrollment}</p>
+            <p id="enrollment">{studentEnrollment}</p>
           </div>
           <h6>{schoolName}</h6>
-          <div className='flex-box'>
-            <p className='gpa'>{gpa} GPA</p>
+          <div className="flex-box">
+            <p className="gpa">{gpa} GPA</p>
             {/* Indicates that there is no ratings for the user if the prop is 0 */}
             {rating === 0 ? (
-              <p id='no-rating'>No ratings yet</p>
+              <p id="no-rating">No ratings yet</p>
             ) : (
               <ProgressBar
                 now={rating}
                 label={`${rating}` + " / 5"}
-                min='0'
-                max='5'
-                variant='info'
+                min="0"
+                max="5"
+                variant="info"
                 style={{ width: "60%" }}
-                id='progress-bar'
+                id="progress-bar"
               />
             )}
           </div>
         </div>
       </header>
-      <div className='flex-box' style={{ justifyContent: "space-around" }}>
+      <div className="flex-box" style={{ justifyContent: "space-around" }}>
         {/* Only visible to employers */}
         {cookie.Type_User === "employer" ? (
           <Button onClick={() => setHirePopup(true)}>Hire</Button>
         ) : null}
         <HirePopup
+          onClick={() => console.log("something")}
           show={hirePopup}
           onHide={() => setHirePopup(false)}
           setHirePopup={setHirePopup}

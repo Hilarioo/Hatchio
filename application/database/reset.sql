@@ -170,7 +170,7 @@ create table student_alerts (
     employer_id int,
     student_id int,
     listing_id int,
-    time DATETIME not null,
+    time DATETIME DEFAULT CURRENT_TIMESTAMP,
     hidden BOOLEAN default false,
     foreign key (student_id)
         references students (student_id),
@@ -280,13 +280,13 @@ insert into company_listings(employer_id,organization_name,position_title,locati
 (2,"Apple","Frontend Developer","san Diego, Ca","Contract","Maximum 10 Years","senior Level",10500,"Our mission is to organize the world’s information and make it universally accessible and useful.","Work with the top class engineers and mentors that will help you grow with the company and as an individual","1.Enthusiasm2.Willing to work hard3.Passionate","1.401k2.Good Salary3.Great Experience","debugging,c++,collaboration"),
 (3,"Tesla","Full Stack Developer","Pleasant Hill, Ca","Internship","Minimum 3 Years","Directors",35000,"Our mission is to organize the world’s information and make it universally accessible and useful.","Work with the top class engineers and mentors that will help you grow with the company and as an individual","1.Enthusiasm2.Willing to work hard3.Passionate","1.401k2.Good Salary3.Great Experience","debugging,c++,collaboration");
 
-#insert into company_alerts(student_id,employer_id,listing_id,time,hidden) values 
-#(1,1,1,'2020-01-01 06:00:00',0),
-#(2,1,2,'2015-03-21 15:25:37',0);
+insert into company_alerts(student_id,employer_id,listing_id,time,hidden) values 
+(1,1,1,'2020-01-01 06:00:00',0),
+(2,1,2,'2015-03-21 15:25:37',0);
 
-#insert into student_alerts(employer_id,student_id,listing_id,time,hidden) values 
-#(1,1,1,'2020-01-02 08:30:25',0),
-#(1,2,2,'2015-03-21 04:48:20',0);
+insert into student_alerts(employer_id,student_id,listing_id,time,hidden) values 
+(1,1,1,'2020-01-02 08:30:25',0),
+(1,2,2,'2015-03-21 04:48:20',0);
 -- -----------------------------------------------------
 -- End  
 -- -----------------------------------------------------
