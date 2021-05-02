@@ -18,21 +18,22 @@ ii. Change Log
 
 #### Urgent TODO
 
+#### TODO
+
 #### Unresolved Issues
 
 - Instead of window.location.reload() we should be able to refire the useEffect to cause a state change w/o having to reload
 - Student Profiles visibility for general user
 
-#### TODO
-
-- Delete Student Rating Notification
-- Delete Student Employed Notification
-
 #### Currently Working
 
-- Notifications for Employers & Students :: Aaron | Roland
 - PUT requests for student users to edit their information (remaining: experience,project,schools) :: Aaron
 - Improved Professor Review System :: Lyra
+
+#### Sunday, May 2, 2021 :: Aaron
+
+- Merge roland branch to milestone03
+- aws-deployment of latest
 
 #### Friday and Saturday, May 1, 2021 :: Aaron
 

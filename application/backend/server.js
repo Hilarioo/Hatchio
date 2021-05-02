@@ -14,14 +14,7 @@ app.use(
   cors({
     credentials: true,
     origin: ["http://localhost:3000", "http://3.141.216.125:3000"],
-    allowedHeaders: [
-      "Origin",
-      "X-Requested-With",
-      "contentType",
-      "Content-Type",
-      "Accept",
-      "Authorization",
-    ],
+    allowedHeaders: ["Origin", "X-Requested-With", "contentType", "Content-Type", "Accept", "Authorization"],
   })
 );
 app.use(cookieparser());
@@ -31,6 +24,9 @@ app.use(express.json());
 //Backend UI Views for Database Tables (temporarily for dev)
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname + "/views/index.html"));
+});
+app.get("/ec2", (req, res) => {
+  res.sendFile(path.join(__dirname + "/views/ec2.html"));
 });
 // GET | POST  for Frontend UI Routes
 require("./routes/tables")(app);
