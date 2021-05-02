@@ -7,41 +7,84 @@ ii. Change Log
 
 ## The Entire Dev Team
 
-| Student Name | Student Email           | GitHub Username |
-|    :---:     |     :---:               |     :---:       |
-| member1      |mlee38@mail.sfsu.edu     |rolandlee0308    |
-| member2      |jgonzalez34@mail.sfsu.edu|Hilarioo         |
-| member3      |asingh26@mail.sfsu.edu   |singhaaron       |
-| member4      |lsolomon3@mail.sfsu.edu  |LyraSolomon      |
+| Student Name |       Student Email       | GitHub Username |
+| :----------: | :-----------------------: | :-------------: |
+|   member1    |   mlee38@mail.sfsu.edu    |  rolandlee0308  |
+|   member2    | jgonzalez34@mail.sfsu.edu |    Hilarioo     |
+|   member3    |  asingh26@mail.sfsu.edu   |   singhaaron    |
+|   member4    |  lsolomon3@mail.sfsu.edu  |   LyraSolomon   |
 
 ## Change Logs
 
 #### Urgent TODO
 
--
+#### TODO
 
 #### Unresolved Issues
 
-- In milestone 04, i saw "best check for security practices" to show passwords being encrypted which we currently do not have, and i dont think we'll have enough time to do this before deadline // roland working on it
+- Instead of window.location.reload() we should be able to refire the useEffect to cause a state change w/o having to reload
+- Student Profiles visibility for general user
 
 #### Currently Working
 
-- Notifications for Employers & Students :: Aaron
-- Redeploying onto aws :: Aaron
-- PUT requests for users to edit their information :: Aaron
+- PUT requests for student users to edit their information (remaining: experience,project,schools) :: Aaron
+- Improved Professor Review System :: Lyra
 
-#### Tuesday, April 19, 2021 :: Aaron
+#### Sunday, May 2, 2021 :: Aaron
+
+- Merge roland branch to milestone03
+- aws-deployment of latest
+
+#### Friday and Saturday, May 1, 2021 :: Aaron
+
+-apply and hire
+
+#### Thursday, April 29, 2021 :: Aaron
+
+- First User bug fix for employer | students
+- Experience insertion for students
+
+#### Monday, April 26, 2021 :: Aaron
+
+- Notifications page for students when receiving professor ratings. done with seen/unseen TODO: add buttons for deleting notifications
+
+#### Friday, April 23, 2021 :: Aaron
+
+- Home page (commented out search jobs with title footer) also we already have search at seach-jobs
+- Adding functionality to Job search page 'View' and but 'Apply' functionality is (in progress)
+- Button Formatting w/ bootstrap
+- Editi About Me for Profile Page
+
+#### Thursday, April 22, 2021 :: Aaron
+
+- Transfered roalnd's branch code for hasing firs time users in database // to work around the issue of default users, i used an efficient solution because it works for the time being
+- I re-added the ec2 instance because /routes can't be accessed without the url
+
+#### Wenesday, April 21, 2021 :: Aaron
+
+- Error handling and removed warning for refreshing the full view public profile pages
+- Added Student Experience and GET request to send corresponding table
+- Models/ Dir structure to align w/ GET POST PUT
+
+#### Tuesday, April 20, 2021 :: Aaron
 
 - I needed to upload the build/ folder (8.3mb) to more efficiently deploy onto aws which has been a hassle
 - changes after jose's push , refresh only after inserts for student profile are succesful with response code 200
 - check condition for first time users
 
-#### Monday, April 18, 2021 :: Aaron
+#### Tuesday, April 20, 2021 :: Lyra
+
+- Fix SQL injection vulnerabilities where the purpose of the function was understandable
+- Fix email verification functionality
+- Prevent passwords from being leaked to the users
+- Programmatically determine whether the server is AWS or a debug environment
+
+#### Monday, April 19, 2021 :: Aaron
 
 - Tested everything from scratch, every thing functions as expected
 - Deployed onto aws
 
-#### Sunday, April 17, 2021 :: Aaron
+#### Sunday, April 18, 2021 :: Aaron
 
 - Fixed Profile Page Rendering
 - POST | Pop UP Forms for Student Profile Page | Education | Projects

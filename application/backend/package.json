@@ -6,12 +6,13 @@
   "scripts": {
     "node_hatchio_init": "npm install && cd ../frontend && npm install && cd ../ && cd database && node reset.js && cd ../ && cd backend",
     "backend": "nodemon server.js",
-    "frontend": "cd .. && cd frontend/ &&npm start",
+    "frontend": "cd ../frontend/ && echo 'const SERVER =\"roland\"; module.exports={SERVER};' > src/servername.js && npm start",
     "backend_frontend": "concurrently \"npm run backend\" \"npm run frontend \""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "concurrently": "^6.0.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",

@@ -1,3 +1,9 @@
+/*
+ * File: Signin.js
+ * Functionality: User Log In Page
+ * Author: Jose (Component & Structure) | Aaron (API)
+ */
+
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 // CSS
@@ -33,12 +39,13 @@ function Signin() {
     //Auth True
     if (bool_user_auth === true) {
       //auth true
-      history.push("/dashboard");
+      history.push("/profile");
       window.location.reload();
       console.log("THE BOOL OF USER: " + bool_user_auth);
     }
     //Auth False
     if (bool_user_auth === false) {
+      console.log("false");
       //Control UI response
     }
   };

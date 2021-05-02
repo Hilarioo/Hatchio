@@ -3,9 +3,7 @@ import { useCookies } from "react-cookie";
 // CSS
 import "../../../css/Profiles.css";
 import "../../../css/Theme.css";
-import styled from "styled-components";
 // React Boostrap
-import Button from "react-bootstrap/Button";
 import ProgressBar from "react-bootstrap/ProgressBar";
 //Import SVG Icons
 import LocationIcon from "../../../content/svg/location-icon.svg";
@@ -19,8 +17,6 @@ import ProjectIcon from "../../../content/svg/project-icon.svg";
 import ExperienceIcon from "../../../content/svg/experience-icon.svg";
 import EducationIcon from "../../../content/svg/education-icon.svg";
 // Form Components
-import Popup from "reactjs-popup";
-import { Formik, Field, Form } from "formik";
 import AboutPopup from "../../forms/Description";
 import EducationPopup from "../../forms/Education";
 import ExperiencePopup from "../../forms/Experience";
@@ -28,11 +24,13 @@ import LinksPopup from "../../forms/LinksStudent";
 import ListPopup from "../../forms/List";
 import LocationPopup from "../../forms/Location";
 import ProjectPopup from "../../forms/Project";
-//Import API
-import API_STUDENT_INSERT_PROFILE from "../../../../models/insert_student_profile";
 // Default Image
 import { defaultImage } from "../../global/DefaultImage";
-//Form
+//Import TMP
+import API_STUDENT_INSERT_PROFILE from "../../../../models/POST/Students/insert_student_profile";
+import styled from "styled-components";
+import Popup from "reactjs-popup";
+import { Formik, Field, Form } from "formik";
 const StyledPopup = styled(Popup)`
   &-content[role="tooltip"] {
     font-size: 15px;
@@ -43,7 +41,6 @@ const StyledPopup = styled(Popup)`
     text-align: center;
   }
 `;
-
 //POP UP Profile Page Insert
 const POPUP_STUDENT_PROFILE_PAGE = (Student_ID) => {
   return (
@@ -114,6 +111,7 @@ const StudentProfile = (props) => {
     [{ null: "null" }, { null: "null" }],
     [{ null: "null" }, { null: "null" }],
     [{ null: "null" }, { null: "null" }],
+    [{ null: "null" }, { null: "null" }],
   ]);
   // User Qualities
   const [qualities, setQualities] = useState([]);
@@ -124,15 +122,16 @@ const StudentProfile = (props) => {
 
     setQualities(
       String(
-        props[1].length == 0
+        props[1].length === 0
           ? "Empty Qualities"
           : props[1][0].strengths_qualities
       ).split(",")
     );
   }, [props]);
 
-  // Form States
+  // Location Popup
   const [location, setLocation] = useState(false);
+  // Links Popup
   const [links, setLinks] = useState(false);
   const [aboutPopup, setAboutPopup] = useState(false);
   const [listPopup, setListPopup] = useState(false);
@@ -142,7 +141,9 @@ const StudentProfile = (props) => {
   // Education Popups
   const [addEducation, setAddEducation] = useState(false);
   const [editEducation, setEditEducation] = useState(false);
-  const [experiencePopup, setExperiencePopup] = useState(false);
+  // Experienc Popups
+  const [addExperience, setAddExperience] = useState(false);
+  const [editExperience, setEditExperience] = useState(false);
 
   return (
     <>
@@ -168,6 +169,23 @@ const StudentProfile = (props) => {
           {/* === Student Location ===*/}
           <div className="flex-box">
             <h6 className="category-heading">Location</h6>
+            {/* Location Edit Popup */}
+            <img
+              id="edit-button"
+              src={EditIcon}
+              alt="edit pencil button"
+              onClick={() => setLocation(true)}
+            />
+            <LocationPopup
+              show={location}
+              onHide={() => setLocation(false)}
+              userID={cookie.ID_OF_USER}
+              location={
+                userProfile[1].length === 0
+                  ? "Location Not Provided"
+                  : userProfile[1][0].location
+              }
+            />
           </div>
           <div className="flex-box">
             <img src={LocationIcon} alt="location pin" />
@@ -182,7 +200,21 @@ const StudentProfile = (props) => {
 
       {/* TODO:: Links */}
       <div className="student-links">
-        <h5 className="category-heading">Links</h5>
+        <div className="flex-box">
+          <h5 className="category-heading">Links</h5>
+          {/* Links Edit Popup */}
+          <img
+            id="edit-button"
+            src={EditIcon}
+            alt="edit pencil button"
+            onClick={() => setLinks(true)}
+          />
+          <LinksPopup
+            show={links}
+            onHide={() => setLinks(false)}
+            userID={cookie.ID_OF_USER}
+          />
+        </div>
         <div className="flex-box" style={{ justifyContent: "space-between" }}>
           <img src={GlobeIcon} alt="website url" />
           <img src={GithubIcon} alt="github" />
@@ -205,9 +237,10 @@ const StudentProfile = (props) => {
           <AboutPopup
             show={aboutPopup}
             onHide={() => setAboutPopup(false)}
+            userID={cookie.ID_OF_USER}
             heading="Edit About Me"
             about={
-              userProfile[1].length === 0 ? "" : userProfile[1][0].about_me
+              userProfile[1].length === 0 ? "Empty" : userProfile[1][0].about_me
             }
           />
         </div>
@@ -275,10 +308,15 @@ const StudentProfile = (props) => {
                   {/* Project Details */}
                   <div className="right">
                     {/* TODO:: Project Date */}
-                    <p id="date">November 20, 2020</p>
+                    <p id="date">{project.publish_date}</p>
                     <div className="flex-box">
                       {/* Project Name */}
-                      <h5>{project.project_name}</h5>
+                      <a
+                        href={"https://" + project.links_website}
+                        alt="project website"
+                      >
+                        <h5>{project.project_name}</h5>
+                      </a>
                       {/* Edit Project Popup */}
                       <img
                         id="edit-button"
@@ -294,7 +332,7 @@ const StudentProfile = (props) => {
                         summary={project.summary}
                         professor={project.professor}
                         tools={project.arr_tools_used}
-                        link={project.links_website}
+                        website={project.links_website}
                         collaborators={project.arr_collaborators_arr}
                         onHide={() => setEditProject(false)}
                       />
@@ -312,6 +350,7 @@ const StudentProfile = (props) => {
                     </div>
                     {/* Project Professor */}
                     <h6>Professor: {project.professor}</h6>
+                    {/* Keywords */}
                     <li>
                       {String(project.arr_tools_used)
                         .split(",")
@@ -390,6 +429,7 @@ const StudentProfile = (props) => {
           </div>
           <div className="experience">
             {/* experience */}
+
             <div className="flex-box">
               <h4 className="category-heading">Experience</h4>
               {/* Add Experience Popup */}
@@ -397,43 +437,66 @@ const StudentProfile = (props) => {
                 id="edit-button"
                 src={AddIcon}
                 alt="edit pencil button"
-                onClick={() => setExperiencePopup(true)}
+                onClick={() => setAddExperience(true)}
               />
               <ExperiencePopup
-                show={experiencePopup}
-                onHide={() => setExperiencePopup(false)}
+                userID={cookie.ID_OF_USER}
+                show={addExperience}
+                popupName={"Add"}
+                onHide={() => setAddExperience(false)}
               />
             </div>
-            {/* TODO:: Maps Every Experience The Student Has Stored */}
-            <div className="student-experience flex-box">
-              {/* creates default image if none provided */}
-              <div className="img-box">
-                <img src={ExperienceIcon} alt="project icon" />
-              </div>
-              <div className="right">
-                <div className="flex-box">
-                  <h5>Jelly Bean Packer</h5>
-                  {/* Edit Pencil --> Popup */}
-                  <img
-                    id="edit-button"
-                    src={EditIcon}
-                    alt="edit pencil button"
-                    onClick={() => setExperiencePopup(true)}
-                  />
-                  <ExperiencePopup
-                    show={experiencePopup}
-                    onHide={() => setExperiencePopup(false)}
-                  />
-                </div>
-                <h6>The Pickle Factory Inc.</h6>
-                <p>November 20, 2020 - Current</p>
-                <li>
-                  <ul style={{ backgroundColor: "#EFE271" }}>one</ul>
-                  <ul style={{ backgroundColor: "#EFE271" }}>two</ul>
-                  <ul style={{ backgroundColor: "#EFE271" }}>three</ul>
-                </li>
-              </div>
-            </div>
+            {/** Map Experience */}
+            {userProfile[5].length == 0
+              ? "No Experience"
+              : userProfile[5].map((experience) => (
+                  <div className="student-experience flex-box">
+                    {/* creates default image if none provided */}
+                    <div className="img-box">
+                      <img src={ExperienceIcon} alt="project icon" />
+                    </div>
+                    <div className="right">
+                      <div className="flex-box">
+                        <h5>{experience.experience_title_position}</h5>
+                        {/* Edit Pencil --> Popup */}
+                        <img
+                          id="edit-button"
+                          src={EditIcon}
+                          alt="edit pencil button"
+                          onClick={() => setEditExperience(true)}
+                        />
+                        <ExperiencePopup
+                          show={editExperience}
+                          popupName={"Edit"}
+                          userID={cookie.ID_OF_USER}
+                          company={experience.company_name}
+                          dateStart={experience.date_start}
+                          dateEnd={experience.date_end}
+                          description={experience.description_experience}
+                          position={experience.experience_title_position}
+                          employmentType={experience.employement_type}
+                          location={experience.location}
+                          keywords={experience.arr_work_done_keywords}
+                          onHide={() => setEditExperience(false)}
+                        />
+                      </div>
+                      <h6>{experience.company_name}</h6>
+                      <p>
+                        {experience.date_start} - {experience.date_end}
+                      </p>
+                      {/* Keywords */}
+                      <li>
+                        {String(experience.arr_work_done_keywords)
+                          .split(",")
+                          .map((tool) => (
+                            <ul style={{ backgroundColor: "#EFE271" }}>
+                              {tool}
+                            </ul>
+                          ))}
+                      </li>
+                    </div>
+                  </div>
+                ))}
           </div>
         </div>
       </div>
@@ -463,7 +526,7 @@ const StudentProfile = (props) => {
                     />
                   </span>
                   {/* TODO:: date of the review */}
-                  <p>November 20, 2021</p>
+                  <p>{review.publish_date}</p>
                 </header>
                 {/* Professor's School At The Time Of The Review */}
                 <h6>{review.school_name}</h6>

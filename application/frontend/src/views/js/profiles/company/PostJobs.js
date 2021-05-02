@@ -8,7 +8,7 @@
 import { useCookies } from "react-cookie";
 import { Formik, Field, Form } from "formik";
 //API
-import API_EMPLOYER_INSERT_JOB from "../../../../models/insert_job";
+import API_EMPLOYER_INSERT_JOB from "../../../../models/POST/Employers/insert_job";
 const PostJobs = () => {
   //Init user
   const [cookie] = useCookies(["Type_User", "ID_OF_USER", "First_Name"]); //Cur use
@@ -52,52 +52,53 @@ const PostJobs = () => {
               console.log("success");
             }
             return;
-          }}>
+          }}
+        >
           <Form>
             <label>Organization Name</label>
             <Field
-              id='organization_name'
-              name='organization_name'
-              placeholder='Organization Name'
+              id="organization_name"
+              name="organization_name"
+              placeholder="Organization Name"
             />
             <br></br>
             <label>Position Title</label>
             <Field
-              id='position_title'
-              name='position_title'
-              placeholder='Position Title'
+              id="position_title"
+              name="position_title"
+              placeholder="Position Title"
             />
             <br></br>
             <label>Location</label>
-            <Field id='location' name='location' />
+            <Field id="location" name="location" />
             <br></br>
             <label>Job Type</label>
-            <Field id='job_type' name='job_type' />
+            <Field id="job_type" name="job_type" />
             <br></br>
             <label>Experience Years</label>
-            <Field id='experience_years' name='experience_years' />
+            <Field id="experience_years" name="experience_years" />
             <br></br>
             <label>Experience Levels</label>
-            <Field id='experience_levels' name='experience_levels' />
+            <Field id="experience_levels" name="experience_levels" />
             <br></br>
             <label>Salary </label>
-            <Field id='salary' name='salary' />
+            <Field id="salary" name="salary" />
             <br></br>
             <label>About Us </label>
-            <Field id='about_us' name='about_us' />
+            <Field id="about_us" name="about_us" />
             <br></br>
             <label>The Opportunity </label>
-            <Field id='the_opportunity' name='the_opportunity' />
+            <Field id="the_opportunity" name="the_opportunity" />
             <br></br>
             <label>Task Responsibilities </label>
-            <Field id='task_responsibilites' name='task_responsibilites' />
+            <Field id="task_responsibilites" name="task_responsibilites" />
             <br></br>
             <label>Skillset </label>
-            <Field id='skillset' name='skillset' />
+            <Field id="skillset" name="skillset" />
             <br></br>
             <label>Benefits </label>
-            <Field id='benefits' name='benefits' />
-            <button type='submit'>Submit</button>
+            <Field id="benefits" name="benefits" />
+            <button type="submit">Submit</button>
           </Form>
         </Formik>
       </div>

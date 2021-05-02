@@ -1,3 +1,9 @@
+/*
+ * File: List.js
+ * Functionality: Modal for Students and Companies to add or edit their Lists of Benefits or Strengths
+ * Author: Jose (Component & Structure) | Aaron (API)
+ */
+
 import "../../css/Forms.css";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";

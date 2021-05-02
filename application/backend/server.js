@@ -14,14 +14,7 @@ app.use(
   cors({
     credentials: true,
     origin: ["http://localhost:3000", "http://3.141.216.125:3000"],
-    allowedHeaders: [
-      "Origin",
-      "X-Requested-With",
-      "contentType",
-      "Content-Type",
-      "Accept",
-      "Authorization",
-    ],
+    allowedHeaders: ["Origin", "X-Requested-With", "contentType", "Content-Type", "Accept", "Authorization"],
   })
 );
 app.use(cookieparser());
@@ -41,5 +34,6 @@ require("./routes/cards")(app);
 require("./routes/users")(app);
 require("./routes/verification")(app);
 require("./routes/insert")(app);
+require("./routes/tmp")(app);
 
 app.listen(5000, () => `Backend-Live`);

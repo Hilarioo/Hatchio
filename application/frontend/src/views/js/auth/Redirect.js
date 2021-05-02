@@ -1,3 +1,9 @@
+/*
+ * File: Redirect.js
+ * Functionality: Informative Page for users to confirm their email
+ * Author: Jose
+ */
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
 // Redirect After Clicking "Create Account"
@@ -37,7 +43,7 @@ const Redirect = () => {
           <Link
             to='#'
             onClick={(e) => {
-              window.location = "mailto:help@hatchio.io";
+              window.location = "mailto:hatchionoreply9@gmail.com";
               e.preventDefault();
             }}>
             help@hatchio.io

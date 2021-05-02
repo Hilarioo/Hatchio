@@ -42,9 +42,10 @@ Styling for the following pages:
   background-color: rgba(0, 0, 0, 0.03);
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fill, 340px);
-  grid-template-rows: repeat(auto-fill, 175px);
+  grid-template-columns: repeat(auto-fill, 340px) !important;
+  grid-template-rows: repeat(auto-fill, 185px) !important;
   padding-left: 1rem;
+  min-height: 100vh;
 }
 
 /* ======= SEARCH BAR STYLING ======= */
@@ -186,57 +187,55 @@ Styling for the following pages:
   margin-bottom: 0 !important;
 }
 
-.job-card,
-.student-card {
-  width: 330px;
+.card-result {
   border-style: solid;
-  border-width: 2px;
+  border-width: 1px;
   border-radius: 10px;
   border-color: #bdbdbd;
   margin: 1%;
-  max-height: 175px;
+  height: 175px !important;
 }
 
-.student-card .flex-box {
+.card-result .flex-box {
   display: flex;
   width: 100%;
 }
 
-.student-card header {
+.card-result header {
   padding-top: 1rem;
   display: flex;
 }
 
-.student-card header img {
+.card-result header img {
   object-fit: cover;
   max-height: 80px;
 }
 
-.student-card .info {
+.card-result .info {
   width: 100%;
 }
 
-.student-card .info h4 {
+.card-result .info h4 {
   font-size: 100%;
   font-weight: 600;
 }
 
-.student-card .info h6 {
+.card-result .info h6 {
   font-size: 90%;
 }
 
-.student-card .info .gpa {
+.card-result .info .gpa {
   color: #61adcf;
   font-weight: bold;
   padding-right: 1rem;
   font-size: 90%;
 }
 
-.student-card .info #progress-bar {
+.card-result .info #progress-bar {
   margin-top: 1px;
 }
 
-.student-card .info #no-rating {
+.card-result .info #no-rating {
   color: rgba(0, 0, 0, 0.4);
 }
 
@@ -251,9 +250,25 @@ Styling for the following pages:
   border-radius: 5px;
   font-size: 80%;
   margin-right: 1rem;
+  width: 5.5rem;
+  height: 1.5rem;
+  text-align: center;
 }
 
-.student-card Button {
+#salary {
+  background-color: #66d99d;
+  padding: 1px 6px 1px 6px;
+  border-radius: 5px;
+  font-size: 80%;
+  margin-right: 1rem;
+  margin-top: -0.2rem;
+  width: 5rem;
+  height: 1.5rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.card-result Button {
   margin: 1rem;
 }
 
@@ -262,4 +277,10 @@ Styling for the following pages:
   background-color: #efe271 !important;
   color: #2b2b2b !important;
   border-style: none;
+}
+
+#location {
+  width: 1rem;
+  margin-top: -0.2rem;
+  margin-right: 0.5rem;
 }

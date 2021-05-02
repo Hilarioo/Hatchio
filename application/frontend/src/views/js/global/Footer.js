@@ -1,3 +1,9 @@
+/*
+ * File: Footer.js
+ * Functionality: Footer for homepage and authentication pages
+ * Author: Jose
+ */
+
 // CSS
 import "../../css/Theme.css";
 // Iconfiy

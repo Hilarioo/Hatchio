@@ -1,3 +1,9 @@
+/*
+ * File: Job.js
+ * Functionality: Modal for Companies to add or edit their available Job Positions
+ * Author: Jose (Component & Structure) | Aaron (API)
+ */
+
 import "../../css/Forms.css";
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";

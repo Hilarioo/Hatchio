@@ -11,4 +11,9 @@
   min-height: 15rem;
 }
 
-/* ========  LIST FORM STYLING ======== */
+/* ========  HIRE STYLING ======== */
+#gif {
+  display: block;
+  margin: 0 auto;
+  border-radius: 10px;
+}

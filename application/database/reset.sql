@@ -11,10 +11,12 @@ drop table if exists employers;
 drop table if exists admins;
 drop table if exists company_listings;
 drop table if exists student_profile_page;
-drop table if exists student_ratings;
 drop table if exists student_projects;
 drop table if exists student_education;
+drop table if exists student_experience;
 drop table if exists student_ratings;
+drop table if exists student_alerts;
+drop table if exists company_alerts;
 -- -----------------------------------------------------
 -- Create Users
 -- -----------------------------------------------------
@@ -29,7 +31,6 @@ create table admins (
 );
 create table professors (
     professor_id int auto_increment primary key,
-    new_user int default 0,
     first_name varchar(255) not null,
     last_name varchar(255) not null,
     school_name varchar(255),
@@ -108,12 +109,29 @@ create table student_ratings (
     committed_to_success_level int,
     recommendation_comment mediumtext,
     rating_total float,
+    student_seen TINYINT default 0,
+    student_hide TINYINT default 0,
+    publish_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     foreign key (student_id)
         references students (student_id),
     foreign key (professor_id)
         references professors (professor_id)
 );
+create table student_experience (
+    student_id int,
+    experience_title_position varchar(50),
+    company_name varchar(100),
+    date_start date,
+    date_end date,
+    arr_work_done_keywords varchar(500),
+    description_experience mediumtext,
+    location varchar(500),
+    employment_type varchar(500),
+    foreign key (student_id)
+        references students (student_id)
+);
 create table company_listings (
+	listing_id int auto_increment primary key,
     employer_id int,
     organization_name varchar(255),
     position_title varchar(255),
@@ -130,6 +148,36 @@ create table company_listings (
     landing_image longtext,
     foreign key (employer_id)
         references employers (employer_id)
+);
+
+create table company_alerts (
+	compalert_id int auto_increment primary key,
+    student_id int,
+    employer_id int,
+    listing_id int,
+    time DATETIME DEFAULT CURRENT_TIMESTAMP,
+    hidden BOOLEAN not null default 0,
+    foreign key (student_id)
+        references students (student_id),
+    foreign key (employer_id)
+        references employers (employer_id),
+    foreign key (listing_id)
+        references company_listings (listing_id) ON DELETE CASCADE
+);
+
+create table student_alerts (
+	stualert_id int auto_increment primary key,
+    employer_id int,
+    student_id int,
+    listing_id int,
+    time DATETIME DEFAULT CURRENT_TIMESTAMP,
+    hidden BOOLEAN default false,
+    foreign key (student_id)
+        references students (student_id),
+    foreign key (employer_id)
+        references employers (employer_id),
+    foreign key (listing_id)
+        references company_listings (listing_id) ON DELETE CASCADE
 );
 -- -----------------------------------------------------
 -- Insert Users  
@@ -155,16 +203,16 @@ insert into professors(first_name,last_name,school_name,password,email,state,cod
  ("Duc","Ta","San Francisco State University","pass12345","ducTa@mail.com",0,"500");
  
 insert into employers(first_name,last_name,organization_name,password,email,state,code) values
-("Jack","Man","Google","los12345","microsoft@mailr.com",0,"500"),
-("Steve","Job","Apple","los12345","apple@mailr.com",0,"500"),
-("Jalon","Musk","Tesla","los12345","tesla@mailr.com",0,"500"),
-("Tim","Dillon","SquareSpace","los12345","squarespace@mailr.com",0,"500");
+("Jack","Man","Google","pass12345","microsoft@mailr.com",0,"500"),
+("Steve","Job","Apple","pass12345","apple@mailr.com",0,"500"),
+("Jalon","Musk","Tesla","pass12345","tesla@mailr.com",0,"500"),
+("Tim","Dillon","SquareSpace","pass12345","squarespace@mailr.com",0,"500");
 
 -- -----------------------------------------------------
 -- Insert User Tables   
 -- -----------------------------------------------------
 insert into student_ratings(student_id,professor_id,responsible_level,team_work_level,leadership_level,committed_to_success_level,recommendation_comment,rating_total) values
-(1,1,5,5,5,5,"It is with much enthusiasm that I recommend Tom Bloom for inclusion in the College Scholars Program at the University of Tennessee",2),
+(1,1,5,5,5,5,"It is with much enthusiasm that I recommend Tom Bloom for inclusion in the College Scholars Program at the University of Tennessee.",2),
 (2,2,1,2,3,5,"I recommend this student because of Jonathen enthusiasm.",1),
 (3,1,2,5,5,5,"Zorba wide-ranging intellect is such that he would be bored by most freshman- and sophomore-level Liberal Arts courses. He is ready to assume and excel in upper division classwork, and possesses the self-motivation to successfully create and execute an independent course of honors study.",1),
 (4,1,5,2,5,5,"Bob academic strengths are complemented by his demonstrated leadership skills – he was our band’s drum major for two years and served as Vice President of the Student Council and Editor of our high school yearbook. He is also very active in his church and in the Sierra Student Coalition.",5),
@@ -193,13 +241,26 @@ insert into student_education(student_id, school, degree, school_gpa, study_majo
 (1,"San Francisco State University","Bachelors",4.0,"English",2018,2022),
 (3,"East Bay University","Doctoral",3.5,"Computer Science",2017,2021),
 (2,"Harvard University","Masters",3.0,"Art",2012,2016),
-(4,"East bay University","Accounting",3.7,"Botany",2017,2021),
-(5,"East bay University","Doctoral",3.5,"Biology",2017,2021),
+(4,"East Bay University","Accounting",3.7,"Botany",2017,2021),
+(5,"East Bay University","Doctoral",3.5,"Biology",2017,2021),
 (6,"Harvard University","Masters",3.0,"Cinema",2012,2016),
-(7,"East bay University","Accounting",3.7,"Ecology",2017,2021),
-(8,"East bay University","Doctoral",3.5,"Japanese",2017,2021),
+(7,"East Bay University","Accounting",3.7,"Ecology",2017,2021),
+(8,"East Bay University","Doctoral",3.5,"Japanese",2017,2021),
 (9,"Harvard University","Masters",3.0,"Social Work",2012,2016),
 (10,"East Bay University","Accounting",3.7,"Accounting",2017,2021);
+
+insert into student_experience(student_id,experience_title_position,company_name, date_start,date_end,arr_work_done_keywords,description_experience,location,employment_type) values
+(1,"Jelly Bean Packager","The America Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend","Worked on taking out the trash.","California","Full Time"),
+(1,"Jelly Rean Packager","The Spain Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend","Worked on taking out the trash.","California","Full Time"),
+(2,"Jelly Bean Packager","The Mexico Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend","Worked on taking out the trash.","California","Full Time"),
+(3,"Jelly Tean Packager","The Korea Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend","Worked on taking out the trash.","California","Full Time"),
+(4,"Jelly Bean Packager","The Pink Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend","Worked on taking out the trash.","California","Full Time"),
+(5,"Jelly Tean Packager","The Yellow Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend","Worked on taking out the trash.","California","Full Time"),
+(6,"Jelly Bean Packager","The Green Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend","Worked on taking out the trash.","California","Full Time"),
+(7,"Jelly Tean Packager","The Blue Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend","Worked on taking out the trash.","California","Full Time"),
+(8,"Jelly Tean Packager","The Red Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend","Worked on taking out the trash.","California","Full Time"),
+(9,"Jelly Sean Packager","The Cheese Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend","Worked on taking out the trash.","California","Full Time"),
+(10,"Jelly Lean Packager","The Apple Factory, Inc",'2012-12-01','2012-12-31',"Java,Debugging,Backend","Worked on taking out the trash.","California","Full Time");
 
 insert into student_profile_page(student_id,about_me,strengths_qualities,location,school_grade_level) values
 (1,"I've always loved the Victorian period in English literature. Even as a kid, Dickens captured my imagination more thoroughly than the Harry Potter stories or anything else. As an undergraduate at Northwestern University, I studied English with a concentration on Victorian fiction. Now, I hope to continue exploring this fundamentally important literary period as a graduate student.","honest,courages,strong,brave","New York","Freshman"),
@@ -213,11 +274,21 @@ insert into student_profile_page(student_id,about_me,strengths_qualities,locatio
 (9,"I graduated this spring from Montana State University. It took me basically forever to decide what I wanted to major in, but I finally settled on biology. It's better than the other sciences, I guess, and I'm pretty decent at it. I've taken all kinds of biology classes, but I like marine biology best. It's just fun. That's why I want to go to grad school for marine biology.","Good Teamworker,Leadership,Organization","Ohio","Junior"),
 (10,"I graduated in May from the University of Pennsylvania with a degree in accounting, but my passion for numbers goes back much further than that. Even as a kid, I loved tax season. My parents used to think it was funny, and it definitely didn't endear me to other fifth graders. When I was 11, my mom let me do her taxes, and I just can't describe the satisfaction I felt when I saved her money. Wisely, she had an accountant check my work, and she came back shocked that I hadn't made any mistakes. She used the money from her refund to buy me books on accounting. For as long as I can remember, I've dreamt of working at H&R Block, and this internship opportunity is that dream come true.","Capable,Insightful","San Francisco, CA","Doctorate");
 
-insert into company_listings(employer_id,organization_name,position_title,location,job_type,experience_years,experience_level,salary,about_us,the_opportunity,skillset,benefits) values
-(1,"Google","User Experience Designer","Pleasant Hill, Ca","Full Time","minimum 5 Years","Senior Level",105000,"Our mission is to organize the world’s information and make it universally accessible and useful.","Work with the top class engineers and mentors that will help you grow with the company and as an individual","1.Enthusiasm2.Willing to work hard3.Passionate","1.401k2.Good Salary3.great Experience"),
-(1,"Google","Backend developer","San Diego, Ca","Remote","Minimum 2 Years","Mid Level",15000,"Our mission is to organize the world’s information and make it universally accessible and useful.","Work with the top class engineers and mentors that will help you grow with the company and as an individual","1.Enthusiasm2.Willing to work hard3.Passionate","1.401k2.Good Salary3.Great Experience"),
-(2,"Apple","Frontend Developer","san Diego, Ca","Contract","Maximum 10 Years","senior Level",10500,"Our mission is to organize the world’s information and make it universally accessible and useful.","Work with the top class engineers and mentors that will help you grow with the company and as an individual","1.Enthusiasm2.Willing to work hard3.Passionate","1.401k2.Good Salary3.Great Experience"),
-(3,"Tesla","Full Stack Developer","Pleasant Hill, Ca","Internship","Minimum 3 Years","Directors",35000,"Our mission is to organize the world’s information and make it universally accessible and useful.","Work with the top class engineers and mentors that will help you grow with the company and as an individual","1.Enthusiasm2.Willing to work hard3.Passionate","1.401k2.Good Salary3.Great Experience");
+insert into company_listings(employer_id,organization_name,position_title,location,job_type,experience_years,experience_level,salary,about_us,the_opportunity,skillset,benefits,task_responsibilities) values
+(1,"Google","User Experience Designer","Pleasant Hill, Ca","Full Time","minimum 5 Years","Senior Level",105000,"Our mission is to organize the world’s information and make it universally accessible and useful.","Work with the top class engineers and mentors that will help you grow with the company and as an individual","1.Enthusiasm2.Willing to work hard3.Passionate","1.401k2.Good Salary3.great Experience","debugging,c++,collaboration"),
+(1,"Google","Backend Developer","San Diego, Ca","Remote","Minimum 2 Years","Mid Level",15000,"Our mission is to organize the world’s information and make it universally accessible and useful.","Work with the top class engineers and mentors that will help you grow with the company and as an individual","1.Enthusiasm2.Willing to work hard3.Passionate","1.401k2.Good Salary3.Great Experience","debugging,c++,collaboration"),
+(2,"Apple","Frontend Developer","san Diego, Ca","Contract","Maximum 10 Years","senior Level",10500,"Our mission is to organize the world’s information and make it universally accessible and useful.","Work with the top class engineers and mentors that will help you grow with the company and as an individual","1.Enthusiasm2.Willing to work hard3.Passionate","1.401k2.Good Salary3.Great Experience","debugging,c++,collaboration"),
+(3,"Tesla","Full Stack Developer","Pleasant Hill, Ca","Internship","Minimum 3 Years","Directors",35000,"Our mission is to organize the world’s information and make it universally accessible and useful.","Work with the top class engineers and mentors that will help you grow with the company and as an individual","1.Enthusiasm2.Willing to work hard3.Passionate","1.401k2.Good Salary3.Great Experience","debugging,c++,collaboration");
+
+insert into company_alerts(student_id,employer_id,listing_id,time,hidden) values 
+(1,1,1,'2020-01-01 06:00:00',0),
+(2,1,1,'2015-12-01 06:00:00',0),
+(3,1,2,'2010-11-01 06:00:00',0),
+(2,1,2,'2015-03-21 15:25:37',0);
+
+insert into student_alerts(employer_id,student_id,listing_id,time,hidden) values 
+(1,1,1,'2020-01-02 08:30:25',0),
+(1,2,2,'2015-03-21 04:48:20',0);
 -- -----------------------------------------------------
 -- End  
 -- -----------------------------------------------------
