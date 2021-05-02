@@ -62,4 +62,4 @@ const debugExports = {
   USER_ADMINS,
   USER_PROFILE,
 };
-module.exports = CONFIG.DEBUG_ENVIRONMENT ? debugExports : { USER_PROFILE };
+module.exports = CONFIG.DEBUG_ENVIRONMENT ? debugExports : debugExports;
