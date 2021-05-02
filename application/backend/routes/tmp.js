@@ -154,6 +154,22 @@ module.exports = (app) => {
         console.log(`Error ${e}`);
       }
     }
+    if (req.query.table === "student_alerts") {
+      let sql = `update ${req.query.table} set hidden = 1 where stualert_id = ${req.query.id};`;
+      console.log(req.body);
+      try {
+        SQL_CONNECTION.query(sql, (err, results) => {
+          if (err) {
+            return res.sendStatus(400);
+          } else {
+            return res.sendStatus(200);
+          }
+        });
+        console.log(sql);
+      } catch (e) {
+        console.log(`Error ${e}`);
+      }
+    }
   });
 
   app.delete("/delete_job", (req, res) => {
@@ -193,28 +209,55 @@ module.exports = (app) => {
   });
   //POST: Apply Job
   app.post("/insert_student_application", (req, res) => {
-    let sql = `insert into company_alerts (student_id,employer_id,listing_id,hidden) values (${req.body.student_id},${req.body.employer_id},${req.body.listing_id},0);`;
-    console.log(sql);
-    SQL_CONNECTION.query(sql, (err, results) => {
+    const {student_id,employer_id,listing_id} = req.body;
+    let check = `select * from company_alerts where student_id = ${student_id} and employer_id = ${employer_id} and listing_id = ${listing_id};`;
+    SQL_CONNECTION.query(check, (err, result) => {
       if (err) {
         console.log(`${err}`);
         return res.sendStatus(400);
-      } else {
-        console.log(`Success query: ${sql}`);
-        return res.sendStatus(200);
+      }
+      if(result.length > 0){
+        console.log("ERROR: data entry already exists in the database");
+        return res.sendStatus(400);
+      }else{
+        let sql = `insert into company_alerts (student_id,employer_id,listing_id,hidden) values (${student_id},${employer_id},${listing_id},0);`;
+        console.log(sql);
+        SQL_CONNECTION.query(sql, (err, results) => {
+          if (err) {
+            console.log(`${err}`);
+            return res.sendStatus(400);
+          } else {
+            console.log(`Success query: ${sql}`);
+            return res.sendStatus(200);
+          }
+        });
       }
     });
   });
+
   //POST: Employer Hire
   app.post("/insert_employer_hire", (req, res) => {
-    let sql = `insert into student_alerts (employer_id,student_id,listing_id,hidden) values (${req.body.employer_id},${req.body.student_id},${req.body.listing_id},0);`;
-    SQL_CONNECTION.query(sql, (err, results) => {
+    const {student_id,employer_id,listing_id} = req.body;
+    let check = `select * from student_alerts where student_id = ${student_id} and employer_id = ${employer_id} and listing_id = ${listing_id};`;
+    SQL_CONNECTION.query(check, (err, result) => {
       if (err) {
         console.log(`${err}`);
         return res.sendStatus(400);
-      } else {
-        console.log(`Success query: ${sql}`);
-        return res.sendStatus(200);
+      }
+      if(result.length > 0){
+        console.log("ERROR: data entry already exists in the database");
+        return res.sendStatus(400);
+      }else{
+        let sql = `insert into student_alerts (employer_id,student_id,listing_id,hidden) values (${employer_id},${student_id},${listing_id},0);`;
+        SQL_CONNECTION.query(sql, (err, results) => {
+          if (err) {
+            console.log(`${err}`);
+            return res.sendStatus(400);
+          } else {
+            console.log(`Success query: ${sql}`);
+            return res.sendStatus(200);
+          }
+        });
       }
     });
   });

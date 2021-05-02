@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import CompanyProfile from "../profiles/company/CompanyProfile";
+import Collapsible from "react-collapsible";
 
 import API_STUDENT_RATING_NOTIFICATIONS from "../../../models/GET/Students/rating_notifications";
 import API_UPDATE_STUDENT_RATING_NOTIFICATION from "../../../models/PUT/Students/update_ratings_notification";
@@ -33,11 +34,20 @@ const Notifications = () => {
     [{ null: "null" }, { null: "null" }],
   ]);
 
-  const seenNotification = async (reflection_id) => {
+  function converter(dataitem) {
+    if (dataitem) {
+      var t = dataitem.split(/[- : T]/);
+      var d = new Date(Date.UTC(t[0], t[1] - 1, t[2], t[3], t[4]));
+      d = d.toString().split(" ");
+      return d[1] + " " + d[2] + ", " + d[3];
+    }
+  }
+
+  const seenNotification = async (reflection_id,table) => {
     console.log(`Reflection ID: ${reflection_id}`);
     const response = await API_UPDATE_STUDENT_RATING_NOTIFICATION(
       reflection_id,
-      "student_ratings"
+      table
     );
     if (response.status == 400) {
       console.log("Failed to Update");
@@ -72,7 +82,7 @@ const Notifications = () => {
                     <b>Rating Total</b> {row.rating_total}
                   </td>
                   <td>
-                    <button onClick={() => seenNotification(row.reflection_id)}>
+                    <button onClick={() => seenNotification(row.reflection_id,"student_ratings")}>
                       SEEN
                     </button>
                   </td>
@@ -121,7 +131,20 @@ const Notifications = () => {
           <h4>Applications Outgoing Fullfilled Notification</h4>
           {/** Remove PASSWORD TODO */}
           {/** Check Logs for all information, password will be removed eventually */}
-          {hiredNotifications.map((data) => console.log(data))}
+          {hiredNotifications.map((data) => {
+            if(data.hidden === 0){
+              return (
+                <>
+                <Collapsible trigger={<p><strong>Message From: </strong>{data.organization_name} on {converter(data.time)}</p>}>
+                  <p>Congratulations, this letter is to certify that I,{data.first_name} {data.last_name}, have examined your application</p>
+                  <p>and believe you to be perfect for {data.position_title} position.</p>
+                  <p>Please contact us at {data.email} to set up an interview.</p>
+                </Collapsible>
+                <button onClick={() => seenNotification(data.stualert_id,"student_alerts")}>HIDE</button>
+                </>
+              )
+            }
+          })}
         </div>
         <hr></hr>
       </div>

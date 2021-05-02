@@ -282,6 +282,8 @@ insert into company_listings(employer_id,organization_name,position_title,locati
 
 insert into company_alerts(student_id,employer_id,listing_id,time,hidden) values 
 (1,1,1,'2020-01-01 06:00:00',0),
+(2,1,1,'2015-12-01 06:00:00',0),
+(3,1,2,'2010-11-01 06:00:00',0),
 (2,1,2,'2015-03-21 15:25:37',0);
 
 insert into student_alerts(employer_id,student_id,listing_id,time,hidden) values 

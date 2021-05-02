@@ -2,25 +2,16 @@ import { useState, useEffect } from "react";
 import Collapsible from "react-collapsible";
 import { useCookies } from "react-cookie";
 import API_REMOVE_JOB from "../../../../models/delete_job";
-import API_FIND_CANDIDATE from "../../../../models/GET/Students/student_info";
 import API_UPDATE_STUDENT_RATING_NOTIFICATION from "../../../../models/PUT/Students/update_ratings_notification";
 import API_INSERT_STUDENT_ALERT from "../../../../models/POST/Employers/insert_hire";
 const CompanyProfile = (props) => {
   const [cookie] = useCookies(["Type_User", "ID_OF_USER", "First_Name"]); //Cur use
-
   const [activeComponent, setactiveComponent] = useState([]);
-  var counter = 3;
-  // const [candidateList, setcandidateList] = useState([]);
   const [userProfilee, setuserProfilee] = useState([
     [{ null: "null" }, { null: "null" }],
     [{ null: "null" }, { null: "null" }],
     [{ null: "null" }, { null: "null" }],
     [{ null: "null" }, { null: "null" }],
-    [{ null: "null" }, { null: "null" }],
-    { null: "null" },
-  ]);
-
-  const [studentInformation, setstudentInformation] = useState([
     [{ null: "null" }, { null: "null" }],
     { null: "null" },
   ]);
@@ -31,10 +22,6 @@ const CompanyProfile = (props) => {
     if (response.status === 200) console.log("Success");
     window.location.reload();
   };
-
-  function findCandidates(student_id) {
-    API_FIND_CANDIDATE(setstudentInformation, student_id);
-  }
 
   const assignment = (listing_id) => {
     // console.log("list:"+listing_id);
@@ -48,10 +35,10 @@ const CompanyProfile = (props) => {
     // console.log("remove",activeComponent);
   };
 
-  const seenNotification = async (compalert_id) => {
+  const seenNotification = async (compalert_id,table) => {
     const response = await API_UPDATE_STUDENT_RATING_NOTIFICATION(
       compalert_id,
-      "company_alerts"
+      table
     );
     if (response.status == 400) {
       console.log("Failed to Update");
@@ -91,24 +78,6 @@ const CompanyProfile = (props) => {
     </div>
   ));
 
-  // studentInformation[0].map((first_layer) => {
-  //   return <>
-  //   <p><strong>Alert</strong>: {data.compalert_id}</p>
-  //   <p>Notified {converter(data.time)}</p>
-  //   <p><strong>Candidate: </strong>{first_layer.first_name+' '+first_layer.last_name}</p>
-  //   <p><strong>School: </strong>{first_layer.school_name}</p>
-  //   <p><strong>Major: </strong></p>
-  //   <p><strong>School Year: </strong></p>
-  //   <button>Hide</button>
-  //   <br></br>
-  //   <br></br>
-  //   </>
-  // })
-
-  // const Candidate_List = userProfilee[2].map((data) => (
-
-  // ));
-
   //Insert Student Alert
   const hireB = async (studentID, ListingID, company_alert) => {
     console.log("Student ID", studentID); //Student ID
@@ -141,7 +110,7 @@ const CompanyProfile = (props) => {
               <p>Notified {converter(data.time)}</p>
               <p>student_id: {data.student_id}</p>
               <p>listing_id: {data.listing_id}</p>
-              {userProfilee[counter].map((value) => {
+              {userProfilee[3].map((value) => {
                 if (data.student_id === value.id) {
                   return (
                     <>
@@ -173,7 +142,7 @@ const CompanyProfile = (props) => {
                         HIRE
                       </button>
                       <button
-                        onClick={() => seenNotification(data.compalert_id)}
+                        onClick={() => seenNotification(data.compalert_id,"company_alerts")}
                       >
                         Hide
                       </button>
@@ -190,36 +159,6 @@ const CompanyProfile = (props) => {
     </div>
   ));
 
-  // var test = userProfilee[3].map((data) => (
-  //   <div>
-  //     <p>Job Title: {data.first_name} </p>
-  //     <p>Location: {data.last_name}</p>
-  //     <p>Job Type: {data.school_name}</p>
-  //     <p>Experience Years: {data.study_major}</p>
-  //     <p>Salary: {data.school_year}</p>
-  //   </div>
-  // ));
-  //  console.log("test",test);
-  //   var Employer_Find_Candidates = [];
-  //   console.log(userProfilee.length);
-  //   if(userProfilee.length > 2){
-  //     userProfilee[2].map(data => (
-  //       <div>
-  //         {activeComponent.map(active => {
-  //           if(active === data.listing_id && data.hidden === 0){
-  //             Employer_Find_Candidates.push(
-  //               <div>
-  //                 <p><strong>Alert</strong>: {data.compalert_id}</p>
-  //                 <p>Notified {converter(data.time)}</p>
-  //               </div>
-  //             );
-  //           }
-  //         })}
-  //       </div>
-  //     ));
-  //     for (let i = 2; i < userProfilee.length; i++){}
-  //   }
-  //  console.log(Employer_Find_Candidates);
   useEffect(() => {
     setuserProfilee(props);
   }, [props]);
@@ -251,8 +190,6 @@ const CompanyProfile = (props) => {
         {Employer_Jobs_Openings}
         <h3>Candidates Found</h3>
         {Employer_Find_Candidates}
-        {/* <h3>seperator</h3>
-      {Candidate_List} */}
       </div>
     );
   }
