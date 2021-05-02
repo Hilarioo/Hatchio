@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.af429b5c.chunk.css",
-    "main.js": "/static/js/main.2d7bf6aa.chunk.js",
-    "main.js.map": "/static/js/main.2d7bf6aa.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.7d7a1286.js",
-    "runtime-main.js.map": "/static/js/runtime-main.7d7a1286.js.map",
-    "static/css/2.c3cdabe4.chunk.css": "/static/css/2.c3cdabe4.chunk.css",
-    "static/js/2.ec55631f.chunk.js": "/static/js/2.ec55631f.chunk.js",
-    "static/js/2.ec55631f.chunk.js.map": "/static/js/2.ec55631f.chunk.js.map",
-    "static/js/3.1d9e8eb3.chunk.js": "/static/js/3.1d9e8eb3.chunk.js",
-    "static/js/3.1d9e8eb3.chunk.js.map": "/static/js/3.1d9e8eb3.chunk.js.map",
+    "main.css": "/static/css/main.cfa3869d.chunk.css",
+    "main.js": "/static/js/main.231e295f.chunk.js",
+    "main.js.map": "/static/js/main.231e295f.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.22a63726.js",
+    "runtime-main.js.map": "/static/js/runtime-main.22a63726.js.map",
+    "static/css/2.4c97ca4f.chunk.css": "/static/css/2.4c97ca4f.chunk.css",
+    "static/js/2.95f877b9.chunk.js": "/static/js/2.95f877b9.chunk.js",
+    "static/js/2.95f877b9.chunk.js.map": "/static/js/2.95f877b9.chunk.js.map",
+    "static/js/3.ebe887f3.chunk.js": "/static/js/3.ebe887f3.chunk.js",
+    "static/js/3.ebe887f3.chunk.js.map": "/static/js/3.ebe887f3.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/2.c3cdabe4.chunk.css.map": "/static/css/2.c3cdabe4.chunk.css.map",
-    "static/css/main.af429b5c.chunk.css.map": "/static/css/main.af429b5c.chunk.css.map",
-    "static/js/2.ec55631f.chunk.js.LICENSE.txt": "/static/js/2.ec55631f.chunk.js.LICENSE.txt",
+    "static/css/2.4c97ca4f.chunk.css.map": "/static/css/2.4c97ca4f.chunk.css.map",
+    "static/css/main.cfa3869d.chunk.css.map": "/static/css/main.cfa3869d.chunk.css.map",
+    "static/js/2.95f877b9.chunk.js.LICENSE.txt": "/static/js/2.95f877b9.chunk.js.LICENSE.txt",
     "static/media/Joses-Selfie.8dee5326.JPG": "/static/media/Joses-Selfie.8dee5326.JPG",
     "static/media/Lyra.6ac42b9a.jpg": "/static/media/Lyra.6ac42b9a.jpg",
     "static/media/Roland.a06fa5a0.JPG": "/static/media/Roland.a06fa5a0.JPG",
@@ -33,13 +33,14 @@
     "static/media/professor.38142364.svg": "/static/media/professor.38142364.svg",
     "static/media/project-icon.bce56e66.svg": "/static/media/project-icon.bce56e66.svg",
     "static/media/resume-icon.3c4c16ff.svg": "/static/media/resume-icon.3c4c16ff.svg",
+    "static/media/sent.87e982f4.gif": "/static/media/sent.87e982f4.gif",
     "static/media/student.c8e34c68.svg": "/static/media/student.c8e34c68.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.7d7a1286.js",
-    "static/css/2.c3cdabe4.chunk.css",
-    "static/js/2.ec55631f.chunk.js",
-    "static/css/main.af429b5c.chunk.css",
-    "static/js/main.2d7bf6aa.chunk.js"
+    "static/js/runtime-main.22a63726.js",
+    "static/css/2.4c97ca4f.chunk.css",
+    "static/js/2.95f877b9.chunk.js",
+    "static/css/main.cfa3869d.chunk.css",
+    "static/js/main.231e295f.chunk.js"
   ]
 }
