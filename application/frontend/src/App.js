@@ -25,11 +25,23 @@ import PostJobs from "./views/js/profiles/company/PostJobs";
 //Full View
 import PublicProfile from "./views/js/search/student/PublicStudentProfile";
 import Full_Job_View from "./views/js/search/jobs/JobView";
+// Bootstrap
+import Alert from "react-bootstrap/Alert";
 
 const App = () => {
   return (
     <Router>
       <div className='App'>
+        <Alert
+          variant='warning'
+          style={{
+            zIndex: "100",
+            height: "1.5rem",
+            paddingTop: "0",
+            textAlign: "center",
+          }}>
+          SFSU CSC648/848, Spring 2021 | <b> For Demonstration Only</b>
+        </Alert>
         <div className='content'>
           <Switch>
             {/* Home */}
