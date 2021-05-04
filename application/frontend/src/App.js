@@ -40,7 +40,7 @@ const App = () => {
             paddingTop: "0",
             textAlign: "center",
           }}>
-          SFSU CSC648/848, Spring 2021 | <b> For Demonstration Only</b>
+          SFSU CSC648/848, Spring 2021 | <b>Demonstration Only</b>
         </Alert>
         <div className='content'>
           <Switch>

@@ -33,104 +33,60 @@ const DefaultNav = () => {
     history.push("/");
     window.location.reload();
   };
-
-  if (cookie.Type_User === "employer") {
-    return (
-      <Navbar collapseOnSelect expand="lg" className="nav-bar">
-        <Navbar.Brand id="nav-logo">
-          <NavLink to="/">
-            <Logo />
-          </NavLink>
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="mr-auto nav-left">
-            <NavDropdown
-              title="Search "
-              id="collasible-nav-dropdown"
-              className="nav-search"
-            >
-              <NavDropdown.Item>
-                <NavLink to="/search-jobs">Jobs</NavLink>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <NavLink to="/search-candidates">Students</NavLink>
-              </NavDropdown.Item>
-            </NavDropdown>
-            <NavLink to="/about" className="mr-5 pt-2">
-              About
-            </NavLink>
-            <NavLink to="/help" className="mr-5 pt-2">
-              Help
-            </NavLink>
-            <NavLink to="/insert-jobs" className="mr-5 pt-2">
-              Insert Jobs
-            </NavLink>
-          </Nav>
-          <Nav className="nav-right">
-            <DropdownButton
-              id="dropdown-item-button"
-              title={cookie.First_Name + "'s Account"}
-              variant="dark"
-            >
-              <Dropdown.Item href="/profile" className="dark-a">
-                Profile
-              </Dropdown.Item>
-              <Dropdown.Item href="/notifications">Notifications</Dropdown.Item>
-              <Dropdown.Item href="/" onClick={handleRemoveCookie}>
-                Sign Out
-              </Dropdown.Item>
-            </DropdownButton>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
-    );
-  }
   if (
     cookie.Type_User === "professor" ||
-    cookie.Type_User === "student"
-    //cookie.Type_User === "employer"
+    cookie.Type_User === "student" ||
+    cookie.Type_User === "employer"
   ) {
     return (
-      <Navbar collapseOnSelect expand="lg" className="nav-bar">
-        <Navbar.Brand id="nav-logo">
-          <NavLink to="/">
+      <Navbar collapseOnSelect expand='lg' className='nav-bar'>
+        <Navbar.Brand id='nav-logo'>
+          <NavLink to='/'>
             <Logo />
           </NavLink>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="mr-auto nav-left">
+        <Navbar.Toggle aria-controls='responsive-navbar-nav' />
+        <Navbar.Collapse id='responsive-navbar-nav'>
+          <Nav className='mr-auto nav-left'>
             <NavDropdown
-              title="Search "
-              id="collasible-nav-dropdown"
-              className="nav-search"
-            >
+              title='Search '
+              id='collasible-nav-dropdown'
+              className='nav-search'>
               <NavDropdown.Item>
-                <NavLink to="/search-jobs">Jobs</NavLink>
+                <NavLink to='/search-jobs'>Jobs</NavLink>
               </NavDropdown.Item>
               <NavDropdown.Item>
-                <NavLink to="/search-candidates">Students</NavLink>
+                <NavLink to='/search-candidates'>Students</NavLink>
               </NavDropdown.Item>
             </NavDropdown>
-            <NavLink to="/about" className="mr-5 pt-2">
+            <NavLink to='/about' className='mr-5 pt-2'>
               About
             </NavLink>
-            <NavLink to="/help" className="mr-5 pt-2">
+            <NavLink to='/help' className='mr-5 pt-2'>
               Help
             </NavLink>
+            {/* button for inserting new jobs is displayed only to company accounts*/}
+            {cookie.Type_User === "employer" ? (
+              <NavLink to='/insert-jobs' className='mr-5 pt-2'>
+                Post Job
+              </NavLink>
+            ) : null}
           </Nav>
-          <Nav className="nav-right">
+          <Nav className='nav-right'>
             <DropdownButton
-              id="dropdown-item-button"
+              id='dropdown-item-button'
               title={cookie.First_Name + "'s Account"}
-              variant="dark"
-            >
-              <Dropdown.Item href="/profile" className="dark-a">
+              variant='dark'>
+              <Dropdown.Item href='/profile' className='dark-a'>
                 Profile
               </Dropdown.Item>
-              <Dropdown.Item href="/notifications">Notifications</Dropdown.Item>
-              <Dropdown.Item href="/" onClick={handleRemoveCookie}>
+              {/* shows notification tab only to student & company accounts */}
+              {cookie.Type_User !== "professor" ? (
+                <Dropdown.Item href='/notifications'>
+                  Notifications
+                </Dropdown.Item>
+              ) : null}
+              <Dropdown.Item href='/' onClick={handleRemoveCookie}>
                 Sign Out
               </Dropdown.Item>
             </DropdownButton>
@@ -141,25 +97,25 @@ const DefaultNav = () => {
   }
 
   return (
-    <Navbar collapseOnSelect expand="lg" className="nav-bar" bg="#fff">
-      <Navbar.Brand id="nav-logo">
-        <NavLink to="/">
+    <Navbar collapseOnSelect expand='lg' className='nav-bar' bg='#fff'>
+      <Navbar.Brand id='nav-logo'>
+        <NavLink to='/'>
           <Logo />
         </NavLink>
       </Navbar.Brand>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="mr-auto nav-left">
-          <NavLink to="/search-jobs" className="mr-5">
+      <Navbar.Toggle aria-controls='responsive-navbar-nav' />
+      <Navbar.Collapse id='responsive-navbar-nav'>
+        <Nav className='mr-auto nav-left'>
+          <NavLink to='/search-jobs' className='mr-5'>
             Search
           </NavLink>
-          <NavLink to="/about" className="mr-5">
+          <NavLink to='/about' className='mr-5'>
             About
           </NavLink>
-          <NavLink to="/help">Help</NavLink>
+          <NavLink to='/help'>Help</NavLink>
         </Nav>
-        <Nav className="nav-right">
-          <NavLink to="/signup" className="navbar-btn">
+        <Nav className='nav-right'>
+          <NavLink to='/signup' className='navbar-btn'>
             My Account
           </NavLink>
         </Nav>
