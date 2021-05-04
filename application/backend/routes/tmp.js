@@ -7,6 +7,9 @@
  */
 const mysql = require("mysql");
 const CONFIG = require("../config");
+const fs = require("fs");
+const path = require("path");
+
 const SQL_CONNECTION = mysql.createConnection(CONFIG.SQL_PORT);
 
 module.exports = (app) => {
@@ -174,16 +177,12 @@ module.exports = (app) => {
 
   app.delete("/delete_job", (req, res) => {
     try {
-      SQL_CONNECTION.query(
-        `delete from company_listings where listing_id = ?;`,
-        [req.query.id],
-        (err, results) => {
-          if (err) {
-            return res.sendStatus(400);
-          }
-          return res.sendStatus(200);
+      SQL_CONNECTION.query(`delete from company_listings where listing_id = ?;`, [req.query.id], (err, results) => {
+        if (err) {
+          return res.sendStatus(400);
         }
-      );
+        return res.sendStatus(200);
+      });
     } catch (e) {
       console.log(`Error ${e}`);
     }
@@ -209,17 +208,17 @@ module.exports = (app) => {
   });
   //POST: Apply Job
   app.post("/insert_student_application", (req, res) => {
-    const {student_id,employer_id,listing_id} = req.body;
+    const { student_id, employer_id, listing_id } = req.body;
     let check = `select * from company_alerts where student_id = ${student_id} and employer_id = ${employer_id} and listing_id = ${listing_id};`;
     SQL_CONNECTION.query(check, (err, result) => {
       if (err) {
         console.log(`${err}`);
         return res.sendStatus(400);
       }
-      if(result.length > 0){
+      if (result.length > 0) {
         console.log("ERROR: data entry already exists in the database");
         return res.sendStatus(400);
-      }else{
+      } else {
         let sql = `insert into company_alerts (student_id,employer_id,listing_id,hidden) values (${student_id},${employer_id},${listing_id},0);`;
         console.log(sql);
         SQL_CONNECTION.query(sql, (err, results) => {
@@ -237,17 +236,17 @@ module.exports = (app) => {
 
   //POST: Employer Hire
   app.post("/insert_employer_hire", (req, res) => {
-    const {student_id,employer_id,listing_id} = req.body;
+    const { student_id, employer_id, listing_id } = req.body;
     let check = `select * from student_alerts where student_id = ${student_id} and employer_id = ${employer_id} and listing_id = ${listing_id};`;
     SQL_CONNECTION.query(check, (err, result) => {
       if (err) {
         console.log(`${err}`);
         return res.sendStatus(400);
       }
-      if(result.length > 0){
+      if (result.length > 0) {
         console.log("ERROR: data entry already exists in the database");
         return res.sendStatus(400);
-      }else{
+      } else {
         let sql = `insert into student_alerts (employer_id,student_id,listing_id,hidden) values (${employer_id},${student_id},${listing_id},0);`;
         SQL_CONNECTION.query(sql, (err, results) => {
           if (err) {
@@ -276,5 +275,18 @@ module.exports = (app) => {
     } catch (e) {
       console.log(`Error ${e}`);
     }
+  });
+  //RESET DATABASE
+  app.get("/reset-database", (req, res) => {
+    const file = fs.readFileSync(path.resolve(__dirname, "../../database/reset.sql")).toString();
+    SQL_CONNECTION.query(file, (err, result) => {
+      if (err) {
+        return err;
+      } else {
+        console.log(result);
+        console.log("success reload");
+        res.sendStatus(200);
+      }
+    });
   });
 };

@@ -8,7 +8,6 @@ set FOREIGN_KEY_CHECKS=0;
 drop table if exists professors;
 drop table if exists students;
 drop table if exists employers;
-drop table if exists admins;
 drop table if exists company_listings;
 drop table if exists student_profile_page;
 drop table if exists student_projects;
@@ -20,15 +19,6 @@ drop table if exists company_alerts;
 -- -----------------------------------------------------
 -- Create Users
 -- -----------------------------------------------------
-create table admins (
-    admin_id int auto_increment primary key,
-    first_name varchar(255) not null,
-    last_name varchar(255) not null,
-    password varchar(255) not null,
-    email varchar(255) not null unique key,
-    state tinyint default null,
-    code varchar(500)
-);
 create table professors (
     professor_id int auto_increment primary key,
     first_name varchar(255) not null,
@@ -41,7 +31,6 @@ create table professors (
 );
 create table employers (
     employer_id int auto_increment primary key,
-    new_user int default 0,
     first_name varchar(255),
     last_name varchar(255),
     organization_name varchar(255) not null,
@@ -52,7 +41,6 @@ create table employers (
 );
 create table students (
     student_id int auto_increment primary key,
-    new_user int default 0,
     first_name varchar(255) not null,
     last_name varchar(255) not null,
     school_name varchar(255),
@@ -182,8 +170,6 @@ create table student_alerts (
 -- -----------------------------------------------------
 -- Insert Users  
 -- -----------------------------------------------------
-insert into admins(first_name,last_name,password,email,state,code) values ("main","admin","dos12345","adminlead@mail.com",0,"500");
-
 insert into students(first_name,last_name,school_name,password,email,state,code) values 
 ("Tom","Bobby","San Francisco State University","pass12345","elonmusk@mail.com",0,500),
 ("Jonathen","Kask","Harvard University","pass12345","lyrasolomon@mail.com",0,"500"),
