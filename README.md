@@ -18,10 +18,16 @@ ii. Change Log
 
 #### Urgent TODO
 
-#### TODO
+#### TODO (Not Implemented)
 
 - add variability to date creations on default time
 - nonfunctional requirement for maximum 100 users
+- shouldnt the full view page have a go back button or do you want to manually hit go back?
+
+#### TODO (Bug Fixes)
+
+- the about in the nav is blank page?
+- the insert jobs is now a blank page?
 
 #### Unresolved Issues
 
@@ -32,6 +38,10 @@ ii. Change Log
 
 - PUT requests for student users to edit their information (remaining: experience,project,schools) :: Aaron
 - Improved Professor Review System :: Lyra
+
+#### Wenesday, May 5, 2021 :: Aaron
+
+- merge master and development branch
 
 #### Tuesday, May 4, 2021 :: Aaron
 
