@@ -16,14 +16,7 @@ const bcrypt = require("bcrypt");
 module.exports = (app) => {
   //Register USER
   app.get("/register", (req, res) => {
-    const {
-      UserType,
-      first_name,
-      last_name,
-      email,
-      school_name,
-      code,
-    } = req.query;
+    const { UserType, first_name, last_name, email, school_name, code } = req.query;
 
     bcrypt.hash(req.query.password, 10, function (err, hash) {
       req.query.password = hash;
@@ -63,8 +56,7 @@ module.exports = (app) => {
 
           bcrypt.compare(Password, Hashdb, function (err, response) {
             console.log(`THE RESPONSE: ${response} `);
-            if (err)
-              console.log("Unexpected error occur during user authentication");
+            if (err) console.log("Unexpected error occur during user authentication");
             if (response) {
               console.log("Passwords matched");
               const Query_Verify = `select x.${Type}_id,x.first_name from ${Type}s x where email="${Email}";`;
@@ -121,19 +113,15 @@ module.exports = (app) => {
       }
     });
   });
-  // Insert Student Rating TODO: POST METHOD
+  // Insert Student Rating
   app.get("/rate_student", (req, res) => {
-    SQL_QUERY_POST.PROFESSOR_RATE_STUDENT(
-      SQL_CONNECTION,
-      req.query,
-      (err, results) => {
-        if (err) {
-          res.send(false);
-        } else {
-          //console.log(results);
-          res.send(true);
-        }
+    SQL_QUERY_POST.PROFESSOR_RATE_STUDENT(SQL_CONNECTION, req.query, (err, results) => {
+      if (err) {
+        res.send(false);
+      } else {
+        //console.log(results);
+        res.send(true);
       }
-    );
+    });
   });
 };

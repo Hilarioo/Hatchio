@@ -20,15 +20,22 @@ ii. Change Log
 
 #### TODO
 
+- add variability to date creations on default time
+- nonfunctional requirement for maximum 100 users
+
 #### Unresolved Issues
 
-- Instead of window.location.reload() we should be able to refire the useEffect to cause a state change w/o having to reload
-- Student Profiles visibility for general user
+- instead of window.location.reload() we should be able to refire the useEffect to cause a state change w/o having to reload
+- apply button should only be accessible when student users are logged in
 
 #### Currently Working
 
 - PUT requests for student users to edit their information (remaining: experience,project,schools) :: Aaron
 - Improved Professor Review System :: Lyra
+
+#### Tuesday, May 4, 2021 :: Aaron
+
+- hard reset for database tables when accessing backend interface
 
 #### Sunday, May 2, 2021 :: Aaron
 
