@@ -1,10 +1,5 @@
 import "./views/css/Theme.css";
-import {
-  useParams,
-  BrowserRouter as Router,
-  Route,
-  Switch,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // Components
 import Nav from "./views/js/global/Nav";
@@ -24,11 +19,11 @@ import PostJobs from "./views/js/profiles/company/PostJobs";
 
 //Full View
 import PublicProfile from "./views/js/search/student/PublicStudentProfile";
-import Full_Job_View from "./views/js/search/jobs/JobView";
+import JobPost from "./views/js/search/jobs/JobView";
 // Bootstrap
 import Alert from "react-bootstrap/Alert";
 
-const App = () => {
+const App = ({ location }) => {
   return (
     <Router>
       <div className='App'>
@@ -44,82 +39,49 @@ const App = () => {
         </Alert>
         <div className='content'>
           <Switch>
-            {/* Home */}
-            <Route exact path='/'>
-              <Nav />
-              <Home />
-            </Route>
-            {/* Signin */}
-            <Route
-              path='/signin'
-              exact
-              component={() => <Auth type={"signin"} />}
-            />
-            {/* Signup */}
-            <Route
-              path='/signup'
-              exact
-              component={() => <Auth type={"signup"} />}
-            />
-            {/* Signup Redirect */}
-            <Route path='/signup-redirect'>
-              <SignupRedirect />
-            </Route>
-            {/* Search Students */}
-            <Route path='/search-candidates'>
-              <Nav />
-              <StudentSearch />
-            </Route>
-            {/* Search Jobs */}
-            <Route path='/search-jobs'>
-              <Nav />
-              <JobSearch />
-            </Route>
-            {/* Profile */}
-            <Route path='/student-profile'>
-              <Nav />
-              <StudentProfile />
-            </Route>
-            {/* About */}
-            <Route path='/about'>
-              <Nav />
-              <About />
-            </Route>
-            {/* Contact / Help */}
-            <Route path='/help'>
-              <Nav />
-              <Help />
-            </Route>
-            {/** Public View of Student Profile */}
-            <Route path='/full-student-profile'>
-              <Nav />
-              <PublicProfile />
-            </Route>
-            {/** Full Job View */}
-            <Route path='/full-job-view'>
-              <Nav />
-              <Full_Job_View />
-            </Route>
-            {/** ONLY Professors */}
-            <Route path='/insert-jobs'>
-              <Nav />
-              <PostJobs />
-            </Route>
-            {/** ALL USERS */}
-            <Route path='/profile'>
-              <Nav />
-              <Profile />
-            </Route>
-            {/** Notifications */}
-            <Route path='/notifications'>
-              <Nav />
-              <Notifications />
-            </Route>
+            <Route exact path='/signup' component={SignupContainer} />
+            <Route exact path='/signin' component={SigninContainer} />
+            <Route component={DefaultContainer} />
           </Switch>
         </div>
       </div>
     </Router>
   );
 };
+
+const SignupContainer = () => (
+  <Route path='/signup' component={() => <Auth type={"signup"} />} />
+);
+
+const SigninContainer = () => (
+  <Route path='/signin' component={() => <Auth type={"signin"} />} />
+);
+
+const DefaultContainer = () => (
+  <div>
+    <Nav />
+    <Route exact path='/' component={Home} />
+    {/* Search Jobs */}
+    <Route path='/search-jobs' component={JobSearch} />
+    {/* Search Students */}
+    <Route path='/search-candidates' component={StudentSearch} />
+    {/* Public Profiles */}
+    <Route path='/profiles/:account' component={PublicProfile} />
+    {/* Student Profile */}
+    <Route path='/student-profile' component={StudentProfile} />
+    {/* About */}
+    <Route path='/about' component={About} />
+    {/* Contact / Help */}
+    <Route path='/help' component={Help} />
+    {/** Full Job View */}
+    <Route path='/posting' component={JobPost} />
+    {/* Allows Company to Post Jobs */}
+    <Route path='/postjobs' component={PostJobs} />
+    {/* Profile for User Logged In */}
+    <Route path='/profile' component={Profile} />
+    {/* Notifications */}
+    <Route path='/notifications' component={Notifications} />
+  </div>
+);
 
 export default App;
