@@ -3,73 +3,30 @@ import "../../css/Theme.css";
 import "../../css/Home.css";
 // React Boostrap
 import Button from "react-bootstrap/Button";
-import InputGroup from "react-bootstrap/InputGroup";
-import Form from "react-bootstrap/Form";
-import Col from "react-bootstrap/esm/Col";
-// Iconfiy
-import { Icon } from "@iconify/react";
-import baselineSearch from "@iconify-icons/ic/baseline-search";
-import sharpLocationOn from "@iconify-icons/ic/sharp-location-on";
+//Pop Up Form
+import { useCookies } from "react-cookie";
 
-const SeachJobs = () => {
-  // seach jobs
-  const search = () => {};
+const PostJobs = () => {
+  const [cookie] = useCookies(["Type_User"]);
+
+  function postJobs(e) {
+    e.preventDefault();
+    window.location.href = "/search-jobs";
+  }
 
   return (
-    <div className="box">
-      <h1>
-        SFSU Software Engineering Project CSC 648-848, Spring 2021. For
-        Demonstration Only
-      </h1>
-      {/*
-      <div className="search">
-        <Form>
-          <Form.Row>
-            <Col>
-              <Form.Label className="title">What</Form.Label>
-              <Form.Text className="text-muted">
-                Job title, company or keywords
-              </Form.Text>
-              <InputGroup>
-                <Form.Control placeholder="" className="input" />
-                <InputGroup.Append className="icon-box">
-                  <Icon
-                    icon={baselineSearch}
-                    color="#2B2B2B"
-                    width="20"
-                    height="20"
-                    className="icon-svg"
-                  />
-                </InputGroup.Append>
-              </InputGroup>
-            </Col>
-            <Col>
-              <Form.Label className="title">Where</Form.Label>
-              <Form.Text className="text-muted">
-                City, province or region
-              </Form.Text>
-              <InputGroup>
-                <Form.Control placeholder="" className="input" />
-                <InputGroup.Append className="icon-box">
-                  <Icon
-                    icon={sharpLocationOn}
-                    color="#2B2B2B"
-                    width="20"
-                    height="20"
-                    className="icon-svg"
-                  />
-                </InputGroup.Append>
-              </InputGroup>
-            </Col>
-          </Form.Row>
-        </Form>
-      </div>
-      <Button variant="dark" size="xxl" className="home-btn" onClick={search()}>
+    <div className='box' style={{ maxWidth: "450px" }}>
+      <h1 id='post-header'>From Student To Employee</h1>
+      <p id='post-p'>
+        Build your resume with projects, top strengths, and much more to become
+        noticed by top recruiters. Jumpstart your career path by applying to
+        hundreds of jobs. You'll be able to keep track of your applications
+        through your notifications portal.
+      </p>
+      <Button variant='flat' size='xl' className='home-btn' onClick={postJobs}>
         Search Jobs
       </Button>
-     */}
     </div>
   );
 };
-
-export default SeachJobs;
+export default PostJobs;

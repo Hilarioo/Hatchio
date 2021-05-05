@@ -59,7 +59,7 @@ const DefaultContainer = () => (
     {/* Public Profiles */}
     <Route path='/profiles/:account' component={PublicProfile} />
     {/* About */}
-    <Route path='/about' component={About} />
+    <Route exact path='/about' component={About} />
     {/* Contact / Help */}
     <Route path='/help' component={Help} />
     {/** Full Job View */}
