@@ -30,7 +30,6 @@ function Signup() {
   const [lastName, setLastName] = useState(""); //Last Name
   const [password, setPassword] = useState(""); //Password
   const [userType, setUserType] = useState("");
-  const [subtext, SetSubtext] = useState("Do you attend multiple schools?");
 
   //Form Submission
   const handleSubmit = (event) => {
@@ -74,7 +73,6 @@ function Signup() {
                   setUserType("students");
                   setInputName("School Name");
                   setEmail("Student Email");
-                  SetSubtext("Do you attend multiple schools?");
                 }}
               />
               <Student id='student-radio' fill='#EEEEEE' />
@@ -90,7 +88,6 @@ function Signup() {
                   setUserType("professors");
                   setInputName("School Name");
                   setEmail("Work Email");
-                  SetSubtext("Do you work at multiple schools?");
                 }}
               />
               <Professor id='professor-radio' fill='#EEEEEE' />
@@ -106,7 +103,6 @@ function Signup() {
                   setUserType("employers");
                   setInputName("Company Name");
                   setEmail("Company Email");
-                  SetSubtext("");
                 }}
               />
               <Company id='company-radio' fill='#EEEEEE' />
@@ -142,7 +138,6 @@ function Signup() {
               onChange={(e) => setInputName(e.target.value)}
               required
             />
-            <Form.Text className='text-muted'>{subtext}</Form.Text>
           </Form.Group>
         </Form.Row>
         <Form.Row>

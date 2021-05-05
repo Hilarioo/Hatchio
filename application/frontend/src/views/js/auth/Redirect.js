@@ -27,7 +27,7 @@ const Redirect = () => {
   return (
     <div className='redirect'>
       <h1>Verify Your Email Address</h1>
-      <p>{user}, to start using hatchio, we need to verify your email.</p>
+      <p>To start using hatchio, we need to verify your email.</p>
       {/* Asks the user to open Mail Client and then verify email */}
       <p>After verifying, click on the button below to signin!</p>
       <Button

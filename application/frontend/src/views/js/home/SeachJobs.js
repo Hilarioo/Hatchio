@@ -19,9 +19,9 @@ const PostJobs = () => {
       <h1 id='post-header'>From Student To Employee</h1>
       <p id='post-p'>
         Build your resume with projects, top strengths, and much more to become
-        noticed by top recruiters. Jumpstart your career path by applying to
-        hundreds of jobs. You'll be able to keep track of your applications
-        through your notifications portal.
+        noticed by top recruiters. Search and filter jobs, then track your
+        applications through your notifications portal. Your career dreams and
+        goals are one click away. Start Today!
       </p>
       <Button variant='flat' size='xl' className='home-btn' onClick={postJobs}>
         Search Jobs
