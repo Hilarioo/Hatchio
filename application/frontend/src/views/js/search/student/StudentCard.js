@@ -42,7 +42,7 @@ const StudentCard = ({
 
   //Redirect to Profile
   const RedirectProfile = () => {
-    history.push(`/profiles/${studentName.replace(" ", "")}/${studentID}`, {
+    history.push(`/profiles/${studentName.replaceAll(" ", "")}/${studentID}`, {
       studentName,
       studentID,
     });

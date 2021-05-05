@@ -47,10 +47,9 @@ function Signup() {
     if ((form.checkValidity() === false) | true) {
       event.preventDefault();
       event.stopPropagation();
-      alert("Verification email has been sent to " + email);
       api_send_email(FORM_REQUEST);
       api_register_user(FORM_REQUEST);
-      window.location.href = "/signup-redirect";
+      window.location.href = "/redirect";
     }
 
     setValidated(true);
@@ -160,11 +159,11 @@ function Signup() {
           {/**Password */}
           <Form.Group as={Col} md='6'>
             <Form.Control
+              required
               type='password'
               id='password'
               placeholder='Password'
               onChange={(e) => setPassword(e.target.value)}
-              required
             />
             <Form.Text className='text-muted'>
               Must be 8-20 characters long.
@@ -175,10 +174,10 @@ function Signup() {
           </Form.Group>
           <Form.Group as={Col} md='6'>
             <Form.Control
+              required
               type='password'
               id='confirm-password'
               placeholder='Confim Password'
-              required
             />
             <Form.Control.Feedback type='invalid'>
               Password does not match.

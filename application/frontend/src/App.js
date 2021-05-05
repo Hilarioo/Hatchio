@@ -11,19 +11,17 @@ import JobSearch from "./views/js/search/jobs/JobSearch";
 import About from "./views/js/about/About";
 import Help from "./views/js/help/Help";
 import Notifications from "./views/js/notifications/Notification";
-import StudentProfile from "./views/js/profiles/student/StudentProfile";
 //All Users
 import Profile from "./views/js/user/Dashboard";
 //Employers
 import PostJobs from "./views/js/profiles/company/PostJobs";
-
 //Full View
 import PublicProfile from "./views/js/search/student/PublicStudentProfile";
 import JobPost from "./views/js/search/jobs/JobView";
 // Bootstrap
 import Alert from "react-bootstrap/Alert";
 
-const App = ({ location }) => {
+const App = () => {
   return (
     <Router>
       <div className='App'>
@@ -39,8 +37,9 @@ const App = ({ location }) => {
         </Alert>
         <div className='content'>
           <Switch>
-            <Route exact path='/signup' component={SignupContainer} />
-            <Route exact path='/signin' component={SigninContainer} />
+            <Route path='/signup' component={() => <Auth type={"signup"} />} />
+            <Route path='/signin' component={() => <Auth type={"signin"} />} />
+            <Route path='/redirect' component={SignupRedirect} />
             <Route component={DefaultContainer} />
           </Switch>
         </div>
@@ -48,14 +47,6 @@ const App = ({ location }) => {
     </Router>
   );
 };
-
-const SignupContainer = () => (
-  <Route path='/signup' component={() => <Auth type={"signup"} />} />
-);
-
-const SigninContainer = () => (
-  <Route path='/signin' component={() => <Auth type={"signin"} />} />
-);
 
 const DefaultContainer = () => (
   <div>
@@ -67,14 +58,12 @@ const DefaultContainer = () => (
     <Route path='/search-candidates' component={StudentSearch} />
     {/* Public Profiles */}
     <Route path='/profiles/:account' component={PublicProfile} />
-    {/* Student Profile */}
-    <Route path='/student-profile' component={StudentProfile} />
     {/* About */}
     <Route path='/about' component={About} />
     {/* Contact / Help */}
     <Route path='/help' component={Help} />
     {/** Full Job View */}
-    <Route path='/posting' component={JobPost} />
+    <Route path='/postings/:posting' component={JobPost} />
     {/* Allows Company to Post Jobs */}
     <Route path='/postjobs' component={PostJobs} />
     {/* Profile for User Logged In */}
