@@ -44,16 +44,10 @@ const Project = (props) => {
   };
 
   return (
-    <Modal
-      {...props}
-      aria-labelledby='contained-modal-title-vcenter'
-      centered
-      scrollable={true}>
+    <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered scrollable={true}>
       <Form onSubmit={handleSubmit}>
         <Modal.Header closeButton>
-          <Modal.Title id='contained-modal-title-vcenter'>
-            {props.popupName} Project
-          </Modal.Title>
+          <Modal.Title id="contained-modal-title-vcenter">{props.popupName} Project</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form.Group>
@@ -63,11 +57,9 @@ const Project = (props) => {
                 <Form.Label>Project Name</Form.Label>
                 <Form.Control
                   required
-                  type='text'
+                  type="text"
                   defaultValue={props.popupName === "Edit" ? props.project : ""}
-                  onChange={(e) =>
-                    setProject({ ...project, project_name: e.target.value })
-                  }
+                  onChange={(e) => setProject({ ...project, project_name: e.target.value })}
                 />
               </Col>
               {/* Project Date */}
@@ -75,11 +67,9 @@ const Project = (props) => {
                 <Form.Label>URL</Form.Label>
                 <Form.Control
                   required
-                  type='text'
+                  type="text"
                   defaultValue={props.popupName === "Edit" ? props.website : ""}
-                  onChange={(e) =>
-                    setProject({ ...project, links_website: e.target.value })
-                  }
+                  onChange={(e) => setProject({ ...project, links_website: e.target.value })}
                 />
               </Col>
             </Form.Row>
@@ -89,10 +79,8 @@ const Project = (props) => {
           <Form.Group>
             <Form.Label>Collaborator(s)</Form.Label>
             <Form.Control
-              type='text'
-              defaultValue={
-                props.popupName === "Edit" ? props.collaborators : ""
-              }
+              type="text"
+              defaultValue={props.popupName === "Edit" ? props.collaborators : ""}
               onChange={(e) =>
                 setProject({
                   ...project,
@@ -100,61 +88,49 @@ const Project = (props) => {
                 })
               }
             />
-            <Form.Text className='text-muted'>
-              Add a comma between collaborators
-            </Form.Text>
+            <Form.Text className="text-muted">Add a comma between collaborators</Form.Text>
           </Form.Group>
 
           {/* Project Professor */}
           <Form.Group>
             <Form.Label>Professor</Form.Label>
             <Form.Control
-              type='text'
+              type="text"
               defaultValue={props.popupName === "Edit" ? props.professor : ""}
-              onChange={(e) =>
-                setProject({ ...project, professor: e.target.value })
-              }
+              onChange={(e) => setProject({ ...project, professor: e.target.value })}
             />
-            <Form.Text className='text-muted'>
-              If a school project, include your professor
-            </Form.Text>
+            <Form.Text className="text-muted">If a school project, include your professor</Form.Text>
           </Form.Group>
 
           {/* Project Description */}
           <Form.Group>
             <Form.Label>Summary</Form.Label>
             <Form.Control
-              type='text'
-              as='textarea'
-              rows='2'
-              maxLength='150'
+              type="text"
+              as="textarea"
+              rows="2"
+              maxLength="150"
               required
               defaultValue={props.popupName === "Edit" ? props.summary : ""}
-              onChange={(e) =>
-                setProject({ ...project, summary: e.target.value })
-              }
+              onChange={(e) => setProject({ ...project, summary: e.target.value })}
             />
-            <Form.Text className='text-muted'>150 characters</Form.Text>
+            <Form.Text className="text-muted">150 characters</Form.Text>
           </Form.Group>
 
           {/* Project Top 3 */}
           <Form.Group>
             <Form.Label>Top 3 Tools Used</Form.Label>
             <Form.Control
-              type='text'
+              type="text"
               required
               defaultValue={props.popupName === "Edit" ? props.tools : ""}
-              onChange={(e) =>
-                setProject({ ...project, arr_tools_used: e.target.value })
-              }
+              onChange={(e) => setProject({ ...project, arr_tools_used: e.target.value })}
             />
-            <Form.Text className='text-muted'>
-              Add a comma between tools
-            </Form.Text>
+            <Form.Text className="text-muted">Add a comma between tools</Form.Text>
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button type='submit' variant='dark'>
+          <Button type="submit" variant="dark">
             {props.popupName === "Edit" ? "Update Project" : "Add Project"}
           </Button>
         </Modal.Footer>

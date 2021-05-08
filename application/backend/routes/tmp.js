@@ -260,11 +260,11 @@ module.exports = (app) => {
       }
     });
   });
-  //GET: Student Alerts TODO- Remove Passwords
+  //GET: Student Alerts
   app.get("/get-student-alerts", (req, res) => {
-    let sql_v_one = `select * from student_alerts left join employers on student_alerts.employer_id = employers.employer_id left join company_listings on student_alerts.listing_id = company_listings.listing_id where student_id= ${req.query.s_id};`;
+    let sql_v_two = `select stualert_id, employers.employer_id, student_id, company_listings.listing_id, time, hidden, employers.employer_id, first_name, last_name, company_listings.organization_name, email, state, code, company_listings.listing_id, employers.employer_id, employers.organization_name, position_title, location, job_type, experience_years, experience_level, salary, about_us, the_opportunity, task_responsibilities, skillset, benefits, landing_image from student_alerts left join employers on student_alerts.employer_id = employers.employer_id left join company_listings on student_alerts.listing_id = company_listings.listing_id where student_id= ${req.query.s_id};`;
     try {
-      SQL_CONNECTION.query(sql_v_one, (err, results) => {
+      SQL_CONNECTION.query(sql_v_two, (err, results) => {
         if (err) {
           console.log(err);
           return res.sendStatus(400); //Error code easier for frontend to process

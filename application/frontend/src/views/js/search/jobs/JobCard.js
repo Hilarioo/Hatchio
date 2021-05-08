@@ -23,6 +23,8 @@ import Popup from "reactjs-popup";
 import { useCookies } from "react-cookie";
 //API
 import API_INSERT_STUDENT_APPLICATION from "../../../../models/POST/Students/insert_student_apply";
+//Pop Up for Apply Button
+import "reactjs-popup/dist/index.css";
 const JobCard = ({
   image = "",
   Listing_ID = 0,
@@ -37,15 +39,9 @@ const JobCard = ({
   const history = useHistory();
   const [cookie] = useCookies(["Type_User", "ID_OF_USER", "First_Name"]); //Current User
   const Redirect_Job_View = (Listing_ID) => {
-    history.push(
-      `/postings/${CompanyName}/${PositionTitle.replaceAll(
-        " ",
-        ""
-      )}/${Listing_ID}`,
-      {
-        Listing_ID,
-      }
-    );
+    history.push(`/postings/${CompanyName}/${PositionTitle.replaceAll(" ", "")}/${Listing_ID}`, {
+      Listing_ID,
+    });
   };
   const Apply_Job = async (Student_ID) => {
     const response = await API_INSERT_STUDENT_APPLICATION({
@@ -62,33 +58,36 @@ const JobCard = ({
   };
 
   return (
-    <div className='card-result'>
+    <div className="card-result">
       <header>
-        <img
-          src={image.length <= 0 ? defaultImage(CompanyName) : image}
-          alt={CompanyName.charAt(0)}
-        />
-        <div className='info'>
-          <div className='name-enrollment'>
+        <img src={image.length <= 0 ? defaultImage(CompanyName) : image} alt={CompanyName.charAt(0)} />
+        <div className="info">
+          <div className="name-enrollment">
             <h4 style={{ paddingBottom: "10px" }}>{PositionTitle}</h4>
           </div>
 
-          <div className='flex-box'>
+          <div className="flex-box">
             <h6 style={{ marginRight: "0.5rem" }}>{CompanyName}</h6>
-            <p id='enrollment' style={{ marginTop: "-.2rem" }}>
+            <p id="enrollment" style={{ marginTop: "-.2rem" }}>
               {JobType}
             </p>
-            <p id='salary'>${String(Income).slice(0, -3)}k / yr</p>
+            <p id="salary">${String(Income).slice(0, -3)}k / yr</p>
           </div>
-          <div className='flext-box' style={{ marginTop: "-.7rem" }}>
-            <img src={LocationIcon} alt='location pin' id='location' />
+          <div className="flext-box" style={{ marginTop: "-.7rem" }}>
+            <img src={LocationIcon} alt="location pin" id="location" />
             <span>{Location}</span>
           </div>
         </div>
       </header>
-      <div className='flex-box'>
+      <div className="flex-box">
         <Button onClick={() => Redirect_Job_View(Listing_ID)}>View</Button>
-        <Button onClick={() => Apply_Job(cookie.ID_OF_USER)}>Apply</Button>
+        {cookie.Type_User != "student" ? (
+          <Popup trigger={<Button> Apply</Button>}>
+            <div>Log In As Student</div>
+          </Popup>
+        ) : (
+          <Button onClick={() => Apply_Job(cookie.ID_OF_USER)}>Apply</Button>
+        )}
       </div>
     </div>
   );

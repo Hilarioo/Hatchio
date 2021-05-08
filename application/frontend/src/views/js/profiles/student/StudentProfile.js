@@ -41,6 +41,14 @@ const StyledPopup = styled(Popup)`
     text-align: center;
   }
 `;
+function converter(dataitem) {
+  if (dataitem) {
+    var t = dataitem.split(/[- : T]/);
+    var d = new Date(Date.UTC(t[0], t[1] - 1, t[2], t[3], t[4]));
+    d = d.toString().split(" ");
+    return d[1] + " " + d[2] + ", " + d[3];
+  }
+}
 //POP UP Profile Page Insert
 const POPUP_STUDENT_PROFILE_PAGE = (Student_ID) => {
   return (
@@ -72,24 +80,20 @@ const POPUP_STUDENT_PROFILE_PAGE = (Student_ID) => {
         >
           <Form>
             <br></br>
-            <label>___________________________________________About Me</label>
+            <label>About Me</label>
             <Field id="about_me" name="about_me" />
             <hr></hr>
 
             <br></br>
-            <label>
-              ________________________________________Strenth Qualities
-            </label>
+            <label>Strength Qualities</label>
             <Field id="strengths_qualities" name="strengths_qualities" />
 
             <hr></hr>
-            <label>_____________________________________Location</label>
+            <label>Location</label>
             <Field id="location" name="location" />
 
             <hr></hr>
-            <label>
-              ________________________________________School Grade Level
-            </label>
+            <label>School Grade Level</label>
             <Field id="school_grade_level" name="school_grade_level" />
 
             <button type="submit">Submit</button>
@@ -120,13 +124,7 @@ const StudentProfile = (props) => {
     setUserProfile(props);
     console.log(props);
 
-    setQualities(
-      String(
-        props[1].length === 0
-          ? "Empty Qualities"
-          : props[1][0].strengths_qualities
-      ).split(",")
-    );
+    setQualities(String(props[1].length === 0 ? "Empty Qualities" : props[1][0].strengths_qualities).split(","));
   }, [props]);
 
   // Location Popup
@@ -151,9 +149,7 @@ const StudentProfile = (props) => {
         {/* creates default image if none provided */}
         <img
           src={
-            userProfile[1].length === 0
-              ? defaultImage("Student")
-              : defaultImage(String(userProfile[4][0].first_name))
+            userProfile[1].length === 0 ? defaultImage("Student") : defaultImage(String(userProfile[4][0].first_name))
           }
           alt={String(userProfile[4][0].first_name)}
         />
@@ -162,38 +158,23 @@ const StudentProfile = (props) => {
           <div className="flex-box">
             <h6 className="category-heading">Full Name</h6>
           </div>
-          <p>
-            {userProfile[4][0].first_name + " " + userProfile[4][0].last_name}
-          </p>
+          <p>{userProfile[4][0].first_name + " " + userProfile[4][0].last_name}</p>
 
           {/* === Student Location ===*/}
           <div className="flex-box">
             <h6 className="category-heading">Location</h6>
             {/* Location Edit Popup */}
-            <img
-              id="edit-button"
-              src={EditIcon}
-              alt="edit pencil button"
-              onClick={() => setLocation(true)}
-            />
+            <img id="edit-button" src={EditIcon} alt="edit pencil button" onClick={() => setLocation(true)} />
             <LocationPopup
               show={location}
               onHide={() => setLocation(false)}
               userID={cookie.ID_OF_USER}
-              location={
-                userProfile[1].length === 0
-                  ? "Location Not Provided"
-                  : userProfile[1][0].location
-              }
+              location={userProfile[1].length === 0 ? "Location Not Provided" : userProfile[1][0].location}
             />
           </div>
           <div className="flex-box">
             <img src={LocationIcon} alt="location pin" />
-            <p>
-              {userProfile[1].length === 0
-                ? "Location Not Provided"
-                : userProfile[1][0].location}
-            </p>
+            <p>{userProfile[1].length === 0 ? "Location Not Provided" : userProfile[1][0].location}</p>
           </div>
         </div>
       </div>
@@ -203,17 +184,8 @@ const StudentProfile = (props) => {
         <div className="flex-box">
           <h5 className="category-heading">Links</h5>
           {/* Links Edit Popup */}
-          <img
-            id="edit-button"
-            src={EditIcon}
-            alt="edit pencil button"
-            onClick={() => setLinks(true)}
-          />
-          <LinksPopup
-            show={links}
-            onHide={() => setLinks(false)}
-            userID={cookie.ID_OF_USER}
-          />
+          <img id="edit-button" src={EditIcon} alt="edit pencil button" onClick={() => setLinks(true)} />
+          <LinksPopup show={links} onHide={() => setLinks(false)} userID={cookie.ID_OF_USER} />
         </div>
         <div className="flex-box" style={{ justifyContent: "space-between" }}>
           <img src={GlobeIcon} alt="website url" />
@@ -228,27 +200,18 @@ const StudentProfile = (props) => {
         <div className="flex-box">
           <h4 className="category-heading">About Me</h4>
           {/* About Me Edit Popup */}
-          <img
-            id="edit-button"
-            src={EditIcon}
-            alt="edit pencil button"
-            onClick={() => setAboutPopup(true)}
-          />
+          <img id="edit-button" src={EditIcon} alt="edit pencil button" onClick={() => setAboutPopup(true)} />
           <AboutPopup
             show={aboutPopup}
             onHide={() => setAboutPopup(false)}
             userID={cookie.ID_OF_USER}
             heading="Edit About Me"
-            about={
-              userProfile[1].length === 0 ? "Empty" : userProfile[1][0].about_me
-            }
+            about={userProfile[1].length === 0 ? "Empty" : userProfile[1][0].about_me}
           />
         </div>
         {/* About Me */}
         <p>
-          {userProfile[1].length === 0
-            ? POPUP_STUDENT_PROFILE_PAGE(cookie.ID_OF_USER)
-            : userProfile[1][0].about_me}
+          {userProfile[1].length === 0 ? POPUP_STUDENT_PROFILE_PAGE(cookie.ID_OF_USER) : userProfile[1][0].about_me}
         </p>
       </div>
 
@@ -257,17 +220,8 @@ const StudentProfile = (props) => {
         <div className="flex-box">
           <h4 className="category-heading">Top Qualities</h4>
           {/* Qualities Edit Popup */}
-          <img
-            id="edit-button"
-            src={EditIcon}
-            alt="edit pencil button"
-            onClick={() => setListPopup(true)}
-          />
-          <ListPopup
-            show={listPopup}
-            qualities={qualities}
-            onHide={() => setListPopup(false)}
-          />
+          <img id="edit-button" src={EditIcon} alt="edit pencil button" onClick={() => setListPopup(true)} />
+          <ListPopup show={listPopup} qualities={qualities} onHide={() => setListPopup(false)} />
         </div>
         {/* Maps Every Quality Stored For The Student */}
         <li>
@@ -283,12 +237,7 @@ const StudentProfile = (props) => {
           <div className="flex-box">
             <h4 className="category-heading">Projects</h4>
             {/* Add New Project Popup */}
-            <img
-              id="edit-button"
-              src={AddIcon}
-              alt="edit pencil button"
-              onClick={() => setAddProject(true)}
-            />
+            <img id="edit-button" src={AddIcon} alt="edit pencil button" onClick={() => setAddProject(true)} />
             <ProjectPopup
               show={addProject}
               popupName={"Add"}
@@ -311,10 +260,7 @@ const StudentProfile = (props) => {
                     <p id="date">{project.publish_date}</p>
                     <div className="flex-box">
                       {/* Project Name */}
-                      <a
-                        href={"https://" + project.links_website}
-                        alt="project website"
-                      >
+                      <a href={"https://" + project.links_website} alt="project website">
                         <h5>{project.project_name}</h5>
                       </a>
                       {/* Edit Project Popup */}
@@ -369,12 +315,7 @@ const StudentProfile = (props) => {
             <div className="flex-box">
               <h4 className="category-heading">Education</h4>
               {/* Add Education Popup */}
-              <img
-                id="edit-button"
-                src={AddIcon}
-                alt="edit pencil button"
-                onClick={() => setAddEducation(true)}
-              />
+              <img id="edit-button" src={AddIcon} alt="edit pencil button" onClick={() => setAddEducation(true)} />
               <EducationPopup
                 show={addEducation}
                 onHide={() => setAddEducation(false)}
@@ -418,8 +359,7 @@ const StudentProfile = (props) => {
                       {/* Education School Name */}
                       <h6>{education.school}</h6>
                       <p>
-                        GPA: {education.school_gpa} <br /> Years:{" "}
-                        {education.start_year} - {education.end_year}
+                        GPA: {education.school_gpa} <br /> Years: {education.start_year} - {education.end_year}
                       </p>
                       {/* Education Start - End Date (current or date) */}
                       <p></p>
@@ -433,12 +373,7 @@ const StudentProfile = (props) => {
             <div className="flex-box">
               <h4 className="category-heading">Experience</h4>
               {/* Add Experience Popup */}
-              <img
-                id="edit-button"
-                src={AddIcon}
-                alt="edit pencil button"
-                onClick={() => setAddExperience(true)}
-              />
+              <img id="edit-button" src={AddIcon} alt="edit pencil button" onClick={() => setAddExperience(true)} />
               <ExperiencePopup
                 userID={cookie.ID_OF_USER}
                 show={addExperience}
@@ -470,8 +405,8 @@ const StudentProfile = (props) => {
                           popupName={"Edit"}
                           userID={cookie.ID_OF_USER}
                           company={experience.company_name}
-                          dateStart={experience.date_start}
-                          dateEnd={experience.date_end}
+                          dateStart={converter(experience.date_start)}
+                          dateEnd={converter(experience.date_end)}
                           description={experience.description_experience}
                           position={experience.experience_title_position}
                           employmentType={experience.employement_type}
@@ -482,16 +417,14 @@ const StudentProfile = (props) => {
                       </div>
                       <h6>{experience.company_name}</h6>
                       <p>
-                        {experience.date_start} - {experience.date_end}
+                        {converter(experience.date_start)} - {converter(experience.date_end)}
                       </p>
                       {/* Keywords */}
                       <li>
                         {String(experience.arr_work_done_keywords)
                           .split(",")
                           .map((tool) => (
-                            <ul style={{ backgroundColor: "#EFE271" }}>
-                              {tool}
-                            </ul>
+                            <ul style={{ backgroundColor: "#EFE271" }}>{tool}</ul>
                           ))}
                       </li>
                     </div>
@@ -526,16 +459,14 @@ const StudentProfile = (props) => {
                     />
                   </span>
                   {/* TODO:: date of the review */}
-                  <p>{review.publish_date}</p>
+                  <p>{converter(review.publish_date)}</p>
                 </header>
                 {/* Professor's School At The Time Of The Review */}
                 <h6>{review.school_name}</h6>
                 {/* Professor's Review */}
                 <p>{review.recommendation_comment}</p>
                 <li>
-                  <ul>
-                    Commited To Success: {review.committed_to_success_level}
-                  </ul>
+                  <ul>Commited To Success: {review.committed_to_success_level}</ul>
                   <ul>Leadership: {review.leadership_level}</ul>
                   <ul>Responsible: {review.responsible_level}</ul>
                   <ul>Team Work: {review.team_work_level}</ul>

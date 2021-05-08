@@ -15,7 +15,7 @@ import StudentProfile from "../profiles/student/StudentProfile";
 import ProfessorProfile from "../profiles/professor/ProfessorProfile";
 import CompanyProfile from "../profiles/company/CompanyProfile";
 //API
-import API_USER_GET_PROFILE from "../../../models/user_profile";
+import API_USER_GET_PROFILE from "../../../models/GET/user_profile";
 const Dashboard = () => {
   //Get Profile from Database
   useEffect(() => {

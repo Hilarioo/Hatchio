@@ -24,22 +24,23 @@ import Alert from "react-bootstrap/Alert";
 const App = () => {
   return (
     <Router>
-      <div className='App'>
+      <div className="App">
         <Alert
-          variant='warning'
+          variant="warning"
           style={{
             zIndex: "100",
             height: "1.5rem",
             paddingTop: "0",
             textAlign: "center",
-          }}>
+          }}
+        >
           SFSU CSC648/848, Spring 2021 | <b>Demonstration Only</b>
         </Alert>
-        <div className='content'>
+        <div className="content">
           <Switch>
-            <Route path='/signup' component={() => <Auth type={"signup"} />} />
-            <Route path='/signin' component={() => <Auth type={"signin"} />} />
-            <Route path='/redirect' component={SignupRedirect} />
+            <Route path="/signup" component={() => <Auth type={"signup"} />} />
+            <Route path="/signin" component={() => <Auth type={"signin"} />} />
+            <Route path="/redirect" component={SignupRedirect} />
             <Route component={DefaultContainer} />
           </Switch>
         </div>
@@ -51,25 +52,25 @@ const App = () => {
 const DefaultContainer = () => (
   <div>
     <Nav />
-    <Route exact path='/' component={Home} />
+    <Route exact path="/" component={Home} />
     {/* Search Jobs */}
-    <Route path='/search-jobs' component={JobSearch} />
+    <Route path="/search-jobs" component={JobSearch} />
     {/* Search Students */}
-    <Route path='/search-candidates' component={StudentSearch} />
+    <Route path="/search-candidates" component={StudentSearch} />
     {/* Public Profiles */}
-    <Route path='/profiles/:account' component={PublicProfile} />
+    <Route path="/profiles/:account" component={PublicProfile} />
     {/* About */}
-    <Route exact path='/about' component={About} />
+    <Route exact path="/about" component={About} />
     {/* Contact / Help */}
-    <Route path='/help' component={Help} />
+    <Route path="/help" component={Help} />
     {/** Full Job View */}
-    <Route path='/postings/:posting' component={JobPost} />
+    <Route path="/postings/:posting" component={JobPost} />
     {/* Allows Company to Post Jobs */}
-    <Route path='/postjobs' component={PostJobs} />
+    <Route path="/postjobs" component={PostJobs} />
     {/* Profile for User Logged In */}
-    <Route path='/profile' component={Profile} />
+    <Route path="/profile" component={Profile} />
     {/* Notifications */}
-    <Route path='/notifications' component={Notifications} />
+    <Route path="/notifications" component={Notifications} />
   </div>
 );
 

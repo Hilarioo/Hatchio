@@ -1,10 +1,8 @@
-import PORT_HOST from "../config";
-import API_FIND_CANDIDATE from "../models/GET/Students/student_info";
+import PORT_HOST from "../../config";
+import API_FIND_CANDIDATE from "../GET/Students/student_info";
 
 export default async function API_USER_GET_PROFILE(typeUser, idr, setState) {
-  const response = await fetch(
-    `${PORT_HOST.PORT_HOST}/profile?ts=${typeUser}&bs=${idr}`
-  );
+  const response = await fetch(`${PORT_HOST.PORT_HOST}/profile?ts=${typeUser}&bs=${idr}`);
   var data = await response.json();
   //if condition
   //data [[0], [1], [2]]

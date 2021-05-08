@@ -171,57 +171,57 @@ create table student_alerts (
 -- Insert Users  
 -- -----------------------------------------------------
 insert into students(first_name,last_name,school_name,password,email,state,code) values 
-("Tom","Bobby","San Francisco State University","pass12345","elonmusk@mail.com",0,500),
-("Jonathen","Kask","Harvard University","pass12345","lyrasolomon@mail.com",0,"500"),
-("Zorba","Lee","East Bay University","pass12345","rolandlee@mail.com",0,"500"),
-("Bob","Rob","East Bay University","pass12345","joseG@mail.com",0,"500"),
-("Vitoria ","Taras","East Bay University","pass12345","taras@mail.com",0,"500"),
-("Tony","Stark","Kansas State University","pass12345","tgdfaras@mail.com",0,"500"),
-("Rondy","Kar","Louisiana State University","pass12345","wogfdoo@mail.com",0,"500"),
-("Sunny","Jar","University of Nebraska Omaha","pass12345","roo123@mail.com",0,"500"),
-("Good","Pop","King George's Medical University","pass12345","markoplier@mail.com",0,"500"),
-("Jacky","Tarzan","New York University School of Law","pass12345","jackseptikey@mail.com",0,"500");
+("Tom","Bobby","San Francisco State University","pass12345","tombobby@mail.com",0,500),
+("Jonathen","Kask","Harvard University","pass12345","jonathenkask@mail.com",0,"500"),
+("Zorba","Lee","East Bay University","pass12345","zorbalee@mail.com",0,"500"),
+("Bob","Rob","East Bay University","pass12345","bobrob@mail.com",0,"500"),
+("Vitoria ","Taras","East Bay University","pass12345","victoriataras@mail.com",0,"500"),
+("Tony","Stark","Kansas State University","pass12345","tonystark@mail.com",0,"500"),
+("Rondy","Kar","Louisiana State University","pass12345","rondykar@mail.com",0,"500"),
+("Sunny","Jar","University of Nebraska Omaha","pass12345","sunnyjar@mail.com",0,"500"),
+("Good","Pop","King George's Medical University","pass12345","goodpop@mail.com",0,"500"),
+("Jacky","Tarzan","New York University School of Law","pass12345","jackytarzan@mail.com",0,"500");
 
 insert into professors(first_name,last_name,school_name,password,email,state,code) values
- ("Henry","Villar","San Francisco State University","pass12345","henry@mail.com",0,"500"),
+ ("Henry","Villar","San Francisco State University","pass12345","henryvillar@mail.com",0,"500"),
  ("Hui","Huang","San Francisco State University","pass12345","huiyang@mail.com",0,"500"),
- ("Jose","Ortiz","San Francisco State University","pass12345","jose@mail.com",0,"500"),
- ("Duc","Ta","San Francisco State University","pass12345","ducTa@mail.com",0,"500");
+ ("Jose","Ortiz","San Francisco State University","pass12345","joseortiz@mail.com",0,"500"),
+ ("Duc","Ta","San Francisco State University","pass12345","ducta@mail.com",0,"500");
  
 insert into employers(first_name,last_name,organization_name,password,email,state,code) values
-("Jack","Man","Google","pass12345","microsoft@mailr.com",0,"500"),
-("Steve","Job","Apple","pass12345","apple@mailr.com",0,"500"),
-("Jalon","Musk","Tesla","pass12345","tesla@mailr.com",0,"500"),
-("Tim","Dillon","SquareSpace","pass12345","squarespace@mailr.com",0,"500");
+("Sergey","Brin","Google","pass12345","sergeybrin@mail.com",0,"500"),
+("Steve","Job","Apple","pass12345","stevejobemployer@mail.com",0,"500"),
+("Elon","Musk","Tesla","pass12345","elonmusk@mail.com",0,"500"),
+("Anthony","Casalena","SquareSpace","pass12345","timdillion@mail.com",0,"500");
 
 -- -----------------------------------------------------
 -- Insert User Tables   
 -- -----------------------------------------------------
-insert into student_ratings(student_id,professor_id,responsible_level,team_work_level,leadership_level,committed_to_success_level,recommendation_comment,rating_total) values
-(1,1,5,5,5,5,"It is with much enthusiasm that I recommend Tom Bloom for inclusion in the College Scholars Program at the University of Tennessee.",2),
-(2,2,1,2,3,5,"I recommend this student because of Jonathen enthusiasm.",1),
-(3,1,2,5,5,5,"Zorba wide-ranging intellect is such that he would be bored by most freshman- and sophomore-level Liberal Arts courses. He is ready to assume and excel in upper division classwork, and possesses the self-motivation to successfully create and execute an independent course of honors study.",1),
-(4,1,5,2,5,5,"Bob academic strengths are complemented by his demonstrated leadership skills – he was our band’s drum major for two years and served as Vice President of the Student Council and Editor of our high school yearbook. He is also very active in his church and in the Sierra Student Coalition.",5),
-(5,1,3,5,5,5,"victoria’s wide-ranging intellect is such that he would be bored by most freshman- and sophomore-level Liberal Arts courses. He is ready to assume and excel in upper division classwork, and possesses the self-motivation to successfully create and execute an independent course of honors study.",2),
-(6,1,5,5,5,5,"it is with much enthusiasm that I recommend Tom Bloom for inclusion in the College Scholars Program at the University of Tennessee",5),
-(7,2,1,3,3,5,"i recommend this student because of Jonathen enthusiasm.",4),
-(8,1,5,5,1,5,"rondy wide-ranging intellect is such that he would be bored by most freshman- and sophomore-level Liberal Arts courses. He is ready to assume and excel in upper division classwork, and possesses the self-motivation to successfully create and execute an independent course of honors study.",2),
-(9,1,5,5,3,5,"good academic strengths are complemented by his demonstrated leadership skills – he was our band’s drum major for two years and served as Vice President of the Student Council and Editor of our high school yearbook. He is also very active in his church and in the Sierra Student Coalition.",4),
-(10,1,5,1,5,5,"jacky’s wide-ranging intellect is such that he would be bored by most freshman- and sophomore-level Liberal Arts courses. He is ready to assume and excel in upper division classwork, and possesses the self-motivation to successfully create and execute an independent course of honors study.",2),
-(10,2,5,1,5,5,"jacky’s wide-ranging intellect is such that he would be bored by most freshman- and sophomore-level Liberal Arts courses. He is ready to assume and excel in upper division classwork, and possesses the self-motivation to successfully create and execute an independent course of honors study.",2);
+insert into student_ratings(student_id,professor_id,responsible_level,team_work_level,leadership_level,committed_to_success_level,recommendation_comment,rating_total,publish_date) values
+(1,1,5,5,5,5,"It is with much enthusiasm that I recommend Tom Bloom for inclusion in the College Scholars Program at the University of Tennessee.",5,'9999-12-31'),
+(2,2,2,2,3,3,"I recommend this student because of Jonathen enthusiasm.",3,'2019-03-03 11:42:43'),
+(3,3,2,5,5,5,"Zorba wide-ranging intellect is such that he would be bored by most freshman- and sophomore-level Liberal Arts courses. He is ready to assume and excel in upper division classwork, and possesses the self-motivation to successfully create and execute an independent course of honors study.",4,'2021-02-01 13:20:43'),
+(4,4,5,2,5,5,"Bob academic strengths are complemented by his demonstrated leadership skills – he was our band’s drum major for two years and served as Vice President of the Student Council and Editor of our high school yearbook. He is also very active in his church and in the Sierra Student Coalition.",4,'2021-02-09 13:12:43'),
+(5,1,3,5,5,5,"victoria’s wide-ranging intellect is such that he would be bored by most freshman- and sophomore-level Liberal Arts courses. He is ready to assume and excel in upper division classwork, and possesses the self-motivation to successfully create and execute an independent course of honors study.",4,'2021-04-04 02:32:13'),
+(6,2,4,3,3,3,"it is with much enthusiasm that I recommend Tom Bloom for inclusion in the College Scholars Program at the University of Tennessee",3,'2021-04-04 13:40:43'),
+(7,3,1,5,3,5,"I recommend this student because of their enthusiasm.",4,'2021-02-01 12:21:43'),
+(8,4,5,5,1,5,"The wide-ranging intellect is such that he would be bored by most freshman- and sophomore-level Liberal Arts courses. He is ready to assume and excel in upper division classwork, and possesses the self-motivation to successfully create and execute an independent course of honors study.",4,'2021-09-02 09:20:13'),
+(9,3,5,5,3,5,"Good academic strengths are complemented by his demonstrated leadership skills – he was our band’s drum major for two years and served as Vice President of the Student Council and Editor of our high school yearbook. He is also very active in his church and in the Sierra Student Coalition.",4,'2021-02-01 12:10:43'),
+(10,2,5,2,5,2,"The wide-ranging intellect is such that he would be bored by most freshman- and sophomore-level Liberal Arts courses. He is ready to assume and excel in upper division classwork, and possesses the self-motivation to successfully create and execute an independent course of honors study.",3,'2021-02-04 03:41:43'),
+(10,1,5,1,5,1,"The wide-ranging intellect is such that he would be bored by most freshman- and sophomore-level Liberal Arts courses. He is ready to assume and excel in upper division classwork, and possesses the self-motivation to successfully create and execute an independent course of honors study.",3,'2021-02-01 13:41:43');
 
 insert into student_projects(student_id,project_name,summary,arr_tools_used,professor,links_website,arr_collaborators_arr) values
-(1,"Node hatchio","CRUD application for CSC648","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby,Smith"),
-(2,"BigFish","CRUD application for CSC648","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby"),
-(3,"TriFish","CRUD application for CSC648","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby"),
+(1,"Node Hatchio","CRUD application for CSC648","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby,Smith"),
+(2,"BigFish","CRUD application for CSC628","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby"),
+(3,"TriFish","CRUD application for CSC618","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby"),
 (4,"SeaFish","CRUD application for CSC648","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby"),
-(5,"BigFish","CRUD application for CSC648","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby"),
-(6,"TriFish","CRUD application for CSC648","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby"),
-(7,"FarCry","CRUD application for CSC648","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby"),
-(8,"SuperCry","CRUD application for CSC648","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby"),
+(5,"BigFish","CRUD application for CSC638","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby"),
+(6,"TriFish","CRUD application for CSC638","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby"),
+(7,"FarCry","CRUD application for CSC628","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby"),
+(8,"SuperCry","CRUD application for CSC618","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby"),
 (9,"LooCry","CRUD application for CSC648","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby"),
 (10,"FooCry","CRUD application for CSC648","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby"),
-(10,"FooCry","CRUD application for CSC648","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby");
+(10,"BooCry","CRUD application for CSC648","JavaScript,Mysql","Henry Villar","http.hatchio.com","Jacob,Bobby");
 
 insert into student_education(student_id, school, degree, school_gpa, study_major, start_year, end_year) values
 (1,"San Francisco State University","Bachelors",4.0,"English",2018,2022),
@@ -262,9 +262,9 @@ insert into student_profile_page(student_id,about_me,strengths_qualities,locatio
 
 insert into company_listings(employer_id,organization_name,position_title,location,job_type,experience_years,experience_level,salary,about_us,the_opportunity,skillset,benefits,task_responsibilities) values
 (1,"Google","User Experience Designer","Pleasant Hill, Ca","Full Time","minimum 5 Years","Senior Level",105000,"Our mission is to organize the world’s information and make it universally accessible and useful.","Work with the top class engineers and mentors that will help you grow with the company and as an individual","Enthusiasm,Willing to work hard,Passionate","401k,Good Salary,Great Experience","debugging,c++,collaboration"),
-(1,"Google","Backend Developer","San Diego, Ca","Remote","Minimum 2 Years","Mid Level",15000,"Our mission is to organize the world’s information and make it universally accessible and useful.","Work with the top class engineers and mentors that will help you grow with the company and as an individual","Enthusiasm,Willing to work hard,Passionate","401k,Good Salary,Great Experience","debugging,c++,collaboration"),
+(1,"Google","Backend Developer","San Jose, Ca","Remote","Minimum 2 Years","Mid Level",15000,"Our mission is to organize the world’s information and make it universally accessible and useful.","Work with the top class engineers and mentors that will help you grow with the company and as an individual","Enthusiasm,Willing to work hard,Passionate","401k,Good Salary,Great Experience","debugging,c++,collaboration"),
 (2,"Apple","Frontend Developer","San Diego, Ca","Contract","Maximum 10 Years","senior Level",10500,"Our mission is to organize the world’s information and make it universally accessible and useful.","Work with the top class engineers and mentors that will help you grow with the company and as an individual","Enthusiasm,Willing to work hard,Passionate","401k,Good Salary,Great Experience","debugging,c++,collaboration"),
-(3,"Tesla","Full Stack Developer","Pleasant Hill, Ca","Internship","Minimum 3 Years","Directors",35000,"Our mission is to organize the world’s information and make it universally accessible and useful.","Work with the top class engineers and mentors that will help you grow with the company and as an individual","Enthusiasm,Willing to work hard,Passionate","401k,Good Salary,Great Experience","debugging,c++,collaboration");
+(3,"Tesla","Full Stack Developer","Bakersfield, Ca","Internship","Minimum 3 Years","Directors",35000,"Our mission is to organize the world’s information and make it universally accessible and useful.","Work with the top class engineers and mentors that will help you grow with the company and as an individual","Enthusiasm,Willing to work hard,Passionate","401k,Good Salary,Great Experience","debugging,c++,collaboration");
 
 insert into company_alerts(student_id,employer_id,listing_id,time,hidden) values 
 (1,1,1,'2020-01-01 06:00:00',0),

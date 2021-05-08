@@ -41,96 +41,87 @@ const ProfessorProfile = (props) => {
 
   return (
     <>
-      <div className='student-heading'>
+      <div className="student-heading">
         {/* creates default image if none provided */}
-        <img
-          src={defaultImage(String(userProfile.first_name))}
-          alt={String(userProfile.first_name)}
-        />
-        <div className='right'>
+        <img src={defaultImage(String(userProfile.first_name))} alt={String(userProfile.first_name)} />
+        <div className="right">
           {/* === Professor's Name === */}
-          <div className='flex-box'>
-            <h6 className='category-heading'>Full Name</h6>
+          <div className="flex-box">
+            <h6 className="category-heading">Full Name</h6>
           </div>
           <p>{userProfile.first_name + " " + userProfile.last_name}</p>
+          <p>
+            <b>Email</b>
+            <br></br> {userProfile.email}
+          </p>
+          <p>{userProfile.school_name}</p>
+          <p>
+            <b>School Name</b>
+            <br></br> {userProfile.school_name}
+          </p>
         </div>
       </div>
       {/* TODO:: Links */}
-      <div className='student-links'>
-        <div className='flex-box'>
-          <h5 className='category-heading'>Links</h5>
+      <div className="student-links">
+        <div className="flex-box">
+          {/* <h5 className="category-heading">Links</h5> */}
           {/* Links Edit Popup */}
-          <img
-            id='edit-button'
-            src={EditIcon}
-            alt='edit pencil button'
-            onClick={() => setLinks(true)}
-          />
-          <LinksPopup
-            show={links}
-            onHide={() => setLinks(false)}
-            userID={cookie.ID_OF_USER}
-          />
+          {/* <img id="edit-button" src={EditIcon} alt="edit pencil button" onClick={() => setLinks(true)} /> */}
+          {/* <LinksPopup show={links} onHide={() => setLinks(false)} userID={cookie.ID_OF_USER} /> */}
         </div>
         {/* TODO:: Add URL to Professor DB so Jose can integrate it */}
-        <div className='flex-box' style={{ justifyContent: "center" }}>
-          <a href='/'>
-            <img src={GlobeIcon} alt='website url' className='mr-5' />
+        {/* <div className="flex-box" style={{ justifyContent: "center" }}>
+          <a href="/">
+            <img src={GlobeIcon} alt="website url" className="mr-5" />
           </a>
-          <a href='/'>
-            <img src={LinkedinIcon} alt='linkedin' />
+          <a href="/">
+            <img src={LinkedinIcon} alt="linkedin" />
           </a>
-        </div>
+        </div> */}
       </div>
 
       {/* Professor About Me */}
-      <div className='student-about'>
-        <div className='flex-box'>
-          <h4 className='category-heading'>About Me</h4>
+      <div className="student-about">
+        <div className="flex-box">
+          {/* <h4 className="category-heading">About Me</h4> */}
           {/* About Me Edit Popup */}
-          <img
+          {/* <img
             id='edit-button'
             src={EditIcon}
             alt='edit pencil button'
             onClick={() => setAboutPopup(true)}
-          />
-          <AboutPopup
+          /> */}
+          {/* <AboutPopup
             show={aboutPopup}
             onHide={() => setAboutPopup(false)}
             userID={cookie.ID_OF_USER}
             heading='Edit About Me'
             about={userProfile.about_me}
-          />
+          /> */}
         </div>
         {/* About Me */}
-        <p>
+        {/* <p>
           {userProfile.about_me}
           This is where the Professor's About me should go
-        </p>
+        </p> */}
       </div>
 
-      <div className='student-about'>
+      {/* <div classname="student-about">
         {/* experience */}
 
-        <div className='flex-box'>
-          <h4 className='category-heading'>Schools</h4>
-          {/* Add Experience Popup */}
-          <img
-            id='edit-button'
-            src={AddIcon}
-            alt='edit pencil button'
-            onClick={() => setAddExperience(true)}
-          />
-          <ExperiencePopup
-            userID={cookie.ID_OF_USER}
-            show={addExperience}
-            popupName={"Add"}
-            onHide={() => setAddExperience(false)}
-          />
-        </div>
-
-        {/** TODO:: Add Experience for Professor to DB for Jose to Map Experience */}
+      <div classname="flex-box">
+        {/* <h4 classname="category-heading">schools</h4> */}
+        {/* add experience popup */}
+        {/* <img id="edit-button" src={addicon} alt="edit pencil button" onclick={() => setaddexperience(true)} /> */}
+        {/* <experiencepopup
+            userid={cookie.id_of_user}
+            show={addexperience}
+            popupname={"add"}
+            onhide={() => setaddexperience(false)}
+          /> */}
       </div>
+
+      {/** todo:: add experience for professor to db for jose to map experience */}
     </>
   );
 };

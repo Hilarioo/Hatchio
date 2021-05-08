@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Collapsible from "react-collapsible";
 import { useCookies } from "react-cookie";
-import API_REMOVE_JOB from "../../../../models/delete_job";
+import API_REMOVE_JOB from "../../../../models/DELETE/delete_job";
 import API_UPDATE_STUDENT_RATING_NOTIFICATION from "../../../../models/PUT/Students/update_ratings_notification";
 import API_INSERT_STUDENT_ALERT from "../../../../models/POST/Employers/insert_hire";
 const CompanyProfile = (props) => {
@@ -35,11 +35,8 @@ const CompanyProfile = (props) => {
     // console.log("remove",activeComponent);
   };
 
-  const seenNotification = async (compalert_id,table) => {
-    const response = await API_UPDATE_STUDENT_RATING_NOTIFICATION(
-      compalert_id,
-      table
-    );
+  const seenNotification = async (compalert_id, table) => {
+    const response = await API_UPDATE_STUDENT_RATING_NOTIFICATION(compalert_id, table);
     if (response.status == 400) {
       console.log("Failed to Update");
     }
@@ -65,18 +62,21 @@ const CompanyProfile = (props) => {
     </div>
   ));
 
-  var Employer_Jobs_Openings = userProfilee[1].map((data) => (
-    <div>
-      <p>Job Title: {data.position_title} </p>
-      <p>Location: {data.location}</p>
-      <p>Job Type: {data.job_type}</p>
-      <p>Experience Years: {data.experience_years}</p>
-      <p>Salary: {data.salary}</p>
-      <p>Skillset : {data.skillset}</p>
-      <p>Task Responsibilites: {data.task_responsibilities}</p>
-      <p>The Opportunity: {data.the_opportunity}</p>
-    </div>
-  ));
+  var Employer_Jobs_Openings =
+    userProfilee[1].length == 0
+      ? "Empty"
+      : userProfilee[1].map((data) => (
+          <div>
+            <p>Job Title: {data.position_title} </p>
+            <p>Location: {data.location}</p>
+            <p>Job Type: {data.job_type}</p>
+            <p>Experience Years: {data.experience_years}</p>
+            <p>Salary: {data.salary}</p>
+            <p>Skillset : {data.skillset}</p>
+            <p>Task Responsibilites: {data.task_responsibilities}</p>
+            <p>The Opportunity: {data.the_opportunity}</p>
+          </div>
+        ));
 
   //Insert Student Alert
   const hireB = async (studentID, ListingID, company_alert) => {
@@ -98,66 +98,57 @@ const CompanyProfile = (props) => {
       console.log("success fail");
     }
   };
-  var Employer_Find_Candidates = userProfilee[2].map((data) => (
-    <div>
-      {activeComponent.map((active) => {
-        if (active === data.listing_id && data.hidden === 0) {
-          return (
-            <>
-              <p>
-                <strong>Alert</strong>: {data.compalert_id}
-              </p>
-              <p>Notified {converter(data.time)}</p>
-              <p>student_id: {data.student_id}</p>
-              <p>listing_id: {data.listing_id}</p>
-              {userProfilee[3].map((value) => {
-                if (data.student_id === value.id) {
-                  return (
-                    <>
-                      <p>
-                        <strong>Candidate: </strong>
-                        {value.first_name + " " + value.last_name}
-                      </p>
-                      <p>
-                        <strong>School: </strong>
-                        {value.school_name}
-                      </p>
-                      <p>
-                        <strong>Major: </strong>
-                        {value.study_major}
-                      </p>
-                      <p>
-                        <strong>School Year: </strong>
-                        {value.school_grade_level}
-                      </p>
-                      <button
-                        onClick={() =>
-                          hireB(
-                            data.student_id,
-                            data.listing_id,
-                            data.compalert_id
-                          )
-                        }
-                      >
-                        HIRE
-                      </button>
-                      <button
-                        onClick={() => seenNotification(data.compalert_id,"company_alerts")}
-                      >
-                        Hide
-                      </button>
-                      <br></br>
-                      <br></br>
-                    </>
-                  );
-                }
-              })}
-            </>
-          );
-        }
-      })}
-    </div>
-  ));
+  var Employer_Find_Candidates =
+    userProfilee[2].length == 0
+      ? "Empty"
+      : userProfilee[2].map((data) => (
+          <div>
+            {activeComponent.map((active) => {
+              if (active === data.listing_id && data.hidden === 0) {
+                return (
+                  <>
+                    <p>
+                      <strong>Alert</strong>: {data.compalert_id}
+                    </p>
+                    <p>Notified {converter(data.time)}</p>
+                    <p>student_id: {data.student_id}</p>
+                    <p>listing_id: {data.listing_id}</p>
+                    {userProfilee[3].map((value) => {
+                      if (data.student_id === value.id) {
+                        return (
+                          <>
+                            <p>
+                              <strong>Candidate: </strong>
+                              {value.first_name + " " + value.last_name}
+                            </p>
+                            <p>
+                              <strong>School: </strong>
+                              {value.school_name}
+                            </p>
+                            <p>
+                              <strong>Major: </strong>
+                              {value.study_major}
+                            </p>
+                            <p>
+                              <strong>School Year: </strong>
+                              {value.school_grade_level}
+                            </p>
+                            <button onClick={() => hireB(data.student_id, data.listing_id, data.compalert_id)}>
+                              HIRE
+                            </button>
+                            <button onClick={() => seenNotification(data.compalert_id, "company_alerts")}>Hide</button>
+                            <br></br>
+                            <br></br>
+                          </>
+                        );
+                      }
+                    })}
+                  </>
+                );
+              }
+            })}
+          </div>
+        ));
 
   useEffect(() => {
     setuserProfilee(props);

@@ -5,7 +5,7 @@ import Collapsible from "react-collapsible";
 
 import API_STUDENT_RATING_NOTIFICATIONS from "../../../models/GET/Students/rating_notifications";
 import API_UPDATE_STUDENT_RATING_NOTIFICATION from "../../../models/PUT/Students/update_ratings_notification";
-import API_USER_GET_PROFILE from "../../../models/user_profile";
+import API_USER_GET_PROFILE from "../../../models/GET/user_profile";
 
 const Notifications = () => {
   useEffect(() => {

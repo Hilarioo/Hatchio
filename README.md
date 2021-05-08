@@ -18,26 +18,23 @@ ii. Change Log
 
 #### Urgent TODO
 
-#### TODO (Not Implemented)
-
-- add variability to date creations on default time
-- nonfunctional requirement for maximum 100 users
-- shouldnt the full view page have a go back button or do you want to manually hit go back?
-
 #### TODO (Bug Fixes)
 
 - the about in the nav is blank page?
+- notifications formatting
 - the insert jobs is now a blank page?
+- move hire gif to the notifications on employers
 
 #### Unresolved Issues
 
 - instead of window.location.reload() we should be able to refire the useEffect to cause a state change w/o having to reload
-- apply button should only be accessible when student users are logged in
 
-#### Currently Working
+#### Thursday, May 8, 2021 :: Aaron
 
-- PUT requests for student users to edit their information (remaining: experience,project,schools) :: Aaron
-- Improved Professor Review System :: Lyra
+- fixed returning passwords to notifications
+- variations in datetime
+- used roland's converter function to format proper time
+- apply functionality only available for students
 
 #### Wenesday, May 5, 2021 :: Aaron
 
