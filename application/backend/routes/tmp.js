@@ -123,7 +123,7 @@ module.exports = (app) => {
       console.log(`Error ${e}`);
     }
   });
-  //POST: Altering states to control student ratings notifications
+  //PUT: Altering states to control student ratings notifications
   app.put("/student-ratings", (req, res) => {
     if (req.query.table === "student_ratings") {
       let sql = `update ${req.query.table} set student_seen = 1 where reflection_id = ${req.query.id};`;
@@ -288,5 +288,56 @@ module.exports = (app) => {
         res.sendStatus(200);
       }
     });
+  });
+  //PUT: Edit Student Projects
+  app.put("/insert_student_projects", (req, res) => {
+    let sql = `update student_projects set project_name="${req.body.project_name}",summary="${req.body.summary}",arr_tools_used="${req.body.arr_tools_used}",professor="${req.body.professor}",arr_collaborators_arr="${req.body.arr_collaborators_arr}" where student_id=${req.body.Student_ID};`;
+    try {
+      SQL_CONNECTION.query(sql, (err, results) => {
+        if (err) {
+          return res.sendStatus(400);
+        } else {
+          return res.sendStatus(200);
+        }
+      });
+      console.log(sql);
+    } catch (e) {
+      console.log(`Error ${e}`);
+      return res.sendStatus(200);
+    }
+  });
+  //PUT: Edit Student Experience
+  app.put("/insert-experience", (req, res) => {
+    let sql = `update student_experience set experience_title_position="${req.body.experience_title_position}", company_name="${req.body.company_name}", date_start="${req.body.date_start}", date_end="${req.body.date_end}", arr_work_done_keywords="${req.body.arr_work_done_keywords}", description_experience="${req.body.description_experience}", location="${req.body.location}", employment_type="${req.body.employement_type}" where student_id=${req.body.Student_ID};`;
+    try {
+      SQL_CONNECTION.query(sql, (err, results) => {
+        if (err) {
+          return res.sendStatus(400);
+        } else {
+          return res.sendStatus(200);
+        }
+      });
+      console.log(sql);
+    } catch (e) {
+      console.log(`Error ${e}`);
+      return res.sendStatus(200);
+    }
+  });
+  //PUT: Edit Student Education
+  app.put("/insert_student_education", (req, res) => {
+    let sql = `update student_education set school="${req.body.school}",degree="${req.body.degree}",school_gpa=${req.body.school_gpa},study_major="${req.body.study_major}",start_year="${req.body.start_year}",end_year="${req.body.end_year}" where student_id=${req.body.Student_ID};`;
+    try {
+      SQL_CONNECTION.query(sql, (err, results) => {
+        if (err) {
+          return res.sendStatus(400);
+        } else {
+          return res.sendStatus(200);
+        }
+      });
+      console.log(sql);
+    } catch (e) {
+      console.log(`Error ${e}`);
+      return res.sendStatus(200);
+    }
   });
 };
