@@ -11,6 +11,7 @@ import JobSearch from "./views/js/search/jobs/JobSearch";
 import About from "./views/js/about/About";
 import Help from "./views/js/help/Help";
 import Notifications from "./views/js/notifications/Notification";
+import MemberPage from "./views/js/about/MemberPage"
 //All Users
 import Profile from "./views/js/user/Dashboard";
 //Employers
@@ -71,6 +72,8 @@ const DefaultContainer = () => (
     <Route path="/profile" component={Profile} />
     {/* Notifications */}
     <Route path="/notifications" component={Notifications} />
+    {/* MemberPage */}
+    <Route path="/about/member/:username" component={MemberPage} />
   </div>
 );
 
