@@ -340,4 +340,42 @@ module.exports = (app) => {
       return res.sendStatus(200);
     }
   });
+  //PUT Student Profile Page Strength Quality Update
+  app.put("/strength_qualities", (req, res) => {
+    let sql = `update student_profile_page sp set strengths_qualities = "${req.query.strengths_qualities}" where sp.student_id = ${req.query.id};`;
+    try {
+      SQL_CONNECTION.query(sql, (err, results) => {
+        if (err) {
+          //Error
+          console.log(err);
+          return res.sendStatus(400);
+        } else {
+          console.log("ok");
+          //True
+          return res.sendStatus(200);
+        }
+      });
+    } catch (e) {
+      console.log(`${e}`);
+    }
+  });
+  //PUT Student Profile Page Location Update
+  app.put("/location", (req, res) => {
+    let sql = `update student_profile_page sp set location = "${req.query.location}" where sp.student_id = ${req.query.id};`;
+    try {
+      SQL_CONNECTION.query(sql, (err, results) => {
+        if (err) {
+          //Error
+          console.log(err);
+          return res.sendStatus(400);
+        } else {
+          console.log("ok");
+          //True
+          return res.sendStatus(200);
+        }
+      });
+    } catch (e) {
+      console.log(`${e}`);
+    }
+  });
 };
