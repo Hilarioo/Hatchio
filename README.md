@@ -22,12 +22,16 @@ ii. Change Log
 
 - the about in the nav is blank page?
 - notifications formatting
-- the insert jobs is now a blank page?
 - move hire gif to the notifications on employers
 
 #### Unresolved Issues
 
 - instead of window.location.reload() we should be able to refire the useEffect to cause a state change w/o having to reload
+
+#### Monday, May 10, 2021 :: Aaron
+
+- Post Job route with jose
+- PUT editing for student experience,projects,and education
 
 #### Thursday, May 8, 2021 :: Aaron
 

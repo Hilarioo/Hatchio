@@ -12,7 +12,7 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 // Import API
 import API_STUDENT_INSERT_PROJECTS from "../../../models/POST/Students/insert_student_projects";
-
+import API_UPDATE_STUDENT_PROJECTS from "../../../models/PUT/Students/update_projects";
 const Project = (props) => {
   const [project, setProject] = useState({
     Student_ID: props.userID,
@@ -30,6 +30,7 @@ const Project = (props) => {
 
     if (props.popupName === "Edit") {
       console.log("edited"); //TODO:: Add Update API
+      //API_UPDATE_STUDENT_PROJECTS(project) <--------------project should be updated state
     } else {
       console.log(project);
       const response = await API_STUDENT_INSERT_PROJECTS(project);

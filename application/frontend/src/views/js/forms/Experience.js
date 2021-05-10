@@ -12,6 +12,7 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 // Import API
 import API_STUDENT_INSERT_EXPERIENCE from "../../../models/POST/Students/insert_student_experience";
+import API_STUDENT_UPDATE_EXPERIENCE from "../../../models/PUT/Students/update_experienec";
 
 const Experience = (props) => {
   // saves role, employement type, tools used, company, location, start year, and end year
@@ -29,6 +30,7 @@ const Experience = (props) => {
 
   // Submits the Student Experience to the DB
   const handleSubmit = async (e) => {
+    //API_STUDENT_UPDATE_EXPERIENCE(experience)<----------------experience should be updated state
     e.preventDefault();
     const response = await API_STUDENT_INSERT_EXPERIENCE(experience);
     if (response === 400) {
@@ -44,9 +46,7 @@ const Experience = (props) => {
     <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered>
       <Form onSubmit={handleSubmit}>
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            {props.popupName} Experience
-          </Modal.Title>
+          <Modal.Title id="contained-modal-title-vcenter">{props.popupName} Experience</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {/* Company */}
@@ -56,9 +56,7 @@ const Experience = (props) => {
               type="text"
               required
               defaultValue={props.popupName === "Edit" ? props.company : ""}
-              onChange={(e) =>
-                setExperience({ ...experience, company_name: e.target.value })
-              }
+              onChange={(e) => setExperience({ ...experience, company_name: e.target.value })}
             />
           </Form.Group>
 
@@ -86,9 +84,7 @@ const Experience = (props) => {
                 <Form.Control
                   as="select"
                   required
-                  defaultValue={
-                    props.popupName === "Edit" ? props.employementType : ""
-                  }
+                  defaultValue={props.popupName === "Edit" ? props.employementType : ""}
                   onChange={(e) =>
                     setExperience({
                       ...experience,
@@ -110,12 +106,8 @@ const Experience = (props) => {
                 <Form.Control
                   type="text"
                   required
-                  defaultValue={
-                    props.popupName === "Edit" ? props.location : ""
-                  }
-                  onChange={(e) =>
-                    setExperience({ ...experience, location: e.target.value })
-                  }
+                  defaultValue={props.popupName === "Edit" ? props.location : ""}
+                  onChange={(e) => setExperience({ ...experience, location: e.target.value })}
                 />
               </Col>
             </Form.Row>
@@ -152,9 +144,7 @@ const Experience = (props) => {
                 })
               }
             />
-            <Form.Text className="text-muted">
-              Add a comma between keywords
-            </Form.Text>
+            <Form.Text className="text-muted">Add a comma between keywords</Form.Text>
           </Form.Group>
 
           {/* Start Year */}
@@ -165,12 +155,8 @@ const Experience = (props) => {
                 <Form.Control
                   type="date"
                   required
-                  defaultValue={
-                    props.popupName === "Edit" ? props.dateStart : ""
-                  }
-                  onChange={(e) =>
-                    setExperience({ ...experience, date_start: e.target.value })
-                  }
+                  defaultValue={props.popupName === "Edit" ? props.dateStart : ""}
+                  onChange={(e) => setExperience({ ...experience, date_start: e.target.value })}
                 />
               </Col>
               <Col>
@@ -179,22 +165,16 @@ const Experience = (props) => {
                 <Form.Control
                   type="date"
                   defaultValue={props.popupName === "Edit" ? props.dateEnd : ""}
-                  onChange={(e) =>
-                    setExperience({ ...experience, date_end: e.target.value })
-                  }
+                  onChange={(e) => setExperience({ ...experience, date_end: e.target.value })}
                 />
-                <Form.Text className="text-muted">
-                  Leave blank if current position
-                </Form.Text>
+                <Form.Text className="text-muted">Leave blank if current position</Form.Text>
               </Col>
             </Form.Row>
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
           <Button type="submit" variant="dark">
-            {props.popupName === "Edit"
-              ? "Update Experience"
-              : "Add Experience"}
+            {props.popupName === "Edit" ? "Update Experience" : "Add Experience"}
           </Button>
         </Modal.Footer>
       </Form>

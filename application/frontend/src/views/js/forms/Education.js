@@ -12,6 +12,7 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 // Import API
 import API_STUDENT_INSERT_EDUCATION from "../../../models/POST/Students/insert_student_education";
+import API_STUDENT_UPDATE_EDUCATION from "../../../models/PUT/Students/update_education";
 
 const Education = (props) => {
   const [education, setEducation] = useState({
@@ -26,6 +27,7 @@ const Education = (props) => {
 
   // Submits the Student Education to the DB
   const handleSubmit = async (e) => {
+    //API_STUDENT_UPDATE_EDUCATION(education); <--------- Put updated education status
     e.preventDefault();
     console.log(education);
     const response = await API_STUDENT_INSERT_EDUCATION(education);
@@ -39,12 +41,10 @@ const Education = (props) => {
   };
 
   return (
-    <Modal {...props} aria-labelledby='contained-modal-title-vcenter' centered>
+    <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered>
       <Form onSubmit={handleSubmit}>
         <Modal.Header closeButton>
-          <Modal.Title id='contained-modal-title-vcenter'>
-            {props.popupName} Education
-          </Modal.Title>
+          <Modal.Title id="contained-modal-title-vcenter">{props.popupName} Education</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {/* School Names */}
@@ -52,11 +52,9 @@ const Education = (props) => {
             <Form.Label>School</Form.Label>
             <Form.Control
               required
-              type='text'
+              type="text"
               defaultValue={props.popupName === "Edit" ? props.school : ""}
-              onChange={(e) =>
-                setEducation({ ...education, school: e.target.value })
-              }
+              onChange={(e) => setEducation({ ...education, school: e.target.value })}
             />
           </Form.Group>
           {/* Degree */}
@@ -64,11 +62,9 @@ const Education = (props) => {
             <Form.Label>Degree</Form.Label>
             <Form.Control
               required
-              type='text'
+              type="text"
               defaultValue={props.popupName === "Edit" ? props.degree : ""}
-              onChange={(e) =>
-                setEducation({ ...education, degree: e.target.value })
-              }
+              onChange={(e) => setEducation({ ...education, degree: e.target.value })}
             />
           </Form.Group>
           {/* Major */}
@@ -76,22 +72,18 @@ const Education = (props) => {
             <Form.Label>Major</Form.Label>
             <Form.Control
               required
-              type='text'
+              type="text"
               defaultValue={props.popupName === "Edit" ? props.major : ""}
-              onChange={(e) =>
-                setEducation({ ...education, study_major: e.target.value })
-              }
+              onChange={(e) => setEducation({ ...education, study_major: e.target.value })}
             />
           </Form.Group>
           {/* GPA */}
           <Form.Group>
             <Form.Label>GPA</Form.Label>
             <Form.Control
-              type='text'
+              type="text"
               defaultValue={props.popupName === "Edit" ? props.gpa : ""}
-              onChange={(e) =>
-                setEducation({ ...education, school_gpa: e.target.value })
-              }
+              onChange={(e) => setEducation({ ...education, school_gpa: e.target.value })}
             />
           </Form.Group>
           {/* Start Year */}
@@ -100,11 +92,9 @@ const Education = (props) => {
               <Form.Label>Start Year</Form.Label>
               <Form.Control
                 required
-                type='date'
+                type="date"
                 defaultValue={props.popupName === "Edit" ? props.startYear : ""}
-                onChange={(e) =>
-                  setEducation({ ...education, start_year: e.target.value })
-                }
+                onChange={(e) => setEducation({ ...education, start_year: e.target.value })}
               />
             </Col>
             {/* End Year */}
@@ -112,17 +102,15 @@ const Education = (props) => {
               <Form.Label>End Year</Form.Label>
               <Form.Control
                 required
-                type='date'
+                type="date"
                 defaultValue={props.popupName === "Edit" ? props.endYear : ""}
-                onChange={(e) =>
-                  setEducation({ ...education, end_year: e.target.value })
-                }
+                onChange={(e) => setEducation({ ...education, end_year: e.target.value })}
               />
             </Col>
           </Form.Row>
         </Modal.Body>
         <Modal.Footer>
-          <Button type='submit' variant='dark'>
+          <Button type="submit" variant="dark">
             {props.popupName === "Edit" ? "Update" : "Save"}
           </Button>
         </Modal.Footer>
