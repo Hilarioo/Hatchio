@@ -8,20 +8,22 @@ import "../../css/Forms.css";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+//API
+import API_STUDENT_UPDATE_LOCATION from "../../../models/PUT/Students/update_location";
 
 const Location = (props) => {
   return (
-    <Modal {...props} aria-labelledby='contained-modal-title-vcenter' centered>
+    <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered>
       <Modal.Header closeButton>
-        <Modal.Title id='contained-modal-title-vcenter'>Location</Modal.Title>
+        <Modal.Title id="contained-modal-title-vcenter">Location</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form.Group>
-          <Form.Control type='text' defaultValue={props.location} />
+          <Form.Control type="text" defaultValue={props.location} />
         </Form.Group>
       </Modal.Body>
       <Modal.Footer>
-        <Button type='submit' variant='dark'>
+        <Button type="submit" variant="dark">
           Save
         </Button>
       </Modal.Footer>

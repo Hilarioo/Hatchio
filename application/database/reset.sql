@@ -60,6 +60,7 @@ create table student_profile_page (
     resume blob default null,
     profile_image longtext default null,
     school_grade_level varchar(255),
+    personal_links mediumtext,
     foreign key (student_id)
         references students (student_id)
 );
