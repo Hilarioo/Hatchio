@@ -13,6 +13,8 @@ import { defaultImage } from "../../global/DefaultImage";
 //Import SVG Icons
 import LocationIcon from "../../../content/svg/location-icon.svg";
 
+import Popup from "reactjs-popup";
+
 //API
 import API_JOB_LISTING_VIEW from "../../../../models/GET/Jobs/job_view";
 import API_INSERT_STUDENT_APPLICATION from "../../../../models/POST/Students/insert_student_apply";
@@ -50,42 +52,46 @@ const JobView = ({
   return (
     <div>
       {/* heading */}
-      <div className='student-heading'>
+      <div className="student-heading">
         {/* Back Button */}
         <div
-          className='back-btn'
+          className="back-btn"
           onClick={(e) => {
             window.location = "/search-jobs";
             e.preventDefault();
-          }}>
-          <img src={Arrow} alt='back arrow' />
+          }}
+        >
+          <img src={Arrow} alt="back arrow" />
         </div>
         {/* creates default image if none provided */}
-        <img
-          src={defaultImage(String(dbJob[0].organization_name))}
-          alt={dbJob[0].organization_name}
-        />
-        <div className='right'>
+        <img src={defaultImage(String(dbJob[0].organization_name))} alt={dbJob[0].organization_name} />
+        <div className="right">
           {/* Student Name */}
           <h4>{dbJob[0].position_title}</h4>
 
-          <div className='flex-box'>
+          <div className="flex-box">
             {/* Student Location */}
-            <div className='flex-box'>
-              <img src={LocationIcon} alt='location pin' />
+            <div className="flex-box">
+              <img src={LocationIcon} alt="location pin" />
               <p>{dbJob[0].location}</p>
             </div>
           </div>
-          <div className='flex-box'>
-            <Button onClick={() => Apply_Job(cookie.ID_OF_USER)}>Apply</Button>
+          <div className="flex-box">
+            {cookie.Type_User != "student" ? (
+              <Popup trigger={<Button> Apply</Button>}>
+                <div>Log In As Student</div>
+              </Popup>
+            ) : (
+              <Button onClick={() => Apply_Job(cookie.ID_OF_USER)}>Apply</Button>
+            )}
           </div>
         </div>
       </div>
 
-      <div className='center'>
+      <div className="center">
         {/* Top Qualities */}
-        <div className='student-qualities'>
-          <div className='flex-box'>
+        <div className="student-qualities">
+          <div className="flex-box">
             <h4>Position Details</h4>
           </div>
           <li>
@@ -97,8 +103,8 @@ const JobView = ({
         </div>
 
         {/* Company About Me */}
-        <div className='student-about'>
-          <div className='flex-box'>
+        <div className="student-about">
+          <div className="flex-box">
             <h4>About {dbJob[0].organization_name}</h4>
           </div>
           {/* About Me */}
@@ -106,16 +112,16 @@ const JobView = ({
         </div>
 
         {/* Company The Opportunity */}
-        <div className='student-about'>
-          <div className='flex-box'>
+        <div className="student-about">
+          <div className="flex-box">
             <h4>The Opportunity</h4>
           </div>
           {/* About Me */}
           <p>{dbJob[0].the_opportunity}</p>
         </div>
 
-        <div className='student-about flex-box skillset-benefits'>
-          <div className='skillset'>
+        <div className="student-about flex-box skillset-benefits">
+          <div className="skillset">
             <h4>Skillset Needed</h4>
             <ul>
               {String(dbJob[0].skillset)
@@ -126,7 +132,7 @@ const JobView = ({
             </ul>
           </div>
 
-          <div className='benefits'>
+          <div className="benefits">
             <h4>Our Benefits</h4>
             <ul>
               {String(dbJob[0].benefits)
