@@ -1,7 +1,10 @@
 // React
 import { useEffect, useState } from "react";
+//Cookie
+import { useCookies } from "react-cookie";
 // React Boostrap
 import Button from "react-bootstrap/Button";
+import Arrow from "../../../content/svg/arrow.svg";
 // CSS
 import "../../../css/Theme.css";
 import "../../../css/Profiles.css";
@@ -12,38 +15,51 @@ import LocationIcon from "../../../content/svg/location-icon.svg";
 
 //API
 import API_JOB_LISTING_VIEW from "../../../../models/GET/Jobs/job_view";
+import API_INSERT_STUDENT_APPLICATION from "../../../../models/POST/Students/insert_student_apply";
 const JobView = ({
   location: {
     state: { Listing_ID },
   },
 }) => {
   const [dbJob, setdbJob] = useState([{}]);
-  const [benefits, setBenefits] = useState([]);
-  const [skillset, setSkillset] = useState([]);
+  const [cookie] = useCookies(["Type_User", "ID_OF_USER", "First_Name"]); //Current User
 
   useEffect(() => {
     async function fetchMyAPI() {
-      let response = await API_JOB_LISTING_VIEW(setdbJob, Listing_ID).then(
-        setBenefits(dbJob[0].benefits)
-      );
-
+      let response = await API_JOB_LISTING_VIEW(setdbJob, Listing_ID);
       console.log(dbJob[0].benefits);
     }
 
     fetchMyAPI();
-    splitStr();
   }, []);
 
-  const splitStr = () => {
-    console.log(dbJob);
-    setBenefits(dbJob[0].organization_name);
-    setSkillset(String(dbJob[0].skillset).split(","));
+  const Apply_Job = async (Student_ID) => {
+    const response = await API_INSERT_STUDENT_APPLICATION({
+      student_id: ` ${Student_ID}`,
+      employer_id: `${dbJob[0].employer_id}`,
+      listing_id: `${Listing_ID}`,
+    });
+    if (response === 200) {
+      console.log("application success");
+    }
+    if (response === 400) {
+      console.log("application error");
+    }
   };
 
   return (
     <div>
       {/* heading */}
       <div className='student-heading'>
+        {/* Back Button */}
+        <div
+          className='back-btn'
+          onClick={(e) => {
+            window.location = "/search-jobs";
+            e.preventDefault();
+          }}>
+          <img src={Arrow} alt='back arrow' />
+        </div>
         {/* creates default image if none provided */}
         <img
           src={defaultImage(String(dbJob[0].organization_name))}
@@ -53,12 +69,15 @@ const JobView = ({
           {/* Student Name */}
           <h4>{dbJob[0].position_title}</h4>
 
-          <p>{dbJob[0].organization_name}</p>
-
-          {/* Student Location */}
           <div className='flex-box'>
-            <img src={LocationIcon} alt='location pin' />
-            <p>{dbJob[0].location}</p>
+            {/* Student Location */}
+            <div className='flex-box'>
+              <img src={LocationIcon} alt='location pin' />
+              <p>{dbJob[0].location}</p>
+            </div>
+          </div>
+          <div className='flex-box'>
+            <Button onClick={() => Apply_Job(cookie.ID_OF_USER)}>Apply</Button>
           </div>
         </div>
       </div>
@@ -80,7 +99,7 @@ const JobView = ({
         {/* Company About Me */}
         <div className='student-about'>
           <div className='flex-box'>
-            <h4>About Me</h4>
+            <h4>About {dbJob[0].organization_name}</h4>
           </div>
           {/* About Me */}
           <p>{dbJob[0].about_us}</p>
