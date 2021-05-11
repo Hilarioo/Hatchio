@@ -6,95 +6,250 @@
  */
 
 import { useCookies } from "react-cookie";
-import { Formik, Field, Form } from "formik";
+import { useState } from "react";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
 //API
 import API_EMPLOYER_INSERT_JOB from "../../../../models/POST/Employers/insert_job";
 //Custom Styling
 const PostJobs = () => {
   //Init user
   const [cookie] = useCookies(["Type_User", "ID_OF_USER", "First_Name"]); //Cur use
-  if (cookie.Type_User === "employer") {
-    return (
-      <div>
-        <h3>Page will refresh and populate under job listings if query was success</h3>
-        <h3>Otherwise if there was an error no refresh will happen, check logs with error res</h3>
-        <p>Employer Insert Jobs</p>
+  const [newJob, setNewJob] = useState({
+    Employer_ID: cookie.ID_OF_USER,
+    organization_name: "Organization Name",
+    position_title: "User Experience Designer | Backend Developer Etc",
+    location: "California | New York | Etc",
+    job_type: "0",
+    experience_years: "0",
+    experience_levels: "0",
+    salary: "0",
+    about_us: "About Us Description",
+    the_opportunity: "Paycheck",
+    task_responsibilites: "Work along w/ Developers",
+    skillset: "Good Stamina",
+    benefits: "401k Plan",
+    landing_image: null,
+  });
 
-        <Formik
-          initialValues={{
-            Employer_ID: cookie.ID_OF_USER,
-            organization_name: "Organization Name",
-            position_title: "User Experience Designer | Backend Developer Etc",
-            location: "California | New York | Etc",
-            job_type: "Full Time | Part Time | Remote | Contract",
-            experience_years: 2,
-            experience_levels: "Senior Level | Junior | First Time ",
-            salary: 0,
-            about_us: "About Us Description",
-            the_opportunity: "Paycheck",
-            task_responsibilites: "Work along w/ Developers",
-            skillset: "Good Stamina",
-            benefits: "401k Plan",
-            landing_image: null,
-          }}
-          onSubmit={async (values) => {
-            const response = await API_EMPLOYER_INSERT_JOB(values);
-            console.log(response);
-            if (response === 400) {
-              console.log("error");
-            }
-            if (response === 200) {
-              window.location.reload();
-              console.log("success");
-            }
-            return;
-          }}
-        >
-          <Form>
-            <label>Organization Name</label>
-            <Field id="organization_name" name="organization_name" placeholder="Organization Name" />
-            <br></br>
-            <label>Position Title</label>
-            <Field id="position_title" name="position_title" placeholder="Position Title" />
-            <br></br>
-            <label>Location</label>
-            <Field id="location" name="location" />
-            <br></br>
-            <label>Job Type</label>
-            <Field id="job_type" name="job_type" />
-            <br></br>
-            <label>Experience Years</label>
-            <Field id="experience_years" name="experience_years" />
-            <br></br>
-            <label>Experience Levels</label>
-            <Field id="experience_levels" name="experience_levels" />
-            <br></br>
-            <label>Salary </label>
-            <Field id="salary" name="salary" />
-            <br></br>
-            <label>About Us </label>
-            <input id="about_us" name="about_us" />
-            <br></br>
-            <label>The Opportunity </label>
-            <Field id="the_opportunity" name="the_opportunity" />
-            <br></br>
-            <label>Task Responsibilities </label>
-            <Field id="task_responsibilites" name="task_responsibilites" />
-            <br></br>
-            <label>Skillset </label>
-            <Field id="skillset" name="skillset" />
-            <br></br>
-            <label>Benefits </label>
-            <Field id="benefits" name="benefits" />
-            <button type="submit">Submit</button>
-          </Form>
-        </Formik>
-      </div>
-    );
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await API_EMPLOYER_INSERT_JOB(newJob);
+    if (response === 200) {
+      window.location.reload();
+      console.log("success");
+    } else {
+      console.log("error");
+    }
+  };
+
   return (
     <div>
-      <h3>Sign in as an Employer to Access this page</h3>
+      <h4 style={{ textAlign: "center", marginTop: "2rem", fontWeight: "600" }}>
+        Insert New Job
+      </h4>
+      <Form
+        onSubmit={handleSubmit}
+        style={{ maxWidth: "600px", margin: "0 auto", padding: "1rem" }}>
+        {/* Compnany Name */}
+        <Form.Group controlId=''>
+          <Form.Label>Company Name</Form.Label>
+          <Form.Control
+            type='text'
+            onChange={(e) =>
+              setNewJob({
+                ...newJob,
+                organization_name: e.target.value,
+              })
+            }
+          />
+        </Form.Group>
+        {/* position title */}
+        <Form.Group controlId=''>
+          <Form.Label>Position Title</Form.Label>
+          <Form.Control
+            type='text'
+            onChange={(e) =>
+              setNewJob({
+                ...newJob,
+                position_title: e.target.value,
+              })
+            }
+          />
+        </Form.Group>
+
+        {/* Location */}
+        <Form.Group controlId=''>
+          <Form.Label>Location</Form.Label>
+          <Form.Control
+            type='text'
+            onChange={(e) =>
+              setNewJob({
+                ...newJob,
+                location: e.target.value,
+              })
+            }
+          />
+        </Form.Group>
+
+        <Form.Row>
+          <Col>
+            <Form.Group as={Col} controlId='formGridState'>
+              <Form.Label>Job Type</Form.Label>
+              <Form.Control
+                as='select'
+                defaultValue='Choose...'
+                onChange={(e) =>
+                  setNewJob({
+                    ...newJob,
+                    job_type: e.target.value,
+                  })
+                }>
+                <option>Choose...</option>
+                <option value='Full Time'>Full Time</option>
+                <option value='Part Time'>Part Time</option>
+                <option value='Internship'>Internship</option>
+                <option value='Contract'>Contract</option>
+                <option value='Remote'>Remote</option>
+              </Form.Control>
+            </Form.Group>
+          </Col>
+          <Col>
+            <Form.Group controlId=''>
+              <Form.Label>Annual Salary</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='$ 00.00'
+                onChange={(e) =>
+                  setNewJob({
+                    ...newJob,
+                    salary: e.target.value,
+                  })
+                }
+              />
+            </Form.Group>
+          </Col>
+        </Form.Row>
+
+        <Form.Row>
+          <Col>
+            <Form.Group as={Col} controlId='formGridState'>
+              <Form.Label>Experience Level</Form.Label>
+              <Form.Control
+                as='select'
+                defaultValue='Choose...'
+                onChange={(e) =>
+                  setNewJob({
+                    ...newJob,
+                    experience_levels: e.target.value,
+                  })
+                }>
+                <option>Choose...</option>
+                <option value='Entry Leve'>Entry Level</option>
+                <option value='Mid Level'>Mid Level</option>
+                <option value='Senior Level'>Senior Level</option>
+                <option value='Directors'>Directors</option>
+                <option value='VP or Above'>VP or Above</option>
+              </Form.Control>
+            </Form.Group>
+          </Col>
+          <Col>
+            <Form.Group as={Col} controlId='formGridState'>
+              <Form.Label>Experience Years</Form.Label>
+              <Form.Control
+                type='text'
+                onChange={(e) =>
+                  setNewJob({
+                    ...newJob,
+                    experience_years: e.target.value,
+                  })
+                }
+              />
+            </Form.Group>
+          </Col>
+        </Form.Row>
+
+        <Form.Group controlId='' style={{ marginTop: "1rem" }}>
+          <Form.Label>About us</Form.Label>
+          <Form.Control
+            type='text'
+            as='textarea'
+            onChange={(e) =>
+              setNewJob({
+                ...newJob,
+                about_us: e.target.value,
+              })
+            }
+          />
+        </Form.Group>
+
+        <Form.Group controlId=''>
+          <Form.Label>The Opportunity</Form.Label>
+          <Form.Control
+            type='text'
+            as='textarea'
+            onChange={(e) =>
+              setNewJob({
+                ...newJob,
+                the_opportunity: e.target.value,
+              })
+            }
+          />
+        </Form.Group>
+
+        <Form.Group controlId=''>
+          <Form.Label>Task Responsibility</Form.Label>
+          <Form.Control
+            type='text'
+            onChange={(e) =>
+              setNewJob({
+                ...newJob,
+                task_responsibilites: e.target.value,
+              })
+            }
+          />
+          <Form.Text className='text-muted'>
+            Add a comma between responsibility
+          </Form.Text>
+        </Form.Group>
+
+        <Form.Group controlId=''>
+          <Form.Label>Skillset</Form.Label>
+          <Form.Control
+            type='text'
+            onChange={(e) =>
+              setNewJob({
+                ...newJob,
+                skillset: e.target.value,
+              })
+            }
+          />
+          <Form.Text className='text-muted'>
+            Add a comma between skill
+          </Form.Text>
+        </Form.Group>
+
+        <Form.Group controlId=''>
+          <Form.Label>Benefits</Form.Label>
+          <Form.Control
+            type='text'
+            onChange={(e) =>
+              setNewJob({
+                ...newJob,
+                benefits: e.target.value,
+              })
+            }
+          />
+          <Form.Text className='text-muted'>
+            Add a comma between benefits
+          </Form.Text>
+        </Form.Group>
+
+        <Button variant='dark' type='submit'>
+          Submit New Job
+        </Button>
+      </Form>
     </div>
   );
 };
