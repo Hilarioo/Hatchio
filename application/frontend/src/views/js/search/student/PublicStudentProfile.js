@@ -104,14 +104,24 @@ const PublicStudentProfile = ({
         </div>
       </div>
 
-      {/* Student About Me */}
+      {/*  About Us */}
       <div className='student-about'>
         <div className='flex-box'>
-          <h4>About Me</h4>
+          <h4>About Us</h4>
         </div>
         {/* About Me */}
         <p>{userProfile[1][0].about_me}</p>
       </div>
+
+      {/* The Opportunity */}
+      <div className='student-about'>
+        <div className='flex-box'>
+          <h4>About Us</h4>
+        </div>
+        {/* About Me */}
+        <p>{userProfile[1][0].about_me}</p>
+      </div>
+
       {/* Student Qualities */}
       <div className='student-qualities'>
         <div className='flex-box'>

@@ -165,6 +165,21 @@
   text-align: right;
 }
 
+/* ======= JOB VIEW STYLING ======= */
+.center {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.skillset-benefits {
+  justify-content: space-between;
+  margin-bottom: 5rem;
+}
+
+.skillset-benefits ul {
+  margin-left: 2rem;
+}
+
 /* Browser Desktop */
 @media (min-width: 800px) {
   .student-grid {
