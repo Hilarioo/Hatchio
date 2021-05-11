@@ -26,13 +26,13 @@ const List = (props) => {
     for (let i = 1; i <= formCount; i++) {
       try {
         // combines all qualities into string for DB storing
-        if (e.target[i].value.localeCompare("")) str += e.target[i].value;
+        if (e.target[i].value.localeCompare("")) str += e.target[i].value + ",";
       } catch (e) {
         console.log(e);
       }
     }
-    //removes the first 'undefined' (tmp fix)
-    let allQualities = str.replace("undefined", "");
+    //removes the first 'undefined' and last ","
+    let allQualities = str.replace("undefined", "").slice(0, -1);
     console.log(allQualities);
   };
 
