@@ -40,13 +40,13 @@ const Notifications = () => {
   }
 
   const seenNotification = async (reflection_id, table) => {
-    console.log(`Reflection ID: ${reflection_id}`);
+    // console.log(`Reflection ID: ${reflection_id}`);
     const response = await API_UPDATE_STUDENT_RATING_NOTIFICATION(reflection_id, table);
     if (response.status == 400) {
-      console.log("Failed to Update");
+      alert("Failed to Update");
     }
     if (response.status == 200) {
-      console.log("Sucess ");
+      // console.log("Sucess ");
       window.location.reload();
     }
   };
@@ -127,7 +127,6 @@ const Notifications = () => {
   if (cookie.Type_User === "employer") {
     return (
       <div>
-        <h3>Alerts</h3>
         <div>
           <>
             <CompanyProfile {...userProfile} />

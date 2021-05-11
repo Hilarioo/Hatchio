@@ -21,9 +21,9 @@ export default async function API_USER_GET_PROFILE(typeUser, idr, setState) {
     }
     // console.log("output",output);
     output = await Promise.all(output);
-    console.log("output", output);
+    // console.log("output", output);
     data.push(output);
-    console.log("whole data: ", data);
+    // console.log("whole data: ", data);
   }
   setState(data);
   return data;

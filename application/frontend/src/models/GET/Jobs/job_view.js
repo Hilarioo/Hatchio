@@ -4,7 +4,7 @@ const API_JOB_LISTING_VIEW = async (setArr, identifier) => {
     `${PORT_HOST.PORT_HOST}/full-job-view?identifier_listing_row=${identifier}`
   );
   const data = await response.json();
-  console.log(data);
+  // console.log(data);
   setArr(data);
   return;
 };

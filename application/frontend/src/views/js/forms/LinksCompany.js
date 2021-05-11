@@ -24,7 +24,7 @@ const LinksCompany = (props) => {
   // Submits the Student Links to the DB
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(links);
+    // console.log(links);
   };
 
   return (

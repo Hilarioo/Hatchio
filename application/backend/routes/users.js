@@ -37,7 +37,8 @@ module.exports = (app) => {
   // TODO: This has SQL injection vulnerabilities, but also, it doesn't bring any security in theory either,from what I can tell.
   app.get("/sign_in", (req, res) => {
     const { Email, Password, Type } = req.query;
-    const Query_Verify = `select x.${Type}_id,x.first_name from ${Type}s x where email="${Email}" and password="${Password}";`;
+    const Query_Verify = `select x.${Type}_id,x.first_name from ${Type}s x where email="${Email}"
+    and password="${Password}";`;
     SQL_CONNECTION.query(Query_Verify, (err, results) => {
       console.log(results);
       //Send Error if Query is Wrong

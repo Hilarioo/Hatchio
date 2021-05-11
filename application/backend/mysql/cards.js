@@ -27,7 +27,8 @@ FROM
 
 const API_JOB_CARD_FILTER = function (db, query, callback) {
   var queryString =
-    "select listing_id,employer_id,position_title,organization_name,salary,location,about_us,job_type from company_listings";
+    "select listing_id,employer_id,position_title,organization_name,salary,location,about_us,job_type \
+      from company_listings";
   if (query.job_type === "Select" && query.position_title === "Select") {
     queryString += ";";
     db.query(queryString, [], callback);

@@ -30,20 +30,20 @@ const List = (props) => {
         // combines all qualities into string for DB storing
         if (e.target[i].value.localeCompare("")) str += e.target[i].value + ",";
       } catch (e) {
-        console.log(e);
+        alert(e);
       }
     }
     //removes the first 'undefined' and last ","
     let allQualities = str.replace("undefined", "").slice(0, -1);
     const response = await API_SUDENT_UPDATE_LIST(props.StudentID, allQualities);
-    console.log(response);
+    // console.log(response);
     if (response.status == 200) {
       //Success
       window.location.reload();
     } else {
-      console.log("response failed");
+      alert("update list failed");
     }
-    console.log(allQualities);
+    // console.log(allQualities);
   };
 
   return (

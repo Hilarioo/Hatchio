@@ -24,9 +24,9 @@ const Location = (props) => {
       window.location.reload();
     }
     if (response.status === 400) {
-      console.log("request failed");
+      alert("update location request failed");
     }
-    console.log("Submitted Location: " + location);
+    // console.log("Submitted Location: " + location);
   };
 
   return (

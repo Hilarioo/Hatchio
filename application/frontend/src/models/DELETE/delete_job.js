@@ -1,3 +1,10 @@
+/**
+ * File: delete_job.js
+ * Purpose: Delete selected job
+ * Functionality IE: Send DELETE request to Backend Server
+ * Authors: Roland
+ */
+
 import PORT_HOST from "../../config";
 
 export default async function API_REMOVE_JOB(listing_id) {

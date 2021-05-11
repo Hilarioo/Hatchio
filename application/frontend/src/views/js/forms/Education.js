@@ -29,14 +29,14 @@ const Education = (props) => {
   const handleSubmit = async (e) => {
     //API_STUDENT_UPDATE_EDUCATION(education); <--------- Put updated education status
     e.preventDefault();
-    console.log(education);
+    // console.log(education);
     const response = await API_STUDENT_INSERT_EDUCATION(education);
     if (response === 400) {
-      console.log("error");
+      alert("insert student education failed");
     }
     if (response === 200) {
       window.location.reload();
-      console.log("success");
+      // console.log("success");
     }
   };
 

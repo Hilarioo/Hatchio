@@ -12,6 +12,6 @@ export default async function API_STUDENT_UPDATE_EDUCATION(table) {
   };
 
   const response = await fetch(`${PORT_HOST.PORT_HOST}/insert_student_education`, headers);
-  console.log(response.status);
+  // console.log(response.status);
   return response;
 }

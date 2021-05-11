@@ -45,7 +45,7 @@ const JobFilters = ({
 
                 // resets check value to false
                 e.target.checked = false;
-                console.log(filter);
+                // console.log(filter);
               }}>
               {" "}
               x{" "}
@@ -66,7 +66,7 @@ const JobFilters = ({
                 );
                 // resets check value to false
                 e.target.checked = false;
-                console.log(filter);
+                // console.log(filter);
               }}>
               {" "}
               x{" "}

@@ -32,14 +32,14 @@ const Project = (props) => {
       console.log("edited"); //TODO:: Add Update API
       //API_UPDATE_STUDENT_PROJECTS(project) <--------------project should be updated state
     } else {
-      console.log(project);
+      // console.log(project);
       const response = await API_STUDENT_INSERT_PROJECTS(project);
       //Check Response Status Code
       if (response === 200) {
         //Reload if success -- alternative might be just to refresh the userProfile props but idk how to do this yet
         window.location.reload();
       } else {
-        console.log(`Response Error: ${Response}`);
+        alert(`Response Error: ${Response}`);
       }
     }
   };

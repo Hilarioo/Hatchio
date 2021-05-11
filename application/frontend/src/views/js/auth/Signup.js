@@ -18,8 +18,8 @@ import { ReactComponent as Professor } from "../../content/svg/professor.svg";
 import { ReactComponent as Company } from "../../content/svg/company.svg";
 
 import {
-  api_send_email,
-  api_register_user,
+  API_SEND_EMAIL,
+  API_REGISTER_USER,
 } from "../../../models/register_user";
 
 function Signup() {
@@ -41,13 +41,13 @@ function Signup() {
       password: password,
       email: email,
     };
-    console.log(FORM_REQUEST);
+    // console.log(FORM_REQUEST);
     const form = event.currentTarget;
     if ((form.checkValidity() === false) | true) {
       event.preventDefault();
       event.stopPropagation();
-      api_send_email(FORM_REQUEST);
-      api_register_user(FORM_REQUEST);
+      API_SEND_EMAIL(FORM_REQUEST);
+      API_REGISTER_USER(FORM_REQUEST);
       window.location.href = "/redirect";
     }
 

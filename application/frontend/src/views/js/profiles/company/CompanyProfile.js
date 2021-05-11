@@ -1,13 +1,17 @@
 import { useState, useEffect } from "react";
-import Collapsible from "react-collapsible";
 import { useCookies } from "react-cookie";
+
+import "../../../css/CompanyAlert.css"
+import Button from "react-bootstrap/Button";
+import Collapsible from "react-collapsible";
+
 import API_REMOVE_JOB from "../../../../models/DELETE/delete_job";
 import API_UPDATE_STUDENT_RATING_NOTIFICATION from "../../../../models/PUT/Students/update_ratings_notification";
 import API_INSERT_STUDENT_ALERT from "../../../../models/POST/Employers/insert_hire";
 const CompanyProfile = (props) => {
   const [cookie] = useCookies(["Type_User", "ID_OF_USER", "First_Name"]); //Cur use
-  const [activeComponent, setactiveComponent] = useState([]);
-  const [userProfilee, setuserProfilee] = useState([
+  const [activeComponent, setActiveComponent] = useState([]);
+  const [userProfilee, setUserProfilee] = useState([
     [{ null: "null" }, { null: "null" }],
     [{ null: "null" }, { null: "null" }],
     [{ null: "null" }, { null: "null" }],
@@ -18,30 +22,30 @@ const CompanyProfile = (props) => {
 
   const removeJob = async (listing_id) => {
     const response = await API_REMOVE_JOB(listing_id);
-    if (response.status === 400) console.log("Failed to update");
-    if (response.status === 200) console.log("Success");
+    if (response.status === 400) alert("Failed to remove");
+    if (response.status === 200)
     window.location.reload();
   };
 
   const assignment = (listing_id) => {
     // console.log("list:"+listing_id);
-    setactiveComponent([...activeComponent, listing_id]);
+    setActiveComponent([...activeComponent, listing_id]);
     // console.log("active");
     // console.log("assign",activeComponent);
   };
 
   const handleRemoveItem = (listing_id) => {
-    setactiveComponent(activeComponent.filter((item) => item !== listing_id));
+    setActiveComponent(activeComponent.filter((item) => item !== listing_id));
     // console.log("remove",activeComponent);
   };
 
   const seenNotification = async (compalert_id, table) => {
     const response = await API_UPDATE_STUDENT_RATING_NOTIFICATION(compalert_id, table);
     if (response.status == 400) {
-      console.log("Failed to Update");
+      alert("Failed to Update");
     }
     if (response.status == 200) {
-      console.log("Sucess ");
+      // console.log("Sucess ");
       window.location.reload();
     }
   };
@@ -80,39 +84,39 @@ const CompanyProfile = (props) => {
 
   //Insert Student Alert
   const hireB = async (studentID, ListingID, company_alert) => {
-    console.log("Student ID", studentID); //Student ID
-    console.log("Listing ID", ListingID); //Listing ID
-    console.log("Cookie of User", cookie.ID_OF_USER); //ID of Employer
+    // console.log("Student ID", studentID); //Student ID
+    // console.log("Listing ID", ListingID); //Listing ID
+    // console.log("Cookie of User", cookie.ID_OF_USER); //ID of Employer
     const response = await API_INSERT_STUDENT_ALERT({
       employer_id: cookie.ID_OF_USER,
       student_id: studentID,
       listing_id: ListingID,
     });
     if (response == 200) {
-      console.log("Success Hire");
+      // console.log("Success Hire");
       seenNotification(company_alert);
 
       //hide notification
     }
     if (response == 400) {
-      console.log("success fail");
+      alert("insert student alert fail");
     }
   };
   var Employer_Find_Candidates =
     userProfilee[2].length == 0
       ? "Empty"
       : userProfilee[2].map((data) => (
-          <div>
+          <div className="candidate-found">
             {activeComponent.map((active) => {
               if (active === data.listing_id && data.hidden === 0) {
                 return (
                   <>
                     <p>
-                      <strong>Alert</strong>: {data.compalert_id}
+                      {/* <strong>Alert</strong>: {data.compalert_id} */}
                     </p>
                     <p>Notified {converter(data.time)}</p>
-                    <p>student_id: {data.student_id}</p>
-                    <p>listing_id: {data.listing_id}</p>
+                    {/* <p>student_id: {data.student_id}</p>
+                    <p>listing_id: {data.listing_id}</p> */}
                     {userProfilee[3].map((value) => {
                       if (data.student_id === value.id) {
                         return (
@@ -133,10 +137,10 @@ const CompanyProfile = (props) => {
                               <strong>School Year: </strong>
                               {value.school_grade_level}
                             </p>
-                            <button onClick={() => hireB(data.student_id, data.listing_id, data.compalert_id)}>
+                            <Button variant='dark' onClick={() => hireB(data.student_id, data.listing_id, data.compalert_id)}>
                               HIRE
-                            </button>
-                            <button onClick={() => seenNotification(data.compalert_id, "company_alerts")}>Hide</button>
+                            </Button>
+                            <Button variant='dark' onClick={() => seenNotification(data.compalert_id, "company_alerts")}>Hide</Button>
                             <br></br>
                             <br></br>
                           </>
@@ -151,7 +155,7 @@ const CompanyProfile = (props) => {
         ));
 
   useEffect(() => {
-    setuserProfilee(props);
+    setUserProfilee(props);
   }, [props]);
 
   if (window.location.pathname === "/notifications") {
@@ -172,14 +176,15 @@ const CompanyProfile = (props) => {
             <p>The Opportunity: {data.the_opportunity}</p>
           </div>
         </Collapsible>
-        <button onClick={() => removeJob(data.listing_id)}>DELETE</button>
+        <Button variant='dark' onClick={() => removeJob(data.listing_id)}>DELETE</Button>
       </div>
     ));
 
     return (
       <div>
+        <h3 style={{ textAlign: "center", marginTop: "2rem", fontWeight: "600" }}><strong>Alerts</strong></h3>
         {Employer_Jobs_Openings}
-        <h3>Candidates Found</h3>
+        <h3><strong>Candidates Found</strong></h3>
         {Employer_Find_Candidates}
       </div>
     );

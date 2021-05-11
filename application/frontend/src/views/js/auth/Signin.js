@@ -28,9 +28,9 @@ function Signin() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     //Boolean if User Exists | Incorrect authentication field
-    console.log(event.target[3].value);
-    console.log(event.target[4].value);
-    console.log(userType);
+    // console.log(event.target[3].value);
+    // console.log(event.target[4].value);
+    // console.log(userType);
     let bool_user_auth = await API_USER_LOG_IN(
       event.target[3].value,
       event.target[4].value,
@@ -41,11 +41,12 @@ function Signin() {
       //auth true
       history.push("/profile");
       window.location.reload();
-      console.log("THE BOOL OF USER: " + bool_user_auth);
+      // console.log("THE BOOL OF USER: " + bool_user_auth);
     }
     //Auth False
     if (bool_user_auth === false) {
-      console.log("false");
+      // console.log("false");
+      alert('auth failed.');
       //Control UI response
     }
   };

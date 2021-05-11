@@ -35,7 +35,7 @@ const ProfessorProfile = (props) => {
   });
 
   useEffect(() => {
-    console.log("proppy", props[0]);
+    // console.log("proppy", props[0]);
     setUserProfile(props[0]); //General Information
   }, [props]);
 

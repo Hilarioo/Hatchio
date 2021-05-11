@@ -14,7 +14,7 @@ const Description = (props) => {
   // Submits the 'About' or 'Why us' to the DB
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(props.userID);
+    // console.log(props.userID);
     const response = await API_UPDATE_STUDENT_ABOUT_ME(
       props.userID,
       e.target[1].value //about me description
@@ -24,7 +24,7 @@ const Description = (props) => {
       window.location.reload();
     }
     if (response.status === 400) {
-      console.log("request failed");
+      alert("request failed");
     }
   };
 

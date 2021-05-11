@@ -50,10 +50,10 @@ const JobCard = ({
       listing_id: `${Listing_ID}`,
     });
     if (response === 200) {
-      console.log("application success");
+      // console.log("application success");
     }
     if (response === 400) {
-      console.log("application error");
+      alert("application error");
     }
   };
 

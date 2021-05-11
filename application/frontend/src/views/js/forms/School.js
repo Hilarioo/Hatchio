@@ -44,7 +44,7 @@ const School = (props) => {
 
   const updateCourse = (e) => {
     let newList = [...courseList];
-    console.log("id: " + e.target.id);
+    // console.log("id: " + e.target.id);
     switch (e.target.name) {
       case "courseName":
         newList[e.target.id] = {
@@ -87,8 +87,8 @@ const School = (props) => {
   // Submits Professor's school info to the DB
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(school);
-    console.log(courseList);
+    // console.log(school);
+    // console.log(courseList);
   };
 
   return (

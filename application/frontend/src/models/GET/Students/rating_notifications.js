@@ -8,8 +8,8 @@ const API_STUDENT_RATING_NOTIFICATIONS = async (setArr, setHiredNotification, st
     //Dont set the data
     return;
   } else {
-    console.log("Ratings", data);
-    console.log("Hired Response", dataHired_response);
+    // console.log("Ratings", data);
+    // console.log("Hired Response", dataHired_response);
     setArr(data);
     setHiredNotification(dataHired_response);
   }

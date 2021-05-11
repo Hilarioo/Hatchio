@@ -51,7 +51,7 @@ const StudentFilters = ({
 
                 // resets check value to false
                 e.target.checked = false;
-                console.log(filter);
+                // console.log(filter);
               }}
             >
               {" "}
@@ -73,7 +73,7 @@ const StudentFilters = ({
                 );
                 // resets check value to false
                 e.target.checked = false;
-                console.log(filter);
+                // console.log(filter);
               }}
             >
               {" "}

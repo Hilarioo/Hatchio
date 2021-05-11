@@ -38,9 +38,9 @@ const PostJobs = () => {
     const response = await API_EMPLOYER_INSERT_JOB(newJob);
     if (response === 200) {
       window.location.reload();
-      console.log("success");
+      // console.log("success");
     } else {
-      console.log("error");
+      alert("insert job failed");
     }
   };
 

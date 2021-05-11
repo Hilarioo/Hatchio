@@ -5,7 +5,6 @@
  */
 
 import { useState , useEffect} from "react";
-import { useHistory } from "react-router-dom";
 import MemberCard from "./MemberCard";
 import "../../css/About.css";
 import { Link } from "react-router-dom";
@@ -52,24 +51,11 @@ const About = () => {
     },
   ]);
 
-  //Redirect
-  // let history = useHistory();
-  // const redirect = (key) => {
-  //   console.log("key",key);
-  //   history.push(`about/member/${members[key].fullname}`);
-  // };
   return (
     <div>
       <h1 className='mini-title'>About Us</h1>
       <div className='about-box'>
         <div className='center-flex'>
-          {/* {members.map((member) => (
-            <MemberCard
-              member={member}
-              key={member.id}
-              onClick={()=> redirect(member.id)}
-            />
-          ))} */}
           {members.map((member) => (
             <Link
               key={member.id}

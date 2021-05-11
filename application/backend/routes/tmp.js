@@ -33,7 +33,12 @@ module.exports = (app) => {
   //POST: Job Listing From Employer
   app.post("/insert_job", (req, res) => {
     try {
-      let sql_insert_job_listings = `insert into company_listings(employer_id,organization_name,position_title,location,job_type,experience_years,experience_level,salary,about_us,the_opportunity,skillset,benefits,task_responsibilities) values (${req.body.Employer_ID},"${req.body.organization_name}","${req.body.position_title}","${req.body.location}","${req.body.job_type}",${req.body.experience_years},"${req.body.experience_levels}",${req.body.salary},"${req.body.about_us}","${req.body.the_opportunity}","${req.body.skillset}","${req.body.benefits}","${req.body.task_responsibilities}");`;
+      let sql_insert_job_listings = `insert into company_listings(employer_id,organization_name,position_title,
+        location,job_type,experience_years,experience_level,salary,about_us,the_opportunity,skillset,benefits,
+        task_responsibilities) values (${req.body.Employer_ID},"${req.body.organization_name}",
+        "${req.body.position_title}","${req.body.location}","${req.body.job_type}",${req.body.experience_years},
+        "${req.body.experience_levels}",${req.body.salary},"${req.body.about_us}","${req.body.the_opportunity}",
+        "${req.body.skillset}","${req.body.benefits}","${req.body.task_responsibilities}");`;
       SQL_CONNECTION.query(sql_insert_job_listings, (err, results) => {
         if (err) {
           //Send 400: Bad Request
@@ -52,7 +57,9 @@ module.exports = (app) => {
   //POST Student Education
   app.post("/insert_student_education", (req, res) => {
     try {
-      let sql_insert_student_education = `insert into student_education(student_id, school, degree, school_gpa, study_major, start_year, end_year) values(${req.body.Student_ID},"${req.body.school}","${req.body.degree}",${req.body.school_gpa},"${req.body.study_major}",${req.body.start_year},${req.body.end_year});`;
+      let sql_insert_student_education = `insert into student_education(student_id, school, degree, school_gpa,
+        study_major, start_year, end_year) values(${req.body.Student_ID},"${req.body.school}","${req.body.degree}",
+        ${req.body.school_gpa},"${req.body.study_major}",${req.body.start_year},${req.body.end_year});`;
       console.log(sql_insert_student_education);
       SQL_CONNECTION.query(sql_insert_student_education, (err, results) => {
         if (err) {
@@ -73,9 +80,12 @@ module.exports = (app) => {
     try {
       let sql_insert_experience = `
       insert into student_experience
-       (student_id,experience_title_position,company_name, date_start,date_end,arr_work_done_keywords,description_experience,location,employment_type)
+       (student_id,experience_title_position,company_name, date_start,date_end,arr_work_done_keywords,
+        description_experience,location,employment_type)
        values
-        (${req.body.Student_ID},"${req.body.experience_title_position}","${req.body.company_name}",'${req.body.date_start}','${req.body.date_end}',"${req.body.arr_work_done_keywords}","${req.body.description_experience}","${req.body.location}","${req.body.employement_type}");`;
+        (${req.body.Student_ID},"${req.body.experience_title_position}","${req.body.company_name}",
+        '${req.body.date_start}','${req.body.date_end}',"${req.body.arr_work_done_keywords}",
+        "${req.body.description_experience}","${req.body.location}","${req.body.employement_type}");`;
       console.log(sql_insert_experience);
       SQL_CONNECTION.query(sql_insert_experience, (err, results) => {
         if (err) {
@@ -90,7 +100,8 @@ module.exports = (app) => {
   });
   //PUT Student About Me
   app.put("/about-me", (req, res) => {
-    let sql = `update student_profile_page sp set about_me = "${req.query.about_me}" where sp.student_id = ${req.query.id};`;
+    let sql = `update student_profile_page sp set about_me = "${req.query.about_me}" where
+    sp.student_id = ${req.query.id};`;
     try {
       SQL_CONNECTION.query(sql, (err, results) => {
         if (err) {
@@ -109,7 +120,9 @@ module.exports = (app) => {
   });
   //GET: Student Ratings for Notifications
   app.get("/student-ratings", (req, res) => {
-    let sql_v = `select professors.professor_id,rating_total,professors.first_name,publish_date,student_seen,student_hide, reflection_id  from student_ratings sr inner join professors on sr.professor_id = professors.professor_id where sr.student_id = ${req.query.s_id};`;
+    let sql_v = `select professors.professor_id,rating_total,professors.first_name,publish_date,student_seen,
+    student_hide, reflection_id  from student_ratings sr inner join professors on
+    sr.professor_id = professors.professor_id where sr.student_id = ${req.query.s_id};`;
     try {
       SQL_CONNECTION.query(sql_v, (err, results) => {
         if (err) {
@@ -209,7 +222,8 @@ module.exports = (app) => {
   //POST: Apply Job
   app.post("/insert_student_application", (req, res) => {
     const { student_id, employer_id, listing_id } = req.body;
-    let check = `select * from company_alerts where student_id = ${student_id} and employer_id = ${employer_id} and listing_id = ${listing_id};`;
+    let check = `select * from company_alerts where student_id = ${student_id} and employer_id = ${employer_id}
+    and listing_id = ${listing_id};`;
     SQL_CONNECTION.query(check, (err, result) => {
       if (err) {
         console.log(`${err}`);
@@ -219,7 +233,8 @@ module.exports = (app) => {
         console.log("ERROR: data entry already exists in the database");
         return res.sendStatus(400);
       } else {
-        let sql = `insert into company_alerts (student_id,employer_id,listing_id,hidden) values (${student_id},${employer_id},${listing_id},0);`;
+        let sql = `insert into company_alerts (student_id,employer_id,listing_id,hidden) values
+        (${student_id},${employer_id},${listing_id},0);`;
         console.log(sql);
         SQL_CONNECTION.query(sql, (err, results) => {
           if (err) {
@@ -237,7 +252,8 @@ module.exports = (app) => {
   //POST: Employer Hire
   app.post("/insert_employer_hire", (req, res) => {
     const { student_id, employer_id, listing_id } = req.body;
-    let check = `select * from student_alerts where student_id = ${student_id} and employer_id = ${employer_id} and listing_id = ${listing_id};`;
+    let check = `select * from student_alerts where student_id = ${student_id} and employer_id = ${employer_id}
+    and listing_id = ${listing_id};`;
     SQL_CONNECTION.query(check, (err, result) => {
       if (err) {
         console.log(`${err}`);
@@ -247,7 +263,8 @@ module.exports = (app) => {
         console.log("ERROR: data entry already exists in the database");
         return res.sendStatus(400);
       } else {
-        let sql = `insert into student_alerts (employer_id,student_id,listing_id,hidden) values (${employer_id},${student_id},${listing_id},0);`;
+        let sql = `insert into student_alerts (employer_id,student_id,listing_id,hidden) values
+         (${employer_id},${student_id},${listing_id},0);`;
         SQL_CONNECTION.query(sql, (err, results) => {
           if (err) {
             console.log(`${err}`);
@@ -262,7 +279,13 @@ module.exports = (app) => {
   });
   //GET: Student Alerts
   app.get("/get-student-alerts", (req, res) => {
-    let sql_v_two = `select stualert_id, employers.employer_id, student_id, company_listings.listing_id, time, hidden, employers.employer_id, first_name, last_name, company_listings.organization_name, email, state, code, company_listings.listing_id, employers.employer_id, employers.organization_name, position_title, location, job_type, experience_years, experience_level, salary, about_us, the_opportunity, task_responsibilities, skillset, benefits, landing_image from student_alerts left join employers on student_alerts.employer_id = employers.employer_id left join company_listings on student_alerts.listing_id = company_listings.listing_id where student_id= ${req.query.s_id};`;
+    let sql_v_two = `select stualert_id, employers.employer_id, student_id, company_listings.listing_id, time, hidden,
+     employers.employer_id, first_name, last_name, company_listings.organization_name, email, state, code,
+      company_listings.listing_id, employers.employer_id, employers.organization_name, position_title,
+       location, job_type, experience_years, experience_level, salary, about_us, the_opportunity, task_responsibilities,
+        skillset, benefits, landing_image from student_alerts left join employers on
+         student_alerts.employer_id = employers.employer_id left join company_listings on
+          student_alerts.listing_id = company_listings.listing_id where student_id= ${req.query.s_id};`;
     try {
       SQL_CONNECTION.query(sql_v_two, (err, results) => {
         if (err) {
@@ -291,7 +314,9 @@ module.exports = (app) => {
   });
   //PUT: Edit Student Projects
   app.put("/insert_student_projects", (req, res) => {
-    let sql = `update student_projects set project_name="${req.body.project_name}",summary="${req.body.summary}",arr_tools_used="${req.body.arr_tools_used}",professor="${req.body.professor}",arr_collaborators_arr="${req.body.arr_collaborators_arr}" where student_id=${req.body.Student_ID};`;
+    let sql = `update student_projects set project_name="${req.body.project_name}",summary="${req.body.summary}",
+    arr_tools_used="${req.body.arr_tools_used}",professor="${req.body.professor}",
+    arr_collaborators_arr="${req.body.arr_collaborators_arr}" where student_id=${req.body.Student_ID};`;
     try {
       SQL_CONNECTION.query(sql, (err, results) => {
         if (err) {
@@ -308,7 +333,11 @@ module.exports = (app) => {
   });
   //PUT: Edit Student Experience
   app.put("/insert-experience", (req, res) => {
-    let sql = `update student_experience set experience_title_position="${req.body.experience_title_position}", company_name="${req.body.company_name}", date_start="${req.body.date_start}", date_end="${req.body.date_end}", arr_work_done_keywords="${req.body.arr_work_done_keywords}", description_experience="${req.body.description_experience}", location="${req.body.location}", employment_type="${req.body.employement_type}" where student_id=${req.body.Student_ID};`;
+    let sql = `update student_experience set experience_title_position="${req.body.experience_title_position}",
+     company_name="${req.body.company_name}", date_start="${req.body.date_start}", date_end="${req.body.date_end}",
+      arr_work_done_keywords="${req.body.arr_work_done_keywords}",
+       description_experience="${req.body.description_experience}", location="${req.body.location}",
+        employment_type="${req.body.employement_type}" where student_id=${req.body.Student_ID};`;
     try {
       SQL_CONNECTION.query(sql, (err, results) => {
         if (err) {
@@ -325,7 +354,9 @@ module.exports = (app) => {
   });
   //PUT: Edit Student Education
   app.put("/insert_student_education", (req, res) => {
-    let sql = `update student_education set school="${req.body.school}",degree="${req.body.degree}",school_gpa=${req.body.school_gpa},study_major="${req.body.study_major}",start_year="${req.body.start_year}",end_year="${req.body.end_year}" where student_id=${req.body.Student_ID};`;
+    let sql = `update student_education set school="${req.body.school}",degree="${req.body.degree}",
+    school_gpa=${req.body.school_gpa},study_major="${req.body.study_major}",start_year="${req.body.start_year}",
+    end_year="${req.body.end_year}" where student_id=${req.body.Student_ID};`;
     try {
       SQL_CONNECTION.query(sql, (err, results) => {
         if (err) {
@@ -342,7 +373,8 @@ module.exports = (app) => {
   });
   //PUT Student Profile Page Strength Quality Update
   app.put("/strength_qualities", (req, res) => {
-    let sql = `update student_profile_page sp set strengths_qualities = "${req.query.qualities}" where sp.student_id = ${req.query.id};`;
+    let sql = `update student_profile_page sp set strengths_qualities = "${req.query.qualities}" where
+     sp.student_id = ${req.query.id};`;
     try {
       SQL_CONNECTION.query(sql, (err, results) => {
         if (err) {
@@ -362,7 +394,8 @@ module.exports = (app) => {
   });
   //PUT Student Profile Page Location Update
   app.put("/location", (req, res) => {
-    let sql = `update student_profile_page sp set location = "${req.query.location}" where sp.student_id = ${req.query.id};`;
+    let sql = `update student_profile_page sp set location = "${req.query.location}" where
+    sp.student_id = ${req.query.id};`;
     try {
       SQL_CONNECTION.query(sql, (err, results) => {
         if (err) {

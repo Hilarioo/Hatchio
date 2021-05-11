@@ -37,7 +37,7 @@ const Rating = (props) => {
       window.location.reload();
     }
     if (sent_bool === false) {
-      console.log("Ratings Unsuccesful");
+      alert("Ratings Unsuccesful");
     }
   };
 

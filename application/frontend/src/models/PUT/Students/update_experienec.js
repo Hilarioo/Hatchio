@@ -12,6 +12,6 @@ export default async function API_STUDENT_UPDATE_EXPERIENCE(table) {
   };
 
   const response = await fetch(`${PORT_HOST.PORT_HOST}/insert-experience`, headers);
-  console.log(response.status);
+  // console.log(response.status);
   return response;
 }

@@ -12,6 +12,6 @@ export default async function API_UPDATE_STUDENT_PROJECTS(table) {
   };
 
   const response = await fetch(`${PORT_HOST.PORT_HOST}/insert_student_projects`, headers);
-  console.log(response.status);
+  // console.log(response.status);
   return response;
 }

@@ -1,0 +1,6 @@
+.candidate-found{
+  max-width: 250px;
+  min-width: 220px;
+  border-right: solid;
+  border-right-color: #eee !important;
+}
