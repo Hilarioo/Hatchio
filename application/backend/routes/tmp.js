@@ -342,7 +342,7 @@ module.exports = (app) => {
   });
   //PUT Student Profile Page Strength Quality Update
   app.put("/strength_qualities", (req, res) => {
-    let sql = `update student_profile_page sp set strengths_qualities = "${req.query.strengths_qualities}" where sp.student_id = ${req.query.id};`;
+    let sql = `update student_profile_page sp set strengths_qualities = "${req.query.qualities}" where sp.student_id = ${req.query.id};`;
     try {
       SQL_CONNECTION.query(sql, (err, results) => {
         if (err) {
@@ -351,6 +351,7 @@ module.exports = (app) => {
           return res.sendStatus(400);
         } else {
           console.log("ok");
+          console.log(sql);
           //True
           return res.sendStatus(200);
         }

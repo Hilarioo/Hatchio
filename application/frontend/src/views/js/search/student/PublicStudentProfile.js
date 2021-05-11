@@ -96,14 +96,6 @@ const PublicStudentProfile = ({
         </div>
       </div>
 
-      {/* TODO:: Links */}
-      <div className="flex-box student-links" style={{ justifyContent: "space-between" }}>
-        <img src={GlobeIcon} alt="website url" />
-        <img src={GithubIcon} alt="github" />
-        <img src={LinkedinIcon} alt="linkedin" />
-        <img src={ResumeIcon} alt="resume-pdf" />
-      </div>
-
       {/* Student About Me */}
       <div className="student-about">
         <div className="flex-box">

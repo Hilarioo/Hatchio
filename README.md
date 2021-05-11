@@ -20,7 +20,6 @@ ii. Change Log
 
 #### TODO (Bug Fixes)
 
-- the about in the nav is blank page?
 - notifications formatting
 - move hire gif to the notifications on employers
 
