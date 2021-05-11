@@ -8,6 +8,8 @@ import "../../css/Forms.css";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+//API
+import API_SUDENT_UPDATE_LIST from "../../../models/PUT/Students/update_qualities";
 
 // POPUP List will be used to add benefits (for comapany), qualities (for students)
 const List = (props) => {
@@ -18,7 +20,7 @@ const List = (props) => {
   }
 
   // Submits the 'qualities' or 'benefits' to the DB
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formCount = 10;
     let str;
@@ -33,37 +35,43 @@ const List = (props) => {
     }
     //removes the first 'undefined' and last ","
     let allQualities = str.replace("undefined", "").slice(0, -1);
+    const response = await API_SUDENT_UPDATE_LIST(props.StudentID, allQualities);
+    console.log(response);
+    if (response.status == 200) {
+      //Success
+      window.location.reload();
+    } else {
+      console.log("response failed");
+    }
     console.log(allQualities);
   };
 
   return (
-    <Modal {...props} aria-labelledby='contained-modal-title-vcenter' centered>
+    <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered>
       <Form onSubmit={handleSubmit}>
         <Modal.Header closeButton>
-          <Modal.Title id='contained-modal-title-vcenter'>
-            Add Top Qualities
-          </Modal.Title>
+          <Modal.Title id="contained-modal-title-vcenter">Add Top Qualities</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <ol style={{ paddingLeft: "1rem" }}>
             {props.qualities.map((quality) => (
               <li>
                 <Form.Group>
-                  <Form.Control type='text' defaultValue={quality} />
+                  <Form.Control type="text" defaultValue={quality} />
                 </Form.Group>
               </li>
             ))}
             {empty.map((quality) => (
               <li>
                 <Form.Group>
-                  <Form.Control type='text' defaultValue={quality} />
+                  <Form.Control type="text" defaultValue={quality} />
                 </Form.Group>
               </li>
             ))}
           </ol>
         </Modal.Body>
         <Modal.Footer>
-          <Button type='submit' variant='dark'>
+          <Button type="submit" variant="dark">
             {empty.length === 10 ? "Save" : "Update"}
           </Button>
         </Modal.Footer>
