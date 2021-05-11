@@ -43,20 +43,24 @@ const Experience = (props) => {
   };
 
   return (
-    <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered>
+    <Modal {...props} aria-labelledby='contained-modal-title-vcenter' centered>
       <Form onSubmit={handleSubmit}>
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">{props.popupName} Experience</Modal.Title>
+          <Modal.Title id='contained-modal-title-vcenter'>
+            {props.popupName} Experience
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {/* Company */}
           <Form.Group>
             <Form.Label>Company</Form.Label>
             <Form.Control
-              type="text"
+              type='text'
               required
               defaultValue={props.popupName === "Edit" ? props.company : ""}
-              onChange={(e) => setExperience({ ...experience, company_name: e.target.value })}
+              onChange={(e) =>
+                setExperience({ ...experience, company_name: e.target.value })
+              }
             />
           </Form.Group>
 
@@ -64,7 +68,7 @@ const Experience = (props) => {
           <Form.Group>
             <Form.Label>Role / Position</Form.Label>
             <Form.Control
-              type="text"
+              type='text'
               required
               defaultValue={props.popupName === "Edit" ? props.position : ""}
               onChange={(e) =>
@@ -82,21 +86,22 @@ const Experience = (props) => {
               <Col>
                 <Form.Label>Employement Type</Form.Label>
                 <Form.Control
-                  as="select"
+                  as='select'
                   required
-                  defaultValue={props.popupName === "Edit" ? props.employementType : ""}
+                  defaultValue={
+                    props.popupName === "Edit" ? props.employementType : ""
+                  }
                   onChange={(e) =>
                     setExperience({
                       ...experience,
                       employement_type: e.target.value,
                     })
-                  }
-                >
-                  <option name="fulltime">Full Time</option>
-                  <option name="parttime">Part Time</option>
-                  <option name="internship">Internship</option>
-                  <option name="contract">Contract</option>
-                  <option name="remote">Remote</option>
+                  }>
+                  <option name='fulltime'>Full Time</option>
+                  <option name='parttime'>Part Time</option>
+                  <option name='internship'>Internship</option>
+                  <option name='contract'>Contract</option>
+                  <option name='remote'>Remote</option>
                 </Form.Control>
               </Col>
 
@@ -104,10 +109,14 @@ const Experience = (props) => {
               <Col>
                 <Form.Label>Location</Form.Label>
                 <Form.Control
-                  type="text"
+                  type='text'
                   required
-                  defaultValue={props.popupName === "Edit" ? props.location : ""}
-                  onChange={(e) => setExperience({ ...experience, location: e.target.value })}
+                  defaultValue={
+                    props.popupName === "Edit" ? props.location : ""
+                  }
+                  onChange={(e) =>
+                    setExperience({ ...experience, location: e.target.value })
+                  }
                 />
               </Col>
             </Form.Row>
@@ -117,8 +126,8 @@ const Experience = (props) => {
           <Form.Group>
             <Form.Label>Description</Form.Label>
             <Form.Control
-              type="text"
-              as="textarea"
+              type='text'
+              as='textarea'
               required
               defaultValue={props.popupName === "Edit" ? props.description : ""}
               onChange={(e) =>
@@ -134,7 +143,7 @@ const Experience = (props) => {
           <Form.Group>
             <Form.Label>3 Keywords Describing The Job</Form.Label>
             <Form.Control
-              type="text"
+              type='text'
               required
               defaultValue={props.popupName === "Edit" ? props.keywords : ""}
               onChange={(e) =>
@@ -144,7 +153,9 @@ const Experience = (props) => {
                 })
               }
             />
-            <Form.Text className="text-muted">Add a comma between keywords</Form.Text>
+            <Form.Text className='text-muted'>
+              Add a comma between keywords
+            </Form.Text>
           </Form.Group>
 
           {/* Start Year */}
@@ -153,28 +164,38 @@ const Experience = (props) => {
               <Col>
                 <Form.Label>Start Year</Form.Label>
                 <Form.Control
-                  type="date"
+                  type='date'
                   required
-                  defaultValue={props.popupName === "Edit" ? props.dateStart : ""}
-                  onChange={(e) => setExperience({ ...experience, date_start: e.target.value })}
+                  defaultValue={
+                    props.popupName === "Edit" ? props.dateStart : ""
+                  }
+                  onChange={(e) =>
+                    setExperience({ ...experience, date_start: e.target.value })
+                  }
                 />
               </Col>
               <Col>
                 {/* End Year */}
                 <Form.Label>End Year</Form.Label>
                 <Form.Control
-                  type="date"
+                  type='date'
                   defaultValue={props.popupName === "Edit" ? props.dateEnd : ""}
-                  onChange={(e) => setExperience({ ...experience, date_end: e.target.value })}
+                  onChange={(e) =>
+                    setExperience({ ...experience, date_end: e.target.value })
+                  }
                 />
-                <Form.Text className="text-muted">Leave blank if current position</Form.Text>
+                <Form.Text className='text-muted'>
+                  Leave blank if current position
+                </Form.Text>
               </Col>
             </Form.Row>
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button type="submit" variant="dark">
-            {props.popupName === "Edit" ? "Update Experience" : "Add Experience"}
+          <Button type='submit' variant='dark'>
+            {props.popupName === "Edit"
+              ? "Update Experience"
+              : "Add Experience"}
           </Button>
         </Modal.Footer>
       </Form>
