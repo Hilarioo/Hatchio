@@ -12,6 +12,7 @@ import "../../../css/Theme.css";
 import Button from "react-bootstrap/Button";
 import ProgressBar from "react-bootstrap/ProgressBar";
 //Import SVG Icons
+import Arrow from "../../../content/svg/arrow.svg";
 import LocationIcon from "../../../content/svg/location-icon.svg";
 import ProjectIcon from "../../../content/svg/project-icon.svg";
 import ExperienceIcon from "../../../content/svg/experience-icon.svg";
@@ -61,6 +62,15 @@ const PublicStudentProfile = ({
     <>
       {/* heading */}
       <div className='student-heading'>
+        {/* Back Button */}
+        <div
+          className='back-btn'
+          onClick={(e) => {
+            window.location = "/search-candidates";
+            e.preventDefault();
+          }}>
+          <img src={Arrow} alt='back arrow' />
+        </div>
         {/* creates default image if none provided */}
         <img
           src={
@@ -105,15 +115,6 @@ const PublicStudentProfile = ({
       </div>
 
       {/*  About Us */}
-      <div className='student-about'>
-        <div className='flex-box'>
-          <h4>About Us</h4>
-        </div>
-        {/* About Me */}
-        <p>{userProfile[1][0].about_me}</p>
-      </div>
-
-      {/* The Opportunity */}
       <div className='student-about'>
         <div className='flex-box'>
           <h4>About Us</h4>
@@ -241,9 +242,13 @@ const PublicStudentProfile = ({
                         {converter(data.date_end)}
                       </p>
                       <li>
-                        <ul style={{ backgroundColor: "#EFE271" }}>
-                          {data.arr_work_done_keywords}
-                        </ul>
+                        {String(data.arr_work_done_keywords)
+                          .split(",")
+                          .map((tool) => (
+                            <ul style={{ backgroundColor: "#EFE271" }}>
+                              {tool}
+                            </ul>
+                          ))}
                       </li>
                     </div>
                   </div>

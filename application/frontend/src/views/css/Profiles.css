@@ -180,6 +180,27 @@
   margin-left: 2rem;
 }
 
+.back-btn {
+  position: relative;
+  top: 2rem;
+  left: -2rem;
+  width: 3rem;
+  height: 3rem;
+  background-color: #eee;
+  border-radius: 100%;
+}
+
+.back-btn img {
+  display: block;
+  margin: 0.7rem auto;
+  width: 1.5rem;
+}
+
+.back-btn:hover {
+  background-color: rgb(219, 219, 219);
+  cursor: pointer;
+}
+
 /* Browser Desktop */
 @media (min-width: 800px) {
   .student-grid {
