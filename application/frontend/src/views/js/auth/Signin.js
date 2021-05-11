@@ -27,10 +27,6 @@ function Signin() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    //Boolean if User Exists | Incorrect authentication field
-    // console.log(event.target[3].value);
-    // console.log(event.target[4].value);
-    // console.log(userType);
     let bool_user_auth = await API_USER_LOG_IN(
       event.target[3].value,
       event.target[4].value,
@@ -46,7 +42,7 @@ function Signin() {
     //Auth False
     if (bool_user_auth === false) {
       // console.log("false");
-      alert('auth failed.');
+      alert("auth failed.");
       //Control UI response
     }
   };

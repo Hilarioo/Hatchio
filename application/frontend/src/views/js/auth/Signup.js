@@ -57,11 +57,7 @@ function Signup() {
   return (
     <>
       <h1 id='h1-signup'>Create An Account</h1>
-      <Form
-        noValidate
-        validated={validated}
-        onSubmit={handleSubmit}
-        className='auth-form'>
+      <Form onSubmit={handleSubmit} className='auth-form'>
         <Form.Row id='profiles'>
           <Col>
             <label>
