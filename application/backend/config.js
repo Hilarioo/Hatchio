@@ -44,7 +44,7 @@ const MYSQL_CRED = [
     multipleStatements: true,
   },
 ];
-const username = "hilarioo";
+const username = "ubuntu";
 const credIndex = function (name) {
   switch (name) {
     case "ubuntu":
