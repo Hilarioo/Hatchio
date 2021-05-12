@@ -20,12 +20,7 @@ ii. Change Log
 
 #### TODO (Bug Fixes)
 
-- notifications formatting
-- move hire gif to the notifications on employers
-
 #### Unresolved Issues
-
-- instead of window.location.reload() we should be able to refire the useEffect to cause a state change w/o having to reload
 
 #### Monday, May 10, 2021 :: Aaron
 
