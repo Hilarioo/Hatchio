@@ -54,7 +54,6 @@ const ProfessorProfile = (props) => {
             <b>Email</b>
             <br></br> {userProfile.email}
           </p>
-          <p>{userProfile.school_name}</p>
           <p>
             <b>School Name</b>
             <br></br> {userProfile.school_name}

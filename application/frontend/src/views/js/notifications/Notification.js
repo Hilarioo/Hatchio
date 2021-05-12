@@ -7,6 +7,15 @@ import API_STUDENT_RATING_NOTIFICATIONS from "../../../models/GET/Students/ratin
 import API_UPDATE_STUDENT_RATING_NOTIFICATION from "../../../models/PUT/Students/update_ratings_notification";
 import API_USER_GET_PROFILE from "../../../models/GET/user_profile";
 
+function converter(dataitem) {
+  if (dataitem) {
+    var t = dataitem.split(/[- : T]/);
+    var d = new Date(Date.UTC(t[0], t[1] - 1, t[2], t[3], t[4]));
+    d = d.toString().split(" ");
+    return d[1] + " " + d[2] + ", " + d[3];
+  }
+}
+
 const Notifications = () => {
   useEffect(() => {
     if (cookie.Type_User === "student") {
@@ -65,7 +74,7 @@ const Notifications = () => {
                     <b>Professor </b>: {row.first_name}
                   </td>
                   <td>
-                    <b>Time Rated</b> {row.publish_date}
+                    <b>Time Rated</b> {converter(row.publish_date)}
                   </td>
                   <td>
                     <b>Rating Total</b> {row.rating_total}
