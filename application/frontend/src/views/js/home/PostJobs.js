@@ -10,7 +10,7 @@ const PostJobs = () => {
 
   function postJobs(e) {
     e.preventDefault();
-    if (cookie.Type_User === "employer") window.location.href = "/insert-jobs";
+    if (cookie.Type_User === "employer") window.location.href = "/postjobs";
     else window.location.href = "/signin";
   }
 
